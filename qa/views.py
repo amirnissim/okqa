@@ -1,4 +1,5 @@
 from django.contrib.auth.models import Group, User
+from django.db import transaction
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from qa.models import Question, Answer, QuestionUpvote
@@ -65,6 +66,9 @@ def add_answer(request, q_id):
 def upvote_question(request, q_id):
     q = get_object_or_404(Question, id=q_id)
     user = request.user
+
+    if q.author == user:
+        return HttpResponseForbidden("You cannot upvote your own question")
     voted_questions = [vote.question for vote in user.upvotes.all()]
     if q in voted_questions:
         return HttpResponseForbidden("You already upvoted this question")
@@ -74,7 +78,8 @@ def upvote_question(request, q_id):
         increase_rating(q)
     return HttpResponse("Your vote was recorded")
 
-# TODO: increase rating in transaction
+@transaction.commit_on_success
 def increase_rating(q):
+    q = Question.objects.get(id=q.id)
     q.rating += 1
     q.save()
