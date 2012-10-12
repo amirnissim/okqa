@@ -1,0 +1,14 @@
+{% load i18n %}
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<h1>Questions</h1>
+
+<ul> {% for q in questions %}
+    <li><a href="{% url qa.views.view_question q.id %}">{{ q.subject }}</a></li>
+    {% endfor %}
+</ul>
+</body>
+</html>

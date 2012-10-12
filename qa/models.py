@@ -21,7 +21,6 @@ class Question(models.Model):
 
 class Answer(models.Model):
     author = models.ForeignKey(User, related_name="answers")
-    subject = models.CharField(max_length=MAX_LENGTH_A_SUBJECT, help_text=_("subject"))
     content = models.TextField(max_length=MAX_LENGTH_A_CONTENT, help_text=_("content"))
 
     question = models.ForeignKey(Question, related_name="answers")
