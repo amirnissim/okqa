@@ -5,19 +5,20 @@
     <title></title>
 </head>
 <body>
+{% load i18n %}
 <h1>{{ question.subject }}</h1>
 
-<div>Asked by {{ question.author }} on {{ question.created_at }}</div>
+<div>{% blocktrans %}Asked by {{ question.author }} on {{ question.created_at }}{% endblocktrans %}</div>
 <p>{{ question.content }}</p>
 
-<p>Tags:
+<p>{% trans "Tags:" %}
     {% for tag in question.tags.all %}
     <span>{{ tag }}</span>
     {% endfor %}
 </p>
 
 {% if answers %}
-<h1>Answers</h1>
+<h1>{% trans "Answers" %}</h1>
 {% for answer in answers %}
 <p>{{ answer.content }}</p>
 by <a>{{ answer.author }}</a>
@@ -25,13 +26,13 @@ on {{ answer.created_at }}
 <hr>
 {% endfor %}
 {% else %}
-<h1>No answers</h1>
+<h1>{% trans "No answers" %}</h1>
 {% endif %}
 
 <form action="{% url qa.views.add_answer question.id%}" method="POST">
     {% csrf_token %}
     <textarea name="content" id="" cols="30" rows="10"></textarea>
-    <button type="submit">Submit</button>
+    <button type="submit">{% trans "Submit" %}</button>
 </form>
 </body>
 </html>

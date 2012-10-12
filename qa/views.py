@@ -38,7 +38,7 @@ def view_question(request, q_id):
 
 def add_question(request):
     if not request.user.is_authenticated():
-        return HttpResponseForbidden("You cannot post questions")
+        return HttpResponseForbidden(_("You cannot post questions"))
 
     subject = request.POST.get("subject")
     content = request.POST.get("content")
@@ -50,33 +50,33 @@ def add_question(request):
 
 def add_answer(request, q_id):
     if not request.user.is_authenticated(): # TODO: check that user is a candidate (can answer questions)
-        return HttpResponseForbidden("You must be a candidate to add an answer")
+        return HttpResponseForbidden(_("You must be a candidate to add an answer"))
 
     question = Question.objects.get(id=q_id)
     content = request.POST.get("content")
 
     if not (question and content):
-        return HttpResponseBadRequest("Question does not exist, or empty answer")
+        return HttpResponseBadRequest(_("Question does not exist, or empty answer"))
 
     answer = Answer(author=request.user, content=content, question=question)
     answer.save()
 
-    return HttpResponse("Your answer was recorded")
+    return HttpResponse(_("Your answer was recorded"))
 
 def upvote_question(request, q_id):
     q = get_object_or_404(Question, id=q_id)
     user = request.user
 
     if q.author == user:
-        return HttpResponseForbidden("You cannot upvote your own question")
+        return HttpResponseForbidden(_("You cannot upvote your own question"))
     voted_questions = [vote.question for vote in user.upvotes.all()]
     if q in voted_questions:
-        return HttpResponseForbidden("You already upvoted this question")
+        return HttpResponseForbidden(_("You already upvoted this question"))
     else:
         upvote = QuestionUpvote(question=q, user=user)
         upvote.save()
         increase_rating(q)
-    return HttpResponse("Your vote was recorded")
+    return HttpResponse(_("Your vote was recorded"))
 
 @transaction.commit_on_success
 def increase_rating(q):

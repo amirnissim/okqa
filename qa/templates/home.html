@@ -5,25 +5,26 @@
     <title></title>
 </head>
 <body>
-    <h1>OKQA Home page</h1>
+	{% load i18n %}
+    <h1>{% trans "OKQA Home page" %}</h1>
     <hr>
     <h2>Browse the site</h2>
-    <a href="{% url qa.views.questions %}">Check out some questions</a> or,
-    <a href="{% url qa.views.candidates %}">Check out some candidates</a> or,
-    <a href="{% url qa.views.voters %}">Check out some voters</a>
+    <a href="{% url qa.views.questions %}">{% trans "Check out some questions" %}</a> or,
+    <a href="{% url qa.views.candidates %}">{% trans "Check out some candidates" %}</a> or,
+    <a href="{% url qa.views.voters %}">{% trans "Check out some voters" %}</a>
     <hr>
     <h2>Post a question</h2>
 {% if user.is_authenticated %}
     <form action="{% url qa.views.add_question %}" method="POST">
         {% csrf_token %}
-        <p><label>Subject
+        <p><label>{% trans "Subject" %}
             <input type="text" name="subject">
         </label></p>
-        <p><label for="">Content</label><textarea name="content" id="" cols="30" rows="10"></textarea></p>
-        <button type="submit">Ask!</button>
+        <p><label for="">{% trans "Content" %}</label><textarea name="content" id="" cols="30" rows="10"></textarea></p>
+        <button type="submit">{% trans "Ask!" %}</button>
     </form>
 {% else %}
-    <p>Please log in to post questions</p>
+    <p>{% trans "Please log in to post questions" %}</p>
 {% endif %}
 </body>
 </html>

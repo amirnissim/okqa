@@ -4,14 +4,14 @@
     <title></title>
 </head>
 <body>
-<h1>Questions</h1>
+<h1>{% trans "Questions" %}</h1>
 
 {% for q in questions %}
 <h3><a href="{% url qa.views.view_question q.id %}">{{ q.subject }}</a></h3>
 <div>
-    <div>{{ q.rating }} votes</div>
-    <div>{{ q.answers.count }} answers</div>
-    <a href="{% url qa.views.upvote_question q.id %}">upvote</a>
+    <div>{% blocktrans %} {{ q.rating }} votes {% endblocktrans %}</div>
+    <div>{% blocktrans %} {{ q.answers.count }} answers {% endblocktrans %}</div>
+    <a href="{% url qa.views.upvote_question q.id %}">{% trans "upvote" %}</a>
 </div>
 <div>{{ q.content }}</div>
 <hr>

@@ -5,7 +5,8 @@
     <title></title>
 </head>
 <body>
-<h1>Voters</h1>
+{% load i18n %}
+<h1>{% trans "Voters" %}</h1>
 {% for voter in voters %}
 <div>{{ voter.username}} <a href="{% url qa.views.view_voter voter.id %}">view</a></div>
 {% endfor %}

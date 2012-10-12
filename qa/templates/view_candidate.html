@@ -5,9 +5,10 @@
     <title></title>
 </head>
 <body>
-<h1>View Candidate</h1>
+{% load i18n %}
+<h1>{% trans "View Candidate" %}</h1>
 {{ candidate.username}}
-<h2>Answers</h2>
+<h2>{% trans "Answers" %}</h2>
 {% for a in answers %}
 <div style="background: #d3d3d3">
     <h3>{{ a.question.subject }}</h3>
