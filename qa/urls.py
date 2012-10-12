@@ -15,5 +15,6 @@ urlpatterns = patterns('',
 
     (r'^add_answer/(?P<q_id>\d+)/$', 'qa.views.add_answer'),
     (r'^add_question/$', 'qa.views.add_question'),
+    (r'^upvote_question/(?P<q_id>\d+)/$', 'qa.views.upvote_question'),
 
 )

@@ -6,9 +6,15 @@
 <body>
 <h1>Questions</h1>
 
-<ul> {% for q in questions %}
-    <li><a href="{% url qa.views.view_question q.id %}">{{ q.subject }}</a></li>
-    {% endfor %}
-</ul>
+{% for q in questions %}
+<h3><a href="{% url qa.views.view_question q.id %}">{{ q.subject }}</a></h3>
+<div>
+    <a>{{ q.rating }} votes</a>
+    <a href="{% url qa.views.upvote_question q.id %}">upvote</a>
+</div>
+<div>{{ q.content }}</div>
+<hr>
+{% endfor %}
+
 </body>
 </html>
