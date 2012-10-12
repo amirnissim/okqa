@@ -16,6 +16,9 @@ class Question(models.Model):
     content = models.TextField(max_length=MAX_LENGTH_Q_CONTENT, help_text=_("content"))
     tags = TaggableManager()
 
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
 class Answer(models.Model):
     author = models.ForeignKey(User, related_name="answers")
     subject = models.CharField(max_length=MAX_LENGTH_A_SUBJECT, help_text=_("subject"))
@@ -23,3 +26,5 @@ class Answer(models.Model):
 
     question = models.ForeignKey(Question, related_name="answers")
 
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
