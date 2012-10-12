@@ -7,5 +7,15 @@
 <body>
 <h1>View Candidate</h1>
 {{ candidate.username}}
+<h2>Answers</h2>
+{% for a in answers %}
+<div style="background: #d3d3d3">
+    <h3>{{ a.question.subject }}</h3>
+    <div>{{ a.question.content }}</div>
+</div>
+<div style="background: #add8e6">
+    {{ a.content }}
+</div>
+{% endfor %}
 </body>
 </html>

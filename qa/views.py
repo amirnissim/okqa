@@ -15,8 +15,8 @@ def candidates(request):
 
 def view_candidate(request, candidate_id):
     candidate = get_object_or_404(User, id=candidate_id)
+    answers = candidate.answers.all()
     return render_to_response("view_candidate.html", locals(), context_instance=RequestContext(request))
-
 
 def voters(request):
     g = Group.objects.get(name="voters")

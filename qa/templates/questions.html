@@ -9,7 +9,8 @@
 {% for q in questions %}
 <h3><a href="{% url qa.views.view_question q.id %}">{{ q.subject }}</a></h3>
 <div>
-    <a>{{ q.rating }} votes</a>
+    <div>{{ q.rating }} votes</div>
+    <div>{{ q.answers.count }} answers</div>
     <a href="{% url qa.views.upvote_question q.id %}">upvote</a>
 </div>
 <div>{{ q.content }}</div>
