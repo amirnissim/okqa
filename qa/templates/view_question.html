@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<h1>{{ question.subject }}</h1>
+
+<div>Asked by {{ question.author }} on {{ question.created_at }}</div>
+<p>{{ question.content }}</p>
+
+<p>Tags:
+    {% for tag in question.tags.all %}
+    <span>{{ tag }}</span>
+    {% endfor %}
+</p>
+
+{% if answers %}
+<h1>Answers</h1>
+{% for answer in answers %}
+<p>{{ answer.content }}</p>
+by <a>{{ answer.author }}</a>
+on {{ answer.created_at }}
+<hr>
+{% endfor %}
+{% else %}
+<h1>No answers</h1>
+{% endif %}
+
+<form action="{% url qa.views.add_answer question.id%}" method="POST">
+    {% csrf_token %}
+    <textarea name="content" id="" cols="30" rows="10"></textarea>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
