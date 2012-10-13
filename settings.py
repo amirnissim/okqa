@@ -1,4 +1,5 @@
 # Django settings for okqa project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -72,6 +73,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(os.path.dirname(__file__), 'static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -103,12 +105,14 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'okqa.urls'
 
 TEMPLATE_DIRS = (
+    "templates"
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
 
 INSTALLED_APPS = (
+    'south',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -117,7 +121,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'taggit',
-    'qa',
+    'registration',
+    'qa'
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
 )
@@ -149,3 +154,5 @@ LOGGING = {
         },
     }
 }
+
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.

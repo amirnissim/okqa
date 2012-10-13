@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block mainContainer %}
+    {% load i18n %}
+    <h1>{% trans "View Voter" %}</h1>
+    {{ voter.username }}
+
+{% endblock %}
