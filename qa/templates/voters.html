@@ -1,14 +1,8 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends "base.html" %}
 {% load i18n %}
-<h1>{% trans "Voters" %}</h1>
-{% for voter in voters %}
-<div>{{ voter.username}} <a href="{% url qa.views.view_voter voter.id %}">view</a></div>
-{% endfor %}
-</body>
-</html>
+{% block mainContainer %}
+    <h1>{% trans "Voters" %}</h1>
+    {% for voter in voters %}
+        <div>{{ voter.username }} <a href="{% url qa.views.view_voter voter.id %}">view</a></div>
+    {% endfor %}
+{% endblock %}

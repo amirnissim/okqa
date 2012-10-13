@@ -4,6 +4,7 @@ from django.shortcuts import render, render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from qa.models import Question, Answer, QuestionUpvote
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
+from django.utils.translation import ugettext as _
 
 def home(request):
     return render(request, "home.html")

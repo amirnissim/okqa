@@ -1,38 +1,32 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends "base.html" %}
 {% load i18n %}
-<h1>{{ question.subject }}</h1>
+{% block mainContainer %}
+    <h1>{{ question.subject }}</h1>
 
-<div>{% blocktrans %}Asked by {{ question.author }} on {{ question.created_at }}{% endblocktrans %}</div>
-<p>{{ question.content }}</p>
+    <div>{% blocktrans %}Asked by {{ question.author }} on {{ question.created_at }}{% endblocktrans %}</div>
+    <p>{{ question.content }}</p>
 
-<p>{% trans "Tags:" %}
-    {% for tag in question.tags.all %}
-    <span>{{ tag }}</span>
-    {% endfor %}
-</p>
+    <p>{% trans "Tags:" %}
+        {% for tag in question.tags.all %}
+            <span>{{ tag }}</span>
+        {% endfor %}
+    </p>
 
-{% if answers %}
-<h1>{% trans "Answers" %}</h1>
-{% for answer in answers %}
-<p>{{ answer.content }}</p>
-by <a>{{ answer.author }}</a>
-on {{ answer.created_at }}
-<hr>
-{% endfor %}
-{% else %}
-<h1>{% trans "No answers" %}</h1>
-{% endif %}
+    {% if answers %}
+        <h1>{% trans "Answers" %}</h1>
+        {% for answer in answers %}
+            <p>{{ answer.content }}</p>
+            by <a>{{ answer.author }}</a>
+            on {{ answer.created_at }}
+            <hr>
+        {% endfor %}
+    {% else %}
+        <h1>{% trans "No answers" %}</h1>
+    {% endif %}
 
-<form action="{% url qa.views.add_answer question.id%}" method="POST">
-    {% csrf_token %}
-    <textarea name="content" id="" cols="30" rows="10"></textarea>
-    <button type="submit">{% trans "Submit" %}</button>
-</form>
-</body>
-</html>
+    <form action="{% url qa.views.add_answer question.id%}" method="POST">
+        {% csrf_token %}
+        <textarea name="content" id="" cols="30" rows="10"></textarea>
+        <button type="submit">{% trans "Submit" %}</button>
+    </form>
+{% endblock %}
