@@ -5,8 +5,8 @@
     {% for q in questions %}
         <h3><a href="{% url qa.views.view_question q.id %}">{{ q.subject }}</a></h3>
         <div>
-            <div>{% blocktrans %} {{ q.rating }} votes {% endblocktrans %}</div>
-            <div>{% blocktrans %} {{ q.answers.count }} answers {% endblocktrans %}</div>
+            <div>{{ q.rating }} {% trans "votes" %}</div>
+            <div>{{ q.answers.count }} {% trans "answers" %}</div>
             <a href="{% url qa.views.upvote_question q.id %}">{% trans "upvote" %}</a>
         </div>
         <div>{{ q.content }}</div>

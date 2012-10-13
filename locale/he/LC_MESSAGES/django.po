@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-13 10:50+0200\n"
-"PO-Revision-Date: 2012-10-13 11:00+0200\n"
+"POT-Creation-Date: 2012-10-13 13:27+0200\n"
+"PO-Revision-Date: 2012-10-13 13:27+0200\n"
 "Last-Translator: amir <amir@waybetter.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -40,123 +40,109 @@ msgstr "ניקוד"
 msgid "question"
 msgstr "שאלה"
 
-#: qa/views.py:41
+#: qa/views.py:42
 msgid "You cannot post questions"
 msgstr ""
 
-#: qa/views.py:53
+#: qa/views.py:54
 msgid "You must be a candidate to add an answer"
 msgstr ""
 
-#: qa/views.py:59
+#: qa/views.py:60
 msgid "Question does not exist, or empty answer"
 msgstr ""
 
-#: qa/views.py:64
+#: qa/views.py:65
 msgid "Your answer was recorded"
 msgstr ""
 
-#: qa/views.py:71
+#: qa/views.py:72
 msgid "You cannot upvote your own question"
 msgstr ""
 
-#: qa/views.py:74
+#: qa/views.py:75
 msgid "You already upvoted this question"
 msgstr ""
 
-#: qa/views.py:79
+#: qa/views.py:80
 msgid "Your vote was recorded"
 msgstr ""
 
-#: qa/templates/candidates.html:9
+#: qa/templates/base.html:8
+msgid "Open Knesset QA"
+msgstr ""
+
+#: qa/templates/candidates.html:4
 msgid "Candidates"
 msgstr "מועמדים"
 
-#: qa/templates/candidates.html:11
+#: qa/templates/candidates.html:6
 msgid "view"
 msgstr ""
 
-#: qa/templates/home.html:9
-msgid "OKQA Home page"
-msgstr ""
-
-#: qa/templates/home.html:12
-msgid "Check out some questions"
-msgstr ""
-
-#: qa/templates/home.html:13
-msgid "Check out some candidates"
-msgstr ""
-
 #: qa/templates/home.html:14
-msgid "Check out some voters"
-msgstr ""
-
-#: qa/templates/home.html:20
 msgid "Subject"
 msgstr "נושא"
 
-#: qa/templates/home.html:23
+#: qa/templates/home.html:18
 msgid "Content"
 msgstr "תוכן"
 
-#: qa/templates/home.html:24
+#: qa/templates/home.html:20
 msgid "Ask!"
 msgstr ""
 
-#: qa/templates/home.html:27
+#: qa/templates/home.html:23
 msgid "Please log in to post questions"
 msgstr ""
 
-#: qa/templates/questions.html:7
+#: qa/templates/questions.html:4
 msgid "Questions"
 msgstr "שאלות"
 
-#: qa/templates/questions.html:12
-#, python-format
-msgid " %(q.rating)s votes "
+#: qa/templates/questions.html:8
+msgid "votes"
 msgstr ""
 
-#: qa/templates/questions.html:13
-#, python-format
-msgid " %(q.answers.count)s answers "
+#: qa/templates/questions.html:9
+msgid "answers"
 msgstr ""
 
-#: qa/templates/questions.html:14
+#: qa/templates/questions.html:10
 msgid "upvote"
 msgstr ""
 
-#: qa/templates/view_candidate.html:9
+#: qa/templates/view_candidate.html:4
 msgid "View Candidate"
 msgstr ""
 
-#: qa/templates/view_candidate.html:11
-#: qa/templates/view_question.html:21
+#: qa/templates/view_candidate.html:6
+#: qa/templates/view_question.html:16
 msgid "Answers"
 msgstr ""
 
-#: qa/templates/view_question.html:11
+#: qa/templates/view_question.html:6
 #, python-format
 msgid "Asked by %(question.author)s on %(question.created_at)s"
-msgstr "נשאלה על ידי %(question.author)s בתאריך %(question.created_at)s"
+msgstr ""
 
-#: qa/templates/view_question.html:14
+#: qa/templates/view_question.html:9
 msgid "Tags:"
 msgstr "תגיות:"
 
-#: qa/templates/view_question.html:29
+#: qa/templates/view_question.html:24
 msgid "No answers"
 msgstr ""
 
-#: qa/templates/view_question.html:35
+#: qa/templates/view_question.html:30
 msgid "Submit"
 msgstr ""
 
-#: qa/templates/view_voter.html:9
+#: qa/templates/view_voter.html:5
 msgid "View Voter"
 msgstr ""
 
-#: qa/templates/voters.html:9
+#: qa/templates/voters.html:4
 msgid "Voters"
 msgstr ""
 

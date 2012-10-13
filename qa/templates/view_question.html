@@ -2,11 +2,14 @@
 {% load i18n %}
 {% block mainContainer %}
     <h1>{{ question.subject }}</h1>
-
-    <div>{% blocktrans %}Asked by {{ question.author }} on {{ question.created_at }}{% endblocktrans %}</div>
+    <div>
+        {% blocktrans with question.author as author and question.created_at as date %}
+            Asked by {{ author }} on {{ date }}
+        {% endblocktrans %}
+    </div>
     <p>{{ question.content }}</p>
 
-    <p>{% trans "Tags:" %}
+    <p>{% trans "Tags" %}:
         {% for tag in question.tags.all %}
             <span>{{ tag }}</span>
         {% endfor %}
