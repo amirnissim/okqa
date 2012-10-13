@@ -1,1 +1,9 @@
 {% extends "base.html" %}
+{% load i18n %}
+{% block mainContainer %}
+<form method="POST">
+{% csrf_token %}
+{{ form }}
+<input type="submit"></input>
+</form>
+{% endblock %}
