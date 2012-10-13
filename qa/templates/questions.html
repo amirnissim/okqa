@@ -1,21 +1,15 @@
+{% extends "base.html" %}
 {% load i18n %}
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<h1>{% trans "Questions" %}</h1>
-
-{% for q in questions %}
-<h3><a href="{% url qa.views.view_question q.id %}">{{ q.subject }}</a></h3>
-<div>
-    <div>{% blocktrans %} {{ q.rating }} votes {% endblocktrans %}</div>
-    <div>{% blocktrans %} {{ q.answers.count }} answers {% endblocktrans %}</div>
-    <a href="{% url qa.views.upvote_question q.id %}">{% trans "upvote" %}</a>
-</div>
-<div>{{ q.content }}</div>
-<hr>
-{% endfor %}
-
-</body>
-</html>
+{% block mainContainer %}
+    <h1>{% trans "Questions" %}</h1>
+    {% for q in questions %}
+        <h3><a href="{% url qa.views.view_question q.id %}">{{ q.subject }}</a></h3>
+        <div>
+            <div>{% blocktrans %} {{ q.rating }} votes {% endblocktrans %}</div>
+            <div>{% blocktrans %} {{ q.answers.count }} answers {% endblocktrans %}</div>
+            <a href="{% url qa.views.upvote_question q.id %}">{% trans "upvote" %}</a>
+        </div>
+        <div>{{ q.content }}</div>
+        <hr>
+    {% endfor %}
+{% endblock %}
