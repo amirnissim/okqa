@@ -1,0 +1,17 @@
+<html>
+        <head>
+                <title>New User</title>
+        </head>
+        <body>
+{% load i18n %}
+
+<h1>{% trans 'Create new user' %}</h1>
+{% block content %}
+<form method="post">{% csrf_token %}
+        <table>{{ form.as_table }}</table>
+        <input type="submit" value="{% trans 'register' %}">
+        <input type="hidden" name="next" value="{{ next }}">
+    </form>
+{% endblock %}
+</body>
+</html>

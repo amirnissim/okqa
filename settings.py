@@ -122,7 +122,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'taggit',
     'registration',
-    'qa'
+    'qa',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
 )
