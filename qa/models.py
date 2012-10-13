@@ -9,6 +9,8 @@ MAX_LENGTH_Q_CONTENT = 255
 MAX_LENGTH_A_SUBJECT = 255
 MAX_LENGTH_A_CONTENT = 255
 
+CANDIDATES_GROUP_NAME = "candidates"
+
 class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)

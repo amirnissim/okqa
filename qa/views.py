@@ -2,16 +2,21 @@ from django.contrib.auth.models import Group, User
 from django.db import transaction
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.template.context import RequestContext
-from qa.models import Question, Answer, QuestionUpvote
+from qa.models import Question, Answer, QuestionUpvote, CANDIDATES_GROUP_NAME
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
 from django.utils.translation import ugettext as _
+from django.db.models import Count
+from taggit.utils import parse_tags
 
 def home(request):
     return render(request, "home.html")
 
 def candidates(request):
-    g = Group.objects.get(name="candidates")
-    candidates = g.user_set.all()
+    """
+    list candidates ordered by number of answers
+    """
+    g = Group.objects.get(name=CANDIDATES_GROUP_NAME)
+    candidates = g.user_set.all().annotate(num_answers=Count('answers')).order_by("-num_answers")
     return render_to_response("candidates.html", locals(), context_instance=RequestContext(request))
 
 def view_candidate(request, candidate_id):
@@ -29,7 +34,10 @@ def view_voter(request, voter_id):
     return render_to_response("view_voter.html", locals(), context_instance=RequestContext(request))
 
 def questions(request):
-    questions = Question.objects.all()
+    """
+    list questions ordered by number of upvotes
+    """
+    questions = Question.objects.all().annotate(num_upvotes=Count("upvotes")).order_by("-num_upvotes")
     return render_to_response("questions.html", locals(), context_instance=RequestContext(request))
 
 def view_question(request, q_id):
@@ -47,11 +55,16 @@ def add_question(request):
     q = Question(author=request.user, subject=subject, content=content)
     q.save()
 
+    tags = parse_tags(request.POST.get("tags", []))
+    for tag in tags:
+        q.tags.add(tag)
+
     return HttpResponse("OK")
 
 def add_answer(request, q_id):
-    if not request.user.is_authenticated(): # TODO: check that user is a candidate (can answer questions)
-        return HttpResponseForbidden(_("You must be a candidate to add an answer"))
+    g_candidates = Group.objects.get(name=CANDIDATES_GROUP_NAME)
+    if not request.user.is_authenticated() or g_candidates not in request.user.groups.all():
+        return HttpResponseForbidden(_("You must be logged in as a candidate to post answers"))
 
     question = Question.objects.get(id=q_id)
     content = request.POST.get("content")
