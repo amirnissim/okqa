@@ -5,11 +5,19 @@
     {% for q in questions %}
         <h3><a href="{% url qa.views.view_question q.id %}">{{ q.subject }}</a></h3>
         <div>
-            <div>{{ q.rating }} {% trans "votes" %}</div>
-            <div>{{ q.answers.count }} {% trans "answers" %}</div>
-            <a href="{% url qa.views.upvote_question q.id %}">{% trans "upvote" %}</a>
+            <div>
+                <div>{{ q.rating }} {% trans "votes" %}</div>
+                <div><a href="{% url qa.views.upvote_question q.id %}">{% trans "upvote this question" %}</a></div>
+                <div>{{ q.answers.count }} {% trans "answers" %}</div>
+            </div>
+            <p>{% trans "Tags" %}:
+                {% for tag in q.tags.all %}
+                    <span>{{ tag }}</span>
+                {% endfor %}
+            </p>
         </div>
         <div>{{ q.content }}</div>
+
         <hr>
     {% endfor %}
 {% endblock %}
