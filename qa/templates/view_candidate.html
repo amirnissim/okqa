@@ -1,22 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+{% extends "base.html" %}
 {% load i18n %}
-<h1>{% trans "View Candidate" %}</h1>
-{{ candidate.username}}
-<h2>{% trans "Answers" %}</h2>
-{% for a in answers %}
-<div style="background: #d3d3d3">
-    <h3>{{ a.question.subject }}</h3>
-    <div>{{ a.question.content }}</div>
-</div>
-<div style="background: #add8e6">
-    {{ a.content }}
-</div>
-{% endfor %}
-</body>
-</html>
+{% block body %}
+    <h1>{% trans "View Candidate" %}</h1>
+    {{ candidate.username}}
+    <h2>{% trans "Answers" %}</h2>
+    {% for a in answers %}
+    <div style="background: #d3d3d3">
+        <h3>{{ a.question.subject }}</h3>
+        <div>{{ a.question.content }}</div>
+    </div>
+    <div style="background: #add8e6">
+        {{ a.content }}
+    </div>
+    {% endfor %}
+{% endblock %}
