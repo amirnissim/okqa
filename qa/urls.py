@@ -1,8 +1,6 @@
 from django.conf.urls.defaults import patterns
 
 urlpatterns = patterns('',
-    (r'^create', 'views.create_user'),
-    (r'^profile', 'views.user_profile'),
     (r'^/?$', 'qa.views.home'),
 
     (r'^q/$', 'qa.views.questions'),

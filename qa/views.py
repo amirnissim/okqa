@@ -1,7 +1,4 @@
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, HttpResponseBadRequest
-from django.contrib.auth import login, authenticate
-from forms import RegistrationForm
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
 from django.contrib.auth.models import Group, User
 from django.db import transaction
 from django.shortcuts import render, render_to_response, get_object_or_404
@@ -66,24 +63,6 @@ def add_question(request):
 
 def home(request):
     return render(request, "home.html")
-
-def create_user(request):
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            user = authenticate(username = form.cleaned_data['username'],
-                                password = form.cleaned_data['password1'])
-            login(request, user)
-            return HttpResponseRedirect('profile')
-        else:
-            return render(request, 'create_user.html', { 'form': form })
-    form = RegistrationForm()
-    return render(request, 'create_user.html', { 'form': form,
-        'next': request.GET.get('next', '') })
-
-def user_profile(request):
-    return render(request, 'user_profile.html')
 
 def add_answer(request, q_id):
     g_candidates = Group.objects.get(name=CANDIDATES_GROUP_NAME)

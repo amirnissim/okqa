@@ -120,9 +120,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'django.contrib.humanize',
     'taggit',
     'registration',
     'qa',
+    'user',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
 )
@@ -156,3 +158,10 @@ LOGGING = {
 }
 
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'testing@example.com'
+

@@ -2,8 +2,9 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import ugettext_lazy as _
+from registration.forms import RegistrationFormUniqueEmail
 
-class RegistrationForm(UserCreationForm):
+class OneStepRegistrationForm(UserCreationForm):
     first_name = forms.CharField(label=_("First Name"))
     last_name = forms.CharField(label=_("Last Name"))
     email = forms.CharField(label=_("Email"))
@@ -20,4 +21,12 @@ class RegistrationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+class TwoStepRegForm(RegistrationFormUniqueEmail):
+    first_name = forms.CharField(label=_("First Name"))
+    last_name = forms.CharField(label=_("Last Name"))
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email')
+
 
