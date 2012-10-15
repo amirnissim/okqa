@@ -37,7 +37,14 @@ def questions(request):
     """
     list questions ordered by number of upvotes
     """
-    questions = Question.objects.all().annotate(num_upvotes=Count("upvotes")).order_by("-num_upvotes")
+    
+
+    questions = Question.objects.all().order_by("rating")
+    questions = Question.objects.all().order_by("-created_at")
+    tags = Question.tags.all()
+    for t in tags:
+        t.count = Question.objects.filter(tags=t).count()
+
     return render_to_response("questions.html", locals(), context_instance=RequestContext(request))
 
 def view_question(request, q_id):

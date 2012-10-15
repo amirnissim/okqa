@@ -1,3 +1,8 @@
 #mainContainer{
     margin-top: 50px;
 }
+.q {
+  clear: both;
+  margin: 0.6em;
+  background-color: #fafafa;
+}

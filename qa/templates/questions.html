@@ -1,23 +1,37 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block mainContainer %}
-    <h1>{% trans "Questions" %}</h1>
-    {% for q in questions %}
-        <h3><a href="{% url qa.views.view_question q.id %}">{{ q.subject }}</a></h3>
-        <div>
-            <div>
-                <div>{{ q.rating }} {% trans "votes" %}</div>
-                <div><a href="{% url qa.views.upvote_question q.id %}">{% trans "upvote this question" %}</a></div>
-                <div>{{ q.answers.count }} {% trans "answers" %}</div>
+    <div class="row">
+      <h1>{% trans "Questions" %}</h1>
+      <div class="span9" style="background-color: #f2f2f2;">
+      {% for q in questions %}
+          <div class="q">
+            <div style="float:left;">
+                <h3>{{ q.rating }}</h3>
+                <button class="btn"><a href="{% url qa.views.upvote_question q.id %}">&uarr;</button>
+                <p><a href="{{ q.author.get_absolute_url }}">{{q.author.username}}</a></p>
             </div>
-            <p>{% trans "Tags" %}:
-                {% for tag in q.tags.all %}
-                    <span>{{ tag }}</span>
-                {% endfor %}
-            </p>
-        </div>
-        <div>{{ q.content }}</div>
+            <div style="width:80%;">
+              <h3><a href="{% url qa.views.view_question q.id %}">{{ q.subject }}</a></h3>
+              <p>{{ q.content }}</p>
+              <h4 style="display:inline;">{{ q.answers.count }} {% trans "answers" %}</h4>
+              <button class="btn-primary">{% trans "Follow" %}</button>
+              {% for tag in q.tags.all %}
+                    <button class="btn">{{ tag }}</button>
+              {% endfor %}
+              <h5 style="float: left;">{{ q.created_at|timesince }}</h5>
+            </div>
 
-        <hr>
-    {% endfor %}
+          </div>
+      {% endfor %}
+    </div>
+    <div class="span3">
+      <h3>{% blocktrans %} {{questions.count}} Questions asked{% endblocktrans %}</h3>
+      <ul class="unstyled">
+      {% for tag in tags %}
+        <li><button class="btn">{{ tag }}</button> - {{tag.count}} {% trans "questions" %}</li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
 {% endblock %}
