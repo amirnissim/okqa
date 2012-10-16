@@ -1,5 +1,5 @@
 from django.contrib import admin
-from qa.models import Question, Answer
+from okqa.qa.models import Question, Answer
 
 class QuestionAdmin(admin.ModelAdmin):
     pass

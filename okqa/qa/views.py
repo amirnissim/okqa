@@ -3,10 +3,12 @@ from django.contrib.auth.models import Group, User
 from django.db import transaction
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.template.context import RequestContext
-from qa.models import Question, Answer, QuestionUpvote, CANDIDATES_GROUP_NAME
 from django.utils.translation import ugettext as _
 from django.db.models import Count
+
 from taggit.utils import parse_tags
+
+from okqa.qa.models import Question, Answer, QuestionUpvote, CANDIDATES_GROUP_NAME
 
 def home(request):
     return render(request, "home.html")
