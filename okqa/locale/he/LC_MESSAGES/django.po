@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-17 15:11+0200\n"
-"PO-Revision-Date: 2012-10-17 15:12+0200\n"
+"POT-Creation-Date: 2012-10-17 15:58+0200\n"
+"PO-Revision-Date: 2012-10-17 15:59+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -181,6 +181,14 @@ msgstr "מפלגת הדמו"
 #: templates/base.html:24
 msgid "Members"
 msgstr "חברים"
+
+#: templates/base.html:41
+msgid "Content is licensed CC-BY. Source code is freely available "
+msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.  קוד המקור חופשי לשימוש"
+
+#: templates/base.html:42
+msgid "here"
+msgstr "כאן"
 
 #: templates/registration/activate.html:8
 msgid "Account successfully activated"

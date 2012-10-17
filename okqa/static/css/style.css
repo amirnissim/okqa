@@ -6,3 +6,9 @@
   margin: 0.6em;
   background-color: #fafafa;
 }
+.footer {
+    margin-top: 70px;
+    border-top: 1px solid rgb(229, 229, 229);
+    background-color: rgb(245, 245, 245);
+}
+
