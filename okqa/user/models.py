@@ -27,7 +27,7 @@ class UserProfile(models.Model):
         ''' getting the avatar image url from Gravatar '''
         email = self.user.email
 
-        default = "http://osqa.herokuapp.com/static/img/defaultavatar.png"
+        default = "http://okqa.herokuapp.com/static/img/defaultavatar.png"
 
         gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(email.lower()).hexdigest() + "?"
         gravatar_url += urllib.urlencode({'d':default, 's':str(size)})
