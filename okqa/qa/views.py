@@ -43,6 +43,7 @@ def questions(request):
 
     questions = Question.objects.all().order_by("rating")
     questions = Question.objects.all().order_by("-created_at")
+    #TODO: optimize
     tags = Question.tags.all()
     for t in tags:
         t.count = Question.objects.filter(tags=t).count()
