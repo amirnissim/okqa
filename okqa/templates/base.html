@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/bootstrap-rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/style.css"/>
-    <title>{% block pageTitle %}{% endblock %}</title>
+    <title>{% block pageTitle %}{% endblock %} | {% trans "The Demo Party" %}</title>
 </head>
 <body>
 <div id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
@@ -16,7 +16,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="{% url home %}">{% trans "Demo Party" %}</a>
+            <a class="brand" href="{% url home %}">{% trans "The Demo Party" %}</a>
 
             <div class="nav-collapse collapse">
                 <ul class="nav">
@@ -39,7 +39,7 @@
   <div class="container">
     <p>
       {% trans "Content is licensed CC-BY. Source code is freely available " %} 
-      <a href="https://github.com/hasadna/ok-qa">{% trans "here"%}.</a>
+      <a href="http://hasadna.github.com/ok-qa/">{% trans "here"%}.</a>
     </p>
   </div>
 </footer>
