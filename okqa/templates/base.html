@@ -16,13 +16,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="{% url home %}">{% trans "Open Knesset QA" %}</a>
+            <a class="brand" href="{% url home %}">{% trans "Demo Party" %}</a>
 
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li><a href="{% url questions %}">שאלות</a></li>
-                    <li><a href="{% url candidates %}">מועמדים</a></li>
-                    <li><a href="{% url voters %}">מצביעים</a></li>
+                  <li><a href="{% url candidates %}">{% trans "Candidates" %}</a></li>
+                  <li><a href="{% url members %}">{% trans "Members" %}</a></li>
                 </ul>
             </div>
             <!--/.nav-collapse -->

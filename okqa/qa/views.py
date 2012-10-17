@@ -26,14 +26,14 @@ def view_candidate(request, candidate_id):
     answers = candidate.answers.all()
     return render_to_response("view_candidate.html", locals(), context_instance=RequestContext(request))
 
-def voters(request):
-    g = Group.objects.get(name="voters")
-    voters = g.user_set.all()
-    return render_to_response("voters.html", locals(), context_instance=RequestContext(request))
+def members(request):
+    g = Group.objects.get(name="members")
+    members = g.user_set.all()
+    return render_to_response("members.html", locals(), context_instance=RequestContext(request))
 
-def view_voter(request, voter_id):
-    voter = get_object_or_404(User, id=voter_id)
-    return render_to_response("view_voter.html", locals(), context_instance=RequestContext(request))
+def view_member(request, voter_id):
+    member = get_object_or_404(User, id=member_id)
+    return render_to_response("view_member.html", locals(), context_instance=RequestContext(request))
 
 def questions(request):
     """

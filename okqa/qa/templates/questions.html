@@ -19,14 +19,14 @@
               {% for tag in q.tags.all %}
                     <button class="btn">{{ tag }}</button>
               {% endfor %}
-              <h5 style="float: left;">{{ q.created_at|timesince }}</h5>
+              <h5 style="float: left;">{% trans "before" %} {{ q.created_at|timesince }}</h5>
             </div>
 
           </div>
       {% endfor %}
     </div>
     <div class="span3">
-      <h3>{% blocktrans %} {{questions.count}} Questions asked{% endblocktrans %}</h3>
+      <h3>{{questions.count}} {% trans "Questions asked" %}</h3>
       <ul class="unstyled">
       {% for tag in tags %}
         <li><button class="btn">{{ tag }}</button> - {{tag.count}} {% trans "questions" %}</li>
