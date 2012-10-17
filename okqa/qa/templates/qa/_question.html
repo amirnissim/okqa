@@ -1,0 +1,19 @@
+{% load i18n %}
+<div class="q">
+  <div style="float:left;">
+      <h3>{{ question.rating }}</h3>
+      <button class="btn"><a href="{% url qa.views.upvote_question question.id %}">&uarr;</button>
+      <p><a href="{{ question.author.get_absolute_url }}">{{question.author.username}}</a></p>
+  </div>
+  <div style="width:80%;">
+    <h3><a href="{% url qa.views.view_question question.id %}">{{ question.subject }}</a></h3>
+    <p>{{ question.content }}</p>
+    <h4 style="display:inline;">{{ question.answers.count }} {% trans "answers" %}</h4>
+    <button class="btn-primary">{% trans "Follow" %}</button>
+    {% for tag in question.tags.all %}
+          <button class="btn">{{ tag }}</button>
+    {% endfor %}
+    <h5 style="float: left;">{% trans "before" %} {{ question.created_at|timesince }}</h5>
+  </div>
+</div>
+

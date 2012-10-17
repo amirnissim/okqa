@@ -158,6 +158,8 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'testing@example.com'
 
+AUTH_PROFILE_MODULE = 'user.UserProfile'
+
 try:
     from local_settings import *
 except ImportError:
