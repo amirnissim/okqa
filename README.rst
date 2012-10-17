@@ -18,7 +18,7 @@ it on your local machine::
     $ mkvirtualenv --no-site-packages djangobench
     $ git clone https://github.com/hasadna/ok-qa.git
     $ cd ok-qa
-    $ pip install -r requirments.txt
+    $ pip install -r requirements.txt
     $ python manage.py syncdb --migrate
     $ python manage.py runserver
 
