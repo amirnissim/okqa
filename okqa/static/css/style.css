@@ -6,6 +6,10 @@
   margin: 0.6em;
   background-color: #fafafa;
 }
+.a {
+  clear: both;
+  margin: 0.6em;
+}
 .footer {
     margin-top: 70px;
     border-top: 1px solid rgb(229, 229, 229);

@@ -1,35 +1,21 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% block pageTitle %}{{question}}{% endblock %}
 {% block mainContainer %}
-    <h1>{{ question.subject }}</h1>
-    <div>
-        {% blocktrans with question.author as author and question.created_at as date %}
-            Asked by {{ author }} on {{ date }}
-        {% endblocktrans %}
+    <div class="row">
+      <div class="span9" style="background-color: #f2f2f2;">
+          {% include "qa/_question.html" %}
+      {% for answer in answers %}
+        {% include "qa/_answer.html" %}
+      {% endfor %}
+      </div>
     </div>
-    <p>{{ question.content }}</p>
 
-    <p>{% trans "Tags" %}:
-        {% for tag in question.tags.all %}
-            <span>{{ tag }}</span>
-        {% endfor %}
-    </p>
-
-    {% if answers %}
-        <h1>{% trans "Answers" %}</h1>
-        {% for answer in answers %}
-            <p>{{ answer.content }}</p>
-            by <a href="{% url qa.views.view_candidate answer.author.id %}">{{ answer.author }}</a>
-            on {{ answer.created_at }}
-            <hr>
-        {% endfor %}
-    {% else %}
-        <h1>{% trans "No answers" %}</h1>
-    {% endif %}
-
+    <div class="clearfix">
     <form action="{% url qa.views.add_answer question.id%}" method="POST">
         {% csrf_token %}
         <textarea name="content" id="" cols="30" rows="10"></textarea>
         <button type="submit">{% trans "Submit" %}</button>
     </form>
+  </div>
 {% endblock %}

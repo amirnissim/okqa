@@ -25,6 +25,9 @@ class Question(BaseModel):
     rating = models.IntegerField(_("rating"), default=0)
     tags = TaggableManager()
 
+    def __unicode__(self):
+        return self.subject
+
 class Answer(BaseModel):
     author = models.ForeignKey(User, related_name="answers", verbose_name=_("author"))
     content = models.TextField(_("content"), max_length=MAX_LENGTH_A_CONTENT, help_text=_("content"))

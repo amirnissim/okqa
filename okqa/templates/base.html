@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/bootstrap-rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/style.css"/>
-    <title>{% trans "Open Knesset QA" %}</title>
+    <title>{% block pageTitle %}{% endblock %}</title>
 </head>
 <body>
 <div id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
