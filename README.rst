@@ -1,4 +1,4 @@
-okqa - Open Knesset Question & Answers
+ok-qa - Open Knesset Question & Answers
 ======================================
 
 This repository holds the code for `hasadna`_ project to support open Primary
@@ -16,8 +16,8 @@ You can access the `live site`_ or if you're a Django developer, install
 it on your local machine::
 
     $ mkvirtualenv --no-site-packages djangobench
-    $ git clone https://github.com/hasadna/okqa.git
-    $ cd okqa
+    $ git clone https://github.com/hasadna/ok-qa.git
+    $ cd ok-qa
     $ pip install -r requirments.txt
     $ python manage.py syncdb --migrate
     $ python manage.py runserver
