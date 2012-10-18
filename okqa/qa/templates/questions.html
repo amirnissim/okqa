@@ -2,7 +2,8 @@
 {% load i18n %}
 {% block mainContainer %}
     <div class="row">
-      <h1>{% trans "Questions" %}</h1>
+      <button class="btn far">{% trans "Ask" %}</button></p>
+      <h1>{% trans "Questions for candidate of" %} {% trans "The Demo Party" %}</h1>
       <div class="span9" style="background-color: #f2f2f2;">
       {% for question in questions %}
           {% include "qa/_question.html" %}

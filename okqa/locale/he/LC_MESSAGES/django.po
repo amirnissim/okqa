@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-17 15:58+0200\n"
-"PO-Revision-Date: 2012-10-17 15:59+0200\n"
+"POT-Creation-Date: 2012-10-18 00:00+0200\n"
+"PO-Revision-Date: 2012-10-18 00:03+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: qa/models.py:22
-#: qa/models.py:29
+#: qa/models.py:32
 msgid "author"
 msgstr "מחבר"
 
@@ -27,16 +27,16 @@ msgid "subject"
 msgstr "נושא"
 
 #: qa/models.py:24
-#: qa/models.py:30
+#: qa/models.py:33
 msgid "content"
 msgstr "תוכן"
 
 #: qa/models.py:25
-#: qa/models.py:31
+#: qa/models.py:34
 msgid "rating"
 msgstr "ניקוד"
 
-#: qa/models.py:32
+#: qa/models.py:35
 msgid "question"
 msgstr "שאלה"
 
@@ -74,7 +74,7 @@ msgid "Candidates"
 msgstr "מועמדים"
 
 #: qa/templates/candidates.html:7
-#: qa/templates/questions.html:17
+#: qa/templates/qa/_question.html:11
 msgid "answers"
 msgstr "תשובות"
 
@@ -107,22 +107,24 @@ msgid "Please log in to post questions"
 msgstr ""
 
 #: qa/templates/questions.html:5
-msgid "Questions"
-msgstr "שאלות"
+msgid "Ask"
+msgstr " שאל"
 
-#: qa/templates/questions.html:18
-msgid "Follow"
-msgstr "עקוב"
+#: qa/templates/questions.html:6
+msgid "Questions for candidate of"
+msgstr "שאלות למועמדים ב"
 
-#: qa/templates/questions.html:22
-msgid "before"
-msgstr "לפני"
+#: qa/templates/questions.html:6
+#: templates/base.html:8
+#: templates/base.html.py:19
+msgid "The Demo Party"
+msgstr "מפלגת הדמו"
 
-#: qa/templates/questions.html:29
+#: qa/templates/questions.html:13
 msgid "Questions asked"
 msgstr "שאלות נשאלו"
 
-#: qa/templates/questions.html:32
+#: qa/templates/questions.html:16
 msgid "questions"
 msgstr "שאלות"
 
@@ -135,27 +137,10 @@ msgid "View Candidate"
 msgstr "הצג מועמד"
 
 #: qa/templates/view_candidate.html:6
-#: qa/templates/view_question.html:19
 msgid "Answers"
 msgstr "תשובות"
 
-#: qa/templates/view_question.html:6
-#, python-format
-msgid ""
-"\n"
-"            Asked by %(author)s on %(date)s\n"
-"        "
-msgstr ""
-
-#: qa/templates/view_question.html:12
-msgid "Tags"
-msgstr "תגיות"
-
-#: qa/templates/view_question.html:27
-msgid "No answers"
-msgstr ""
-
-#: qa/templates/view_question.html:33
+#: qa/templates/view_question.html:18
 #: templates/registration/password_change_form.html:8
 #: templates/registration/password_reset_confirm.html:11
 #: templates/registration/password_reset_form.html:8
@@ -170,13 +155,15 @@ msgstr ""
 msgid "Voters"
 msgstr ""
 
-#: templates/base.html:8
-msgid "Open Knesset QA"
-msgstr ""
+#: qa/templates/qa/_answer.html:13
+#: qa/templates/qa/_question.html:12
+msgid "Follow"
+msgstr "עקוב"
 
-#: templates/base.html:19
-msgid "Demo Party"
-msgstr "מפלגת הדמו"
+#: qa/templates/qa/_answer.html:14
+#: qa/templates/qa/_question.html:16
+msgid "before"
+msgstr "לפני"
 
 #: templates/base.html:24
 msgid "Members"
@@ -288,6 +275,32 @@ msgstr "שם משפחה"
 #: user/forms.py:10
 msgid "Email"
 msgstr "דואל"
+
+#: user/models.py:9
+msgid "No Email"
+msgstr "אין דואל"
+
+#: user/models.py:10
+msgid "Daily"
+msgstr ""
+
+#: user/models.py:11
+msgid "Weekly"
+msgstr ""
+
+#: user/models.py:14
+msgid "Male"
+msgstr ""
+
+#: user/models.py:15
+msgid "Female"
+msgstr ""
+
+#~ msgid "Questions"
+#~ msgstr "שאלות"
+
+#~ msgid "Tags"
+#~ msgstr "תגיות"
 
 #~ msgid " %(questions.count)s Questions asked"
 #~ msgstr " %(questions.count)s שאלות שנשאלו"
