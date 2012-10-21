@@ -59,6 +59,7 @@ def questions(request):
 def view_question(request, q_id):
     question = get_object_or_404(Question, id=q_id)
     answers = question.answers.all()
+    can_answer = question.can_answer(request.user)
     return render_to_response("view_question.html", locals(), context_instance=RequestContext(request))
 
 def add_question(request):

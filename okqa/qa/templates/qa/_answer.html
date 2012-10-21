@@ -5,15 +5,15 @@
       <button class="btn"><a href="{% url qa.views.upvote_question question.id %}">&uarr;</button>
       <p><a href="{{ answer.author.get_absolute_url }}">{{answer.author.username}}</a></p>
   </div>
-  <div style="float:right; margin:5px;">
-    <img src="{{ answer.author.get_profile.avatar_url }}">
+  <div class="avatar">
+    <a href="{{ answer.author.get_absolute_url }}">
+      <img src="{{ answer.author.get_profile.avatar_url }}">
+    </a>
   </div>
   <div style="width:80%;">
     <p>{{ answer.content }}</p>
-    <button class="btn-primary">{% trans "Follow" %}</button>
-    <h5 style="float: left;">{% trans "before" %} {{ answer.updated_at|timesince }}</h5>
+    <h5>{% trans "before" %} {{ answer.updated_at|timesince }}</h5>
   </div>
   <div class="clearfix"></div>
 </div>
-
 

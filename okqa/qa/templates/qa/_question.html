@@ -8,7 +8,7 @@
   <div style="width:80%;">
     <h3><a href="{% url qa.views.view_question question.id %}">{{ question.subject }}</a></h3>
     <p>{{ question.content }}</p>
-    <h4 style="display:inline;">{{ question.answers.count }} {% trans "answers" %}</h4>
+    <h4 class="answers-count">{{ question.answers.count }} {% trans "answers" %}</h4>
     <button class="btn-primary">{% trans "Follow" %}</button>
     {% for tag in question.tags.all %}
           <button class="btn">{{ tag }}</button>

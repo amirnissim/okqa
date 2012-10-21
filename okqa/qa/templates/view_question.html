@@ -1,21 +1,29 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block pageTitle %}{{question}}{% endblock %}
+{% block extrahead %}
+  <style>
+    .answers-count { display:none; }
+  </style>
+{% endblock %}
 {% block mainContainer %}
     <div class="row">
       <div class="span9" style="background-color: #f2f2f2;">
-          {% include "qa/_question.html" %}
-      {% for answer in answers %}
-        {% include "qa/_answer.html" %}
-      {% endfor %}
+        {% include "qa/_question.html" %}
+        <h2>{{ question.answers.count }} {% trans "answers" %}</h2>
+        {% for answer in answers %}
+          {% include "qa/_answer.html" %}
+        {% endfor %}
       </div>
     </div>
 
+    {% if can_answer %}
     <div class="clearfix">
     <form action="{% url qa.views.add_answer question.id%}" method="POST">
         {% csrf_token %}
         <textarea name="content" id="" cols="30" rows="10"></textarea>
         <button type="submit">{% trans "Submit" %}</button>
     </form>
+    {% endif %}
   </div>
 {% endblock %}

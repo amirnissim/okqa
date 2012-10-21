@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/style.css"/>
     <title>{% block pageTitle %}{% endblock %} | {% trans "The Demo Party" %}</title>
+    {% block extrahead %}{% endblock %}
 </head>
 <body>
 <div id="mainNav" class="navbar navbar-inverse navbar-fixed-top">

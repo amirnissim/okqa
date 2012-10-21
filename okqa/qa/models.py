@@ -28,6 +28,10 @@ class Question(BaseModel):
     def __unicode__(self):
         return self.subject
 
+    def can_answer(self, user):
+        ''' Can a given user answer self? '''
+        return user.has_perm('qa.add_answer')
+
 class Answer(BaseModel):
     author = models.ForeignKey(User, related_name="answers", verbose_name=_("author"))
     content = models.TextField(_("content"), max_length=MAX_LENGTH_A_CONTENT, help_text=_("content"))
