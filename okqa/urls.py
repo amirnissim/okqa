@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('okqa.qa.urls')),
     url(r'', include('okqa.user.urls')),
+    url(r'accounts/', include('registration.backends.default.urls')),
 )

@@ -4,6 +4,6 @@
 <form method="POST">
 {% csrf_token %}
 {{ form }}
-<input type="submit"></input>
+<input type="submit" value="{% trans 'register' %}"></input>
 </form>
 {% endblock %}

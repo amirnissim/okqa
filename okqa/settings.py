@@ -5,9 +5,6 @@ import dj_database_url
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-TEMPLATE_STRING_IF_INVALID = "XXX %s"
-
-
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -109,6 +106,16 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    'okqa.party.context_processors.forms',
+    )
 INSTALLED_APPS = (
     'south',
     'django.contrib.auth',
@@ -119,13 +126,13 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.humanize',
+    'django.contrib.admindocs',
+    'django_extensions',
     'taggit',
     'registration',
     'okqa.qa',
     'okqa.user',
-    # Uncomment the next line to enable admin documentation:
-    'django.contrib.admindocs',
-    'django_extensions',
+    'okqa.party',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -157,12 +164,13 @@ LOGGING = {
 }
 
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+LOGIN_REDIRECT_URL = '/'
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = 'testing@example.com'
+DEFAULT_FROM_EMAIL = 'qa@oknesset.org'
 
 AUTH_PROFILE_MODULE = 'user.UserProfile'
 
