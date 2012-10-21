@@ -5,6 +5,9 @@ import dj_database_url
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+TEMPLATE_STRING_IF_INVALID = "XXX %s"
+
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )

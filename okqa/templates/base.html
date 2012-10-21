@@ -23,6 +23,26 @@
                 <ul class="nav">
                   <li><a href="{% url candidates %}">{% trans "Candidates" %}</a></li>
                   <li><a href="{% url members %}">{% trans "Members" %}</a></li>
+                  <li><a href="{% url registration.views.register %}">{% trans "register" %}</a></li>
+                  <form class="form-inline" method="post" action="{% url auth_login %}">
+                      {% csrf_token %}
+                      <li><table><tr>
+                              {% if user.is_authenticated %}
+                              <td>{% trans 'Logged in as:' %}</td><td>{{ user.get_full_name }}</td>
+                              <td><input type="submit" value="Log out" /></td>
+                              {% else %}
+                              <td><label for="id_username">Username:</label><input id="id_username" type="text" name="username" maxlength="30"/></td>
+                              <td><label for="id_password">Password:</label> <input type="password" name="password" id="id_password" /></td>
+                              <td><input type="submit" value="Log in" /></td>
+                              {% endif %}
+                  {% if messages %}
+                  {% for message in messages %}
+                  <td{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</td>
+                  {% endfor %}
+              {% endif %}
+                      </tr></table></li>
+                  </form>
+              </ul>
                 </ul>
             </div>
             <!--/.nav-collapse -->

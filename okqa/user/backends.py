@@ -1,6 +1,5 @@
 from registration.backends.default import DefaultBackend
-from registration import signals
-from user.forms import TwoStepRegForm
+from okqa.user.forms import TwoStepRegForm
 
 class RegBackend(DefaultBackend):
     def get_form_class(self, request):
@@ -12,7 +11,4 @@ class RegBackend(DefaultBackend):
         user.last_name = kwargs['last_name']
         user.save()
         return user
-
-
-
 
