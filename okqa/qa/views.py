@@ -10,6 +10,9 @@ from taggit.utils import parse_tags
 
 from okqa.qa.models import Question, Answer, QuestionUpvote, CANDIDATES_GROUP_NAME
 
+# the order options for the list views
+ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating'}
+
 def home(request):
     return render(request, "home.html")
 
@@ -40,9 +43,12 @@ def questions(request):
     list questions ordered by number of upvotes
     """
     
+    try:
+        order = ORDER_OPTIONS[request.GET.get('order', None)]
+    except KeyError:
+        order = '-created_at'
 
-    questions = Question.objects.all().order_by("rating")
-    questions = Question.objects.all().order_by("-created_at")
+    questions = Question.objects.all().order_by(order)
     #TODO: optimize
     tags = Question.tags.all()
     for t in tags:
