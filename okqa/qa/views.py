@@ -12,7 +12,7 @@ from django.utils.translation import ugettext as _
 from taggit.utils import parse_tags
 
 from okqa.qa.models import Question, Answer, QuestionUpvote, CANDIDATES_GROUP_NAME
-from okqa.qa.forms import AnswerForm
+from okqa.qa.forms import AnswerForm, QuestionForm
 
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating'}
@@ -58,7 +58,8 @@ def questions(request):
     for t in tags:
         t.count = Question.objects.filter(tags=t).count()
 
-    return render_to_response("questions.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("qa/question_list.html", dict(questions=questions, tags=tags),
+                              context_instance=RequestContext(request))
 
 def view_question(request, q_id):
     # import pdb; pdb.set_trace()
@@ -115,6 +116,22 @@ def post_answer(request, q_id):
 
     answer.save()
     return HttpResponseRedirect(question.get_absolute_url())
+
+@login_required
+def post_question(request):
+    if request.method == "POST":
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.author = request.user
+            question.save()
+            return HttpResponseRedirect(question.get_absolute_url())
+
+        #TODO: make this better - show the form
+        # return HttpResponseRedirect("/#question_modal")
+    else:
+        form = QuestionForm()
+    return render_to_response("qa/post_question.html", {"form": form }, context_instance=RequestContext(request))
 
 def upvote_question(request, q_id):
     q = get_object_or_404(Question, id=q_id)
