@@ -4,11 +4,11 @@ from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 from taggit.managers import TaggableManager
 
-MAX_LENGTH_Q_SUBJECT = 255
+MAX_LENGTH_Q_SUBJECT = 80
 MAX_LENGTH_Q_CONTENT = 255
 
-MAX_LENGTH_A_SUBJECT = 255
-MAX_LENGTH_A_CONTENT = 255
+MAX_LENGTH_A_SUBJECT = 80
+MAX_LENGTH_A_CONTENT = 500
 
 CANDIDATES_GROUP_NAME = "candidates"
 
@@ -38,7 +38,8 @@ class Question(BaseModel):
 
 class Answer(BaseModel):
     author = models.ForeignKey(User, related_name="answers", verbose_name=_("author"))
-    content = models.TextField(_("content"), max_length=MAX_LENGTH_A_CONTENT, help_text=_("content"))
+    content = models.TextField(_("content"), max_length=MAX_LENGTH_A_CONTENT, 
+        help_text=_("Please enter an answer in no more than %s letters" %  MAX_LENGTH_A_CONTENT))
     rating = models.IntegerField(_("rating"), default=0)
     question = models.ForeignKey(Question, related_name="answers", verbose_name=_("question"))
 

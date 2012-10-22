@@ -1,6 +1,9 @@
 {% load i18n %}
-<div class="a">
-  <div style="float:left;">
+<div class="a" id="answer-{{answer.id}}">
+   <div style="float:left;">
+     {% if my_answer_id == answer.id %}
+      <a id="edit-answer-{{answer.id}}" href="#add_answer_modal" data-toggle="modal">&#9998;</a>
+     {% endif %}
       <h3>{{ answer.rating }}</h3>
       <button class="btn"><a href="{% url qa.views.upvote_question question.id %}">&uarr;</button>
       <p><a href="{{ answer.author.get_absolute_url }}">{{answer.author.username}}</a></p>
@@ -11,7 +14,7 @@
     </a>
   </div>
   <div style="width:80%;">
-    <p>{{ answer.content }}</p>
+    <p>{{ answer.content|linebreaksbr }}</p>
     <h5>{% trans "before" %} {{ answer.updated_at|timesince }}</h5>
   </div>
   <div class="clearfix"></div>

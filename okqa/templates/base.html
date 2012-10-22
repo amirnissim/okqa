@@ -5,9 +5,6 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css"/>
-    <script src="{{ STATIC_URL }}js/jquery.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-modal.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-alert.js"></script>
     <title>{% block pageTitle %}{% endblock %} | {% trans "The Demo Party" %}</title>
     {% block extrahead %}{% endblock %}
 </head>
@@ -87,6 +84,9 @@
   </div>
 </footer>
 
-{#<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>#}
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-modal.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-alert.js"></script>
+    {% block extrascript %} {% endblock %}
 </body>
 </html>

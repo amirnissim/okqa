@@ -12,6 +12,7 @@ from django.utils.translation import ugettext as _
 from taggit.utils import parse_tags
 
 from okqa.qa.models import Question, Answer, QuestionUpvote, CANDIDATES_GROUP_NAME
+from okqa.qa.forms import AnswerForm
 
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating'}
@@ -60,13 +61,22 @@ def questions(request):
     return render_to_response("questions.html", locals(), context_instance=RequestContext(request))
 
 def view_question(request, q_id):
-    # TODO: add answer edit forum
-    # context ["my_answer_form"] = AnswerEditForm.form(current_answer)
-    # context ["my_answer_id"] = current_answer.id
+    # import pdb; pdb.set_trace()
     question = get_object_or_404(Question, id=q_id)
-    answers = question.answers.all()
     can_answer = question.can_answer(request.user)
-    return render_to_response("view_question.html", locals(), context_instance=RequestContext(request))
+    context = RequestContext(request, {"question": question,
+        "answers": question.answers.all(),
+        })
+    if can_answer:
+        try:
+            user_answer = question.answers.get(author=request.user)
+            context["my_answer_form"] = AnswerForm(instance=user_answer)
+            context["my_answer_id"] = user_answer.id
+        except question.answers.model.DoesNotExist:
+            context["my_answer_form"] = AnswerForm()
+            context["can_answer"] = True
+
+    return render_to_response("qa/question_detail.html", context)
 
 def add_question(request):
     if not request.user.is_authenticated():
@@ -88,7 +98,7 @@ def home(request):
     return render(request, "home.html")
 
 @login_required
-def add_answer(request, q_id):
+def post_answer(request, q_id):
     context = {}
     question = Question.objects.get(id=q_id)
 
@@ -96,20 +106,14 @@ def add_answer(request, q_id):
         return HttpResponseForbidden(_("You must be logged in as a candidate to post answers"))
 
     try:
-        current_answer = question.answers.get(author=request.user)
-    except question.answers.model.MultipleObjectsReturned:
-        current_answer = True
+        # make sure the user haven't answered already
+        answer = question.answers.get(author=request.user)
+    except question.answers.model.DoesNotExist:
+        answer = Answer(author=request.user, question = question)
 
-    if current_answer:
-        messages.info(request, 
-                _("You have already answered the question. To change your answer, hover over it and click the pen icon."))
+    answer.content = request.POST.get("content")
 
-    content = request.POST.get("content")
-
-    if not (question and content):
-        return HttpResponseBadRequest(_("Question does not exist, or empty answer"))
-
-    question.answers.create(author=request.user, content=content)
+    answer.save()
     return HttpResponseRedirect(question.get_absolute_url())
 
 def upvote_question(request, q_id):
