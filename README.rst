@@ -20,7 +20,7 @@ it on your local machine::
     $ cd ok-qa
     $ cp okqa/local_settings_template.py okqa/local_settings.py
     $ pip install -r requirements.txt
-    $ python manage.py syncdb --migrate
+    $ python manage.py syncdb --migrate --noinput
     $ python manage.py runserver
 
 .. _live site: http://okqa.herokuapp.com

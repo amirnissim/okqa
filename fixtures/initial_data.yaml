@@ -1,0 +1,205 @@
+-   model: auth.group
+    pk: 1
+    fields:
+        name: candidates
+        permissions:
+        - [add_answer, qa, answer]
+-   fields:
+        date_joined: 2012-10-17 22:51:46
+        email: bennydaon@gmail.com
+        first_name: ''
+        groups: []
+        is_active: true
+        is_staff: true
+        is_superuser: true
+        last_login: 2012-10-22 14:41:04.200234
+        last_name: ''
+        password: pbkdf2_sha256$10000$873m1C5tghHU$SthLMDeuZDlQsCyDz7CwViY1970PsibRK7C1gls8mTY=
+        user_permissions:
+        - [add_question, qa, question]
+        username: daonb
+    model: auth.user
+    pk: 1
+-   fields:
+        date_joined: 2012-10-20 20:11:32
+        email: amirnissim@gmail.com
+        first_name: "\u05D0\u05DE\u05D9\u05E8"
+        groups:
+        - [candidates]
+        is_active: true
+        is_staff: false
+        is_superuser: false
+        last_login: 2012-10-22 11:43:46
+        last_name: "\u05E0\u05D9\u05E1\u05D9\u05DD"
+        password: pbkdf2_sha256$10000$MXCDRTH1iAeh$4Zu+VXkXSI47Yo7a/Kl4AlWvBLyl0/9J/wMbzotUsGQ=
+        user_permissions: []
+        username: amirnissim
+    model: auth.user
+    pk: 3
+-   fields:
+        date_joined: 2012-10-22 12:19:35
+        email: samvimes@fastmail.fm
+        first_name: "\u05DE\u05E9\u05D4"
+        groups:
+        - [candidates]
+        is_active: true
+        is_staff: false
+        is_superuser: false
+        last_login: 2012-10-22 12:22:31
+        last_name: "\u05E7\u05DE\u05D9\u05E0\u05E1\u05E7\u05D9"
+        password: pbkdf2_sha256$10000$zJCemGioOAHQ$RLSw7WF+D6RwrNiXOCyeAu6fq9z74BelAhoNy1ZokFI=
+        user_permissions: []
+        username: mkamensky
+    model: auth.user
+    pk: 4
+-   fields:
+        date_joined: 2012-10-22 14:47:02
+        email: ''
+        first_name: "\u05D9\u05D5\u05D1\u05DC"
+        groups: []
+        is_active: true
+        is_staff: false
+        is_superuser: false
+        last_login: 2012-10-22 14:47:02
+        last_name: ''
+        password: pbkdf2_sha256$10000$jSdcsnWf6JHT$sn5JkUswYmUsSW9X09lv3Qqm8pZoTlJzN34n/G4cZ64=
+        user_permissions: []
+        username: fyuval
+    model: auth.user
+    pk: 5
+-   fields:
+        author: [daonb]
+        content: ''
+        created_at: 2012-10-20 20:13:55.779614
+        rating: 7
+        subject: "\u05DE\u05D4 \u05D4\u05D9\u05D0 \u05D4\u05D7\u05DC\u05D5\u05E4\u05D4\
+            \ \u05E9\u05DC\u05DA \u05DC\u05D7\u05D5\u05E7 \u05D8\u05DC?"
+        updated_at: 2012-10-20 20:14:12.456875
+    model: qa.question
+    pk: 1
+-   fields:
+        author: [daonb]
+        content: "\u05D4\u05DC\u05D7\u05E5 \u05D4\u05D2\u05D5\u05D1\u05E8 \u05DC\u05E9\
+            \u05D7\u05E8\u05E8 \u05D0\u05EA \u05D4\u05E9\u05D5\u05E7 \u05DC\u05D9\u05D1\
+            \u05D5\u05D0 \u05DE\u05EA\u05D7\u05E8\u05D4 \u05DE\u05E4\u05E2\u05D9\u05DC\
+            \ \u05DC\u05D7\u05E5 \u05E2\u05DC \u05D4\u05EA\u05E2\u05E9\u05D9\u05D9\
+            \u05D4 \u05D4\u05D9\u05E9\u05E8\u05D0\u05DC\u05D9\u05EA.  \u05D4\u05D0\
+            \u05DD \u05E0\u05DB\u05D5\u05DF \u05DC\u05EA\u05EA \u05DC\u05E9\u05D5\u05E7\
+            \ \u05D4\u05D7\u05D5\u05E4\u05E9\u05D9 \u05DC\u05DC\u05DB\u05EA \u05D1\
+            \u05D3\u05E8\u05DB\u05D5 \u05D0\u05D5 \u05E9\u05E0\u05DB\u05D5\u05DF \u05DC\
+            \u05EA\u05DE\u05D5\u05DA \u05D1\u05DE\u05E4\u05E2\u05DC\u05D9\u05DD \u05D5\
+            \u05E4\u05D5\u05E2\u05DC\u05D9\u05DD \u05D9\u05E9\u05E8\u05D0\u05DC\u05D9\
+            \u05DD."
+        created_at: 2012-10-20 20:16:17.651503
+        rating: 3
+        subject: "\u05D0\u05D9\u05DA \u05E0\u05DB\u05D5\u05DF \u05DC\u05D4\u05D2\u05DF\
+            \ \u05E2\u05DC \u05D4\u05EA\u05E2\u05E9\u05D9\u05D4 \u05D1\u05D0\u05E8\
+            \u05E5?"
+        updated_at: 2012-10-22 14:41:13.535027
+    model: qa.question
+    pk: 2
+-   fields:
+        author: [amirnissim]
+        content: "\u05D4\u05D9\u05DC\u05D3\u05D4 \u05E9\u05DC\u05D9 \u05DC\u05D5\u05DE\
+            \u05D3\u05EA \u05D1\u05DB\u05D9\u05EA\u05D4 \u05D1' \u05D1\u05D1\u05D9\
+            \u05EA \u05E1\u05E4\u05E8 \u05DE\u05DE\u05DC\u05DB\u05EA\u05D9 \u05D1\u05EA\
+            \u05DC \u05D0\u05D1\u05D9\u05D1 \u05D5\u05D4\u05E6\u05D5\u05D5\u05EA \u05D4\
+            \u05E4\u05D3\u05D2\u05D5\u05D2\u05D9 \u05DB\u05D5\u05DC\u05D5 - \u05DE\
+            \u05D7\u05E0\u05EA, \u05DE\u05D5\u05E8\u05D9\u05DD \u05DE\u05E7\u05E6\u05D5\
+            \u05E2\u05D9\u05DD \u05D5\u05D4\u05DE\u05E0\u05D4\u05DC\u05EA - \u05D7\
+            \u05D5\u05D8\u05D0\u05D9\u05DD \u05D1\u05E9\u05D2\u05D9\u05E2\u05D5\u05EA\
+            \ \u05D1\u05E2\u05D1\u05E8\u05D9\u05EA.  \u05D0\u05D9\u05DA \u05EA\u05DE\
+            \u05E9\u05DB\u05D5 \u05DE\u05D5\u05E8\u05D9\u05DD \u05D8\u05D5\u05D1\u05D9\
+            \u05DD \u05D9\u05D5\u05EA\u05E8 \u05DC\u05DE\u05E2\u05E8\u05DB\u05EA?"
+        created_at: 2012-10-22 14:44:44.762821
+        rating: 2
+        subject: "\u05D0\u05D9\u05DA \u05DE\u05D5\u05E9\u05DB\u05D9\u05DD \u05DE\u05D7\
+            \u05E0\u05DB\u05D9\u05DD \u05DE\u05E2\u05D5\u05DC\u05D9\u05DD \u05DC\u05D1\
+            \u05EA\u05D9 \u05D4\u05E1\u05E4\u05E8 \u05D4\u05DE\u05DE\u05DC\u05DB\u05EA\
+            \u05D9\u05D9\u05DD?"
+        updated_at: 2012-10-22 14:44:44.762845
+    model: qa.question
+    pk: 3
+-   fields:
+        author: [daonb]
+        content: "\u05D7\u05D9\u05E0\u05D5\u05DA \u05DC\u05E6\u05E8\u05DB\u05E0\u05D5\
+            \u05EA \u05DE\u05E7\u05D5\u05DE\u05D9\u05EA"
+        created_at: 2012-10-22 11:10:14.495803
+        question: 2
+        rating: 0
+        updated_at: 2012-10-22 14:52:02.638312
+    model: qa.answer
+    pk: 1
+-   fields:
+        author: [daonb]
+        content: "\u05DC\u05D4\u05E7\u05D9\u05DD \u05D0\u05EA \"\u05E6\u05D1\u05D0\
+            \ \u05D4\u05E9\u05DC\u05D5\u05DD \u05D4\u05DB\u05E0\u05E2\u05E0\u05D9\"\
+            \ \u05E9\u05D9\u05E4\u05E2\u05DC \u05D1\u05DE\u05E7\u05D1\u05D9\u05DC\
+            \ \u05DC\"\u05E6\u05D1\u05D0 \u05D4\u05D4\u05D2\u05E0\u05D4 \u05DC\u05D9\
+            \u05E9\u05E8\u05D0\u05DC\" \u05D5\u05DC\u05D7\u05D9\u05D9\u05D1 \u05D0\
+            \u05EA \u05DB\u05DC \u05D4\u05DE\u05D5\u05E2\u05DE\u05D3\u05D9\u05DD \u05DC\
+            \u05E9\u05D9\u05E8\u05D5\u05EA \u05D1\u05D8\u05D7\u05D5\u05DF \u05DC\u05D1\
+            \u05D7\u05D5\u05E8 \u05D1\u05D0\u05D9\u05D6\u05D4 \u05E6\u05D1\u05D0 \u05D1\
+            \u05E8\u05E6\u05D5\u05E0\u05DD \u05DC\u05E9\u05E8\u05EA, \u05D0\u05D5\
+            \ \u05DC\u05D1\u05D7\u05D5\u05E8 \u05D1\u05E9\u05D9\u05E8\u05D5\u05EA\
+            \ \u05D0\u05E8\u05D5\u05DA \u05D9\u05D5\u05EA\u05E8 \u05D1\u05D5 \u05D6\
+            \u05DE\u05E0\u05DD \u05D9\u05EA\u05D7\u05DC\u05E7 \u05D1\u05D9\u05DF \u05D4\
+            \u05E6\u05D1\u05D0\u05D5\u05EA \u05D5\u05E9\u05D9\u05E7\u05E0\u05D4 \u05DC\
+            \u05D4\u05DD \u05D6\u05DB\u05D0\u05D5\u05EA \u05DC\u05E9\u05DB\u05E8 \u05DC\
+            \u05D9\u05DE\u05D5\u05D3 \u05DC\u05EA\u05D5\u05D0\u05E8 \u05E8\u05D0\u05E9\
+            \u05D5\u05DF."
+        created_at: 2012-10-22 11:35:42.227970
+        question: 1
+        rating: 0
+        updated_at: 2012-10-22 14:51:03.212702
+    model: qa.answer
+    pk: 2
+-   fields:
+        author: [amirnissim]
+        content: "\u05E6\u05E8\u05D9\u05DA \u05DC\u05E1\u05D1\u05E1\u05D3 \u05D4\u05DB\
+            \u05DC \u05D5\u05D1\u05D4\u05E8\u05D1\u05D4 \u05DB\u05E1\u05E3"
+        created_at: 2012-10-22 11:44:04.460448
+        question: 2
+        rating: 0
+        updated_at: 2012-10-22 11:44:04.460477
+    model: qa.answer
+    pk: 3
+-   fields:
+        author: [amirnissim]
+        content: "\u05DC\u05E9\u05DC\u05D5\u05D7 \u05D0\u05EA \u05DB\u05DC \u05D1\u05E0\
+            \u05D9 \u05D4 18 \u05DC\u05D8\u05D9\u05D5\u05DC \u05D1\u05E2\u05D5\u05DC\
+            \u05DD"
+        created_at: 2012-10-22 12:02:56.084871
+        question: 1
+        rating: 0
+        updated_at: 2012-10-22 14:49:09.588518
+    model: qa.answer
+    pk: 4
+-   fields:
+        author: [mkamensky]
+        content: "\u05E9\u05DC\u05D5\u05DD, \u05DB\u05D0\u05DF \u05DE\u05E9\u05D4\
+            .\r\n\r\n\u05E9\u05D0\u05DC\u05EA\u05DD \u05DE\u05E9\u05D4\u05D5?"
+        created_at: 2012-10-22 12:22:55.085199
+        question: 2
+        rating: 0
+        updated_at: 2012-10-22 14:47:43.791716
+    model: qa.answer
+    pk: 5
+- fields: {name: "\u05DE\u05E9\u05E7", slug: ''}
+  model: taggit.tag
+  pk: 1
+- fields: {name: "\u05D7\u05D9\u05E0\u05D5\u05DA", slug: _1}
+  model: taggit.tag
+  pk: 2
+- fields:
+    content_type: [qa, question]
+    object_id: 2
+    tag: 1
+  model: taggit.taggeditem
+  pk: 1
+- fields:
+    content_type: [qa, question]
+    object_id: 3
+    tag: 2
+  model: taggit.taggeditem
+  pk: 2
