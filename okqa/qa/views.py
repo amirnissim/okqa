@@ -129,7 +129,7 @@ def post_question(request):
 
         #TODO: make this better - show the form
         # return HttpResponseRedirect("/#question_modal")
-    else:
+    elif request.method == "GET":
         form = QuestionForm()
     return render_to_response("qa/post_question.html", {"form": form }, context_instance=RequestContext(request))
 

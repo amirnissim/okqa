@@ -11,8 +11,8 @@ urlpatterns = patterns('okqa.qa.views',
     url(r'^members/$', 'members', name='members'),
     (r'^members/(?P<member_id>\d+)/$', 'view_member'),
 
-    url(r'^add_answer/(?P<q_id>\d+)/$', 'post_answer', name='post_answer'),
-    (r'^add_question/$', 'add_question'),
+    url(r'^a/post/(?P<q_id>\d+)/$', 'post_answer', name='post_answer'),
+    url(r'^q/post/$', 'post_question', name='post_question'),
     (r'^upvote_question/(?P<q_id>\d+)/$', 'upvote_question'),
 
 )
