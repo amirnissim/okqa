@@ -12,9 +12,9 @@ ADMINS = (
 MANAGERS = ADMINS
 
 # Heroku setup:
-#DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
+DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
 # Dev Setup, should be include from local_settings.py
-DATABASES = {'default': dj_database_url.config(default='sqlite:///./okqa.db')}
+#DATABASES = {'default': dj_database_url.config(default='sqlite:///./okqa.db')}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
