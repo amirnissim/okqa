@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block mainContainer %}
+<div class="row">
+  <h1>{% trans "What is your question, sire?" %}</h1>
+  <form method="POST">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" value="{% trans 'answer' %}"></input>
+  </form>
+</div>
+{% endblock %}
+
