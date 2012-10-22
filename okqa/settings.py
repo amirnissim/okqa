@@ -131,6 +131,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'taggit',
     'registration',
+    'haystack',
     'okqa.qa',
     'okqa.user',
     'okqa.party',
@@ -174,6 +175,14 @@ EMAIL_USE_TLS = False
 DEFAULT_FROM_EMAIL = 'qa@oknesset.org'
 
 AUTH_PROFILE_MODULE = 'user.UserProfile'
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://esearch.aws-ext.com:9200/',
+        'INDEX_NAME': 'haystack',
+    },
+}
 
 try:
     from local_settings import *

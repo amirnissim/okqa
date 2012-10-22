@@ -7,3 +7,6 @@ django-registration==0.8
 django-taggit==0.9.3
 psycopg2==2.4.5
 wsgiref==0.1.2
+git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
+requests
+pyelasticsearch
