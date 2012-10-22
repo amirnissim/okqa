@@ -1,10 +1,13 @@
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponseBadRequest, HttpResponseRedirect
+from django.contrib import messages
 from django.contrib.auth.models import Group, User
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.db.models import Count
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django.utils.translation import ugettext as _
-from django.db.models import Count
 
 from taggit.utils import parse_tags
 
@@ -57,6 +60,9 @@ def questions(request):
     return render_to_response("questions.html", locals(), context_instance=RequestContext(request))
 
 def view_question(request, q_id):
+    # TODO: add answer edit forum
+    # context ["my_answer_form"] = AnswerEditForm.form(current_answer)
+    # context ["my_answer_id"] = current_answer.id
     question = get_object_or_404(Question, id=q_id)
     answers = question.answers.all()
     can_answer = question.can_answer(request.user)
@@ -81,21 +87,30 @@ def add_question(request):
 def home(request):
     return render(request, "home.html")
 
+@login_required
 def add_answer(request, q_id):
-    g_candidates = Group.objects.get(name=CANDIDATES_GROUP_NAME)
-    if not request.user.is_authenticated() or g_candidates not in request.user.groups.all():
+    context = {}
+    question = Question.objects.get(id=q_id)
+
+    if not question.can_answer(request.user):
         return HttpResponseForbidden(_("You must be logged in as a candidate to post answers"))
 
-    question = Question.objects.get(id=q_id)
+    try:
+        current_answer = question.answers.get(author=request.user)
+    except question.answers.model.MultipleObjectsReturned:
+        current_answer = True
+
+    if current_answer:
+        messages.info(request, 
+                _("You have already answered the question. To change your answer, hover over it and click the pen icon."))
+
     content = request.POST.get("content")
 
     if not (question and content):
         return HttpResponseBadRequest(_("Question does not exist, or empty answer"))
 
-    answer = Answer(author=request.user, content=content, question=question)
-    answer.save()
-
-    return HttpResponse(_("Your answer was recorded"))
+    question.answers.create(author=request.user, content=content)
+    return HttpResponseRedirect(question.get_absolute_url())
 
 def upvote_question(request, q_id):
     q = get_object_or_404(Question, id=q_id)

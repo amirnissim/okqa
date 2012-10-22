@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-21 14:24+0200\n"
-"PO-Revision-Date: 2012-10-21 14:28+0200\n"
+"POT-Creation-Date: 2012-10-22 10:30+0200\n"
+"PO-Revision-Date: 2012-10-22 10:32+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -17,54 +17,54 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: qa/models.py:22
-#: qa/models.py:36
+#: qa/models.py:23
+#: qa/models.py:40
 msgid "author"
 msgstr "מחבר"
 
-#: qa/models.py:23
+#: qa/models.py:24
 msgid "subject"
 msgstr "נושא"
 
-#: qa/models.py:24
-#: qa/models.py:37
+#: qa/models.py:25
+#: qa/models.py:41
 msgid "content"
 msgstr "תוכן"
 
-#: qa/models.py:25
-#: qa/models.py:38
+#: qa/models.py:26
+#: qa/models.py:42
 msgid "rating"
 msgstr "ניקוד"
 
-#: qa/models.py:39
+#: qa/models.py:43
 msgid "question"
 msgstr "שאלה"
 
-#: qa/views.py:67
+#: qa/views.py:73
 msgid "You cannot post questions"
 msgstr ""
 
-#: qa/views.py:87
+#: qa/views.py:96
 msgid "You must be logged in as a candidate to post answers"
 msgstr ""
 
-#: qa/views.py:93
+#: qa/views.py:105
+msgid "You have already answered the question. To change your answer, hover over it and click the pen icon."
+msgstr "כבר עניתם על שאלה זו.  כדי לערוך את תשובתכם, רחפו מעל השאלה והקליקו על סמליל העט."
+
+#: qa/views.py:110
 msgid "Question does not exist, or empty answer"
 msgstr ""
 
-#: qa/views.py:98
-msgid "Your answer was recorded"
-msgstr ""
-
-#: qa/views.py:105
+#: qa/views.py:120
 msgid "You cannot upvote your own question"
 msgstr ""
 
-#: qa/views.py:108
+#: qa/views.py:123
 msgid "You already upvoted this question"
 msgstr ""
 
-#: qa/views.py:113
+#: qa/views.py:128
 msgid "Your vote was recorded"
 msgstr ""
 
@@ -88,6 +88,7 @@ msgid "Create new user"
 msgstr ""
 
 #: qa/templates/create_user.html:12
+#: templates/registration/registration_form.html:7
 msgid "register"
 msgstr "הרשמו"
 

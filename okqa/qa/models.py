@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
 from taggit.managers import TaggableManager
 
 MAX_LENGTH_Q_SUBJECT = 255
@@ -31,6 +32,9 @@ class Question(BaseModel):
     def can_answer(self, user):
         ''' Can a given user answer self? '''
         return user.has_perm('qa.add_answer')
+
+    def get_absolute_url(self):
+        return reverse('question-details', kwargs= {'q_id': self.id})
 
 class Answer(BaseModel):
     author = models.ForeignKey(User, related_name="answers", verbose_name=_("author"))

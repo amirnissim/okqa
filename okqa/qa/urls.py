@@ -3,7 +3,7 @@ from django.conf.urls.defaults import patterns, url
 urlpatterns = patterns('okqa.qa.views',
     url(r'^/?$', 'questions', name='home'),
 
-    (r'^q/(?P<q_id>\d+)/$', 'view_question'),
+    url(r'^q/(?P<q_id>\d+)/$', 'view_question', name='question-details'),
 
     url(r'^candidates/$', 'candidates', name='candidates'),
     (r'^candidate/(?P<candidate_id>\d+)/$', 'view_candidate'),
