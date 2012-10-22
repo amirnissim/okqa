@@ -18,3 +18,5 @@
 .avatar {float:right; margin:5px; width:40px; height:40px;}
 .far { float:left; }
 .answers-count { display:inline; }
+
+label[for='id_q'] {display: none;}

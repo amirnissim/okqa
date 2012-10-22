@@ -23,6 +23,11 @@
                 <ul class="nav">
                   <li><a href="{% url candidates %}">{% trans "Candidates" %}</a></li>
                   <li><a href="{% url members %}">{% trans "Members" %}</a></li>
+                  <li>
+                    <form method="get" action="/search/">
+                          {{ search_form }}
+                          <input class="btn" type="submit" value="{% trans 'Search' %}">
+                    </form>
                  </ul>
                <div class="far">
                     {% if user.is_authenticated %}
