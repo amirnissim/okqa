@@ -43,6 +43,10 @@ class Answer(BaseModel):
     rating = models.IntegerField(_("rating"), default=0)
     question = models.ForeignKey(Question, related_name="answers", verbose_name=_("question"))
 
+    def __unicode__(self):
+        return "%s: %s" % (self.author, self.content[:30])
+
+
 class QuestionUpvote(BaseModel):
     question = models.ForeignKey(Question, related_name="upvotes")
     user = models.ForeignKey(User, related_name="upvotes")
