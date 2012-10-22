@@ -5,4 +5,5 @@ dj-database-url==0.2.1
 django-extensions==0.9
 django-registration==0.8
 django-taggit==0.9.3
+pyyaml
 wsgiref==0.1.2
