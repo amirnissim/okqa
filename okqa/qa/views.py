@@ -53,10 +53,7 @@ def questions(request):
         order = '-created_at'
 
     questions = Question.objects.all().order_by(order)
-    #TODO: optimize
-    tags = Question.tags.all()
-    for t in tags:
-        t.count = Question.objects.filter(tags=t).count()
+    tags = Question.tags.all().annotate(count=Count("question"))
 
     return render_to_response("qa/question_list.html", dict(questions=questions, tags=tags),
                               context_instance=RequestContext(request))

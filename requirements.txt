@@ -10,3 +10,4 @@ wsgiref==0.1.2
 git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
 requests
 pyelasticsearch
+PyYAML==3.10

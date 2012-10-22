@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 from taggit.managers import TaggableManager
+from taggit.models import TaggedItemBase
 
 MAX_LENGTH_Q_SUBJECT = 80
 MAX_LENGTH_Q_CONTENT = 255
@@ -19,6 +20,9 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
+class TaggedQuestion(TaggedItemBase):
+    content_object = models.ForeignKey("Question")
+    
 class Question(BaseModel):
     author = models.ForeignKey(User, related_name="questions", verbose_name=_("author"))
     subject = models.CharField(_("subject"), max_length=MAX_LENGTH_Q_SUBJECT,
@@ -26,7 +30,7 @@ class Question(BaseModel):
     content = models.TextField(_("content"), max_length=MAX_LENGTH_Q_CONTENT,
         help_text=_("Please enter your content in no more than %s letters" %  MAX_LENGTH_Q_CONTENT))
     rating = models.IntegerField(_("rating"), default=0)
-    tags = TaggableManager()
+    tags = TaggableManager(through=TaggedQuestion)
 
     def __unicode__(self):
         return self.subject
