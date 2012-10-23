@@ -4,14 +4,15 @@
   <h1>{% trans "Questions" %} <small>{% trans "for candidate of" %} {% trans "The Demo Party" %}</small></h1>
 </div>
     <div class="row">
-      <a  class="btn btn-success pull-right" href="{% url post_question %}">{% trans "Ask" %}</a>
       <div class="span9" style="background-color: #f2f2f2;">
       {% for question in questions %}
           {% include "qa/_question.html" %}
       {% endfor %}
     </div>
     <div class="span3">
-      <h3>{{questions.count}} {% trans "Questions asked" %}</h3>
+      <a class="btn btn-success btn-large btn-block" href="{% url post_question %}">{% trans "Ask" %}</a>
+
+      <h4>{{questions.count}} {% trans "Questions asked" %}</h4>
       <ul class="unstyled">
       {% for tag in tags %}
         <li><button class="btn">{{ tag }}</button> - {{tag.count}} {% trans "questions" %}</li>
