@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-23 04:29+0200\n"
+"POT-Creation-Date: 2012-10-23 05:34+0200\n"
 "PO-Revision-Date: 2012-10-22 10:32+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,7 +78,7 @@ msgstr ""
 msgid "Candidates"
 msgstr "מועמדים"
 
-#: qa/templates/candidates.html:9 qa/templates/qa/_question.html:11
+#: qa/templates/candidates.html:9 qa/templates/qa/_question.html:13
 #: qa/templates/qa/question_detail.html:16
 msgid "answers"
 msgstr "תשובות"
@@ -128,13 +128,17 @@ msgstr "הצג מצביע"
 msgid "Voters"
 msgstr "מצביעים"
 
-#: qa/templates/qa/_answer.html:18 qa/templates/qa/_question.html:16
+#: qa/templates/qa/_answer.html:18
 msgid "before"
 msgstr "לפני"
 
-#: qa/templates/qa/_question.html:12
+#: qa/templates/qa/_question.html:3
 msgid "Follow"
 msgstr "עקוב"
+
+#: qa/templates/qa/_question.html:9
+msgid "votes"
+msgstr "הצבעות"
 
 #: qa/templates/qa/post_question.html:5
 msgid "What is your question, sire?"
@@ -148,27 +152,27 @@ msgstr "תשובות"
 msgid "Answer"
 msgstr "תשובות"
 
-#: qa/templates/qa/question_list.html:4
+#: qa/templates/qa/question_list.html:7
 msgid "Questions"
 msgstr "שאלות"
 
-#: qa/templates/qa/question_list.html:4
+#: qa/templates/qa/question_list.html:7
 msgid "for candidate of"
 msgstr "שאלות למועמדים ב"
 
-#: qa/templates/qa/question_list.html:4
+#: qa/templates/qa/question_list.html:7
 msgid " The Demo Party"
 msgstr "מפלגת הדמו"
 
-#: qa/templates/qa/question_list.html:13
-msgid "Ask"
-msgstr " שאל"
+#: qa/templates/qa/question_list.html:10
+msgid "Ask Question"
+msgstr "שאל שאלה"
 
-#: qa/templates/qa/question_list.html:15
+#: qa/templates/qa/question_list.html:24
 msgid "Questions asked"
 msgstr "שאלות נשאלו"
 
-#: qa/templates/qa/question_list.html:18
+#: qa/templates/qa/question_list.html:28
 msgid "questions"
 msgstr "שאלות"
 
@@ -339,6 +343,9 @@ msgstr "זכר"
 #: user/models.py:15
 msgid "Female"
 msgstr "נקבה"
+
+#~ msgid "Ask"
+#~ msgstr " שאל"
 
 #~ msgid "view"
 #~ msgstr "צפה"
