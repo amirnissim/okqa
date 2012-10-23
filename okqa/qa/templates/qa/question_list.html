@@ -1,8 +1,10 @@
 {% extends "base.html" %} {% load i18n %}
 {% block mainContainer %}
+<div class="page-header">
+  <h1>{% trans "Questions" %} <small>{% trans "for candidate of" %} {% trans "The Demo Party" %}</small></h1>
+</div>
     <div class="row">
-      <a  class="btn far" href="{% url post_question %}">{% trans "Ask" %}</a>
-      <h1>{% trans "Questions for candidate of" %} {% trans "The Demo Party" %}</h1>
+      <a  class="btn btn-success pull-right" href="{% url post_question %}">{% trans "Ask" %}</a>
       <div class="span9" style="background-color: #f2f2f2;">
       {% for question in questions %}
           {% include "qa/_question.html" %}
