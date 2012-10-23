@@ -26,9 +26,9 @@ class TaggedQuestion(TaggedItemBase):
 class Question(BaseModel):
     author = models.ForeignKey(User, related_name="questions", verbose_name=_("author"))
     subject = models.CharField(_("subject"), max_length=MAX_LENGTH_Q_SUBJECT,
-        help_text=_("Please enter a subject in no more than %s letters" %  MAX_LENGTH_Q_SUBJECT))
+        help_text=_("Please enter a subject in no more than %s letters") %  MAX_LENGTH_Q_SUBJECT)
     content = models.TextField(_("content"), max_length=MAX_LENGTH_Q_CONTENT,
-        help_text=_("Please enter your content in no more than %s letters" %  MAX_LENGTH_Q_CONTENT))
+        help_text=_("Please enter your content in no more than %s letters") %  MAX_LENGTH_Q_CONTENT)
     rating = models.IntegerField(_("rating"), default=0)
     tags = TaggableManager(through=TaggedQuestion)
 

@@ -6,7 +6,8 @@
   <form method="POST">
   {% csrf_token %}
   {{ form }}
-  <input type="submit" value="{% trans 'answer' %}"></input>
+  <br />
+  <input type="submit" value="{% trans 'Publish' %}"></input>
   </form>
 </div>
 {% endblock %}
