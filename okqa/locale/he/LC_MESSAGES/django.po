@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-23 04:02+0200\n"
+"POT-Creation-Date: 2012-10-23 04:29+0200\n"
 "PO-Revision-Date: 2012-10-22 10:32+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,8 +140,7 @@ msgstr "עקוב"
 msgid "What is your question, sire?"
 msgstr "מהי שאלתך?"
 
-#: qa/templates/qa/post_question.html:9
-#: qa/templates/qa/question_detail.html:36
+#: qa/templates/qa/post_question.html:9 qa/templates/qa/question_detail.html:36
 msgid "answer"
 msgstr "תשובות"
 
@@ -157,22 +156,25 @@ msgstr "שאלות"
 msgid "for candidate of"
 msgstr "שאלות למועמדים ב"
 
-#: qa/templates/qa/question_list.html:4 templates/base.html:8
-#: templates/base.html.py:15 templates/base.html:76
-msgid "The Demo Party"
+#: qa/templates/qa/question_list.html:4
+msgid " The Demo Party"
 msgstr "מפלגת הדמו"
 
-#: qa/templates/qa/question_list.html:7
+#: qa/templates/qa/question_list.html:13
 msgid "Ask"
 msgstr " שאל"
 
-#: qa/templates/qa/question_list.html:14
+#: qa/templates/qa/question_list.html:15
 msgid "Questions asked"
 msgstr "שאלות נשאלו"
 
-#: qa/templates/qa/question_list.html:17
+#: qa/templates/qa/question_list.html:18
 msgid "questions"
 msgstr "שאלות"
+
+#: templates/base.html:8 templates/base.html.py:15 templates/base.html:76
+msgid "The Demo Party"
+msgstr "מפלגת הדמו"
 
 #: templates/base.html:17
 msgid "Home"
@@ -298,9 +300,9 @@ msgid "Email with password reset instructions has been sent."
 msgstr "שלחנו אליך דואר אלקטרוני עם הנחיות לאיפוס הסיסמא."
 
 #: templates/registration/password_reset_email.html:2
-#, python-format
+#, fuzzy, python-format
 msgid "Reset password at %(site_name)s"
-msgstr "אתחול סיסמא"
+msgstr "אתחול סיסמא %(site_name("
 
 #: templates/registration/registration_complete.html:5
 msgid "Ye be now registered. Activation email sent, arrrr."
@@ -338,7 +340,6 @@ msgstr "זכר"
 msgid "Female"
 msgstr "נקבה"
 
-#, fuzzy
 #~ msgid "view"
 #~ msgstr "צפה"
 
