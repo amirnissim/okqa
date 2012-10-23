@@ -1,6 +1,3 @@
-#mainContainer{
-    margin-top: 50px;
-}
 .q {
   clear: both;
   margin: 0.6em;
@@ -10,13 +7,36 @@
   clear: both;
   margin: 0.6em;
 }
-.footer {
+/*.footer {
     margin-top: 70px;
     border-top: 1px solid rgb(229, 229, 229);
     background-color: rgb(245, 245, 245);
-}
+}*/
 .avatar {float:right; margin:5px; width:40px; height:40px;}
 .far { float:left; }
 .answers-count { display:inline; }
 
 label[for='id_q'] {display: none;}
+
+/* Main Container */
+div[role="main"] {
+    margin-top: 50px;
+}
+/* Footer */
+.footer {
+padding: 70px 0;
+margin-top: 70px;
+border-top: 1px solid #E5E5E5;
+background-color: whiteSmoke;
+}
+.footer p {
+margin-bottom: 0;
+color: #777;
+}
+.footer-links {
+margin: 10px 0;
+}
+.footer-links li {
+display: inline;
+margin-left: 10px;
+}

@@ -9,45 +9,34 @@
     {% block extrahead %}{% endblock %}
 </head>
 <body>
-<div id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="{% url home %}">{% trans "The Demo Party" %}</a>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="{% url home %}">{% trans "The Demo Party" %}</a>
+      <ul class="nav">
+        <li class="active"><a href="/">{% trans "Home" %}</a></li>
+        <li><a href="{% url candidates %}">{% trans "Candidates" %}</a></li>
+        <li><a href="{% url members %}">{% trans "Members" %}</a></li>
+      </ul>
+      <form class="navbar-search pull-left" action="/search/">
+        <input type="text" class="search-query" placeholder="{% trans 'Search' %}">
+      </form>
 
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                  <li><a href="{% url candidates %}">{% trans "Candidates" %}</a></li>
-                  <li><a href="{% url members %}">{% trans "Members" %}</a></li>
-                  <li>
-                    <form method="get" action="/search/">
-                          {{ search_form }}
-                          <input class="btn" type="submit" value="{% trans 'Search' %}">
-                    </form>
-                 </ul>
-               <div class="far">
-                    {% if user.is_authenticated %}
-                     <form class="form-inline" method="post" action="{% url auth_logout %}">
-                       {% csrf_token %}
-                       {{ user.username }}
-                       <input type="submit" value="{% trans 'logout' %}" />
-                      </form>
-                      {% else %}
-                        <a href="{% url registration.views.register %}">{% trans "Register" %}</a></li>
-                        <a type="button" class="btn" href="#login_modal" data-toggle="modal">{% trans "Login" %}</a>
-                    {% endif %}
-                  </form>
-                </div>
-             </div>
-           </div>
-        </div>
+      <div class="pull-right">
+      {% if user.is_authenticated %}
+        <form class="form-inline" method="post" action="{% url auth_logout %}">
+          {% csrf_token %}
+          {{ user.username }}
+          <input type="submit" value="{% trans 'logout' %}" />
+        </form>
+      {% else %}
+        <a type="button" class="btn btn-link" href="{% url registration.views.register %}">{% trans "Register" %}</a>
+        <a type="button" class="btn btn-link" href="#login_modal" data-toggle="modal">{% trans "Login" %}</a>
+      {% endif %}
+      </div>
     </div>
+  </div>
 </div>
-
 {% if login_form %}
 <div class="modal fade" id="login_modal">
  <form class="form" method="post" action="{% url auth_login %}">
@@ -66,7 +55,7 @@
  <!--/.nav-collapse -->
 </div>
 {% endif %}
-<div id="mainContainer" class="container">
+<div class="container" role="main">
     {% if messages %}
       {% for message in messages %}
         <div class="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
@@ -77,18 +66,17 @@
     {% endif %}
     {% block mainContainer %}{% endblock %}
 </div>
-<footer class="footer">
-
 
 <footer class="footer">
   <div class="container">
-    <p>
-      {% trans "Content is licensed CC-BY. Source code is freely available " %} 
-      <a href="http://hasadna.github.com/ok-qa/">{% trans "here"%}.</a>
-    </p>
+    <!-- <p class="pull-right"><a href="#">{% trans "Back to top" %}</a></p> -->
+    <p>{% trans "Content is licensed CC-BY. Source code is freely available " %} 
+    <a href="http://hasadna.github.com/ok-qa/">{% trans "here"%}</a>.</p>
+    <ul class="footer-links">
+      <li><a href="#">{% trans "The Demo Party" %}</a></li>
+    </ul>
   </div>
 </footer>
-
     <script src="{{ STATIC_URL }}js/jquery.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-modal.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-alert.js"></script>
