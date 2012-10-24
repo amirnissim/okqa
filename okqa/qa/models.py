@@ -22,7 +22,7 @@ class BaseModel(models.Model):
 
 class TaggedQuestion(TaggedItemBase):
     content_object = models.ForeignKey("Question")
-    
+
 class Question(BaseModel):
     author = models.ForeignKey(User, related_name="questions", verbose_name=_("author"))
     subject = models.CharField(_("subject"), max_length=MAX_LENGTH_Q_SUBJECT,
@@ -45,7 +45,7 @@ class Question(BaseModel):
 class Answer(BaseModel):
     author = models.ForeignKey(User, related_name="answers", verbose_name=_("author"))
     content = models.TextField(_("content"), max_length=MAX_LENGTH_A_CONTENT, 
-        help_text=_("Please enter an answer in no more than %s letters" %  MAX_LENGTH_A_CONTENT))
+        help_text=_("Please enter an answer in no more than %s letters") %  MAX_LENGTH_A_CONTENT)
     rating = models.IntegerField(_("rating"), default=0)
     question = models.ForeignKey(Question, related_name="answers", verbose_name=_("question"))
 

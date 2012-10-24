@@ -8,7 +8,7 @@
 {% endblock %}
 {% block mainContainer %}
     {% if can_answer %}
-      <a type="button" class="btn" href="#add_answer_modal" data-toggle="modal">{% trans "Answer" %}</a>
+      <a type="button" class="btn" href="#add_answer_modal" data-toggle="modal">{% trans "Answer the Question" %}</a>
     {% endif %}
     <div class="row">
       <div class="span9" style="background-color: #f2f2f2;">
@@ -33,7 +33,7 @@
       {{ my_answer_form }}
     </div>
     <div class="modal-footer">
-      <input type="submit" value="{% trans "answer" %}" />
+      <input type="submit" value="{% trans "Publish" %}" />
     </div>
    </form>
   </div>
