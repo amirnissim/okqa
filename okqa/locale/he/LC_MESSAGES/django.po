@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-23 09:08+0200\n"
-"PO-Revision-Date: 2012-10-23 09:09+0200\n"
+"POT-Creation-Date: 2012-10-24 14:52+0200\n"
+"PO-Revision-Date: 2012-10-24 16:42+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -75,20 +75,21 @@ msgstr ""
 msgid "Your vote was recorded"
 msgstr ""
 
-#: qa/templates/candidates.html:4
-#: templates/base.html:24
+#: qa/templates/candidates.html:5
+#: templates/base.html:18
 msgid "Candidates"
 msgstr "מועמדים"
 
-#: qa/templates/candidates.html:7
-#: qa/templates/qa/_question.html:11
+#: qa/templates/candidates.html:9
+#: qa/templates/qa/_question.html:13
 #: qa/templates/qa/question_detail.html:16
 msgid "answers"
 msgstr "תשובות"
 
-#: qa/templates/candidates.html:9
-msgid "view"
-msgstr ""
+#: qa/templates/candidates.html:11
+#: qa/templates/view_candidate.html:4
+msgid "View Candidate"
+msgstr "הצג מועמד"
 
 #: qa/templates/create_user.html:8
 msgid "Create new user"
@@ -119,10 +120,6 @@ msgstr ""
 msgid "User Profile"
 msgstr "פרופיל משתמש"
 
-#: qa/templates/view_candidate.html:4
-msgid "View Candidate"
-msgstr "הצג מועמד"
-
 #: qa/templates/view_candidate.html:6
 msgid "Answers"
 msgstr "תשובות"
@@ -136,19 +133,22 @@ msgid "Voters"
 msgstr ""
 
 #: qa/templates/qa/_answer.html:18
-#: qa/templates/qa/_question.html:16
 msgid "before"
 msgstr "לפני"
 
-#: qa/templates/qa/_question.html:12
+#: qa/templates/qa/_question.html:3
 msgid "Follow"
 msgstr "עקוב"
+
+#: qa/templates/qa/_question.html:9
+msgid "votes"
+msgstr "הצבעות"
 
 #: qa/templates/qa/post_question.html:5
 msgid "What is your question, sire?"
 msgstr "הנכם מוזמנים להפנות שאלה למועמדים:"
 
-#: qa/templates/qa/post_question.html:9
+#: qa/templates/qa/post_question.html:10
 msgid "Publish"
 msgstr "פרסם"
 
@@ -162,61 +162,77 @@ msgstr "תשובות"
 msgid "answer"
 msgstr "תשובות"
 
-#: qa/templates/qa/question_list.html:4
-msgid "Ask"
-msgstr " שאל"
+#: qa/templates/qa/question_list.html:7
+msgid "Questions"
+msgstr "שאלות"
 
-#: qa/templates/qa/question_list.html:5
-msgid "Questions for candidate of"
-msgstr "שאלות למועמדים ב"
+#: qa/templates/qa/question_list.html:7
+msgid "for candidate of"
+msgstr "למועמדים ב"
 
-#: qa/templates/qa/question_list.html:5
-#: templates/base.html:8
-#: templates/base.html.py:20
-msgid "The Demo Party"
+#: qa/templates/qa/question_list.html:7
+msgid " The Demo Party"
 msgstr "מפלגת הדמו"
 
-#: qa/templates/qa/question_list.html:12
+#: qa/templates/qa/question_list.html:11
+msgid "Ask Question"
+msgstr "שאלו"
+
+#: qa/templates/qa/question_list.html:26
 msgid "Questions asked"
 msgstr "שאלות נשאלו"
 
-#: qa/templates/qa/question_list.html:15
+#: qa/templates/qa/question_list.html:30
 msgid "questions"
 msgstr "שאלות"
 
-#: templates/base.html:25
+#: templates/base.html:8
+#: templates/base.html.py:15
+#: templates/base.html:76
+msgid "The Demo Party"
+msgstr "מפלגת הדמו"
+
+#: templates/base.html:17
+msgid "Home"
+msgstr ""
+
+#: templates/base.html:19
 msgid "Members"
 msgstr "חברים"
 
-#: templates/base.html:29
+#: templates/base.html:22
 #: templates/search/search.html:5
 #: templates/search/search.html.py:12
 msgid "Search"
 msgstr "חפש"
 
-#: templates/base.html:37
+#: templates/base.html:30
 msgid "logout"
 msgstr "התנתקות"
 
-#: templates/base.html:40
+#: templates/base.html:33
 #: templates/registration/login.html:13
 msgid "Register"
 msgstr "הירשמו"
 
-#: templates/base.html:41
-#: templates/base.html.py:63
+#: templates/base.html:34
+#: templates/base.html.py:52
 msgid "Login"
 msgstr "היכנסו"
 
-#: templates/base.html:56
+#: templates/base.html:45
 msgid "Connect"
 msgstr "התחברו"
 
-#: templates/base.html:86
+#: templates/base.html:72
+msgid "Back to top"
+msgstr "בחזרה לראש העמוד"
+
+#: templates/base.html:73
 msgid "Content is licensed CC-BY. Source code is freely available "
 msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.  קוד המקור חופשי לשימוש"
 
-#: templates/base.html:87
+#: templates/base.html:74
 msgid "here"
 msgstr "כאן"
 
@@ -341,15 +357,15 @@ msgstr ""
 msgid "Female"
 msgstr ""
 
+#~ msgid "Ask"
+#~ msgstr " שאל"
+
 #~ msgid ""
 #~ "You have already answered the question. To change your answer, hover over "
 #~ "it and click the pen icon."
 #~ msgstr ""
 #~ "כבר עניתם על שאלה זו.  כדי לערוך את תשובתכם, רחפו מעל השאלה והקליקו על "
 #~ "סמליל העט."
-
-#~ msgid "Questions"
-#~ msgstr "שאלות"
 
 #~ msgid "Tags"
 #~ msgstr "תגיות"
