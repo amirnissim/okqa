@@ -2,7 +2,7 @@
 import os
 import dj_database_url
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -96,6 +96,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'okqa.urls'
@@ -118,7 +119,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'okqa.party.context_processors.forms',
     )
 INSTALLED_APPS = (
-    'south',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -132,6 +132,8 @@ INSTALLED_APPS = (
     'taggit',
     'registration',
     'haystack',
+    'south',
+    'debug_toolbar',
     'okqa.qa',
     'okqa.user',
     'okqa.party',
@@ -183,6 +185,8 @@ HAYSTACK_CONNECTIONS = {
         'INDEX_NAME': 'haystack',
     },
 }
+
+INTERNAL_IPS = ('127.0.0.1',)
 
 try:
     from local_settings import *

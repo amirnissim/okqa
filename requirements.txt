@@ -10,3 +10,4 @@ git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystac
 requests
 pyelasticsearch
 PyYAML==3.10
+django-debug-toolbar==0.9.4
