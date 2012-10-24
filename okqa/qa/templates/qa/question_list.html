@@ -1,7 +1,9 @@
 {% extends "base.html" %} {% load i18n %}
 {% block mainContainer %}
     <div class="row">
-      <a  class="btn far" href="{% url post_question %}">{% trans "Ask" %}</a>
+      {% if user.is_authenticated %}
+        <a  class="btn far" href="{% url post_question %}">{% trans "Ask" %}</a>
+      {% endif %}
       <h1>{% trans "Questions for candidate of" %} {% trans "The Demo Party" %}</h1>
       <div class="span9" style="background-color: #f2f2f2;">
       {% for question in questions %}
