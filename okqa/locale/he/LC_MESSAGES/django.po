@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-24 22:27+0200\n"
+"POT-Creation-Date: 2012-10-24 23:24+0200\n"
 "PO-Revision-Date: 2012-10-24 16:42+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -187,8 +187,7 @@ msgstr ""
 msgid "Members"
 msgstr "חברים"
 
-#: templates/base.html:22 templates/search/search.html:5
-#: templates/search/search.html.py:12
+#: templates/base.html:22 templates/search/search.html:8
 msgid "Search"
 msgstr "חפש"
 
@@ -310,6 +309,10 @@ msgstr ""
 #: templates/registration/registration_complete.html:5
 msgid "Ye be now registered. Activation email sent, arrrr."
 msgstr ""
+
+#: templates/search/search.html:15
+msgid "Results"
+msgstr "תוצאות החיפוש"
 
 #: user/forms.py:8 user/forms.py:26
 msgid "First Name"

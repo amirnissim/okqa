@@ -10,5 +10,5 @@ urlpatterns = patterns('',
     url(r'', include('okqa.qa.urls')),
     url(r'', include('okqa.user.urls')),
     url(r'accounts/', include('registration.backends.default.urls')),
-    (r'^search/', include('haystack.urls')),
+    (r'^search/', include('okqa.search.urls')),
 )
