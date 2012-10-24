@@ -19,7 +19,7 @@
         <li><a href="{% url members %}">{% trans "Members" %}</a></li>
       </ul>
       <form class="navbar-search pull-left" action="/search/">
-        <input type="text" class="search-query" placeholder="{% trans 'Search' %}">
+        {{ search_form }}
       </form>
 
       <div class="pull-right">

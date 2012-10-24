@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% block extrahead %}
+  <style>
+    .navbar-search { display: none; }
+  </style>
+{% endblock %}
 
 {% block mainContainer %}
     <form method="get" action=".">
