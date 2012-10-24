@@ -122,6 +122,7 @@ def post_question(request):
             question = form.save(commit=False)
             question.author = request.user
             question.save()
+            form.save_m2m()
             return HttpResponseRedirect(question.get_absolute_url())
 
         #TODO: make this better - show the form
