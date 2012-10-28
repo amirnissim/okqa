@@ -3,41 +3,56 @@
 {% block pageTitle %}{{question}}{% endblock %}
 {% block extrahead %}
   <style>
-    .answers-count { display:none; }
+    .answers { display:none; }
   </style>
 {% endblock %}
 {% block mainContainer %}
-    {% if can_answer %}
-      <a type="button" class="btn" href="#add_answer_modal" data-toggle="modal">{% trans "Answer the Question" %}</a>
-    {% endif %}
+<div class="page-header">
+  <div class="container">
     <div class="row">
-      <div class="span9" style="background-color: #f2f2f2;">
-        {% include "qa/_question.html" %}
-        <h2>{{ question.answers.count }} {% trans "answers" %}</h2>
-        {% for answer in answers %}
-          {% include "qa/_answer.html" %}
-        {% endfor %}
-      </div>
+      <div class="offset9">
+        <ul class="unstyled">
+      {% if can_answer %}
+        <li>
+          <a type="button" class="btn" href="#add_answer_modal" data-toggle="modal">{% trans "Answer the Question" %}</a>
+        </li>
+      {% endif %}
+      {% if user.is_authenticated %}
+         <li>
+          <a type="button" class="btn" href="#upvote" data-toggle="modal">{% trans "I Want an Answer" %}</a>
+         </li>
+      {% endif %}
+         </ul>
     </div>
+  </div>
+  <div class="row questions-wrapper">
+    <div class="span9 questions">
+      {% include "qa/_question.html" %}
+      <h2>{{ question.answers.count }} {% trans "answers" %}</h2>
+      {% for answer in answers %}
+        {% include "qa/_answer.html" %}
+      {% endfor %}
+    </div>
+  </div>
 
+</div>
+{% if my_answer_form %}
+<div class="modal fade" id="add_answer_modal">
+ <form class="form" method="post" action="{% url post_answer question.id %}">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h3>{{question.subject}}</h3>
   </div>
-  {% if my_answer_form %}
-  <div class="modal fade" id="add_answer_modal">
-   <form class="form" method="post" action="{% url post_answer question.id %}">
-    <div class="modal-header">
-      <a class="close" data-dismiss="modal">&times;</a>
-      <h3>{{question.subject}}</h3>
-    </div>
-    <div class="modal-body">
-      {% csrf_token %}
-      {{ my_answer_form }}
-    </div>
-    <div class="modal-footer">
-      <input type="submit" value="{% trans "Publish" %}" />
-    </div>
-   </form>
+  <div class="modal-body">
+    {% csrf_token %}
+    {{ my_answer_form }}
   </div>
-  {% endif %}
+  <div class="modal-footer">
+    <input type="submit" value="{% trans "Publish" %}" />
+  </div>
+ </form>
+</div>
+{% endif %}
 {% endblock %}
 {% if my_answer_id %}
 {% block extrascript %}
