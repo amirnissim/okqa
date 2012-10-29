@@ -25,7 +25,7 @@ class QuestionTest(TestCase):
         self.assertEquals(response.status_code, 302)
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.content, "1")
+        self.assertEquals(response.content, "2")
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 403)
 

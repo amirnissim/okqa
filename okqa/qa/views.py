@@ -159,3 +159,13 @@ def increase_rating(q):
     q.rating += 1
     q.save()
     return q.rating
+
+def tagged_questions(request, tags):
+
+    tags_list = tags.split(',')
+    questions = Question.objects.filter(tags__name__in = tags_list)
+
+    questions.order_by(ORDER_OPTIONS[request.GET.get('order', 'date')])
+
+    return render(request, "qa/question_list.html", dict(questions=questions,
+                                        current_tags=tags_list))
