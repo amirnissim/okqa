@@ -31,7 +31,7 @@
         </form>
       {% else %}
         <a type="button" class="btn btn-link" href="{% url registration.views.register %}">{% trans "Register" %}</a>
-        <a type="button" class="btn btn-link" href="#login_modal" data-toggle="modal">{% trans "Login" %}</a>
+        <a id="login-button" type="button" class="btn btn-link" href="#login_modal" data-toggle="modal">{% trans "Login" %}</a>
       {% endif %}
       </div>
     </div>
@@ -39,12 +39,15 @@
 </div>
 {% if login_form %}
 <div class="modal fade" id="login_modal">
- <form id="login-form" class="form" method="post" action="{% url auth_login %}">
+ <form id="login-form" class="form" method="post" action="{% url login %}">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
     <h3>{% trans "Connect" %}</h3>
   </div>
   <div class="modal-body">
+    <div id="login-error" class="alert hide error">
+      {% trans "bad username/pasword" %}
+    </div >
     {% csrf_token %}
     {{ login_form }}
   </div>
@@ -88,6 +91,26 @@
         .attr('type', 'hidden')
         .attr('value', document.URL)
         .appendTo('#login-form');
+      // handle the login form
+      $(document).ready(function() {
+        $('#login-button').click(function() {
+          $('#login-error').hide();
+        });
+        $('#login-form').submit(function() { // catch the form's submit event
+          $.ajax({ // create an AJAX call...
+              data: $(this).serialize(), // get the form data
+              type: $(this).attr('method'), // GET or POST
+              url: $(this).attr('action'), // the file to call
+              success: function(response) { // on success..
+                  window.location = document.URL; 
+              },
+              error: function() {
+                  $('#login-error').show();
+              }
+          });
+          return false;
+        })
+      });
     </script>
     {% block extrascript %} {% endblock %}
 </body>
