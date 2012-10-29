@@ -1,16 +1,26 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block mainContainer %}
-    <h1>{% trans "View Candidate" %}</h1>
-    {{ candidate.username}}
+<div class="row">
+  <div class="span4">
+    <div class="avatar" style="float:right;">
+      <img src="{{ candidate.get_profile.avatar_url }}">
+    </div>
+    <h1>{{ candidate.get_full_name}}</h1>
+  </div>
+  <div class="span8">
     <h2>{% trans "Answers" %}</h2>
-    {% for a in answers %}
-    <div style="background: #d3d3d3">
-        <h3>{{ a.question.subject }}</h3>
-        <div>{{ a.question.content }}</div>
-    </div>
-    <div style="background: #add8e6">
-        {{ a.content }}
-    </div>
+    {% for answer in answers %}
+      {% include "qa/_answer.html" %}
     {% endfor %}
+  </div>
+</div>
 {% endblock %}
+{% block extrascript %}
+<script>
+  $(".answer-author").hide();
+  $(".answer-avatar").hide();
+</script>
+{% endblock %}
+
+

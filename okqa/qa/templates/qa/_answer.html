@@ -4,11 +4,9 @@
      {% if my_answer_id == answer.id %}
       <a id="edit-answer-{{answer.id}}" href="#add_answer_modal" data-toggle="modal">&#9998;</a>
      {% endif %}
-      <h3>{{ answer.rating }}</h3>
-      <button class="btn"><a href="{% url qa.views.upvote_question question.id %}">&uarr;</button>
-      <p><a href="{{ answer.author.get_absolute_url }}">{{answer.author.username}}</a></p>
+      <p class="answer-author"><a href="{{ answer.author.get_absolute_url }}">{{answer.author.username}}</a></p>
   </div>
-  <div class="avatar">
+  <div class="avatar answer-avatar">
     <a href="{{ answer.author.get_absolute_url }}">
       <img src="{{ answer.author.get_profile.avatar_url }}">
     </a>

@@ -14,7 +14,7 @@
     <div class="container">
       <a class="brand" href="{% url home %}">{% trans "The Demo Party" %}</a>
       <ul class="nav">
-        <li><a href="/">{% trans "Home" %}</a></li>
+        <li><a href="/" {% block homeNav %}{% endblock %}>{% trans "Home" %}</a></li>
         <li><a href="{% url candidates %}">{% trans "Candidates" %}</a></li>
         <li><a href="{% url members %}">{% trans "Members" %}</a></li>
       </ul>

@@ -190,7 +190,6 @@ HAYSTACK_CONNECTIONS = {
 INTERNAL_IPS = ('127.0.0.1',)
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
-
 try:
     from local_settings import *
 except ImportError:
