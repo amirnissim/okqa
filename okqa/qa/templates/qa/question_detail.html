@@ -15,7 +15,7 @@
       {% if user.is_authenticated %}
       <div class="span3">
         <a class="btn btn-primary {% if not can_upvote %}disabled{% endif %}"
-          id="upvote-question" " href="#" >
+          id="upvote-question" href="#">
           {% trans "I Want an Answer" %}
         </a>
       </div>
@@ -36,6 +36,7 @@
         {% endif %}
       </div>
     </div>
+  </div>
 {% if my_answer_form %}
 <div class="modal fade" id="add_answer_modal">
  <form class="form" method="post" action="{% url post_answer question.id %}">
