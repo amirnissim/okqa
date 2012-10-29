@@ -9,24 +9,31 @@
 {% block mainContainer %}
   <div class="container">
     <div class="row">
-      <div class="offset9">
-        <ul class="unstyled">
-          <li><a id="upvote-question"  class="btn btn-primary {% if not can_upvote %}disabled{% endif %}" href="#" >{% trans "I Want an Answer" %}</a></li>
-        {% if can_answer %}
-          <li>
-            <a class="btn" href="#add_answer_modal" data-toggle="modal">{% trans "Answer the Question" %}</a>
-          </li>
-        {% endif %}
-        </ul>
+      <div class="span9">
+        {% include "qa/_question.html" %}
       </div>
+      {% if user.is_authenticated %}
+      <div class="span3">
+        <a class="btn btn-primary {% if not can_upvote %}disabled{% endif %}"
+          id="upvote-question" " href="#" >
+          {% trans "I Want an Answer" %}
+        </a>
+      </div>
+      {% endif %}
+
     </div>
     <div class="row questions-wrapper">
-      <div class="span9 questions">
-        {% include "qa/_question.html" %}
-        <h2>{{ question.answers.count }} {% trans "answers" %}</h2>
+      <div class="span9">
         {% for answer in answers %}
           {% include "qa/_answer.html" %}
+        {% empty %}
+          <h3>{% trans "No Answers Yet" %}</h3>
         {% endfor %}
+      </div>
+      <div class="span3">
+        {% if can_answer %}
+          <a class="btn btn-success btn-large" href="#add_answer_modal" data-toggle="modal">{% trans "Answer the Question" %}</a>
+        {% endif %}
       </div>
     </div>
 {% if my_answer_form %}

@@ -143,9 +143,7 @@ def upvote_question(request, q_id):
         q = get_object_or_404(Question, id=q_id)
         user = request.user
 
-        if q.author == user:
-            return HttpResponseForbidden(_("You cannot upvote your own question"))
-        if user.upvotes.filter(question=q):
+        if q.author == user or user.upvotes.filter(question=q):
             return HttpResponseForbidden(_("You already upvoted this question"))
         else:
             upvote = QuestionUpvote.objects.create(question=q, user=user)
