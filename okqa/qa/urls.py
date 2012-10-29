@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     url(r'^q/(?P<q_id>\d+)/$', 'okqa.qa.views.view_question', name='question-details'),
 
     url(r'^candidates/$', 'okqa.qa.views.candidates', name='candidates'),
-    (r'^candidate/(?P<candidate_id>\d+)/$', 'view_candidate'),
+    url(r'^candidate/(?P<candidate_id>\d+)/$', 'okqa.qa.views.view_candidate', name="candidate_detail"),
 
     url(r'^members/$', 'okqa.qa.views.members', name='members'),
     (r'^members/(?P<member_id>\d+)/$', 'okqa.qa.views.view_member'),

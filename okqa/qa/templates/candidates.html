@@ -8,7 +8,7 @@
         <h3>{{ candidate.username }}</h3>
         <div>{{ candidate.answers.count }} {% trans "answers" %}</div>
         <div>
-             <a href="{% url qa.views.view_candidate candidate.id %}"> {% trans "View Candidate" %}</a>
+             <a href="{% url candidate_detail candidate.id %}"> {% trans "View Candidate" %}</a>
         </div>
         <hr>
     {% endfor %}
