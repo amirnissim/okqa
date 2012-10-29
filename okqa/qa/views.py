@@ -178,3 +178,60 @@ def tagged_questions(request, tags):
 
     return render(request, "qa/question_list.html", dict(questions=questions,
                                         current_tags=tags_list))
+
+
+from django.contrib.syndication.views import Feed
+
+
+class QuestionFeed(Feed):
+    """Simple feed to get all questions"""
+    title = _('OK QA Question Feed')
+    link = "/"
+    description = _('Questions from OKQA')
+
+    def items(self):
+        return Question.objects.order_by('-updated_at')
+
+    def item_title(self, item):
+        return item.subject
+
+    def item_description(self, item):
+        return item.content
+
+
+class QuestionAnswerFeed(Feed):
+    """"Give question, get all answers for that question"""
+
+    def get_object(self, request, q_id):
+        return get_object_or_404(Question, pk=q_id)
+
+    def title(self, obj):
+        return "OKQA: Answers for question %s" % obj.subject
+
+    def link(self, obj):
+        return obj.get_absolute_url()
+
+    def description(self, obj):
+        return "Get all the answers for %s" % obj.subject
+
+    def items(self, obj):
+        return Answer.objects.filter(question=obj).order_by('-updated_at')
+
+
+class UserAnswerFeed(Feed):
+    """"Give candidate, get all answers for that candidate"""
+
+    def get_object(self, request, q_id):
+        return get_object_or_404(User, pk=q_id)
+
+    def title(self, obj):
+        return "OKQA: All answers for %s" % obj.subject
+
+    def link(self, obj):
+        return obj.get_absolute_url()
+
+    def description(self, obj):
+        return "Get all the answers for %s" % obj.subject
+
+    def items(self, obj):
+        return Answer.objects.filter(author=obj).order_by('-updated_at')
