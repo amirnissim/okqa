@@ -230,17 +230,17 @@ class AtomQuestionAnswerFeed(RssQuestionAnswerFeed):
 class RssUserAnswerFeed(Feed):
     """"Give candidate, get all answers for that candidate"""
 
-    def get_object(self, request, q_id):
-        return get_object_or_404(User, pk=q_id)
+    def get_object(self, request, candidate_id):
+        return get_object_or_404(User, pk=candidate_id)
 
     def title(self, obj):
-        return "OKQA: All answers for %s" % obj.subject
+        return "OKQA: All answers for %s" % obj.first_name + ' ' + obj.last_name
 
     def link(self, obj):
         return obj.get_absolute_url()
 
     def description(self, obj):
-        return "Get all the answers for %s" % obj.subject
+        return "Get all the answers for %s" % obj.first_name + ' ' + obj.last_name
 
     def items(self, obj):
         return Answer.objects.filter(author=obj).order_by('-updated_at')

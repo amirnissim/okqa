@@ -56,6 +56,9 @@ class Answer(BaseModel):
     def __unicode__(self):
         return "%s: %s" % (self.author, self.content[:30])
 
+    def get_absolute_url(self):
+        return reverse('question-details', kwargs={'q_id': self.question.id})
+
 
 class QuestionUpvote(BaseModel):
     question = models.ForeignKey(Question, related_name="upvotes")
