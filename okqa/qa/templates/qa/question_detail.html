@@ -7,35 +7,28 @@
   </style>
 {% endblock %}
 {% block mainContainer %}
-<div class="page-header">
   <div class="container">
     <div class="row">
       <div class="offset9">
         <ul class="unstyled">
-      {% if can_answer %}
-        <li>
-          <a type="button" class="btn" href="#add_answer_modal" data-toggle="modal">{% trans "Answer the Question" %}</a>
-        </li>
-      {% endif %}
-      {% if user.is_authenticated %}
-         <li>
-          <a type="button" class="btn" href="#upvote" data-toggle="modal">{% trans "I Want an Answer" %}</a>
-         </li>
-      {% endif %}
-         </ul>
+          <li><a id="upvote-question"  class="btn btn-primary {% if not can_upvote %}disabled{% endif %}" href="#" >{% trans "I Want an Answer" %}</a></li>
+        {% if can_answer %}
+          <li>
+            <a class="btn" href="#add_answer_modal" data-toggle="modal">{% trans "Answer the Question" %}</a>
+          </li>
+        {% endif %}
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="row questions-wrapper">
-    <div class="span9 questions">
-      {% include "qa/_question.html" %}
-      <h2>{{ question.answers.count }} {% trans "answers" %}</h2>
-      {% for answer in answers %}
-        {% include "qa/_answer.html" %}
-      {% endfor %}
+    <div class="row questions-wrapper">
+      <div class="span9 questions">
+        {% include "qa/_question.html" %}
+        <h2>{{ question.answers.count }} {% trans "answers" %}</h2>
+        {% for answer in answers %}
+          {% include "qa/_answer.html" %}
+        {% endfor %}
+      </div>
     </div>
-  </div>
-
-</div>
 {% if my_answer_form %}
 <div class="modal fade" id="add_answer_modal">
  <form class="form" method="post" action="{% url post_answer question.id %}">
@@ -58,8 +51,21 @@
 {% block extrascript %}
 <script>
   $(document).ready ( function () {
-    $("#answer-{{ my_answer_id}}").hover (
-        function () {
+    $("#upvote-question").ajaxError (function(evt, jqXHR, setting, err) {
+              $("#messages").html('<div class="alert" class="error">' +
+                '<button type="button" class="close" data-dismiss="alert">×</button>' +
+                jqXHR.responseText + '</div>');
+      });
+
+    $("#upvote-question").click (function() {
+      $.post("{% url upvote_question question.id %}",
+          {csrfmiddlewaretoken: "{{ csrf_token }}"},
+          function (data, status, jqXHR) {
+              $(".mini-counts").html(jqXHR.responseText);
+      });
+          })
+
+    $("#answer-{{ my_answer_id}}").hover (function() {
           $("#edit-answer-{{my_answer_id}}").show();
         }, function () {
           $("#edit-answer-{{my_answer_id}}").hide();

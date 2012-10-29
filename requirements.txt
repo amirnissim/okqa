@@ -11,3 +11,4 @@ requests
 pyelasticsearch
 PyYAML==3.10
 django-debug-toolbar==0.9.4
+django-nose==1.1

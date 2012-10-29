@@ -14,7 +14,7 @@
     <div class="container">
       <a class="brand" href="{% url home %}">{% trans "The Demo Party" %}</a>
       <ul class="nav">
-        <li class="active"><a href="/">{% trans "Home" %}</a></li>
+        <li><a href="/">{% trans "Home" %}</a></li>
         <li><a href="{% url candidates %}">{% trans "Candidates" %}</a></li>
         <li><a href="{% url members %}">{% trans "Members" %}</a></li>
       </ul>
@@ -56,6 +56,7 @@
 </div>
 {% endif %}
 <div class="container" role="main">
+  <div id="messages">
     {% if messages %}
       {% for message in messages %}
         <div class="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
@@ -64,7 +65,8 @@
         </div>
       {% endfor %}
     {% endif %}
-    {% block mainContainer %}{% endblock %}
+  </div>
+  {% block mainContainer %}{% endblock %}
 </div>
 
 <footer class="footer">
