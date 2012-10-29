@@ -13,6 +13,8 @@ urlpatterns = patterns('okqa.qa.views',
 
     url(r'^a/post/(?P<q_id>\d+)/$', 'post_answer', name='post_answer'),
     url(r'^q/post/$', 'post_question', name='post_question'),
-    (r'^upvote_question/(?P<q_id>\d+)/$', 'upvote_question'),
+    url(r'^upvote_question/(?P<q_id>\d+)/$', 'upvote_question', name='upvote_question'),
+	
+	url(r'^tags/(?P<tags>.+)/$', 'tagged_questions', name="show_tags"),
 
 )

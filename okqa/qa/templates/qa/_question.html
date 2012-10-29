@@ -20,7 +20,7 @@
         </div>
         <div class="tags">
           {% for tag in question.tags.all %}
-            <a href="#">{{ tag }}</a>
+            <a href="{% url show_tags tags=tag|urlencode %}">{{tag}}</a>
           {% endfor %}
         </div>
         <div class="started">

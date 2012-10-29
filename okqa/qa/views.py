@@ -74,7 +74,13 @@ def view_question(request, q_id):
             context["my_answer_form"] = AnswerForm()
             context["can_answer"] = True
 
-    return render_to_response("qa/question_detail.html", context)
+    if request.user.is_authenticated():
+        context["can_upvote"] = \
+            request.user.upvotes.filter(question=question) == request.user.upvotes.none()
+    else:
+        context["can_upvote"] = False
+
+    return render(request, "qa/question_detail.html", context)
 
 def add_question(request):
     if not request.user.is_authenticated():
@@ -131,23 +137,35 @@ def post_question(request):
         form = QuestionForm()
     return render_to_response("qa/post_question.html", {"form": form }, context_instance=RequestContext(request))
 
+@login_required
 def upvote_question(request, q_id):
-    q = get_object_or_404(Question, id=q_id)
-    user = request.user
+    if request.method == "POST":
+        q = get_object_or_404(Question, id=q_id)
+        user = request.user
 
-    if q.author == user:
-        return HttpResponseForbidden(_("You cannot upvote your own question"))
-    voted_questions = [vote.question for vote in user.upvotes.all()]
-    if q in voted_questions:
-        return HttpResponseForbidden(_("You already upvoted this question"))
+        if q.author == user or user.upvotes.filter(question=q):
+            return HttpResponseForbidden(_("You already upvoted this question"))
+        else:
+            upvote = QuestionUpvote.objects.create(question=q, user=user)
+            #TODO: use signals so the next line won't be necesary
+            new_count = increase_rating(q)
+            return HttpResponse(new_count)
     else:
-        upvote = QuestionUpvote(question=q, user=user)
-        upvote.save()
-        increase_rating(q)
-    return HttpResponse(_("Your vote was recorded"))
+        return HttpResponseForbidden(_("Use POST to upvote a question"))
 
 @transaction.commit_on_success
 def increase_rating(q):
     q = Question.objects.get(id=q.id)
     q.rating += 1
     q.save()
+    return q.rating
+
+def tagged_questions(request, tags):
+
+    tags_list = tags.split(',')
+    questions = Question.objects.filter(tags__name__in = tags_list)
+
+    questions.order_by(ORDER_OPTIONS[request.GET.get('order', 'date')])
+
+    return render(request, "qa/question_list.html", dict(questions=questions,
+                                        current_tags=tags_list))

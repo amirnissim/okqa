@@ -3,48 +3,76 @@
 {% block pageTitle %}{{question}}{% endblock %}
 {% block extrahead %}
   <style>
-    .answers-count { display:none; }
+    .answers { display:none; }
   </style>
 {% endblock %}
 {% block mainContainer %}
-    {% if can_answer %}
-      <a type="button" class="btn" href="#add_answer_modal" data-toggle="modal">{% trans "Answer the Question" %}</a>
-    {% endif %}
+  <div class="container">
     <div class="row">
-      <div class="span9" style="background-color: #f2f2f2;">
+      <div class="span9">
         {% include "qa/_question.html" %}
-        <h2>{{ question.answers.count }} {% trans "answers" %}</h2>
+      </div>
+      {% if user.is_authenticated %}
+      <div class="span3">
+        <a class="btn btn-primary {% if not can_upvote %}disabled{% endif %}"
+          id="upvote-question" " href="#" >
+          {% trans "I Want an Answer" %}
+        </a>
+      </div>
+      {% endif %}
+
+    </div>
+    <div class="row questions-wrapper">
+      <div class="span9">
         {% for answer in answers %}
           {% include "qa/_answer.html" %}
+        {% empty %}
+          <h3>{% trans "No Answers Yet" %}</h3>
         {% endfor %}
       </div>
+      <div class="span3">
+        {% if can_answer %}
+          <a class="btn btn-success btn-large" href="#add_answer_modal" data-toggle="modal">{% trans "Answer the Question" %}</a>
+        {% endif %}
+      </div>
     </div>
-
+{% if my_answer_form %}
+<div class="modal fade" id="add_answer_modal">
+ <form class="form" method="post" action="{% url post_answer question.id %}">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h3>{{question.subject}}</h3>
   </div>
-  {% if my_answer_form %}
-  <div class="modal fade" id="add_answer_modal">
-   <form class="form" method="post" action="{% url post_answer question.id %}">
-    <div class="modal-header">
-      <a class="close" data-dismiss="modal">&times;</a>
-      <h3>{{question.subject}}</h3>
-    </div>
-    <div class="modal-body">
-      {% csrf_token %}
-      {{ my_answer_form }}
-    </div>
-    <div class="modal-footer">
-      <input type="submit" value="{% trans "Publish" %}" />
-    </div>
-   </form>
+  <div class="modal-body">
+    {% csrf_token %}
+    {{ my_answer_form }}
   </div>
-  {% endif %}
+  <div class="modal-footer">
+    <input type="submit" value="{% trans "Publish" %}" />
+  </div>
+ </form>
+</div>
+{% endif %}
 {% endblock %}
 {% if my_answer_id %}
 {% block extrascript %}
 <script>
   $(document).ready ( function () {
-    $("#answer-{{ my_answer_id}}").hover (
-        function () {
+    $("#upvote-question").ajaxError (function(evt, jqXHR, setting, err) {
+              $("#messages").html('<div class="alert" class="error">' +
+                '<button type="button" class="close" data-dismiss="alert">×</button>' +
+                jqXHR.responseText + '</div>');
+      });
+
+    $("#upvote-question").click (function() {
+      $.post("{% url upvote_question question.id %}",
+          {csrfmiddlewaretoken: "{{ csrf_token }}"},
+          function (data, status, jqXHR) {
+              $(".mini-counts").html(jqXHR.responseText);
+      });
+          })
+
+    $("#answer-{{ my_answer_id}}").hover (function() {
           $("#edit-answer-{{my_answer_id}}").show();
         }, function () {
           $("#edit-answer-{{my_answer_id}}").hide();

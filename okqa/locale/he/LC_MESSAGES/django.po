@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-24 23:24+0200\n"
+"POT-Creation-Date: 2012-10-29 11:28+0200\n"
 "PO-Revision-Date: 2012-10-24 16:42+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,24 +52,20 @@ msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותי
 msgid "question"
 msgstr "שאלה"
 
-#: qa/views.py:81
+#: qa/views.py:87
 msgid "You cannot post questions"
 msgstr ""
 
-#: qa/views.py:104
+#: qa/views.py:110
 msgid "You must be logged in as a candidate to post answers"
 msgstr ""
 
-#: qa/views.py:139
-msgid "You cannot upvote your own question"
-msgstr ""
-
-#: qa/views.py:142
-msgid "You already upvoted this question"
-msgstr ""
-
 #: qa/views.py:147
-msgid "Your vote was recorded"
+msgid "You already upvoted this question"
+msgstr "תודה, אתה כבר מופיע ברשימת המבקשים"
+
+#: qa/views.py:154
+msgid "Use POST to upvote a question"
 msgstr ""
 
 #: qa/templates/candidates.html:5 templates/base.html:18
@@ -77,7 +73,6 @@ msgid "Candidates"
 msgstr "מועמדים"
 
 #: qa/templates/candidates.html:9 qa/templates/qa/_question.html:13
-#: qa/templates/qa/question_detail.html:16
 msgid "answers"
 msgstr "תשובות"
 
@@ -143,13 +138,21 @@ msgid "What is your question, sire?"
 msgstr "הנכם מוזמנים להפנות שאלה למועמדים:"
 
 #: qa/templates/qa/post_question.html:10
-#: qa/templates/qa/question_detail.html:36
+#: qa/templates/qa/question_detail.html:48
 msgid "Publish"
 msgstr "פרסם"
 
-#: qa/templates/qa/question_detail.html:11
+#: qa/templates/qa/question_detail.html:18
+msgid "I Want an Answer"
+msgstr "הצטרפו למבקשים תשובה לעניין"
+
+#: qa/templates/qa/question_detail.html:27
+msgid "No Answers Yet"
+msgstr "עדיין לא ניתנו תשובות"
+
+#: qa/templates/qa/question_detail.html:32
 msgid "Answer the Question"
-msgstr "ענו על השאלה"
+msgstr "תרום תשובה לעניין"
 
 #: qa/templates/qa/question_list.html:7
 msgid "Questions"
@@ -175,7 +178,7 @@ msgstr "שאלות נשאלו"
 msgid "questions"
 msgstr "שאלות"
 
-#: templates/base.html:8 templates/base.html.py:15 templates/base.html:76
+#: templates/base.html:8 templates/base.html.py:15 templates/base.html:78
 msgid "The Demo Party"
 msgstr "מפלגת הדמו"
 
@@ -186,10 +189,6 @@ msgstr ""
 #: templates/base.html:19
 msgid "Members"
 msgstr "חברים"
-
-#: templates/base.html:22 templates/search/search.html:8
-msgid "Search"
-msgstr "חפש"
 
 #: templates/base.html:30
 msgid "logout"
@@ -207,15 +206,15 @@ msgstr "היכנסו"
 msgid "Connect"
 msgstr "התחברו"
 
-#: templates/base.html:72
+#: templates/base.html:74
 msgid "Back to top"
 msgstr "בחזרה לראש העמוד"
 
-#: templates/base.html:73
+#: templates/base.html:75
 msgid "Content is licensed CC-BY. Source code is freely available "
 msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.  קוד המקור חופשי לשימוש"
 
-#: templates/base.html:74
+#: templates/base.html:76
 msgid "here"
 msgstr "כאן"
 
@@ -310,7 +309,11 @@ msgstr ""
 msgid "Ye be now registered. Activation email sent, arrrr."
 msgstr ""
 
-#: templates/search/search.html:15
+#: templates/search/search.html:13
+msgid "Search"
+msgstr "חפש"
+
+#: templates/search/search.html:20
 msgid "Results"
 msgstr "תוצאות החיפוש"
 

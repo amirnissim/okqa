@@ -29,7 +29,7 @@ class Question(BaseModel):
         help_text=_("Please enter a subject in no more than %s letters") %  MAX_LENGTH_Q_SUBJECT)
     content = models.TextField(_("content"), max_length=MAX_LENGTH_Q_CONTENT,
         help_text=_("Please enter your content in no more than %s letters") %  MAX_LENGTH_Q_CONTENT)
-    rating = models.IntegerField(_("rating"), default=0)
+    rating = models.IntegerField(_("rating"), default=1)
     tags = TaggableManager(through=TaggedQuestion)
 
     def __unicode__(self):

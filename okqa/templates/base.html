@@ -14,7 +14,7 @@
     <div class="container">
       <a class="brand" href="{% url home %}">{% trans "The Demo Party" %}</a>
       <ul class="nav">
-        <li class="active"><a href="/">{% trans "Home" %}</a></li>
+        <li><a href="/">{% trans "Home" %}</a></li>
         <li><a href="{% url candidates %}">{% trans "Candidates" %}</a></li>
         <li><a href="{% url members %}">{% trans "Members" %}</a></li>
       </ul>
@@ -39,7 +39,7 @@
 </div>
 {% if login_form %}
 <div class="modal fade" id="login_modal">
- <form class="form" method="post" action="{% url auth_login %}">
+ <form id="login-form" class="form" method="post" action="{% url auth_login %}">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
     <h3>{% trans "Connect" %}</h3>
@@ -56,6 +56,7 @@
 </div>
 {% endif %}
 <div class="container" role="main">
+  <div id="messages">
     {% if messages %}
       {% for message in messages %}
         <div class="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
@@ -64,7 +65,8 @@
         </div>
       {% endfor %}
     {% endif %}
-    {% block mainContainer %}{% endblock %}
+  </div>
+  {% block mainContainer %}{% endblock %}
 </div>
 
 <footer class="footer">
@@ -80,6 +82,13 @@
     <script src="{{ STATIC_URL }}js/jquery.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-modal.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap-alert.js"></script>
+    <script>
+      $("<input>")
+        .attr('name', 'next')
+        .attr('type', 'hidden')
+        .attr('value', document.URL)
+        .appendTo('#login-form');
+    </script>
     {% block extrascript %} {% endblock %}
 </body>
 </html>
