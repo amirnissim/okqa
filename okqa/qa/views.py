@@ -1,6 +1,5 @@
 from django.http import HttpResponse, HttpResponseForbidden
-from django.http import HttpResponseBadRequest, HttpResponseRedirect
-from django.contrib import messages
+from django.http import HttpResponseRedirect
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
@@ -17,8 +16,10 @@ from okqa.qa.forms import AnswerForm, QuestionForm
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating'}
 
+
 def home(request):
     return render(request, "home.html")
+
 
 def candidates(request):
     """
@@ -28,25 +29,29 @@ def candidates(request):
     candidates = g.user_set.all().annotate(num_answers=Count('answers')).order_by("-num_answers")
     return render_to_response("candidates.html", locals(), context_instance=RequestContext(request))
 
+
 def view_candidate(request, candidate_id):
     candidate = get_object_or_404(User, id=candidate_id)
     answers = candidate.answers.all()
     return render_to_response("view_candidate.html", locals(), context_instance=RequestContext(request))
+
 
 def members(request):
     g = Group.objects.get(name="members")
     members = g.user_set.all()
     return render_to_response("members.html", locals(), context_instance=RequestContext(request))
 
+
 def view_member(request, voter_id):
     member = get_object_or_404(User, id=member_id)
     return render_to_response("view_member.html", locals(), context_instance=RequestContext(request))
+
 
 def questions(request):
     """
     list questions ordered by number of upvotes
     """
-    
+
     try:
         order = ORDER_OPTIONS[request.GET.get('order', None)]
     except KeyError:
@@ -57,6 +62,7 @@ def questions(request):
 
     return render_to_response("qa/question_list.html", dict(questions=questions, tags=tags),
                               context_instance=RequestContext(request))
+
 
 def view_question(request, q_id):
     # import pdb; pdb.set_trace()
@@ -82,6 +88,7 @@ def view_question(request, q_id):
 
     return render(request, "qa/question_detail.html", context)
 
+
 def add_question(request):
     if not request.user.is_authenticated():
         return HttpResponseForbidden(_("You cannot post questions"))
@@ -98,8 +105,6 @@ def add_question(request):
 
     return HttpResponse("OK")
 
-def home(request):
-    return render(request, "home.html")
 
 @login_required
 def post_answer(request, q_id):
@@ -113,12 +118,13 @@ def post_answer(request, q_id):
         # make sure the user haven't answered already
         answer = question.answers.get(author=request.user)
     except question.answers.model.DoesNotExist:
-        answer = Answer(author=request.user, question = question)
+        answer = Answer(author=request.user, question=question)
 
     answer.content = request.POST.get("content")
 
     answer.save()
     return HttpResponseRedirect(question.get_absolute_url())
+
 
 @login_required
 def post_question(request):
@@ -135,7 +141,8 @@ def post_question(request):
         # return HttpResponseRedirect("/#question_modal")
     elif request.method == "GET":
         form = QuestionForm()
-    return render_to_response("qa/post_question.html", {"form": form }, context_instance=RequestContext(request))
+    return render_to_response("qa/post_question.html", {"form": form}, context_instance=RequestContext(request))
+
 
 @login_required
 def upvote_question(request, q_id):
@@ -153,6 +160,7 @@ def upvote_question(request, q_id):
     else:
         return HttpResponseForbidden(_("Use POST to upvote a question"))
 
+
 @transaction.commit_on_success
 def increase_rating(q):
     q = Question.objects.get(id=q.id)
@@ -160,10 +168,11 @@ def increase_rating(q):
     q.save()
     return q.rating
 
+
 def tagged_questions(request, tags):
 
     tags_list = tags.split(',')
-    questions = Question.objects.filter(tags__name__in = tags_list)
+    questions = Question.objects.filter(tags__name__in=tags_list)
 
     questions.order_by(ORDER_OPTIONS[request.GET.get('order', 'date')])
 
