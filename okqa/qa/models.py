@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 from django.core.urlresolvers import reverse
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItemBase
@@ -31,6 +31,7 @@ class Question(BaseModel):
         help_text=_("Please enter your content in no more than %s letters") %  MAX_LENGTH_Q_CONTENT)
     rating = models.IntegerField(_("rating"), default=1)
     tags = TaggableManager(through=TaggedQuestion)
+    reports_count = models.IntegerField(_("Reports counter"), default=0)
 
     def __unicode__(self):
         return self.subject
@@ -52,7 +53,11 @@ class Answer(BaseModel):
     def __unicode__(self):
         return "%s: %s" % (self.author, self.content[:30])
 
-
 class QuestionUpvote(BaseModel):
     question = models.ForeignKey(Question, related_name="upvotes")
     user = models.ForeignKey(User, related_name="upvotes")
+
+class QuestionReport(BaseModel):
+    question = models.ForeignKey(Question, related_name="reports")
+    user = models.ForeignKey(User, related_name="reports")
+

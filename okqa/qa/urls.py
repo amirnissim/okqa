@@ -17,4 +17,6 @@ urlpatterns = patterns('okqa.qa.views',
 	
 	url(r'^tags/(?P<tags>.+)/$', 'tagged_questions', name="show_tags"),
 
+	url(r'^report_question/(?P<q_id>\d+)/$', 'report_question', name='report_question'),
+
 )
