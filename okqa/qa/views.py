@@ -7,6 +7,8 @@ from django.db.models import Count
 from django.shortcuts import render, render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django.utils.translation import ugettext as _
+from django.contrib.syndication.views import Feed
+from django.utils.feedgenerator import Atom1Feed
 
 from taggit.utils import parse_tags
 
@@ -180,10 +182,7 @@ def tagged_questions(request, tags):
                                         current_tags=tags_list))
 
 
-from django.contrib.syndication.views import Feed
-
-
-class QuestionFeed(Feed):
+class RssQuestionFeed(Feed):
     """Simple feed to get all questions"""
     title = _('OK QA Question Feed')
     link = "/"
@@ -199,7 +198,12 @@ class QuestionFeed(Feed):
         return item.content
 
 
-class QuestionAnswerFeed(Feed):
+class AtomQuestionFeed(RssQuestionFeed):
+    feed_type = Atom1Feed
+    subtitle = RssQuestionFeed.description
+
+
+class RssQuestionAnswerFeed(Feed):
     """"Give question, get all answers for that question"""
 
     def get_object(self, request, q_id):
@@ -218,7 +222,12 @@ class QuestionAnswerFeed(Feed):
         return Answer.objects.filter(question=obj).order_by('-updated_at')
 
 
-class UserAnswerFeed(Feed):
+class AtomQuestionAnswerFeed(RssQuestionAnswerFeed):
+    feed_type = Atom1Feed
+    subtitle = RssQuestionAnswerFeed.description
+
+
+class RssUserAnswerFeed(Feed):
     """"Give candidate, get all answers for that candidate"""
 
     def get_object(self, request, q_id):
@@ -235,3 +244,8 @@ class UserAnswerFeed(Feed):
 
     def items(self, obj):
         return Answer.objects.filter(author=obj).order_by('-updated_at')
+
+
+class AtomUserAnswerFeed(RssUserAnswerFeed):
+    feed_type = Atom1Feed
+    subtitle = RssUserAnswerFeed.description

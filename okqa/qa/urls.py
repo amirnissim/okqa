@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, url
 from okqa.qa.sitemaps import sitemaps
-from okqa.qa.views import QuestionFeed, QuestionAnswerFeed, UserAnswerFeed
+from okqa.qa.views import RssQuestionFeed, RssQuestionAnswerFeed, RssUserAnswerFeed, AtomQuestionFeed, AtomQuestionAnswerFeed, AtomUserAnswerFeed
 
 urlpatterns = patterns('',
     url(r'^/?$', 'okqa.qa.views.questions', name='home'),
@@ -21,7 +21,12 @@ urlpatterns = patterns('',
 
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.index', {'sitemaps': sitemaps}),
     (r'^sitemap-(?P<section>.+)\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
-    (r'^feeds/questions/$', QuestionFeed()),
-    (r'^q/(?P<q_id>\d+)/feed/answers/$', QuestionAnswerFeed()),
-    (r'^candidate/(?P<candidate_id>\d+)/feed/answers/$', UserAnswerFeed()),
+
+    (r'^feeds/rss/questions/$', RssQuestionFeed()),
+    (r'^q/(?P<q_id>\d+)/feeds/rss/answers/$', RssQuestionAnswerFeed()),
+    (r'^candidate/(?P<candidate_id>\d+)/feeds/rss/answers/$', RssUserAnswerFeed()),
+
+    (r'^feeds/atom/questions/$', AtomQuestionFeed()),
+    (r'^q/(?P<q_id>\d+)/feeds/atom/answers/$', AtomQuestionAnswerFeed()),
+    (r'^candidate/(?P<candidate_id>\d+)/feeds/atom/answers/$', AtomUserAnswerFeed()),
 )
