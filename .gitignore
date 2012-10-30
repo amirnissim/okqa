@@ -1,5 +1,7 @@
 .*
 *.pyc
 *.db
+*.sublime-project
+*.sublime-workspace
 local_settings.py
 ~

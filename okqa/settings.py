@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'django.contrib.admindocs',
     'django_extensions',
+    'django.contrib.sitemaps',
     'django_nose',
     'taggit',
     'registration',

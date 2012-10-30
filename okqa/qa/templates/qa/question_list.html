@@ -6,7 +6,8 @@
   <div class="container">
     <div class="row">
       <div class="span9">
-      <h1>{% trans "Questions" %} <small>{% trans "for candidate of" %}{% trans " The Demo Party" %}</small></h1>
+      <h1>{% trans "Questions" %} <small>{% trans "for candidate of" %}{% trans " The Demo Party" %}
+          (<a href="{% url atom_all_questions %}">{% trans "feed" %}</a>)</small></h1>
       <ul class="nav nav-pills">
         {% for tag in current_tags %}
         <li><a class="btn" href="{% url show_tags tags=tag|urlencode %}">{{tag}}</a></li>
