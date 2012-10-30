@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'haystack',
     'south',
     'debug_toolbar',
+    'crispy_forms',
     'okqa.qa',
     'okqa.user',
     'okqa.party',
