@@ -276,9 +276,6 @@ a.answer-user {
 white-space: nowrap;
 padding: 0;
 }
-a:visited {
-color: #4A6B82;
-}
 .owner {
 background-color: #DEEDFF;
 background-color: rgba(222, 237, 255, 0.4);
@@ -291,4 +288,17 @@ color: #999;
 .answer-text, .answer-form {
 vertical-align: text-top;
 padding: 0px 6px 0px 7px;
+}
+
+/* General */
+textarea {
+	width:97.5%;
+	resize: none;
+}
+.helptext {
+display: block;
+margin-bottom: 10px;
+}
+.helptext {
+color: #595959;
 }

@@ -5,7 +5,11 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css"/>
-    <title>{% block pageTitle %}{% endblock %}{% trans "The Demo Party" %}</title>
+    <title>
+      {% block pageTitle %}
+      {% endblock %} 
+      {% trans "The Demo Party" %}
+    </title>
     {% block extrahead %}{% endblock %}
 </head>
 <body>
@@ -52,21 +56,20 @@
     <h3>{% trans "Connect" %}</h3>
   </div>
   <div class="modal-body">
-    <div id="login-error" class="alert hide error">
+    <div id="login-error" class="alert hide alert-error">
       {% trans "bad username/pasword" %}
     </div >
     {% csrf_token %}
-    {# Add form errors #}
     <div class="control-group">
-      <label class="control-label" for="inputEmail">{% trans 'Username' %}</label>
+      <label class="control-label" for="inputUsername">{% trans 'Username' %}</label>
       <div class="controls">
-      <input type="text" id="inputEmail" placeholder="{% trans 'Username' %}">
+      <input type="text" id="inputUsername" name="username" placeholder="{% trans 'Username' %}">
       </div>
     </div>
     <div class="control-group">
       <label class="control-label" for="inputPassword">{% trans 'Password' %}</label>
       <div class="controls">
-      <input type="password" id="inputPassword" placeholder="{% trans 'Password' %}">
+      <input type="password" id="inputPassword" name="password" placeholder="{% trans 'Password' %}">
       </div>
     </div>
   </div>
