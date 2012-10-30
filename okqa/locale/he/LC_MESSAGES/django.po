@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-30 00:12+0200\n"
+"POT-Creation-Date: 2012-10-30 09:45+0200\n"
 "PO-Revision-Date: 2012-10-24 16:42+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,55 +17,79 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: qa/models.py:27 qa/models.py:46
+#: qa/models.py:30 qa/models.py:50
 msgid "author"
 msgstr "מחבר"
 
-#: qa/models.py:28
+#: qa/models.py:31
 msgid "subject"
 msgstr "נושא"
 
-#: qa/models.py:29
+#: qa/models.py:32
 #, python-format
 msgid "Please enter a subject in no more than %s letters"
 msgstr "נא להכניס כותרת לשאלה בלא יותר מ %s אותיות"
 
-#: qa/models.py:30 qa/models.py:47
+#: qa/models.py:33 qa/models.py:51
 msgid "content"
 msgstr "תוכן"
 
-#: qa/models.py:31
+#: qa/models.py:34
 #, python-format
 msgid "Please enter your content in no more than %s letters"
 msgstr "נא להכניס תוכן בלא יותר מ %s אותיות"
 
-#: qa/models.py:32 qa/models.py:49
+#: qa/models.py:35 qa/models.py:53
 msgid "rating"
 msgstr "ניקוד"
 
-#: qa/models.py:48
+#: qa/models.py:52
 #, python-format
 msgid "Please enter an answer in no more than %s letters"
 msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
 
-#: qa/models.py:50
+#: qa/models.py:54
 msgid "question"
 msgstr "שאלה"
 
-#: qa/views.py:87
+#: qa/views.py:96
 msgid "You cannot post questions"
 msgstr ""
 
-#: qa/views.py:110
+#: qa/views.py:117
 msgid "You must be logged in as a candidate to post answers"
 msgstr ""
 
-#: qa/views.py:147
+#: qa/views.py:156
 msgid "You already upvoted this question"
 msgstr "תודה, אתה כבר מופיע ברשימת המבקשים"
 
-#: qa/views.py:154
+#: qa/views.py:163
 msgid "Use POST to upvote a question"
+msgstr ""
+
+#: qa/views.py:187
+#, fuzzy
+msgid "OK QA Question Feed"
+msgstr "שאלות נשאלו"
+
+#: qa/views.py:189
+#, fuzzy
+msgid "Questions from OKQA"
+msgstr "שאלות"
+
+#: qa/views.py:213
+#, fuzzy
+msgid "Answers for the question"
+msgstr "תרום תשובה לעניין"
+
+#: qa/views.py:237
+#, fuzzy
+msgid "Answers by"
+msgstr "תשובות"
+
+#: qa/views.py:243
+msgid "Get all answers by"
 msgstr ""
 
 #: qa/templates/candidates.html:5 templates/base.html:18
@@ -166,15 +190,19 @@ msgstr "למועמדים ב"
 msgid " The Demo Party"
 msgstr "מפלגת הדמו"
 
-#: qa/templates/qa/question_list.html:17
+#: qa/templates/qa/question_list.html:8
+msgid "feed"
+msgstr ""
+
+#: qa/templates/qa/question_list.html:18
 msgid "Ask Question"
 msgstr "שאלו"
 
-#: qa/templates/qa/question_list.html:32
+#: qa/templates/qa/question_list.html:33
 msgid "Questions asked"
 msgstr "שאלות נשאלו"
 
-#: qa/templates/qa/question_list.html:36
+#: qa/templates/qa/question_list.html:37
 msgid "questions"
 msgstr "שאלות"
 
