@@ -24,9 +24,9 @@
           {% endfor %}
         </div>
         <div class="started">
-            <span title="{{ question.created_at }}" class="relativetime">{{ question.created_at|timesince }}</span> | 
+            <span title="{{ question.created_at }}" class="relativetime">{% trans "before" %} {{ question.created_at|timesince }}</span>
             <!-- {{ question.author.get_absolute_url }} -->
-            <a href="#">{{question.author.username}}</a>
+            <a href="#" rel="tooltip" class="answer-user owner" title="{{question.author.get_full_name}}">{{question.author.username}}</a>
         </div>
     </div>
 </div>

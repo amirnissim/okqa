@@ -3,196 +3,182 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-30 04:09+0200\n"
-"PO-Revision-Date: 2012-10-24 16:42+0200\n"
-"Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
+"POT-Creation-Date: 2012-10-30 04:39+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Language: he\n"
-"X-Source-Language: en\n"
 
 #: qa/models.py:30 qa/models.py:50
 msgid "author"
-msgstr "מחבר"
+msgstr ""
 
 #: qa/models.py:31
 msgid "subject"
-msgstr "נושא"
+msgstr ""
 
 #: qa/models.py:32
 #, python-format
 msgid "Please enter a subject in no more than %s letters"
-msgstr "נא להכניס כותרת לשאלה בלא יותר מ %s אותיות"
+msgstr ""
 
 #: qa/models.py:33 qa/models.py:51
 msgid "content"
-msgstr "תוכן"
+msgstr ""
 
 #: qa/models.py:34
 #, python-format
 msgid "Please enter your content in no more than %s letters"
-msgstr "נא להכניס תוכן בלא יותר מ %s אותיות"
+msgstr ""
 
 #: qa/models.py:35 qa/models.py:53
 msgid "rating"
-msgstr "ניקוד"
+msgstr ""
 
 #: qa/models.py:52
 #, python-format
 msgid "Please enter an answer in no more than %s letters"
-msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
+msgstr ""
 
 #: qa/models.py:54
 msgid "question"
-msgstr "שאלה"
+msgstr ""
 
 #: qa/views.py:96
-#, fuzzy
 msgid "You cannot post questions"
-msgstr "אתה לא יכול לפרסם שאלות"
+msgstr ""
 
 #: qa/views.py:117
-#, fuzzy
 msgid "You must be logged in as a candidate to post answers"
-msgstr "עליך להתחבר כדי לפרסם תשובות"
+msgstr ""
 
 #: qa/views.py:156
 msgid "You already upvoted this question"
-msgstr "תודה, אתה כבר מופיע ברשימת המבקשים"
+msgstr ""
 
 #: qa/views.py:163
-#, fuzzy
 msgid "Use POST to upvote a question"
-msgstr "השתמש ב POST כדי להצביע עבור שאלה"
+msgstr ""
 
 #: qa/views.py:187
-#, fuzzy
 msgid "OK QA Question Feed"
-msgstr "שאלות נשאלו"
+msgstr ""
 
 #: qa/views.py:189
-#, fuzzy
 msgid "Questions from OKQA"
-msgstr "שאלות"
+msgstr ""
 
 #: qa/templates/candidates.html:6 templates/base.html:18
 msgid "Candidates"
-msgstr "מועמדים"
+msgstr ""
 
 #: qa/templates/candidates.html:18 qa/templates/qa/_question.html:13
 msgid "answers"
-msgstr "תשובות"
+msgstr ""
 
 #: qa/templates/candidates.html:31 qa/templates/view_candidate.html:13
-#, fuzzy
 msgid "Candidate bio here..."
-msgstr "כאן תופיע ביוגרפיה קצרה של המועמד..."
+msgstr ""
 
 #: qa/templates/create_user.html:8
-#, fuzzy
 msgid "Create new user"
-msgstr "צור משתמש חדש"
+msgstr ""
 
 #: qa/templates/create_user.html:12
 #: templates/registration/registration_form.html:4
 #: templates/registration/registration_form.html:13
 #: templates/registration/registration_form.html:59
 msgid "register"
-msgstr "הרשמו"
+msgstr ""
 
 #: qa/templates/home.html:14
 msgid "Subject"
-msgstr "נושא"
+msgstr ""
 
 #: qa/templates/home.html:18
 msgid "Content"
-msgstr "תוכן"
+msgstr ""
 
 #: qa/templates/home.html:20
-#, fuzzy
 msgid "Ask!"
-msgstr "שאל שאלה!"
+msgstr ""
 
 #: qa/templates/home.html:23
-#, fuzzy
 msgid "Please log in to post questions"
-msgstr "אנא התחבר כדי לפרסם שאלות"
+msgstr ""
 
 #: qa/templates/user_profile.html:3
 msgid "User Profile"
-msgstr "פרופיל משתמש"
+msgstr ""
 
 #: qa/templates/view_candidate.html:7
-#, fuzzy
 msgid "Facebook Page"
-msgstr "לעמוד הפייסבוק של המועמד"
+msgstr ""
 
 #: qa/templates/view_candidate.html:18
 msgid "Answers"
-msgstr "תשובות"
+msgstr ""
 
 #: qa/templates/view_candidate.html:37 qa/templates/qa/_answer.html:16
 msgid "before"
-msgstr "לפני"
+msgstr ""
 
 #: qa/templates/view_voter.html:5
-#, fuzzy
 msgid "View Voter"
-msgstr "הצג מצביע"
+msgstr ""
 
 #: qa/templates/voters.html:4
-#, fuzzy
 msgid "Voters"
-msgstr "מצביעים"
+msgstr ""
 
 #: qa/templates/qa/_question.html:3
 msgid "Follow"
-msgstr "עקוב"
+msgstr ""
 
 #: qa/templates/qa/_question.html:9
 msgid "votes"
-msgstr "הצבעות"
+msgstr ""
 
 #: qa/templates/qa/post_question.html:5
 msgid "What is your question, sire?"
-msgstr "הנכם מוזמנים להפנות שאלה למועמדים:"
+msgstr ""
 
 #: qa/templates/qa/post_question.html:10
 #: qa/templates/qa/question_detail.html:52
 msgid "Publish"
-msgstr "פרסם"
+msgstr ""
 
 #: qa/templates/qa/question_detail.html:19
 msgid "I Want an Answer"
-msgstr "הצטרפו למבקשים תשובה לעניין"
+msgstr ""
 
 #: qa/templates/qa/question_detail.html:30
 msgid "No Answers Yet"
-msgstr "עדיין לא ניתנו תשובות"
+msgstr ""
 
 #: qa/templates/qa/question_detail.html:35
 msgid "Answer the Question"
-msgstr "תרום תשובה לעניין"
+msgstr ""
 
 #: qa/templates/qa/question_list.html:9
 msgid "Questions"
-msgstr "שאלות"
+msgstr ""
 
 #: qa/templates/qa/question_list.html:9
 msgid "for candidate of"
-msgstr "למועמדים ב"
+msgstr ""
 
 #: qa/templates/qa/question_list.html:9
 msgid " The Demo Party"
-msgstr "מפלגת הדמו"
+msgstr ""
 
 #: qa/templates/qa/question_list.html:10
 msgid "feed"
@@ -200,54 +186,51 @@ msgstr ""
 
 #: qa/templates/qa/question_list.html:20
 msgid "Ask Question"
-msgstr "שאלו"
+msgstr ""
 
 #: qa/templates/qa/question_list.html:35
 msgid "Questions asked"
-msgstr "שאלות נשאלו"
+msgstr ""
 
 #: qa/templates/qa/question_list.html:39
 msgid "questions"
-msgstr "שאלות"
+msgstr ""
 
 #: templates/base.html:8 templates/base.html.py:15 templates/base.html:100
 msgid "The Demo Party"
-msgstr "מפלגת הדמו"
+msgstr ""
 
 #: templates/base.html:17
-#, fuzzy
 msgid "Home"
-msgstr "בית"
+msgstr ""
 
 #: templates/base.html:19
 msgid "Members"
-msgstr "חברים"
+msgstr ""
 
 #: templates/base.html:22
-#, fuzzy
 msgid "search"
-msgstr "חיפוש"
+msgstr ""
 
 #: templates/base.html:29
-#, fuzzy
 msgid "Welcome"
-msgstr "שלום,  "
+msgstr ""
 
 #: templates/base.html:33
 msgid "logout"
-msgstr "התנתקות"
+msgstr ""
 
 #: templates/base.html:39 templates/registration/login.html:13
 msgid "Register"
-msgstr "הירשמו"
+msgstr ""
 
 #: templates/base.html:41 templates/base.html.py:74
 msgid "Login"
-msgstr "היכנסו"
+msgstr ""
 
 #: templates/base.html:52
 msgid "Connect"
-msgstr "התחברו"
+msgstr ""
 
 #: templates/base.html:56
 msgid "bad username/pasword"
@@ -256,28 +239,26 @@ msgstr ""
 #: templates/base.html:61 templates/base.html.py:63
 #: templates/registration/registration_form.html:19
 #: templates/registration/registration_form.html:22
-#, fuzzy
 msgid "Username"
-msgstr "שם משתמש"
+msgstr ""
 
 #: templates/base.html:67 templates/base.html.py:69
 #: templates/registration/registration_form.html:39
 #: templates/registration/registration_form.html:42
-#, fuzzy
 msgid "Password"
-msgstr "סיסמא"
+msgstr ""
 
 #: templates/base.html:96
 msgid "Back to top"
-msgstr "בחזרה לראש העמוד"
+msgstr ""
 
 #: templates/base.html:97
 msgid "Content is licensed CC-BY. Source code is freely available "
-msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.  קוד המקור חופשי לשימוש"
+msgstr ""
 
 #: templates/base.html:98
 msgid "here"
-msgstr "כאן"
+msgstr ""
 
 #: templates/base.html:127
 msgid "read more"
@@ -288,25 +269,21 @@ msgid "read less"
 msgstr ""
 
 #: templates/registration/activate.html:8
-#, fuzzy
 msgid "Account successfully activated"
-msgstr "החשבון הופעל בהצלחה"
+msgstr ""
 
 #: templates/registration/activate.html:10 templates/registration/login.html:8
 #: templates/registration/password_reset_complete.html:8
-#, fuzzy
 msgid "Log in"
-msgstr "התחבר"
+msgstr ""
 
 #: templates/registration/activate.html:14
-#, fuzzy
 msgid "Account activation failed"
-msgstr "הפעלת החשבון נכשלה"
+msgstr ""
 
 #: templates/registration/activation_complete.html:5
-#, fuzzy
 msgid "Ye be now registered. Welcome t' okqa, and dinna spare the whip!"
-msgstr "הנך רשום למערכת, ברוך הבא!"
+msgstr ""
 
 #: templates/registration/activation_email.txt:3
 #, python-format
@@ -336,9 +313,8 @@ msgid " days left!"
 msgstr ""
 
 #: templates/registration/login.html:12
-#, fuzzy
 msgid "Forgot password"
-msgstr "שכחתי סיסמא"
+msgstr ""
 
 #: templates/registration/login.html:12
 msgid "Reset it"
@@ -350,7 +326,7 @@ msgstr ""
 
 #: templates/registration/logout.html:5
 msgid "Thanks for using the System. You are now logged out."
-msgstr "תודה שביליתם זמן איכות עם המערכת.  אתם עכשיו מנותקים."
+msgstr ""
 
 #: templates/registration/password_change_done.html:5
 msgid "Password changed"
@@ -385,9 +361,8 @@ msgstr ""
 
 #: templates/registration/registration_form.html:29
 #: templates/registration/registration_form.html:32
-#, fuzzy
 msgid "E-mail"
-msgstr "דוא&quote;ל"
+msgstr ""
 
 #: templates/registration/registration_form.html:49
 #: templates/registration/registration_form.html:52
@@ -396,93 +371,60 @@ msgstr ""
 
 #: templates/search/search.html:11 templates/search/search.html.py:15
 msgid "Search"
-msgstr "חפש"
+msgstr ""
 
 #: templates/search/search.html:21
 msgid "Results"
-msgstr "תוצאות החיפוש"
+msgstr ""
 
 #: templates/search/search.html:28
-#, fuzzy
 msgid "No results found."
-msgstr "לא נמצאו תוצאות."
+msgstr ""
 
 #: templates/search/search.html:34
-#, fuzzy
 msgid "&laquo; Previous"
-msgstr "הקודם &raquo;"
+msgstr ""
 
 #: templates/search/search.html:36
-#, fuzzy
 msgid "Next &raquo;"
-msgstr "הבא &laquo;"
+msgstr ""
 
 #: user/forms.py:8 user/forms.py:26
 msgid "First Name"
-msgstr "שם פרטי"
+msgstr ""
 
 #: user/forms.py:9 user/forms.py:27
 msgid "Last Name"
-msgstr "שם משפחה"
+msgstr ""
 
 #: user/forms.py:10
 msgid "Email"
-msgstr "דואל"
+msgstr ""
 
 #: user/models.py:10
 msgid "No Email"
-msgstr "אין דואל"
+msgstr ""
 
 #: user/models.py:11
-#, fuzzy
 msgid "Daily"
-msgstr "יומי"
+msgstr ""
 
 #: user/models.py:12
-#, fuzzy
 msgid "Weekly"
-msgstr "שבועי"
+msgstr ""
 
 #: user/models.py:15
-#, fuzzy
 msgid "Male"
-msgstr "זכר"
+msgstr ""
 
 #: user/models.py:16
-#, fuzzy
 msgid "Female"
-msgstr "נקבה"
+msgstr ""
 
 #: user/views.py:12
-#, fuzzy
 msgid "You are already logged in"
-msgstr "תודה, אתה כבר מופיע ברשימת המבקשים"
+msgstr ""
 
 #: user/views.py:24
 msgid "You need to use POST to login"
 msgstr ""
-
-#~ msgid "View Candidate"
-#~ msgstr "הצג מועמד"
-
-#~ msgid "Answer"
-#~ msgstr "תשובות"
-
-#~ msgid "answer"
-#~ msgstr "תשובות"
-
-#~ msgid "Ask"
-#~ msgstr " שאל"
-
-#~ msgid ""
-#~ "You have already answered the question. To change your answer, hover over "
-#~ "it and click the pen icon."
-#~ msgstr ""
-#~ "כבר עניתם על שאלה זו.  כדי לערוך את תשובתכם, רחפו מעל השאלה והקליקו על "
-#~ "סמליל העט."
-
-#~ msgid "Tags"
-#~ msgstr "תגיות"
-
-#~ msgid " %(questions.count)s Questions asked"
-#~ msgstr " %(questions.count)s שאלות שנשאלו"

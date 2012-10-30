@@ -2,9 +2,9 @@
 {% load i18n %}
 {% block pageTitle %}{{question}}{% endblock %}
 {% block extrahead %}
-  <style>
-    .answers { display:none; }
-  </style>
+<style>
+.question-summary { border: 0 none;}
+</style>
 {% endblock %}
 {% block mainContainer %}
   <div class="container">
@@ -23,7 +23,10 @@
 
     </div>
     <div class="row questions-wrapper">
-      <div class="span9">
+      <div class="span9 answers">
+        {% if answers %}
+          <h5>{% trans 'Answers' %}</h5>
+        {% endif %}
         {% for answer in answers %}
           {% include "qa/_answer.html" %}
         {% empty %}
@@ -59,13 +62,13 @@
 {% block extrascript %}
 <script>
   $(document).ready ( function () {
-    $("#upvote-question").ajaxError (function(evt, jqXHR, setting, err) {
+    $("#upvote-question").ajaxError(function(evt, jqXHR, setting, err) {
               $("#messages").html('<div class="alert" class="error">' +
                 '<button type="button" class="close" data-dismiss="alert">×</button>' +
                 jqXHR.responseText + '</div>');
       });
 
-    $("#upvote-question").click (function() {
+    $("#upvote-question").click(function() {
       $.post("{% url upvote_question question.id %}",
           {csrfmiddlewaretoken: "{{ csrf_token }}"},
           function (data, status, jqXHR) {
@@ -73,7 +76,7 @@
       });
           })
 
-    $("#answer-{{ my_answer_id}}").hover (function() {
+    $("#answer-{{ my_answer_id}}").hover(function() {
           $("#edit-answer-{{my_answer_id}}").show();
         }, function () {
           $("#edit-answer-{{my_answer_id}}").hide();

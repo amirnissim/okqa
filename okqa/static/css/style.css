@@ -1,11 +1,19 @@
+body {
+	background: whitesmoke;
+}
+.wrapper {
+    background: #fff;
+	margin: 0;
+	width: 100%;
+}
 /* Main Container */
 div[role="main"] {
-    margin-top: 50px;
+    padding-bottom: 70px;
+    padding-top: 50px;
 }
 /* Footer */
 .footer {
 padding: 70px 0;
-margin-top: 70px;
 border-top: 1px solid #E5E5E5;
 background-color: whiteSmoke;
 }
@@ -143,9 +151,6 @@ line-height: 18px!important;
 .summarycount { margin-top:10px; color: #ccc;
   font-size: 250%; font-weight: bold; }
 .module p { font-size: 120%; line-height: 1.3; margin-bottom: 0.5em; }
-.answer-avatar { width: 40px; height: 40px; }
-
-
 
 /* Candidates */
 .narrow {
@@ -240,4 +245,50 @@ form { margin :0; }
 
 .form-actions {
 	border-radius: 5px;
+}
+
+/* Answers */
+.answers h5 {
+	padding-bottom: 5px;
+	margin-bottom:0;
+	/*border-bottom: 1px solid #f1f1f1;*/
+}
+.answers {
+margin-top: 10px;
+padding-bottom: 10px;
+color: #444;
+font-size: 12px;
+}
+.answer {
+	padding-top:5px;
+	padding-bottom:5px;
+	border-bottom: 1px solid #f1f1f1;
+}
+.avatar img {
+	width: 40px;
+	height: 40px;
+}
+
+a.answer-user.owner {
+padding: 2px 5px 2px 5px;
+}
+a.answer-user {
+white-space: nowrap;
+padding: 0;
+}
+a:visited {
+color: #4A6B82;
+}
+.owner {
+background-color: #DEEDFF;
+background-color: rgba(222, 237, 255, 0.4);
+background-color: #E0EAF1;
+}
+.answer-date, .answer-date > a {
+border-bottom: none;
+color: #999;
+}
+.answer-text, .answer-form {
+vertical-align: text-top;
+padding: 0px 6px 0px 7px;
 }

@@ -1,5 +1,5 @@
 {% load i18n %}
-<div class="a" id="answer-{{answer.id}}">
+<!-- <div class="a" id="answer-{{answer.id}}">
    <div style="float:left;">
      {% if my_answer_id == answer.id %}
       <a id="edit-answer-{{answer.id}}" href="#add_answer_modal" data-toggle="modal">&#9998;</a>
@@ -13,8 +13,23 @@
   </div>
   <div style="width:80%;">
     <p>{{ answer.content|linebreaksbr }}</p>
-    <h5>{% trans "before" %} {{ answer.updated_at|timesince }}</h5>
+    <h5></h5>
   </div>
   <div class="clearfix"></div>
-</div>
+</div> -->
 
+    <div id="answer-{{answer.id}}" class="answer">
+        <!-- <a class="avatar span2" href="{{ answer.author.get_absolute_url }}">
+          <img class="img-circle" src="{{ answer.author.get_profile.avatar_url|default:'/static/img/defaultavatar.png' }}">
+        </a> -->
+        <div class="answer-text">
+        <div>
+        <span class="answer-copy">
+        {{ answer.content|linebreaksbr }}
+        </span> –&nbsp;<a href="{{ answer.author.get_absolute_url }}" title="{{answer.author.get_full_name}}" rel="tooltip" class="answer-user owner">{{answer.author.username}}</a> <span class="answer-date" dir="ltr"><a class="answer-link" href="#answer{{answer.id}}"><span title="{{ answer.updated_at }}" class="relativetime">{% trans "before" %} {{ answer.updated_at|timesince }}</span></a></span>
+        </div>
+        {% if my_answer_id == answer.id %}
+          <a id="edit-answer-{{answer.id}}" href="#add_answer_modal" data-toggle="modal">&#9998;</a>
+        {% endif %}
+        </div>
+    </div>

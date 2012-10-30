@@ -19,7 +19,7 @@
         <!-- <li><a href="{% url members %}">{% trans "Members" %}</a></li> -->
       </ul>
       <form class="navbar-search pull-left" action="/search/">
-        <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'search' %}" />
+        <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search' %}" />
       </form>
 
       <ul class="nav pull-right">
@@ -77,6 +77,8 @@
  <!--/.nav-collapse -->
 </div>
 {% endif %}
+
+<div class="wrapper">
 <div class="container" role="main">
   <div id="messages">
     {% if messages %}
@@ -90,7 +92,7 @@
   </div>
   {% block mainContainer %}{% endblock %}
 </div>
-
+</div>
 <footer class="footer">
   <div class="container">
     <p class="pull-right"><a href="#">{% trans "Back to top" %}</a></p>
@@ -136,6 +138,9 @@
             $(this).parent().trunk8();
             return false;
           });
+
+          // tooltips
+          $('[rel="tooltip"]').tooltip();
         });
 
       // handle the login form
