@@ -302,3 +302,9 @@ margin-bottom: 10px;
 .helptext {
 color: #595959;
 }
+a.edit {
+display: none;
+}
+a.edit:hover {
+text-decoration: none;
+}

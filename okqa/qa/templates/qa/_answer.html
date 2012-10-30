@@ -27,9 +27,9 @@
         <span class="answer-copy">
         {{ answer.content|linebreaksbr }}
         </span> –&nbsp;<a href="{{ answer.author.get_absolute_url }}" title="{{answer.author.get_full_name}}" rel="tooltip" class="answer-user owner">{{answer.author.username}}</a> <span class="answer-date" dir="ltr"><a class="answer-link" href="#answer{{answer.id}}"><span title="{{ answer.updated_at }}" class="relativetime">{% trans "before" %} {{ answer.updated_at|timesince }}</span></a></span>
-        </div>
         {% if my_answer_id == answer.id %}
-          <a id="edit-answer-{{answer.id}}" href="#add_answer_modal" data-toggle="modal">&#9998;</a>
+          <a id="edit-answer-{{answer.id}}" href="#add_answer_modal" class="edit" rel="tooltip" title="{% trans 'Edit' %}" data-toggle="modal">&#9998; {% trans 'Edit' %}</a>
         {% endif %}
+        </div>
         </div>
     </div>
