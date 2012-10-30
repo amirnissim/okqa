@@ -1,11 +1,15 @@
 {% load i18n %}
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css"/>
-    <title>{% block pageTitle %}{% endblock %}{% trans "The Demo Party" %}</title>
+    <title>
+      {% block pageTitle %}
+      {% endblock %} 
+      {% trans "The Demo Party" %}
+    </title>
     {% block extrahead %}{% endblock %}
 </head>
 <body>
@@ -14,24 +18,31 @@
     <div class="container">
       <a class="brand" href="{% url home %}">{% trans "The Demo Party" %}</a>
       <ul class="nav">
-        <li><a href="/">{% trans "Home" %}</a></li>
+        <li><a href="/" {% block homeNav %}{% endblock %}>{% trans "Home" %}</a></li>
         <li><a href="{% url candidates %}">{% trans "Candidates" %}</a></li>
-        <li><a href="{% url members %}">{% trans "Members" %}</a></li>
+        <!-- <li><a href="{% url members %}">{% trans "Members" %}</a></li> -->
       </ul>
       <form class="navbar-search pull-left" action="/search/">
-        {{ search_form }}
+        <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search' %}" />
       </form>
 
-      <div class="pull-right">
+      <ul class="nav pull-right">
       {% if user.is_authenticated %}
+      <li class="divider-vertical"></li>
+      <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Welcome' %}, {{ user.username }} <b class="caret"></b></a>
+      <ul class="dropdown-menu">
         <form class="form-inline" method="post" action="{% url auth_logout %}">
-          {% csrf_token %}
-          {{ user.username }}
-          <input type="submit" value="{% trans 'logout' %}" />
-        </form>
+      {% csrf_token %}
+      <li><a href="javascript:;" class="submit-link">{% trans 'logout' %}</a></li>
+      </form>
+      </ul>
+      </li>
+
       {% else %}
-        <a type="button" class="btn btn-link" href="{% url registration.views.register %}">{% trans "Register" %}</a>
-        <a id="login-button" type="button" class="btn btn-link" href="#login_modal" data-toggle="modal">{% trans "Login" %}</a>
+        <li><a href="{% url registration.views.register %}">{% trans "Register" %}</a></li>
+        <li class="divider-vertical"></li>
+        <li><a href="#login_modal" data-toggle="modal">{% trans "Login" %}</a></li>
       {% endif %}
       </div>
     </div>
@@ -39,25 +50,38 @@
 </div>
 {% if login_form %}
 <div class="modal fade" id="login_modal">
- <form id="login-form" class="form" method="post" action="{% url login %}">
+ <form id="login-form" class="form-horizontal" method="post" action="{% url login %}">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
     <h3>{% trans "Connect" %}</h3>
   </div>
   <div class="modal-body">
-    <div id="login-error" class="alert hide error">
+    <div id="login-error" class="alert hide alert-error">
       {% trans "bad username/pasword" %}
     </div >
     {% csrf_token %}
-    {{ login_form }}
+    <div class="control-group">
+      <label class="control-label" for="inputUsername">{% trans 'Username' %}</label>
+      <div class="controls">
+      <input type="text" id="inputUsername" name="username" placeholder="{% trans 'Username' %}">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputPassword">{% trans 'Password' %}</label>
+      <div class="controls">
+      <input type="password" id="inputPassword" name="password" placeholder="{% trans 'Password' %}">
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
-    <input type="submit" value="{% trans "Login" %}" />
+    <input type="submit" class="btn btn-primary" value="{% trans "Login" %}" />
   </div>
  </form>
  <!--/.nav-collapse -->
 </div>
 {% endif %}
+
+<div class="wrapper">
 <div class="container" role="main">
   <div id="messages">
     {% if messages %}
@@ -71,7 +95,7 @@
   </div>
   {% block mainContainer %}{% endblock %}
 </div>
-
+</div>
 <footer class="footer">
   <div class="container">
     <p class="pull-right"><a href="#">{% trans "Back to top" %}</a></p>
@@ -83,14 +107,45 @@
   </div>
 </footer>
     <script src="{{ STATIC_URL }}js/jquery.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-modal.js"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-alert.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <script src="{{ STATIC_URL }}js/trunk8.js"></script>
     <script>
+    // wtf is this hack :/
       $("<input>")
         .attr('name', 'next')
         .attr('type', 'hidden')
         .attr('value', document.URL)
         .appendTo('#login-form');
+
+        $(function() {
+          // hack to auto submit the logout form for the login link (keeping up with rest and all that..)
+          $('.submit-link').click(function(e) {
+            e.preventDefault();
+            $(this).parents('form').submit();
+          })
+
+          // truncate
+          $('.too-long').trunk8();
+
+          $('.too-long-toggle').trunk8({
+            lines: 3,
+            fill: '&hellip; <a id="read-more" href="#">{% trans "read more" %}</a>'
+          });
+
+          $('#read-more').live('click', function (event) {
+            $(this).parent().trunk8('revert').append(' <a id="read-less" href="#">{% trans "read less" %}</a>');
+            return false;
+          });
+
+          $('#read-less').live('click', function (event) {
+            $(this).parent().trunk8();
+            return false;
+          });
+
+          // tooltips
+          $('[rel="tooltip"]').tooltip();
+        });
+
       // handle the login form
       $(document).ready(function() {
         $('#login-button').click(function() {

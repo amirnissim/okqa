@@ -1,11 +1,65 @@
-{% extends "base.html" %}
-{% load i18n %}
-{% block mainContainer %}
+{% extends "base.html" %} {% load i18n %} {% block mainContainer %}
+<div class="page-header">
+    <h1>
+        {% trans 'Register' %}
+        <small>
+        </small>
+    </h1>
+</div>
 <div class="row">
-  <form method="POST">
-  {% csrf_token %}
-  {{ form }}
-  <input type="submit" value="{% trans 'register' %}"></input>
-  </form>
+    <form class="form-horizontal" action="" method="POST">
+        <fieldset>
+            <!-- <div id="legend">
+      <legend class="">{% trans 'register' %}</legend>
+    </div> -->
+            {% csrf_token %} {{ form.non_field_errors }}
+            <div class="control-group">
+                <!-- Username -->
+                <label class="control-label" for="username">
+                    {% trans 'Username' %}
+                </label>
+                <div class="controls">
+                    <input type="text" id="username" name="username" placeholder="{% trans 'Username' %}" class="input-xlarge">
+                    {{ form.username.errors }}
+                </div>
+            </div>
+            <div class="control-group">
+                <!-- E-mail -->
+                <label class="control-label" for="email">
+                    {% trans 'E-mail' %}
+                </label>
+                <div class="controls">
+                    <input type="text" id="email" name="email" placeholder='{% trans "E-mail" %}' class="input-xlarge">
+                    {{ form.username.errors }}
+                </div>
+            </div>
+            <div class="control-group">
+                <!-- Password-->
+                <label class="control-label" for="password">
+                    {% trans 'Password' %}
+                </label>
+                <div class="controls">
+                    <input type="password" id="password" name="password" placeholder="{% trans 'Password' %}" class="input-xlarge">
+                    {{ form.username.errors }}
+                </div>
+            </div>
+            <div class="control-group">
+                <!-- Password -->
+                <label class="control-label" for="password_confirm">
+                    {% trans 'Password (again)' %}
+                </label>
+                <div class="controls">
+                    <input type="password" id="password_confirm" name="password_confirm" placeholder="{% trans 'Password (again)' %}"
+                    class="input-xlarge">
+                    {{ form.username.errors }}
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                    {% trans 'Register' %}
+                </button>
+            </div>
+        </fieldset>
+    </form>
 </div>
 {% endblock %}
