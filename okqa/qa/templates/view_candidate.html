@@ -2,25 +2,46 @@
 {% load i18n %}
 {% block mainContainer %}
 <div class="row">
-  <div class="span4">
-    <div class="avatar" style="float:right;">
-      <img src="{{ candidate.get_profile.avatar_url }}">
+    <div class="span3">
+        <h3>
+            {{ candidate.get_full_name}} <a href="#" title="{% trans 'Facebook Page' %}"><img src="/static/img/social-icons/colour/facebook.png" style="width:25px;" /></a>
+        </h3>
+        <div class="clearfix">
+        <div class="avatar" style="float: right; margin: 0 0 10px 10px;">
+          <img src="{{ candidate.get_profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle">
+        </div>
+        <span style="font-size: 12px;">{% trans 'Candidate bio here...' %}</span>
+      </div>
     </div>
-    <h1>{{ candidate.get_full_name}}</h1>
-  </div>
-  <div class="span8">
-    <h2>{% trans "Answers" %}</h2>
-    {% for answer in answers %}
-      {% include "qa/_answer.html" %}
-    {% endfor %}
-  </div>
+    <div class="span9">
+        <h3 style="margin-bottom: -10px;">
+            {% trans "Answers" %}
+        </h3>
+        {% for answer in answers %}
+        <div class="question-summary narrow" id="question-summary-{{ question.id }}">
+            <div class="summary">
+                <h3>
+                    <a href="{% url qa.views.view_question answer.question.id %}" class="question-hyperlink"
+                    title="{{ question.subject }}">{{ answer.question.subject }}</a>
+                </h3>
+                <div class="preview">
+                    <span class="too-long-toggle">{{ answer.question.content }}</span>
+                </div>
+                <br />
+                <div class="well">
+                    <strong style="font-size: 13px;">
+                        <span class="too-long-toggle">{{ answer.content|linebreaksbr }}</span>
+                    </strong>
+                    <span title="{{ question.created_at }}" class="relativetime">
+                        <br />
+                        {% trans "before" %} {{ answer.updated_at|timesince }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
 {% block extrascript %}
-<script>
-  $(".answer-author").hide();
-  $(".answer-avatar").hide();
-</script>
 {% endblock %}
-
-

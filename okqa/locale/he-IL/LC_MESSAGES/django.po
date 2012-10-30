@@ -55,10 +55,12 @@ msgid "question"
 msgstr "שאלה"
 
 #: qa/views.py:87
+#, fuzzy
 msgid "You cannot post questions"
 msgstr "אתה לא יכול לפרסם שאלות"
 
 #: qa/views.py:110
+#, fuzzy
 msgid "You must be logged in as a candidate to post answers"
 msgstr "עליך להתחבר כדי לפרסם תשובות"
 
@@ -67,6 +69,7 @@ msgid "You already upvoted this question"
 msgstr "תודה, אתה כבר מופיע ברשימת המבקשים"
 
 #: qa/views.py:154
+#, fuzzy
 msgid "Use POST to upvote a question"
 msgstr "השתמש ב POST כדי להצביע עבור שאלה"
 
@@ -79,10 +82,12 @@ msgid "answers"
 msgstr "תשובות"
 
 #: qa/templates/candidates.html:29 qa/templates/view_candidate.html:15
+#, fuzzy
 msgid "Candidate bio here..."
 msgstr "כאן תופיע ביוגרפיה קצרה של המועמד..."
 
 #: qa/templates/create_user.html:8
+#, fuzzy
 msgid "Create new user"
 msgstr "צור משתמש חדש"
 
@@ -102,10 +107,12 @@ msgid "Content"
 msgstr "תוכן"
 
 #: qa/templates/home.html:20
+#, fuzzy
 msgid "Ask!"
 msgstr "שאל שאלה!"
 
 #: qa/templates/home.html:23
+#, fuzzy
 msgid "Please log in to post questions"
 msgstr "אנא התחבר כדי לפרסם שאלות"
 
@@ -114,6 +121,7 @@ msgid "User Profile"
 msgstr "פרופיל משתמש"
 
 #: qa/templates/view_candidate.html:13
+#, fuzzy
 msgid "Facebook Page"
 msgstr "לעמוד הפייסבוק של המועמד"
 
@@ -126,10 +134,12 @@ msgid "before"
 msgstr "לפני"
 
 #: qa/templates/view_voter.html:5
+#, fuzzy
 msgid "View Voter"
 msgstr "הצג מצביע"
 
 #: qa/templates/voters.html:4
+#, fuzzy
 msgid "Voters"
 msgstr "מצביעים"
 
@@ -145,7 +155,8 @@ msgstr "הצבעות"
 msgid "What is your question, sire?"
 msgstr "הנכם מוזמנים להפנות שאלה למועמדים:"
 
-#: qa/templates/qa/post_question.html:10 qa/templates/qa/question_detail.html:51
+#: qa/templates/qa/post_question.html:10
+#: qa/templates/qa/question_detail.html:51
 msgid "Publish"
 msgstr "פרסם"
 
@@ -190,6 +201,7 @@ msgid "The Demo Party"
 msgstr "מפלגת הדמו"
 
 #: templates/base.html:17
+#, fuzzy
 msgid "Home"
 msgstr "בית"
 
@@ -198,10 +210,12 @@ msgid "Members"
 msgstr "חברים"
 
 #: templates/base.html:22
+#, fuzzy
 msgid "search"
 msgstr "חיפוש"
 
 #: templates/base.html:29
+#, fuzzy
 msgid "Welcome"
 msgstr "שלום,  "
 
@@ -224,12 +238,14 @@ msgstr "התחברו"
 #: templates/base.html:58 templates/base.html.py:60
 #: templates/registration/registration_form.html:19
 #: templates/registration/registration_form.html:22
+#, fuzzy
 msgid "Username"
 msgstr "שם משתמש"
 
 #: templates/base.html:64 templates/base.html.py:66
 #: templates/registration/registration_form.html:39
 #: templates/registration/registration_form.html:42
+#, fuzzy
 msgid "Password"
 msgstr "סיסמא"
 
@@ -246,19 +262,23 @@ msgid "here"
 msgstr "כאן"
 
 #: templates/registration/activate.html:8
+#, fuzzy
 msgid "Account successfully activated"
 msgstr "החשבון הופעל בהצלחה"
 
 #: templates/registration/activate.html:10 templates/registration/login.html:8
 #: templates/registration/password_reset_complete.html:8
+#, fuzzy
 msgid "Log in"
 msgstr "התחבר"
 
 #: templates/registration/activate.html:14
+#, fuzzy
 msgid "Account activation failed"
 msgstr "הפעלת החשבון נכשלה"
 
 #: templates/registration/activation_complete.html:5
+#, fuzzy
 msgid "Ye be now registered. Welcome t' okqa, and dinna spare the whip!"
 msgstr "הנך רשום למערכת, ברוך הבא!"
 
@@ -290,6 +310,7 @@ msgid " days left!"
 msgstr ""
 
 #: templates/registration/login.html:12
+#, fuzzy
 msgid "Forgot password"
 msgstr "שכחתי סיסמא"
 
@@ -338,6 +359,7 @@ msgstr ""
 
 #: templates/registration/registration_form.html:29
 #: templates/registration/registration_form.html:32
+#, fuzzy
 msgid "E-mail"
 msgstr "דוא&quote;ל"
 
@@ -355,14 +377,17 @@ msgid "Results"
 msgstr "תוצאות החיפוש"
 
 #: templates/search/search.html:28
+#, fuzzy
 msgid "No results found."
 msgstr "לא נמצאו תוצאות."
 
 #: templates/search/search.html:34
+#, fuzzy
 msgid "&laquo; Previous"
 msgstr "הקודם &raquo;"
 
 #: templates/search/search.html:36
+#, fuzzy
 msgid "Next &raquo;"
 msgstr "הבא &laquo;"
 
@@ -383,18 +408,22 @@ msgid "No Email"
 msgstr "אין דואל"
 
 #: user/models.py:10
+#, fuzzy
 msgid "Daily"
 msgstr "יומי"
 
 #: user/models.py:11
+#, fuzzy
 msgid "Weekly"
 msgstr "שבועי"
 
 #: user/models.py:14
+#, fuzzy
 msgid "Male"
 msgstr "זכר"
 
 #: user/models.py:15
+#, fuzzy
 msgid "Female"
 msgstr "נקבה"
 

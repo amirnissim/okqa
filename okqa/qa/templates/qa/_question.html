@@ -25,7 +25,8 @@
         </div>
         <div class="started">
             <span title="{{ question.created_at }}" class="relativetime">{{ question.created_at|timesince }}</span> | 
-            <a href="{{ question.author.get_absolute_url }}">{{question.author.username}}</a>
+            <!-- {{ question.author.get_absolute_url }} -->
+            <a href="#">{{question.author.username}}</a>
         </div>
     </div>
 </div>
