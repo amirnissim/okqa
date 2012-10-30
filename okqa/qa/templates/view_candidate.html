@@ -1,20 +1,17 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block mainContainer %}
-<div class="row">
-    <div class="span3">
-        <h3>
-            {{ candidate.get_full_name}} <a href="#" title="{% trans 'Facebook Page' %}"><img src="/static/img/social-icons/colour/facebook.png" style="width:25px;" /></a>
-        </h3>
-        <div class="clearfix">
+<div class="page-header row">
+    <h1 class="clearfix">
+        {{ candidate.get_full_name}}
         <div class="avatar" style="float: right; margin: 0 0 10px 10px;">
-          <img src="{{ candidate.get_profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle">
+        <img src="{{ candidate.get_profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle">
         </div>
-        <span style="font-size: 12px;">{% trans 'Candidate bio here...' %}</span>
-      </div>
-    </div>
+    </h1>
+</div>
+<div class="row">
     <div class="span9">
-        <h3 style="margin-bottom: -10px;">
+        <h3 style="margin-top: -10px; margin-bottom: -10px;">
             {% trans "Answers" %}
         </h3>
         {% for answer in answers %}
@@ -39,7 +36,14 @@
                 </div>
             </div>
         </div>
-        {% endfor %}
+    {% endfor %}
+    </div>
+    <div class="span3">
+        <h3 style="margin-top: -10px;">
+            {% trans 'About' %}
+        </h3>
+        <span style="font-size: 12px;">{% trans 'Candidate bio here...' %}</span>
+        <h5>{% trans 'Links' %}</h5> <a href="#" title="{% trans 'Facebook Page' %}"><img src="/static/img/social-icons/colour/facebook.png" style="width:25px;" /></a>
     </div>
 </div>
 {% endblock %}

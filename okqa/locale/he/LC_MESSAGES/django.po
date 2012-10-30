@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-30 05:56+0200\n"
+"POT-Creation-Date: 2012-10-30 06:07+0200\n"
 "PO-Revision-Date: 2012-10-24 16:42+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,7 +86,7 @@ msgstr "מועמדים"
 msgid "answers"
 msgstr "תשובות"
 
-#: qa/templates/candidates.html:31 qa/templates/view_candidate.html:13
+#: qa/templates/candidates.html:31 qa/templates/view_candidate.html:45
 msgid "Candidate bio here..."
 msgstr "כאן תופיע ביוגרפיה קצרה של המועמד..."
 
@@ -119,18 +119,26 @@ msgstr "אנא התחבר כדי לשאול שאלה"
 msgid "User Profile"
 msgstr "פרופיל משתמש"
 
-#: qa/templates/view_candidate.html:7
-msgid "Facebook Page"
-msgstr "עמוד הפייסבוק של המועמד"
-
-#: qa/templates/view_candidate.html:18 qa/templates/qa/question_detail.html:31
+#: qa/templates/view_candidate.html:15 qa/templates/qa/question_detail.html:31
 msgid "Answers"
 msgstr "תשובות"
 
-#: qa/templates/view_candidate.html:37 qa/templates/qa/_answer.html:29
+#: qa/templates/view_candidate.html:34 qa/templates/qa/_answer.html:29
 #: qa/templates/qa/_question.html:27
 msgid "before"
 msgstr "לפני"
+
+#: qa/templates/view_candidate.html:43
+msgid "About"
+msgstr "אודות"
+
+#: qa/templates/view_candidate.html:46
+msgid "Links"
+msgstr "קישורים"
+
+#: qa/templates/view_candidate.html:46
+msgid "Facebook Page"
+msgstr "עמוד הפייסבוק של המועמד"
 
 #: qa/templates/view_voter.html:5
 msgid "View Voter"
