@@ -7,36 +7,36 @@
 {% endblock %}
 
 {% block mainContainer %}
-    <form method="get" action=".">
-        <div class="search-bar">
-            {{ form }}
-            <input type="submit" class="btn" value="{% trans 'Search' %}">
+    <div class="page-header clearfix">
+      <h1 class="pull-left">{% trans "Search" %}</h1>
+      <form method="get" action="." class="form-search pull-right" style="margin-top:15px;">
+        <div class="input-append">
+            <input type="text" name="q" value="{{ form.q.value }}" id="id_q" class="span2 search-query">
+            <button type="submit" class="btn">{% trans 'Search' %}</button>
         </div>
     </form>
+    </div>
 
-        {% if query %}
-        <div class="row">
-          <div class="offset1">
-            <h3>{% trans "Results" %}</h3>
-            <ul class="unstyled">
-            {% for result in page.object_list %}
-                <li>
-                  <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>
-                </li>
-            {% empty %}
-                <li>No results found.</li>
-            {% endfor %}
+    {% if query %}
+        <h3>{% trans "Results" %}</h3>
+        <ul class="unstyled" class="search-result-list">
+        {% for result in page.object_list %}
+            <li class="search-result">
+              <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>
+            </li>
+        {% empty %}
+            <li>{% trans 'No results found.' %}</li>
+        {% endfor %}
+        </ul>
+
+        {% if page.has_previous or page.has_next %}
+            <ul class="pager">
+                <li class="previous disabled">{% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}{% trans '&laquo; Previous' %}{% if page.has_previous %}</a>{% endif %}</li>
+                <li class="next">
+                {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}{% trans 'Next &raquo;' %}{% if page.has_next %}</a>{% endif %}</li>
             </ul>
-
-            {% if page.has_previous or page.has_next %}
-                <div>
-                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
-                    |
-                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
-                </div>
-            {% endif %}
-        {% else %}
-            {# Show some example queries to run, maybe query syntax, something else? #}
         {% endif %}
+    {% else %}
+        {# Show some example queries to run, maybe query syntax, something else? #}
+    {% endif %}
 {% endblock %}
-

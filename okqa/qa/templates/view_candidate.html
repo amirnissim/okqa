@@ -1,16 +1,51 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block mainContainer %}
-    <h1>{% trans "View Candidate" %}</h1>
-    {{ candidate.username}}
-    <h2>{% trans "Answers" %}</h2>
-    {% for a in answers %}
-    <div style="background: #d3d3d3">
-        <h3>{{ a.question.subject }}</h3>
-        <div>{{ a.question.content }}</div>
-    </div>
-    <div style="background: #add8e6">
-        {{ a.content }}
-    </div>
+<div class="page-header row">
+    <h1 class="clearfix">
+        {{ candidate.get_full_name}}
+        <div class="avatar" style="float: right; margin: 0 0 10px 10px;">
+        <img src="{{ candidate.get_profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle">
+        </div>
+    </h1>
+</div>
+<div class="row">
+    <div class="span9">
+        <h3 style="margin-top: -10px; margin-bottom: -10px;">
+            {% trans "Answers" %}
+        </h3>
+        {% for answer in answers %}
+        <div class="question-summary narrow" id="question-summary-{{ question.id }}">
+            <div class="summary">
+                <h3>
+                    <a href="{% url qa.views.view_question answer.question.id %}" class="question-hyperlink"
+                    title="{{ question.subject }}">{{ answer.question.subject }}</a>
+                </h3>
+                <div class="preview">
+                    <span class="too-long-toggle">{{ answer.question.content }}</span>
+                </div>
+                <br />
+                <div class="well">
+                    <strong style="font-size: 13px;">
+                        <span class="too-long-toggle">{{ answer.content|linebreaksbr }}</span>
+                    </strong>
+                    <span title="{{ question.created_at }}" class="relativetime">
+                        <br />
+                        {% trans "before" %} {{ answer.updated_at|timesince }}
+                    </span>
+                </div>
+            </div>
+        </div>
     {% endfor %}
+    </div>
+    <div class="span3">
+        <h3 style="margin-top: -10px;">
+            {% trans 'About' %}
+        </h3>
+        <span style="font-size: 12px;">{% trans 'Candidate bio here...' %}</span>
+        <h5>{% trans 'Links' %}</h5> <a href="#" title="{% trans 'Facebook Page' %}"><img src="/static/img/social-icons/colour/facebook.png" style="width:25px;" /></a>
+    </div>
+</div>
+{% endblock %}
+{% block extrascript %}
 {% endblock %}
