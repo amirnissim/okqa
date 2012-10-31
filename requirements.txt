@@ -14,3 +14,4 @@ django-debug-toolbar==0.9.4
 django-nose==1.1
 yolk
 django-crispy-forms==1.2.0
+unicode-slugify

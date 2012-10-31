@@ -4,6 +4,8 @@ from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 from taggit.managers import TaggableManager
 from taggit.models import TaggedItemBase
+from slugify import slugify as unislugify
+
 
 MAX_LENGTH_Q_SUBJECT = 80
 MAX_LENGTH_Q_CONTENT = 255
@@ -27,6 +29,12 @@ class TaggedQuestion(TaggedItemBase):
 
 
 class Question(BaseModel):
+
+    unislug = models.CharField(
+        _('unicode slug'),
+        max_length=MAX_LENGTH_Q_SUBJECT,
+        editable=False
+    )
     author = models.ForeignKey(User, related_name="questions", verbose_name=_("author"))
     subject = models.CharField(_("subject"), max_length=MAX_LENGTH_Q_SUBJECT,
         help_text=_("Please enter a subject in no more than %s letters") % MAX_LENGTH_Q_SUBJECT)
@@ -44,6 +52,11 @@ class Question(BaseModel):
 
     def get_absolute_url(self):
         return reverse('question-details', kwargs={'q_id': self.id})
+
+    def save(self, **kwargs):
+        # make a unicode slug from the subject
+        self.unislug = unislugify(self.subject)
+        return super(Question, self).save(**kwargs)
 
 
 class Answer(BaseModel):
