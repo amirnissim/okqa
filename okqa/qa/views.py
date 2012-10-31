@@ -32,8 +32,8 @@ def candidates(request):
     return render_to_response("candidates.html", locals(), context_instance=RequestContext(request))
 
 
-def view_candidate(request, candidate_id):
-    candidate = get_object_or_404(User, id=candidate_id)
+def candidate_detail(request, slug):
+    candidate = get_object_or_404(User, username=slug)
     answers = candidate.answers.all()
     return render_to_response("view_candidate.html", locals(), context_instance=RequestContext(request))
 
