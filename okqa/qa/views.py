@@ -210,13 +210,13 @@ class RssQuestionAnswerFeed(Feed):
         return get_object_or_404(Question, pk=q_id)
 
     def title(self, obj):
-        return "OKQA: Answers for question %s" % obj.subject
+        return _('Answers for the question') + ' "%s' % obj.subject + '"'
 
     def link(self, obj):
         return obj.get_absolute_url()
 
     def description(self, obj):
-        return "Get all the answers for %s" % obj.subject
+        return ('A feed of all answers for the question') + ' "%s' % obj.subject + '"'
 
     def items(self, obj):
         return Answer.objects.filter(question=obj).order_by('-updated_at')
@@ -234,13 +234,13 @@ class RssUserAnswerFeed(Feed):
         return get_object_or_404(User, pk=candidate_id)
 
     def title(self, obj):
-        return "OKQA: All answers for %s" % obj.first_name + ' ' + obj.last_name
+        return _('Answers by') + '%s' % obj.get_full_name()
 
     def link(self, obj):
         return obj.get_absolute_url()
 
     def description(self, obj):
-        return "Get all the answers for %s" % obj.first_name + ' ' + obj.last_name
+        return _('Get all answers by') + '%s' % obj.get_full_name()
 
     def items(self, obj):
         return Answer.objects.filter(author=obj).order_by('-updated_at')
