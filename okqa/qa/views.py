@@ -216,7 +216,7 @@ class RssQuestionAnswerFeed(Feed):
         return obj.get_absolute_url()
 
     def description(self, obj):
-        return ('A feed of all answers for the question') + ' "%s' % obj.subject + '"'
+        return _('A feed of all answers for the question') + ' "%s' % obj.subject + '"'
 
     def items(self, obj):
         return Answer.objects.filter(question=obj).order_by('-updated_at')

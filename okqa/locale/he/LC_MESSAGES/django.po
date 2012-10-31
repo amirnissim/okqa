@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-31 15:02+0200\n"
+"POT-Creation-Date: 2012-10-31 15:18+0200\n"
 "PO-Revision-Date: 2012-10-24 16:42+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,6 +77,22 @@ msgstr "שאלות נשאלו"
 #: qa/views.py:189
 msgid "Questions from OKQA"
 msgstr "שאלות"
+
+#: qa/views.py:213
+msgid "Answers for the question"
+msgstr "תשובות לשאלה"
+
+#: qa/views.py:219
+msgid "A feed of all answers for the question"
+msgstr "פיד של תשובות לשאלה"
+
+#: qa/views.py:237
+msgid "Answers by"
+msgstr "תשובות של"
+
+#: qa/views.py:243
+msgid "Get all answers by"
+msgstr "קבלו את כל התשובות של"
 
 #: qa/templates/candidates.html:6 templates/base.html:22
 msgid "Candidates"
@@ -309,9 +325,11 @@ msgid ""
 "address bar:\n"
 msgstr ""
 "\n"
-"תודה שנרשמת לאתר %(name)s. על מנת להשלים את ההרשמה, אנא לחץ/י על הקישור הבא:\n"
+"תודה שנרשמת לאתר %(name)s. על מנת להשלים את ההרשמה, אנא לחץ/י על הקישור "
+"הבא:\n"
 
 #: templates/registration/activation_email.txt:8
+#, python-format
 msgid ""
 "\n"
 "If you didn't request this, you don't need to do anything; you won't receive "
