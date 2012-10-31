@@ -14,7 +14,7 @@
       </div>
       {% if user.is_authenticated %}
       <div class="span3 sidebar">
-        <a class="btn btn-primary {% if not can_upvote %}disabled{% endif %}"
+        <a class="btn btn-success btn-large {% if not can_upvote %}disabled{% endif %}"
           id="upvote-question" href="#">
           {% trans "I Want an Answer" %}
         </a>
@@ -79,11 +79,11 @@
                 jqXHR.responseText + '</div>');
       });
 
-    $("#upvote-question").not(".disabled").click(function() {
+    $("#upvote-question").click(function() {
       $.post("{% url upvote_question question.id %}",
           {csrfmiddlewaretoken: "{{ csrf_token }}"},
           function (data, status, jqXHR) {
-              $(".mini-counts").html(jqXHR.responseText);
+            $("#votes-count-{{question.id}}").html(jqXHR.responseText);
       });
           })
 

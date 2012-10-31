@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-31 15:18+0200\n"
+"POT-Creation-Date: 2012-10-31 16:27+0200\n"
 "PO-Revision-Date: 2012-10-24 16:42+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "עליך להתחבר כמועמד כדי לפרסם תשובות"
 
 #: qa/views.py:156
 msgid "You already upvoted this question"
-msgstr "תודה, אתה כבר מופיע ברשימת המבקשים"
+msgstr "תודה, אתה כבר מופיע ברשימת התומכים"
 
 #: qa/views.py:163
 msgid "Use POST to upvote a question"
@@ -173,7 +173,7 @@ msgstr "עקוב"
 
 #: qa/templates/qa/_question.html:9
 msgid "votes"
-msgstr "הצבעות"
+msgstr "שואלים"
 
 #: qa/templates/qa/post_question.html:5
 msgid "What is your question, sire?"
@@ -186,7 +186,7 @@ msgstr "פרסם"
 
 #: qa/templates/qa/question_detail.html:19
 msgid "I Want an Answer"
-msgstr "הצטרפו למבקשים תשובה לעניין"
+msgstr "תמכו בשאלה"
 
 #: qa/templates/qa/question_detail.html:22
 msgid "Answer the Question"
@@ -214,15 +214,15 @@ msgstr "למועמדים ב"
 msgid " The Demo Party"
 msgstr "מפלגת הדמו"
 
-#: qa/templates/qa/question_list.html:22
+#: qa/templates/qa/question_list.html:23
 msgid "Ask Question"
 msgstr "העלו שאלה"
 
-#: qa/templates/qa/question_list.html:37
+#: qa/templates/qa/question_list.html:38
 msgid "Questions asked"
 msgstr "שאלות נשאלו"
 
-#: qa/templates/qa/question_list.html:41
+#: qa/templates/qa/question_list.html:42
 msgid "questions"
 msgstr "שאלות"
 

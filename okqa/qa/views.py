@@ -67,7 +67,6 @@ def questions(request):
 
 
 def view_question(request, q_id):
-    # import pdb; pdb.set_trace()
     question = get_object_or_404(Question, id=q_id)
     can_answer = question.can_answer(request.user)
     context = RequestContext(request, {"question": question,
@@ -82,9 +81,9 @@ def view_question(request, q_id):
             context["my_answer_form"] = AnswerForm()
             context["can_answer"] = True
 
-    if request.user.is_authenticated():
-        context["can_upvote"] = \
-            request.user.upvotes.filter(question=question) == request.user.upvotes.none()
+    if request.user.is_authenticated() and \
+       not request.user.upvotes.filter(question=question).exists():
+        context["can_upvote"] = True
     else:
         context["can_upvote"] = False
 
