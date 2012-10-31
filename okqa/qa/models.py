@@ -33,6 +33,8 @@ class Question(BaseModel):
     unislug = models.CharField(
         _('unicode slug'),
         max_length=MAX_LENGTH_Q_SUBJECT,
+        null=True,
+        blank=True,
         editable=False
     )
     author = models.ForeignKey(User, related_name="questions", verbose_name=_("author"))
@@ -50,8 +52,9 @@ class Question(BaseModel):
         ''' Can a given user answer self? '''
         return user.has_perm('qa.add_answer')
 
+    @models.permalink
     def get_absolute_url(self):
-        return reverse('question-details', kwargs={'q_id': self.id})
+        return ('question_detail', [self.unislug])
 
     def save(self, **kwargs):
         # make a unicode slug from the subject
