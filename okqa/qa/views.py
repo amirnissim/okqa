@@ -12,7 +12,7 @@ from django.utils.feedgenerator import Atom1Feed
 
 from taggit.utils import parse_tags
 
-from okqa.qa.models import Question, Answer, QuestionUpvote, CANDIDATES_GROUP_NAME
+from okqa.qa.models import Question, Answer, QuestionUpvote
 from okqa.qa.forms import AnswerForm, QuestionForm
 
 # the order options for the list views
@@ -21,33 +21,6 @@ ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating'}
 
 def home(request):
     return render(request, "home.html")
-
-
-def candidates(request):
-    """
-    list candidates ordered by number of answers
-    """
-    g = Group.objects.get(name=CANDIDATES_GROUP_NAME)
-    candidates = g.user_set.all().annotate(num_answers=Count('answers')).order_by("-num_answers")
-    return render_to_response("candidates.html", locals(), context_instance=RequestContext(request))
-
-
-def candidate_detail(request, slug):
-    candidate = get_object_or_404(User, username=slug)
-    answers = candidate.answers.all()
-    return render_to_response("view_candidate.html", locals(), context_instance=RequestContext(request))
-
-
-def members(request):
-    g = Group.objects.get(name="members")
-    members = g.user_set.all()
-    return render_to_response("members.html", locals(), context_instance=RequestContext(request))
-
-
-def view_member(request, voter_id):
-    member = get_object_or_404(User, id=member_id)
-    return render_to_response("view_member.html", locals(), context_instance=RequestContext(request))
-
 
 def questions(request):
     """
@@ -64,7 +37,6 @@ def questions(request):
 
     return render_to_response("qa/question_list.html", dict(questions=questions, tags=tags),
                               context_instance=RequestContext(request))
-
 
 def view_question(request, q_id):
     question = get_object_or_404(Question, id=q_id)

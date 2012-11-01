@@ -20,7 +20,6 @@
       <ul class="nav">
         <li><a href="/" {% block homeNav %}{% endblock %}>{% trans "Home" %}</a></li>
         <li><a href="{% url candidate_list %}">{% trans "Candidates" %}</a></li>
-        <!-- <li><a href="{% url members %}">{% trans "Members" %}</a></li> -->
       </ul>
       <form class="navbar-search pull-left" action="/search/">
         <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search' %}" />

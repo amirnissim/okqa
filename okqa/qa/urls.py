@@ -7,12 +7,6 @@ urlpatterns = patterns('',
 
     url(r'^q/(?P<q_id>\d+)/$', 'okqa.qa.views.view_question', name='question-details'),
 
-    url(r'^candidates/$', 'okqa.qa.views.candidates', name="candidate_list"),
-    url(r'^users/(?P<slug>.+)/$', 'okqa.qa.views.candidate_detail', name="candidate_detail"),
-
-    url(r'^members/$', 'okqa.qa.views.members', name='members'),
-    (r'^members/(?P<member_id>\d+)/$', 'okqa.qa.views.view_member'),
-
     url(r'^a/post/(?P<q_id>\d+)/$', 'okqa.qa.views.post_answer', name='post_answer'),
     url(r'^q/post/$', 'okqa.qa.views.post_question', name='post_question'),
     url(r'^upvote_question/(?P<q_id>\d+)/$', 'okqa.qa.views.upvote_question', name='upvote_question'),

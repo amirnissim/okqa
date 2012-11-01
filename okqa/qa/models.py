@@ -11,7 +11,6 @@ MAX_LENGTH_Q_CONTENT = 255
 MAX_LENGTH_A_SUBJECT = 80
 MAX_LENGTH_A_CONTENT = 500
 
-CANDIDATES_GROUP_NAME = "candidates"
 
 
 class BaseModel(models.Model):
