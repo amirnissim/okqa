@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-03 23:52+0200\n"
-"PO-Revision-Date: 2012-11-03 23:54+0200\n"
+"POT-Creation-Date: 2012-11-04 00:09+0200\n"
+"PO-Revision-Date: 2012-11-04 00:11+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -428,32 +428,36 @@ msgid "username"
 msgstr "שם משתמש"
 
 #: user/forms.py:37
+msgid "Please use 4 letters or more"
+msgstr "נא להשתמש בארבע אותיות או יותר (גם מספרים ו @/./+/-/_ הם תווים חוקיים)"
+
+#: user/forms.py:38
 #, fuzzy
 msgid "first name"
 msgstr "שם פרטי"
 
-#: user/forms.py:38
+#: user/forms.py:39
 #, fuzzy
 msgid "last name"
 msgstr "שם משפחה"
 
-#: user/forms.py:39
+#: user/forms.py:40
 msgid "email address"
 msgstr ""
 
-#: user/forms.py:40
+#: user/forms.py:41
 msgid "home page"
 msgstr "עמוד הבית"
 
-#: user/forms.py:41
+#: user/forms.py:42
 msgid "bio"
 msgstr "ביוגרפיה"
 
-#: user/forms.py:44
+#: user/forms.py:45
 msgid "E-Mail Notifications"
 msgstr "התראות דואל"
 
-#: user/forms.py:45
+#: user/forms.py:46
 msgid "Should we send you e-mail notification about updates to things you follow on the site?"
 msgstr "האם לשלוח התראות דואל לגבי שאלות ותגיות שאתה עוקב אחריהם?"
 

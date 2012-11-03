@@ -33,7 +33,8 @@ class TwoStepRegForm(RegistrationFormUniqueEmail):
 
 
 class ProfileForm(forms.Form):
-    username = forms.RegexField(label=_("username"), max_length=30, regex=r'^(?u)[ \w.@+-]{4,}$',)
+    username = forms.RegexField(label=_("username"), max_length=30, regex=r'^(?u)[\w.@+-]{4,}$',
+                                help_text= _('Please use 4 letters or more'))
     first_name = forms.CharField(label=_('first name'), max_length = 15)
     last_name = forms.CharField(label=_('last name'), max_length = 20)
     email = forms.EmailField(required=False ,label=_(u'email address'))
