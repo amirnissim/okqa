@@ -31,12 +31,13 @@
       <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Welcome' %}, {{ user.username }} <b class="caret"></b></a>
       <ul class="dropdown-menu">
+        <li><a href="{{ user.get_absolute_url }}">{% trans 'my page' %}</li>
+        <li><a href="{% url edit_profile %}">{% trans 'edit profile' %}</li>
         <form class="form-inline" method="post" action="{% url auth_logout %}">
-      {% csrf_token %}
-      <li><a href="javascript:;" class="submit-link">{% trans 'logout' %}</a></li>
-      </form>
+          {% csrf_token %}
+          <li><a href="javascript:;" class="submit-link">{% trans 'logout' %}</a></li>
+        </form>
       </ul>
-      </li>
 
       {% else %}
         <li><a href="{% url registration.views.register %}">{% trans "Register" %}</a></li>

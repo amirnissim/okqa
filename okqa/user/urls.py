@@ -6,6 +6,7 @@ urlpatterns = patterns('',
     url(r'^register/$', register, {'backend': 'okqa.user.backends.RegBackend'}, 
         name='registration_register'),
     url(r'^login/$', login, name='login'),
+    url(r'^profile/$', edit_profile, name='edit_profile'),
     url(r'^candidates/$', candidate_list, name="candidate_list"),
     url(r'^users/(?P<slug>.+)/$', user_detail, name="candidate_detail"),
 

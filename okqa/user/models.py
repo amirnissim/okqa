@@ -22,9 +22,8 @@ class UserProfile(models.Model):
     public_profile = models.BooleanField(default=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
     bio = models.TextField(null=True,blank=True)
-    #TODO: add a url
-    # url = models.URLField(null=True, blank=True)
     email_notification = models.CharField(max_length=1, choices=NOTIFICATION_PERIOD_CHOICES, blank=True, null=True)
+    url = models.URLField(null=True, blank=True)
 
     def avatar_url(self, size=40):
         ''' getting the avatar image url from Gravatar '''
