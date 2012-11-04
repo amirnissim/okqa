@@ -17,4 +17,6 @@ urlpatterns = patterns('',
     url(r'', include('okqa.user.urls')),
     url(r'accounts/', include('registration.backends.default.urls')),
     (r'^search/', include('okqa.search.urls')),
+    # flat pages to help with static pages
+    (r'^(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage'),
 )
