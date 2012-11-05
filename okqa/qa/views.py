@@ -204,7 +204,6 @@ def tagged_questions(request, tags):
     return render(request, "qa/question_list.html", dict(questions=questions,
                                         current_tags=tags_list))
 
-
 class RssQuestionFeed(Feed):
     """Simple feed to get all questions"""
     title = _('OK QA Question Feed')
@@ -249,3 +248,23 @@ class AtomQuestionAnswerFeed(RssQuestionAnswerFeed):
     feed_type = Atom1Feed
     subtitle = RssQuestionAnswerFeed.description
 
+@transaction.commit_on_success
+def increase_reports(q):
+    q = Question.objects.get(id=q.id)
+    q.flags_count += 1
+    q.save()
+    return q.flags_count
+
+@login_required
+def flag_question(request, q_id):
+    q = get_object_or_404(Question, id=q_id)
+    user = request.user
+    
+    if user.flags.filter(question=q):
+        return HttpResponseForbidden(_("You already reported this question"))
+    
+    else:
+        flag = QuestionFlag.objects.create(question=q, reporter=user)
+        #TODO: use signals so the next line won't be necesary
+        new_count = increase_reports(q)
+        return HttpResponse(new_count)

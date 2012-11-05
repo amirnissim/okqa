@@ -21,7 +21,12 @@
         {% if can_answer %}
           <a class="btn btn-success btn-large" style="margin-top: 10px;" href="#add_answer_modal" data-toggle="modal">{% trans "Answer the Question" %}</a>
         {% endif %}
+        <a class="btn btn-danger {% if not can_upvote %}disabled{% endif %}"
+          id="flag-question" href="#" >
+          {% trans "Flag Question" %}
+        </a>
       </div>
+
       {% endif %}
 
     </div>
@@ -85,7 +90,15 @@
           function (data, status, jqXHR) {
             $("#votes-count-{{question.id}}").html(jqXHR.responseText);
       });
-          })
+    })
+
+    $("#flag-question").click (function() {
+      $.post("{% url flag_question question.id %}",
+          {csrfmiddlewaretoken: "{{ csrf_token }}"},
+          function (data, status, jqXHR) {
+              $(".mini-counts").html(jqXHR.responseText);
+      });
+    })
 
     $("#answer-{{ my_answer_id}}").hover(function() {
           $("#edit-answer-{{my_answer_id}}").show();

@@ -49,6 +49,7 @@ class Question(BaseModel):
     content = models.TextField(_("content"), max_length=MAX_LENGTH_Q_CONTENT,
         help_text=_("Please enter your content in no more than %s letters") % MAX_LENGTH_Q_CONTENT)
     rating = models.IntegerField(_("rating"), default=1)
+    flags_count = models.IntegerField(_("Reports counter"), default=0)
     tags = TaggableManager(through=TaggedQuestion)
     sites = models.ManyToManyField(Site)
     # for easy access to current site questions
@@ -89,10 +90,13 @@ class Answer(BaseModel):
     def get_absolute_url(self):
         return reverse('question-details', kwargs={'q_id': self.question.id})
 
-
 class QuestionUpvote(BaseModel):
     question = models.ForeignKey(Question, related_name="upvotes")
     user = models.ForeignKey(User, related_name="upvotes")
+
+class QuestionFlag(BaseModel):
+    question = models.ForeignKey(Question, related_name="flags")
+    reporter = models.ForeignKey(User, related_name="flags")
 
 ''' signals code, to ensure correct site is saved 
 '''
@@ -100,3 +104,4 @@ class QuestionUpvote(BaseModel):
 def saved(sender, created, instance, **kwargs):
     if sender in (Question, Answer, TaggedQuestion):
         instance.sites.add(Site.objects.get_current())
+

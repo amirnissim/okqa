@@ -47,4 +47,6 @@ urlpatterns = patterns('',
         name='atom_question_answers'
     ),
 
+	url(r'^flag_question/(?P<q_id>\d+)/$', 'flag_question', name='flag_question'),
+
 )
