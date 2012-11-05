@@ -3,9 +3,9 @@
 {% block mainContainer %}
 <div class="page-header row">
     <h1 class="clearfix">
-      {{ user.get_full_name|default:user.username}}
+      {{ candidate.get_full_name|default:user.username}}
         <div class="avatar" style="float: right; margin: 0 0 10px 10px;">
-          <img src="{{ user.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle">
+          <img src="{{ candidate.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle">
         </div>
        <a href="{% url user_feed user.id %}" title="{% trans 'Subscribe' %}" rel="tooltip"><img src="/static/img/social-icons/colour/rss.png" width="25" /></a>
     </h1>
@@ -45,11 +45,11 @@
         <h3 style="margin-top: -10px;">
             {% trans 'About' %}
         </h3>
-        {% if user.bio %}
-          <span style="font-size: 12px;">{{ user.bio }}</span>
+        {% if candidate.bio %}
+          <span style="font-size: 12px;">{{ candidate.bio }}</span>
         {% endif %}
-        {% if user.url %}
-          <a href="{{user.url}}">{{user.url}}</a>
+        {% if candidate.url %}
+          <a href="{{candidate.url}}">{{user.url}}</a>
         {% endif %}
     </div>
 </div>

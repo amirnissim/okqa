@@ -48,7 +48,7 @@ def user_detail(request, slug):
 
     # todo: support members as well as candidates
     return render(request, "user/candidate_detail.html", 
-            {"user": user, "answers": answers})
+            {"candidate": user, "answers": answers})
 
 
 @login_required
