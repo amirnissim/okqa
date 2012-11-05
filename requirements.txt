@@ -16,3 +16,4 @@ yolk
 django-crispy-forms==1.2.0
 unicode-slugify
 ipython
+PIL

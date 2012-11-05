@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-11-04 00:09+0200\n"
-"PO-Revision-Date: 2012-11-04 00:11+0200\n"
+"PO-Revision-Date: 2012-11-04 10:19+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -499,7 +499,7 @@ msgstr "כאן תופיע ביוגרפיה קצרה של המועמד..."
 
 #: user/templates/user/edit_profile.html:6
 msgid "Edit your profile"
-msgstr ""
+msgstr "ערוך את הפרופיל שלך"
 
 #: user/templates/user/edit_profile.html:15
 msgid "Update"

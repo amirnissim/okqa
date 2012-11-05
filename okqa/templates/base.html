@@ -16,7 +16,11 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="{% url home %}">{% trans "The Demo Party" %}</a>
+      <div id="party-logo" class="brand">
+        <a href="{% url home %}">
+          <img src="{{ STATIC_URL }}{{ party.logo }}" title="{{party.site.name}}">
+        </a>
+      </div>
       <ul class="nav">
         <li><a href="/" {% block homeNav %}{% endblock %}>{% trans "Home" %}</a></li>
         <li><a href="{% url candidate_list %}">{% trans "Candidates" %}</a></li>
