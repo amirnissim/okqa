@@ -1,11 +1,26 @@
-{% extends "base.html" %}
-{% load i18n %}
+{% extends "base.html" %} 
+{% load i18n %} 
+{% load crispy_forms_tags %}
+
 {% block mainContainer %}
-<div class="row">
-  <form method="POST">
-  {% csrf_token %}
-  {{ form }}
-  <input type="submit" value="{% trans 'register' %}"></input>
-  </form>
+<div class="page-header">
+    <h1>
+        {% trans 'Register' %}
+        <small>
+        </small>
+    </h1>
 </div>
+<form class="form-horizontal" action="" method="POST">
+  <div class="row">
+    {% csrf_token %}
+    {{ form|crispy }}
+  </div>
+  <div class="row">
+    <div class="offset2">
+      <button type="submit" class="btn btn-primary">
+          {% trans 'Register' %}
+      </button>
+    </div>
+  </div>
+</form>
 {% endblock %}

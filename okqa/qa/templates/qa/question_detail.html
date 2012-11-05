@@ -2,9 +2,9 @@
 {% load i18n %}
 {% block pageTitle %}{{question}}{% endblock %}
 {% block extrahead %}
-  <style>
-    .answers { display:none; }
-  </style>
+<style>
+.question-summary { border: 0 none;}
+</style>
 {% endblock %}
 {% block mainContainer %}
   <div class="container">
@@ -13,29 +13,44 @@
         {% include "qa/_question.html" %}
       </div>
       {% if user.is_authenticated %}
-      <div class="span3">
+      <div class="span3 sidebar">
         <a class="btn btn-primary {% if not can_upvote %}disabled{% endif %}"
-          id="upvote-question" " href="#" >
+          id="upvote-question" href="#">
           {% trans "I Want an Answer" %}
         </a>
+        {% if can_answer %}
+          <a class="btn btn-success btn-large" style="margin-top: 10px;" href="#add_answer_modal" data-toggle="modal">{% trans "Answer the Question" %}</a>
+        {% endif %}
       </div>
       {% endif %}
 
     </div>
     <div class="row questions-wrapper">
-      <div class="span9">
+      <div class="span9 answers">
+        {% if answers %}
+          <h5>
+            {% trans 'Answers' %}
+            <a href="{% url atom_question_answers question.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
+              <img src="/static/img/social-icons/colour/rss.png" width="25" />
+             </a>
+          </h5>
+        {% endif %}
+
         {% for answer in answers %}
           {% include "qa/_answer.html" %}
         {% empty %}
-          <h3>{% trans "No Answers Yet" %}</h3>
+          <h5>{% trans "No Answers Yet" %}
+            <a href="{% url atom_question_answers question.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
+              <!-- <img src="/static/img/social-icons/colour/rss.png" width="25" /> -->
+             </a>
+          </h5>
         {% endfor %}
       </div>
       <div class="span3">
-        {% if can_answer %}
-          <a class="btn btn-success btn-large" href="#add_answer_modal" data-toggle="modal">{% trans "Answer the Question" %}</a>
-        {% endif %}
+        
       </div>
     </div>
+  </div>
 {% if my_answer_form %}
 <div class="modal fade" id="add_answer_modal">
  <form class="form" method="post" action="{% url post_answer question.id %}">
@@ -45,10 +60,10 @@
   </div>
   <div class="modal-body">
     {% csrf_token %}
-    {{ my_answer_form }}
+    {{ my_answer_form.as_p }}
   </div>
   <div class="modal-footer">
-    <input type="submit" value="{% trans "Publish" %}" />
+    <input type="submit" class="btn btn-primary" value="{% trans "Publish" %}" />
   </div>
  </form>
 </div>
@@ -58,21 +73,21 @@
 {% block extrascript %}
 <script>
   $(document).ready ( function () {
-    $("#upvote-question").ajaxError (function(evt, jqXHR, setting, err) {
+    $("#upvote-question").ajaxError(function(evt, jqXHR, setting, err) {
               $("#messages").html('<div class="alert" class="error">' +
                 '<button type="button" class="close" data-dismiss="alert">×</button>' +
                 jqXHR.responseText + '</div>');
       });
 
-    $("#upvote-question").click (function() {
+    $("#upvote-question").click(function() {
       $.post("{% url upvote_question question.id %}",
           {csrfmiddlewaretoken: "{{ csrf_token }}"},
           function (data, status, jqXHR) {
-              $(".mini-counts").html(jqXHR.responseText);
+            $("#votes-count-{{question.id}}").html(jqXHR.responseText);
       });
           })
 
-    $("#answer-{{ my_answer_id}}").hover (function() {
+    $("#answer-{{ my_answer_id}}").hover(function() {
           $("#edit-answer-{{my_answer_id}}").show();
         }, function () {
           $("#edit-answer-{{my_answer_id}}").hide();

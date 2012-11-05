@@ -2,5 +2,8 @@
 {% load i18n %}
 
 {% block mainContainer %}
-<p>{% trans "Ye be now registered. Welcome t' okqa, and dinna spare the whip!" %}</p>
+<div class="alert alert-notice">
+  {% trans "Ye be now registered. Welcome t' okqa, and dinna spare the whip!" %}
+  <a href="#login_modal" data-toggle="modal">{% trans "Login" %}</a></li>
+</div>
 {% endblock %}

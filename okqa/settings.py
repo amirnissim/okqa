@@ -41,7 +41,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'static')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -128,6 +128,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.humanize',
     'django.contrib.admindocs',
+    'django.contrib.sitemaps',
+    'django.contrib.flatpages',
     'django_extensions',
     'django_nose',
     'taggit',
@@ -135,6 +137,7 @@ INSTALLED_APPS = (
     'haystack',
     'south',
     'debug_toolbar',
+    'crispy_forms',
     'okqa.qa',
     'okqa.user',
     'okqa.party',
@@ -170,12 +173,21 @@ LOGGING = {
 
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
 LOGIN_REDIRECT_URL = '/'
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = 'qa@oknesset.org'
+
+try:
+    EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
+    EMAIL_HOST= 'smtp.sendgrid.net'
+    EMAIL_PORT = 587
+    EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+    EMAIL_USE_TLS = True
+except KeyError:
+    EMAIL_HOST = 'localhost'
+    EMAIL_PORT = 1025
+    EMAIL_HOST_USER = ''
+    EMAIL_HOST_PASSWORD = ''
+    EMAIL_USE_TLS = False
+
+DEFAULT_FROM_EMAIL = 'okqa@hasadna.org'
 
 AUTH_PROFILE_MODULE = 'user.UserProfile'
 
@@ -189,7 +201,6 @@ HAYSTACK_CONNECTIONS = {
 
 INTERNAL_IPS = ('127.0.0.1',)
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
-
 
 try:
     from local_settings import *
