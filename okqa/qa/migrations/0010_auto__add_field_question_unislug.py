@@ -16,19 +16,9 @@ class Migration(SchemaMigration):
         ))
         db.create_unique('qa_taggedquestion_sites', ['taggedquestion_id', 'site_id'])
 
-        # Adding field 'Question.unislug'
-        db.add_column('qa_question', 'unislug',
-                      self.gf('django.db.models.fields.CharField')(max_length=80, null=True, blank=True),
-                      keep_default=False)
-
-
     def backwards(self, orm):
         # Removing M2M table for field sites on 'TaggedQuestion'
         db.delete_table('qa_taggedquestion_sites')
-
-        # Deleting field 'Question.unislug'
-        db.delete_column('qa_question', 'unislug')
-
 
     models = {
         'auth.group': {
