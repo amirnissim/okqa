@@ -11,7 +11,7 @@ from django.utils.translation import ugettext as _
 
 from taggit.utils import parse_tags
 
-from okqa.qa.models import Question, Answer, QuestionUpvote, CANDIDATES_GROUP_NAME, QuestionReport
+from okqa.qa.models import Question, Answer, QuestionUpvote, CANDIDATES_GROUP_NAME, QuestionFlag
 from okqa.qa.forms import AnswerForm, QuestionForm
 
 # the order options for the list views
@@ -173,20 +173,20 @@ def tagged_questions(request, tags):
 @transaction.commit_on_success
 def increase_reports(q):
     q = Question.objects.get(id=q.id)
-    q.reports_count += 1
+    q.flags_count += 1
     q.save()
-    return q.reports_count
+    return q.flags_count
 
 @login_required
-def report_question(request, q_id):
+def flag_question(request, q_id):
     q = get_object_or_404(Question, id=q_id)
     user = request.user
     
-    if user.reports.filter(question=q):
+    if user.flags.filter(question=q):
         return HttpResponseForbidden(_("You already reported this question"))
     
     else:
-        report = QuestionReport.objects.create(question=q, user=user)
+        flag = QuestionFlag.objects.create(question=q, reporter=user)
         #TODO: use signals so the next line won't be necesary
         new_count = increase_reports(q)
         return HttpResponse(new_count)

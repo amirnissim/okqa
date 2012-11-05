@@ -15,10 +15,17 @@
       {% if user.is_authenticated %}
       <div class="span3">
         <a class="btn btn-primary {% if not can_upvote %}disabled{% endif %}"
-          id="upvote-question" " href="#" >
+          id="upvote-question" href="#" >
           {% trans "I Want an Answer" %}
         </a>
+        <br>
+        <br>
+        <a class="btn btn-danger {% if not can_upvote %}disabled{% endif %}"
+          id="flag-question" href="#" >
+          {% trans "Flag Question" %}
+        </a>
       </div>
+
       {% endif %}
 
     </div>
@@ -70,7 +77,15 @@
           function (data, status, jqXHR) {
               $(".mini-counts").html(jqXHR.responseText);
       });
-          })
+    })
+
+    $("#flag-question").click (function() {
+      $.post("{% url flag_question question.id %}",
+          {csrfmiddlewaretoken: "{{ csrf_token }}"},
+          function (data, status, jqXHR) {
+              $(".mini-counts").html(jqXHR.responseText);
+      });
+    })
 
     $("#answer-{{ my_answer_id}}").hover (function() {
           $("#edit-answer-{{my_answer_id}}").show();

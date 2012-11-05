@@ -31,7 +31,7 @@ class Question(BaseModel):
         help_text=_("Please enter your content in no more than %s letters") %  MAX_LENGTH_Q_CONTENT)
     rating = models.IntegerField(_("rating"), default=1)
     tags = TaggableManager(through=TaggedQuestion)
-    reports_count = models.IntegerField(_("Reports counter"), default=0)
+    flags_count = models.IntegerField(_("Reports counter"), default=0)
 
     def __unicode__(self):
         return self.subject
@@ -57,7 +57,7 @@ class QuestionUpvote(BaseModel):
     question = models.ForeignKey(Question, related_name="upvotes")
     user = models.ForeignKey(User, related_name="upvotes")
 
-class QuestionReport(BaseModel):
-    question = models.ForeignKey(Question, related_name="reports")
-    user = models.ForeignKey(User, related_name="reports")
+class QuestionFlag(BaseModel):
+    question = models.ForeignKey(Question, related_name="flags")
+    reporter = models.ForeignKey(User, related_name="flags")
 
