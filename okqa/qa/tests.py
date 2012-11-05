@@ -1,10 +1,11 @@
 from django.contrib.auth.models import User, AnonymousUser, Permission
+from django.contrib.sites.models import Site
 from django.test.client import Client
 from django.core.urlresolvers import reverse
 
 from django.test import TestCase
 
-from models import Question
+from .models import *
 
 class QuestionTest(TestCase):
     def setUp(self):
@@ -16,6 +17,18 @@ class QuestionTest(TestCase):
         self.candidate_user.user_permissions.add(add_answer)
         self.q = Question.objects.create(author = self.common_user,
                         subject="why?")
+        self.a = self.q.answers.create(author = self.candidate_user,
+                        content="because the world is round")
+        self.site1 = Site.objects.create(domain='abc.com')
+        self.site2 = Site.objects.create(domain='fun.com')
+        self.q.tags.create(name="abc")
+        self.q.tags.create(name="def")
+
+    def test_sites(self):
+        I = Site.objects.get_current()
+        self.assertEqual(Question.on_site.count(), 1)
+        self.assertEqual(Answer.on_site.count(), 1)
+
     def test_upvote(self):
         c = Client()
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))

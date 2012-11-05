@@ -32,11 +32,11 @@ def questions(request):
     except KeyError:
         order = '-created_at'
 
-    questions = Question.objects.all().order_by(order)
-    tags = Question.tags.all().annotate(count=Count("question"))
+    questions = Question.on_site.all().order_by(order)
+    tags = Question.tags.on_site().annotate(count=Count("question"))
 
-    return render_to_response("qa/question_list.html", dict(questions=questions, tags=tags),
-                              context_instance=RequestContext(request))
+    return render(request, "qa/question_list.html",
+                  dict(questions=questions, tags=tags))
 
 def view_question(request, q_id):
     question = get_object_or_404(Question, id=q_id)
