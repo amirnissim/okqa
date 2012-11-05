@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, url
 from okqa.qa.sitemaps import sitemaps
-from okqa.qa.views import RssQuestionFeed, RssQuestionAnswerFeed, RssUserAnswerFeed, AtomQuestionFeed, AtomQuestionAnswerFeed, AtomUserAnswerFeed, QuestionDetail
+from .views import *
 
 urlpatterns = patterns('',
     url(r'^/?$', 'okqa.qa.views.questions', name='home'),
@@ -47,13 +47,4 @@ urlpatterns = patterns('',
         name='atom_question_answers'
     ),
 
-    url(r'^candidate/(?P<candidate_id>\d+)/rss/answers/$',
-        RssUserAnswerFeed(),
-        name='rss_user_answers'
-    ),
-
-    url(r'^candidate/(?P<candidate_id>\d+)/atom/answers/$',
-        AtomUserAnswerFeed(),
-        name='atom_users_answers'
-    )
 )

@@ -5,8 +5,9 @@
     <h1 class="clearfix">
       {{ user.get_full_name|default:user.username}}
         <div class="avatar" style="float: right; margin: 0 0 10px 10px;">
-        <img src="{{ user.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle">
+          <img src="{{ user.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle">
         </div>
+       <a href="{% url user_feed user.id %}" title="{% trans 'Subscribe' %}" rel="tooltip"><img src="/static/img/social-icons/colour/rss.png" width="25" /></a>
     </h1>
 </div>
 <div class="row">
@@ -26,6 +27,7 @@
                 </div>
                 <br />
                 <div class="well">
+                  <a name="{{answer.id}}">
                     <strong style="font-size: 13px;">
                         <span class="too-long-toggle">{{ answer.content|linebreaksbr }}</span>
                     </strong>
@@ -33,6 +35,7 @@
                         <br />
                         {% trans "before" %} {{ answer.updated_at|timesince }}
                     </span>
+                  </a>
                 </div>
             </div>
         </div>
@@ -42,8 +45,12 @@
         <h3 style="margin-top: -10px;">
             {% trans 'About' %}
         </h3>
-        <span style="font-size: 12px;">{{ user.bio }}</span>
-        <a href="{{user.url}}">{{user.url}}</a>
+        {% if user.bio %}
+          <span style="font-size: 12px;">{{ user.bio }}</span>
+        {% endif %}
+        {% if user.url %}
+          <a href="{{user.url}}">{{user.url}}</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

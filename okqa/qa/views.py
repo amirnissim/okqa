@@ -249,26 +249,3 @@ class AtomQuestionAnswerFeed(RssQuestionAnswerFeed):
     feed_type = Atom1Feed
     subtitle = RssQuestionAnswerFeed.description
 
-
-class RssUserAnswerFeed(Feed):
-    """"Give candidate, get all answers for that candidate"""
-
-    def get_object(self, request, candidate_id):
-        return get_object_or_404(User, pk=candidate_id)
-
-    def title(self, obj):
-        return _('Answers by') + '%s' % obj.get_full_name()
-
-    def link(self, obj):
-        return obj.get_absolute_url()
-
-    def description(self, obj):
-        return _('Get all answers by') + '%s' % obj.get_full_name()
-
-    def items(self, obj):
-        return Answer.objects.filter(author=obj).order_by('-updated_at')
-
-
-class AtomUserAnswerFeed(RssUserAnswerFeed):
-    feed_type = Atom1Feed
-    subtitle = RssUserAnswerFeed.description
