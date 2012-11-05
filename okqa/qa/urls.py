@@ -5,14 +5,15 @@ from okqa.qa.views import RssQuestionFeed, RssQuestionAnswerFeed, RssUserAnswerF
 urlpatterns = patterns('',
     url(r'^/?$', 'okqa.qa.views.questions', name='home'),
 
+    url(r'^a/post/(?P<q_id>\d+)/$', 'okqa.qa.views.post_answer', name='post_answer'),
+    url(r'^q/post/$', 'okqa.qa.views.post_question', name='post_question'),
+
     url(r'^q/(?P<q_id>\d+)/$', 'okqa.qa.views.view_question', name='question-details'),
 
     url(r'^q/(?P<slug>[-\w]+)/$',
         QuestionDetail.as_view(),
         name='question_detail'
     ),
-    url(r'^a/post/(?P<q_id>\d+)/$', 'okqa.qa.views.post_answer', name='post_answer'),
-    url(r'^q/post/$', 'okqa.qa.views.post_question', name='post_question'),
     url(r'^upvote_question/(?P<q_id>\d+)/$', 'okqa.qa.views.upvote_question', name='upvote_question'),
     url(r'^tags/(?P<tags>.+)/$', 'okqa.qa.views.tagged_questions', name="show_tags"),
 
