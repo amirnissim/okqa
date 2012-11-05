@@ -40,6 +40,7 @@ def candidate_list(request):
 
 def user_detail(request, slug):
     user = get_object_or_404(User, username=slug)
+    questions = user.questions.all()
     answers = user.answers.all()
     profile = user.get_profile()
     user.avatar_url = profile.avatar_url()
@@ -48,7 +49,7 @@ def user_detail(request, slug):
 
     # todo: support members as well as candidates
     return render(request, "user/candidate_detail.html", 
-            {"candidate": user, "answers": answers})
+            {"candidate": user, "answers": answers, "questions": questions})
 
 
 @login_required

@@ -14,7 +14,7 @@
       </div>
       {% if user.is_authenticated %}
       <div class="span3 sidebar">
-        <a class="btn btn-success btn-large {% if not can_upvote %}disabled{% endif %}"
+        <a class="btn btn-primary {% if not can_upvote %}disabled{% endif %}"
           id="upvote-question" href="#">
           {% trans "I Want an Answer" %}
         </a>
@@ -46,7 +46,7 @@
         {% empty %}
           <h5>{% trans "No Answers Yet" %}
             <a href="{% url atom_question_answers question.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
-              <img src="/static/img/social-icons/colour/rss.png" width="25" />
+              <!-- <img src="/static/img/social-icons/colour/rss.png" width="25" /> -->
              </a>
           </h5>
         {% endfor %}

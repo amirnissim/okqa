@@ -18,10 +18,13 @@
   <div class="clearfix"></div>
 </div> -->
 
-    <div id="answer-{{answer.id}}" class="answer">
-        <!-- <a class="avatar span2" href="{{ answer.author.get_absolute_url }}">
-          <img class="img-circle" src="{{ answer.author.get_profile.avatar_url|default:'/static/img/defaultavatar.png' }}">
-        </a> -->
+    <div id="answer-{{answer.id}}" class="answer" style="min-height: 35px; display: table">
+        <div class="avatar-container" style="float:right; padding:6px 10px; display: table-cell; vertical-align: middle;">
+          <a href="{{ answer.author.get_absolute_url }}">
+          <img class="avatar img-circle" style="width:25px;" src="{{ answer.author.get_profile.avatar_url|default:'/static/img/defaultavatar.png' }}">
+          </a>
+        </div>
+        <div style="display: table-cell; vertical-align: middle;">
         <div class="answer-text">
         <div>
         <span class="answer-copy">
@@ -32,4 +35,5 @@
         {% endif %}
         </div>
         </div>
+      </div>
     </div>
