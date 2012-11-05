@@ -1,19 +1,20 @@
 from django.http import HttpResponse, HttpResponseForbidden
 from django.http import HttpResponseRedirect
-from django.contrib.auth.models import Group, User
-from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.db.models import Count
-from django.shortcuts import render, render_to_response, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.template.context import RequestContext
+from django.contrib.auth.models import Group, User
+from django.contrib.auth.decorators import login_required
+from django.contrib.sites.models import Site, get_current_site
 from django.utils.translation import ugettext as _
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Atom1Feed
 
 from taggit.utils import parse_tags
 
-from okqa.qa.models import Question, Answer, QuestionUpvote
 from okqa.qa.forms import AnswerForm, QuestionForm
+from .models import *
 
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating'}
@@ -33,7 +34,8 @@ def questions(request):
         order = '-created_at'
 
     questions = Question.on_site.all().order_by(order)
-    tags = Question.tags.on_site().annotate(count=Count("question"))
+    tags = TaggedQuestion.tags_for(model=Site, instance = get_current_site(request))
+    tags = tags.annotate(count=Count("question"))
 
     return render(request, "qa/question_list.html",
                   dict(questions=questions, tags=tags))
@@ -114,7 +116,7 @@ def post_question(request):
         # return HttpResponseRedirect("/#question_modal")
     elif request.method == "GET":
         form = QuestionForm()
-    return render_to_response("qa/post_question.html", {"form": form}, context_instance=RequestContext(request))
+    return render(request, "qa/post_question.html", {"form": form})
 
 
 @login_required
