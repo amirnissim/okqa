@@ -39,7 +39,7 @@
     </div>
     <ul class="unstyled">
       {% for tag in tags %}
-        <li><a class="btn" href="{% url show_tags tags=tag|urlencode %}">{{tag}}</a> - {{tag.count}} {% trans "questions" %}</li>
+        <li><a class="btn" href="{% url show_tags tag.tag__name|urlencode %}">{{tag.tag__name}}</a> - {{tag.count}} {% trans "questions" %}</li>
       {% endfor %}
     </ul>
   </div>

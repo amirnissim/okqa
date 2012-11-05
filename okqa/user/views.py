@@ -8,7 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
 from django.contrib import messages
 
-from forms import *
+from .forms import *
+from .models import *
 
 # TODO: move to settings
 CANDIDATES_GROUP_NAME = "candidates"

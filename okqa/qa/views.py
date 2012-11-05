@@ -1,3 +1,4 @@
+import json
 from django.http import HttpResponse, HttpResponseForbidden
 from django.http import HttpResponseRedirect
 from django.db import transaction
@@ -16,6 +17,12 @@ from taggit.utils import parse_tags
 from okqa.qa.forms import AnswerForm, QuestionForm
 from .models import *
 
+from django.views.generic import DetailView
+from django.views.generic.detail import SingleObjectTemplateResponseMixin, BaseDetailView
+from okqa.qa.mixins import JSONResponseMixin
+from django.forms.models import model_to_dict
+
+
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating'}
 
@@ -33,9 +40,8 @@ def questions(request):
     except KeyError:
         order = '-created_at'
 
-    questions = Question.on_site.all().order_by(order)
-    tags = TaggedQuestion.tags_for(model=Site, instance = get_current_site(request))
-    tags = tags.annotate(count=Count("question"))
+    questions = Question.on_site.order_by(order)
+    tags = TaggedQuestion.on_site.values('tag__name').annotate(count=Count("tag"))
 
     return render(request, "qa/question_list.html",
                   dict(questions=questions, tags=tags))
@@ -62,6 +68,50 @@ def view_question(request, q_id):
         context["can_upvote"] = False
 
     return render(request, "qa/question_detail.html", context)
+
+
+class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseDetailView):
+    model = Question
+    template_name = 'qa/question_detail.html'
+    context_object_name = 'question'
+    slug_field = 'unislug'
+
+    def get_context_data(self, **kwargs):
+        context = super(QuestionDetail, self).get_context_data(**kwargs)
+        can_answer = self.object.can_answer(self.request.user)
+
+        context['answers'] = self.object.answers.all()
+        if can_answer:
+            try:
+                user_answer = self.object.answers.get(author=self.request.user)
+                context['my_answer_form'] = AnswerForm(instance=user_answer)
+                context['my_answer_id'] = user_answer.id
+            except self.object.answers.model.DoesNotExist:
+                context['my_answer_form'] = AnswerForm()
+                context['can_answer'] = True
+
+        if self.request.user.is_authenticated() and \
+           not self.request.user.upvotes.filter(question=self.object).exists():
+            context['can_upvote'] = True
+        else:
+            context['can_upvote'] = False
+
+        return context
+
+    def render_to_response(self, context):
+            # Look for a 'format=json' GET argument
+            if self.request.GET.get('format', 'html') == 'json' or self.request.is_ajax():
+                data = {
+                    'question': {
+                        'subject': self.object.subject,
+                        'content': self.object.content,
+                        'author': self.object.author.username
+                    }
+                }
+
+                return JSONResponseMixin.render_to_response(self, data)
+            else:
+                return SingleObjectTemplateResponseMixin.render_to_response(self, context)
 
 
 def add_question(request):
@@ -147,7 +197,7 @@ def increase_rating(q):
 def tagged_questions(request, tags):
 
     tags_list = tags.split(',')
-    questions = Question.objects.filter(tags__name__in=tags_list)
+    questions = Question.on_site.filter(tags__name__in=tags_list)
 
     questions.order_by(ORDER_OPTIONS[request.GET.get('order', 'date')])
 
