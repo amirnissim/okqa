@@ -30,21 +30,36 @@ ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating'}
 def home(request):
     return render(request, "home.html")
 
-def questions(request):
+def questions(request, tags = None):
     """
     list questions ordered by number of upvotes
     """
 
-    try:
-        order = ORDER_OPTIONS[request.GET.get('order', None)]
-    except KeyError:
-        order = '-created_at'
+    context = {}
+    order_opt = request.GET.get('order', 'rating')
+    order = ORDER_OPTIONS[order_opt]
 
-    questions = Question.on_site.order_by(order)
-    tags = TaggedQuestion.on_site.values('tag__name').annotate(count=Count("tag"))
+    if tags:
+        tags_list = tags.split(',')
+        questions = Question.on_site.filter(tags__name__in=tags_list)
+        context['current_tags'] = tags_list
+    else:
+        questions = Question.on_site.order_by(order)
+        context['tags'] = TaggedQuestion.on_site.values('tag__name').annotate(count=Count("tag"))
 
-    return render(request, "qa/question_list.html",
-                  dict(questions=questions, tags=tags))
+    context['questions'] = questions
+    context['by_date'] = order_opt=='date'
+    context['by_rating'] = order_opt=='rating'
+    return render(request, "qa/question_list.html", context)
+
+def tagged_questions(request, tags):
+
+    return questions(request, tags_list)
+
+    questions.order_by(ORDER_OPTIONS[request.GET.get('order', 'date')])
+
+    return render(request, "qa/question_list.html", dict(questions=questions,
+                                        current_tags=tags_list))
 
 def view_question(request, q_id):
     question = get_object_or_404(Question, id=q_id)
@@ -193,16 +208,6 @@ def increase_rating(q):
     q.save()
     return q.rating
 
-
-def tagged_questions(request, tags):
-
-    tags_list = tags.split(',')
-    questions = Question.on_site.filter(tags__name__in=tags_list)
-
-    questions.order_by(ORDER_OPTIONS[request.GET.get('order', 'date')])
-
-    return render(request, "qa/question_list.html", dict(questions=questions,
-                                        current_tags=tags_list))
 
 class RssQuestionFeed(Feed):
     """Simple feed to get all questions"""

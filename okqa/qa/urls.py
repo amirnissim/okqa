@@ -4,6 +4,7 @@ from .views import *
 
 urlpatterns = patterns('',
     url(r'^/?$', 'okqa.qa.views.questions', name='home'),
+    url(r'^tags/(?P<tags>.+)/$', 'okqa.qa.views.questions', name="show_tags"),
 
     url(r'^a/post/(?P<q_id>\d+)/$', 'okqa.qa.views.post_answer', name='post_answer'),
     url(r'^q/post/$', 'okqa.qa.views.post_question', name='post_question'),
@@ -16,7 +17,6 @@ urlpatterns = patterns('',
         name='question_detail'
     ),
     url(r'^upvote_question/(?P<q_id>\d+)/$', 'okqa.qa.views.upvote_question', name='upvote_question'),
-    url(r'^tags/(?P<tags>.+)/$', 'okqa.qa.views.tagged_questions', name="show_tags"),
 
     (r'^sitemap\.xml$',
         'django.contrib.sitemaps.views.index',

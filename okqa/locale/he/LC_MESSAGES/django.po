@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-06 10:18+0200\n"
-"PO-Revision-Date: 2012-11-06 10:19+0200\n"
+"POT-Creation-Date: 2012-11-06 10:33+0200\n"
+"PO-Revision-Date: 2012-11-06 10:33+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -81,39 +81,39 @@ msgstr "תוכן"
 msgid "Please enter an answer in no more than %s letters"
 msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
 
-#: qa/views.py:119
+#: qa/views.py:120
 msgid "You cannot post questions"
 msgstr "אינך יכול לפרסם שאלות"
 
-#: qa/views.py:140
+#: qa/views.py:141
 msgid "You must be logged in as a candidate to post answers"
 msgstr "עליך להתחבר כמועמד כדי לפרסם תשובות"
 
-#: qa/views.py:179
+#: qa/views.py:180
 msgid "You already upvoted this question"
 msgstr "תודה, אתה כבר מופיע ברשימת התומכים"
 
-#: qa/views.py:186
+#: qa/views.py:187
 msgid "Use POST to upvote a question"
 msgstr "השתמש ב POST כדי להצביע לשאלה"
 
-#: qa/views.py:209
+#: qa/views.py:210
 msgid "OK QA Question Feed"
 msgstr "שאלות נשאלו"
 
-#: qa/views.py:211
+#: qa/views.py:212
 msgid "Questions from OKQA"
 msgstr "שאלות"
 
-#: qa/views.py:235
+#: qa/views.py:236
 msgid "Answers for the question"
 msgstr "תשובות לשאלה"
 
-#: qa/views.py:241
+#: qa/views.py:242
 msgid "A feed of all answers for the question"
 msgstr "פיד של תשובות לשאלה"
 
-#: qa/views.py:258
+#: qa/views.py:259
 msgid "You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
@@ -222,15 +222,23 @@ msgstr "למועמדים ב"
 msgid " The Demo Party"
 msgstr "מפלגת הדמו"
 
-#: qa/templates/qa/question_list.html:23
+#: qa/templates/qa/question_list.html:22
 msgid "Ask Question"
 msgstr "העלו שאלה"
 
-#: qa/templates/qa/question_list.html:38
+#: qa/templates/qa/question_list.html:32
+msgid "Top Questions"
+msgstr "שאלות מובילות"
+
+#: qa/templates/qa/question_list.html:35
+msgid "Most Recent"
+msgstr "שאלות אחרונות"
+
+#: qa/templates/qa/question_list.html:46
 msgid "Questions asked"
 msgstr "שאלות נשאלו"
 
-#: qa/templates/qa/question_list.html:42
+#: qa/templates/qa/question_list.html:50
 msgid "questions"
 msgstr "שאלות"
 
