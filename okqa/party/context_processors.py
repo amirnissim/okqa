@@ -9,7 +9,8 @@ def forms(request):
     context = {"search_form": SearchForm()}
     if not request.user.is_authenticated():
         context["login_form"] = AuthenticationForm()
-    context["party"] = Party.objects.get_or_create(site=get_current_site(request))
+    context["party"], created = Party.objects.get_or_create(site=get_current_site(request))
+    import pdb; pdb.set_trace()
     return context
 
 
