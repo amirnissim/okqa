@@ -44,13 +44,14 @@ class Question(BaseModel):
         editable=False
     )
     author = models.ForeignKey(User, related_name="questions", verbose_name=_("author"))
-    subject = models.CharField(_("subject"), max_length=MAX_LENGTH_Q_SUBJECT,
+    subject = models.CharField(_("question"), max_length=MAX_LENGTH_Q_SUBJECT,
         help_text=_("Please enter a subject in no more than %s letters") % MAX_LENGTH_Q_SUBJECT)
-    content = models.TextField(_("content"), max_length=MAX_LENGTH_Q_CONTENT,
-        help_text=_("Please enter your content in no more than %s letters") % MAX_LENGTH_Q_CONTENT)
+    content = models.TextField(_("details"), max_length=MAX_LENGTH_Q_CONTENT,
+       help_text=_("Please enter your content in no more than %s letters") % MAX_LENGTH_Q_CONTENT,
+       blank = True, default = '')
     rating = models.IntegerField(_("rating"), default=1)
-    flags_count = models.IntegerField(_("Reports counter"), default=0)
-    tags = TaggableManager(through=TaggedQuestion)
+    flags_count = models.IntegerField(_("flags counter"), default=0)
+    tags = TaggableManager(through=TaggedQuestion, blank=True)
     sites = models.ManyToManyField(Site)
     # for easy access to current site questions
     objects = models.Manager()

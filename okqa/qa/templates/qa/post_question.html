@@ -1,14 +1,21 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block mainContainer %}
-<div class="row">
-  <h1>{% trans "What is your question, sire?" %}</h1>
-  <form method="POST">
-  {% csrf_token %}
-  {{ form }}
-  <br />
-  <input type="submit" value="{% trans 'Publish' %}"></input>
-  </form>
-</div>
-{% endblock %}
+{% load crispy_forms_tags %}
 
+{% block mainContainer %}
+<div class="page-header">
+  <h1>{% trans "What is your question, sire?" %}</h1>
+</div>
+
+<form class="form-horizontal" method="POST">
+  <div class="row post-question">
+    {% csrf_token %}
+    {{ form|crispy }}
+  </div>
+  <div class="row">
+    <div class="offset2">
+      <button type="submit" class="btn btn-primary">{% trans 'Publish' %}</button>
+    </div>
+  </div>
+</form>
+{% endblock %}

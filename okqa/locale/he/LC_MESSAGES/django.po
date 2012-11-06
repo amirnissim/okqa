@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-06 09:39+0200\n"
-"PO-Revision-Date: 2012-11-06 09:40+0200\n"
+"POT-Creation-Date: 2012-11-06 10:18+0200\n"
+"PO-Revision-Date: 2012-11-06 10:19+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -40,13 +40,14 @@ msgid "unicode slug"
 msgstr "שם ביוניקוד"
 
 #: qa/models.py:46
-#: qa/models.py:83
+#: qa/models.py:84
 msgid "author"
 msgstr "מחבר"
 
 #: qa/models.py:47
-msgid "subject"
-msgstr "נושא"
+#: qa/models.py:88
+msgid "question"
+msgstr "שאלה"
 
 #: qa/models.py:48
 #, python-format
@@ -54,32 +55,31 @@ msgid "Please enter a subject in no more than %s letters"
 msgstr "נא להכניס כותרת לשאלה בלא יותר מ %s אותיות"
 
 #: qa/models.py:49
-#: qa/models.py:84
-msgid "content"
-msgstr "תוכן"
+msgid "details"
+msgstr "פירוט"
 
 #: qa/models.py:50
 #, python-format
 msgid "Please enter your content in no more than %s letters"
 msgstr "נא להכניס תוכן בלא יותר מ %s אותיות"
 
-#: qa/models.py:51
-#: qa/models.py:86
+#: qa/models.py:52
+#: qa/models.py:87
 msgid "rating"
 msgstr "ניקוד"
 
-#: qa/models.py:52
-msgid "Reports counter"
+#: qa/models.py:53
+msgid "flags counter"
 msgstr "מונה דיווחים"
 
 #: qa/models.py:85
+msgid "content"
+msgstr "תוכן"
+
+#: qa/models.py:86
 #, python-format
 msgid "Please enter an answer in no more than %s letters"
 msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
-
-#: qa/models.py:87
-msgid "question"
-msgstr "שאלה"
 
 #: qa/views.py:119
 msgid "You cannot post questions"
@@ -172,11 +172,11 @@ msgstr "שואלים"
 msgid "answers"
 msgstr "תשובות"
 
-#: qa/templates/qa/post_question.html:5
+#: qa/templates/qa/post_question.html:7
 msgid "What is your question, sire?"
-msgstr "הנכם מוזמנים להפנות שאלה למועמדים:"
+msgstr "הנכם מוזמנים להפנות שאלה למועמדים"
 
-#: qa/templates/qa/post_question.html:10
+#: qa/templates/qa/post_question.html:17
 #: qa/templates/qa/question_detail.html:70
 msgid "Publish"
 msgstr "פרסם"
@@ -535,6 +535,9 @@ msgstr "ערוך את הפרופיל שלך"
 #: user/templates/user/edit_profile.html:15
 msgid "Update"
 msgstr "עדכן"
+
+#~ msgid "subject"
+#~ msgstr "נושא"
 
 #~ msgid "Follow"
 #~ msgstr "עקוב"

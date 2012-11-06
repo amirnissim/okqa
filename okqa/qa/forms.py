@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput
 from models import Answer, Question
 
 class AnswerForm(ModelForm):
@@ -10,4 +10,3 @@ class QuestionForm(ModelForm):
     class Meta:
         model = Question
         fields = ("subject", "content", "tags", )
-

@@ -9,7 +9,7 @@ body {
 /* Main Container */
 div[role="main"] {
     padding-bottom: 70px;
-    padding-top: 50px;
+    padding-top: 58px;
 }
 /* Footer */
 .footer {
@@ -314,3 +314,4 @@ h1, h2, h3, h4, h5, h6 {
 #party-logo { height: 48px; width:100px; padding:0px; }
 .navbar .nav > li > a {padding-top: 14px;}
 .navbar-search { margin-top: 10px; }
+.post-question input[name="subject"] { width: 500px;}
