@@ -9,7 +9,7 @@ def forms(request):
     context = {"search_form": SearchForm()}
     if not request.user.is_authenticated():
         context["login_form"] = AuthenticationForm()
-    context["party"] = Party.objects.get(site=get_current_site(request))
+    context["party"] = Party.objects.get_or_create(site=get_current_site(request))
     return context
 
 
