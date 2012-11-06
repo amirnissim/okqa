@@ -29,7 +29,10 @@ TIME_ZONE = 'Asia/Jerusalem'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'he'
 
-SITE_ID = 1
+try:
+    SITE_ID = os.environ['SITE_ID']
+except:
+    SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
