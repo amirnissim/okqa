@@ -30,6 +30,23 @@ class QuestionTest(TestCase):
         self.assertEqual(Answer.on_site.count(), 1)
         #TODO: self.assertEqual(TaggedQuestion.on_site.count(), 1)
 
+    def test_flag(self):
+        self.q.flagged()
+        self.assertEquals(self.q.flags_count, 1)
+        c = Client()
+        response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
+        self.assertEquals(response.status_code, 302)
+        response = c.post(reverse('auth_login'), dict(username='commoner',
+                                                 password='pass'))
+        self.assertEquals(response.status_code, 302)
+        response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.content, "2")
+        self.q = Question.objects.get(pk=self.q.id)
+        self.assertEquals(self.q.flags_count, 2)
+        response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
+        self.assertEquals(response.status_code, 403)
+
     def test_upvote(self):
         c = Client()
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))

@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^q/post/$', 'okqa.qa.views.post_question', name='post_question'),
 
     url(r'^q/(?P<q_id>\d+)/$', 'okqa.qa.views.view_question', name='question-details'),
+	url(r'^q/(?P<q_id>\d+)/flag/$', flag_question, name='flag_question'),
 
     url(r'^q/(?P<slug>[-\w]+)/$',
         QuestionDetail.as_view(),
@@ -47,6 +48,5 @@ urlpatterns = patterns('',
         name='atom_question_answers'
     ),
 
-	url(r'^flag_question/(?P<q_id>\d+)/$', 'flag_question', name='flag_question'),
 
 )

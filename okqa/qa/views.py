@@ -1,9 +1,9 @@
 import json
 from django.http import HttpResponse, HttpResponseForbidden
 from django.http import HttpResponseRedirect
-from django.db import transaction
 from django.db.models import Count
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.http import require_POST
 from django.template.context import RequestContext
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.decorators import login_required
@@ -248,23 +248,16 @@ class AtomQuestionAnswerFeed(RssQuestionAnswerFeed):
     feed_type = Atom1Feed
     subtitle = RssQuestionAnswerFeed.description
 
-@transaction.commit_on_success
-def increase_reports(q):
-    q = Question.objects.get(id=q.id)
-    q.flags_count += 1
-    q.save()
-    return q.flags_count
-
 @login_required
+@require_POST
 def flag_question(request, q_id):
     q = get_object_or_404(Question, id=q_id)
     user = request.user
-    
+
     if user.flags.filter(question=q):
         return HttpResponseForbidden(_("You already reported this question"))
-    
     else:
         flag = QuestionFlag.objects.create(question=q, reporter=user)
         #TODO: use signals so the next line won't be necesary
-        new_count = increase_reports(q)
+        new_count = q.flagged()
         return HttpResponse(new_count)

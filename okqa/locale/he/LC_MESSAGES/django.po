@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-06 00:23+0200\n"
-"PO-Revision-Date: 2012-11-06 00:28+0200\n"
+"POT-Creation-Date: 2012-11-06 09:39+0200\n"
+"PO-Revision-Date: 2012-11-06 09:40+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -19,19 +19,19 @@ msgstr ""
 "X-Language: en_US\n"
 "X-Source-Language: C\n"
 
-#: party/models.py:13
+#: party/models.py:14
 msgid "Home page"
 msgstr "עמוד הבית"
 
-#: party/models.py:14
+#: party/models.py:15
 msgid "Primaries Date"
 msgstr "מועד הבחירות המקדימות"
 
-#: party/models.py:15
+#: party/models.py:16
 msgid "Qualifying date"
 msgstr "תאריך אכשרה"
 
-#: party/models.py:16
+#: party/models.py:17
 msgid "Number of party members"
 msgstr "מספר חברי המפלגה"
 
@@ -40,7 +40,7 @@ msgid "unicode slug"
 msgstr "שם ביוניקוד"
 
 #: qa/models.py:46
-#: qa/models.py:76
+#: qa/models.py:83
 msgid "author"
 msgstr "מחבר"
 
@@ -54,7 +54,7 @@ msgid "Please enter a subject in no more than %s letters"
 msgstr "נא להכניס כותרת לשאלה בלא יותר מ %s אותיות"
 
 #: qa/models.py:49
-#: qa/models.py:77
+#: qa/models.py:84
 msgid "content"
 msgstr "תוכן"
 
@@ -64,16 +64,20 @@ msgid "Please enter your content in no more than %s letters"
 msgstr "נא להכניס תוכן בלא יותר מ %s אותיות"
 
 #: qa/models.py:51
-#: qa/models.py:79
+#: qa/models.py:86
 msgid "rating"
 msgstr "ניקוד"
 
-#: qa/models.py:78
+#: qa/models.py:52
+msgid "Reports counter"
+msgstr "מונה דיווחים"
+
+#: qa/models.py:85
 #, python-format
 msgid "Please enter an answer in no more than %s letters"
 msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
 
-#: qa/models.py:80
+#: qa/models.py:87
 msgid "question"
 msgstr "שאלה"
 
@@ -93,21 +97,25 @@ msgstr "תודה, אתה כבר מופיע ברשימת התומכים"
 msgid "Use POST to upvote a question"
 msgstr "השתמש ב POST כדי להצביע לשאלה"
 
-#: qa/views.py:210
+#: qa/views.py:209
 msgid "OK QA Question Feed"
 msgstr "שאלות נשאלו"
 
-#: qa/views.py:212
+#: qa/views.py:211
 msgid "Questions from OKQA"
 msgstr "שאלות"
 
-#: qa/views.py:236
+#: qa/views.py:235
 msgid "Answers for the question"
 msgstr "תשובות לשאלה"
 
-#: qa/views.py:242
+#: qa/views.py:241
 msgid "A feed of all answers for the question"
 msgstr "פיד של תשובות לשאלה"
+
+#: qa/views.py:258
+msgid "You already reported this question"
+msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
 #: qa/templates/create_user.html:8
 msgid "Create new user"
@@ -145,21 +153,21 @@ msgstr "הצג מצביע"
 msgid "Voters"
 msgstr "מצביעים"
 
-#: qa/templates/qa/_answer.html:29
-#: qa/templates/qa/_question.html:26
-#: user/templates/user/candidate_detail.html:36
+#: qa/templates/qa/_answer.html:32
+#: qa/templates/qa/_question.html:31
+#: user/templates/user/candidate_detail.html:38
 msgid "before"
 msgstr "לפני"
 
-#: qa/templates/qa/_answer.html:31
+#: qa/templates/qa/_answer.html:34
 msgid "Edit"
 msgstr "עריכה"
 
-#: qa/templates/qa/_question.html:8
+#: qa/templates/qa/_question.html:13
 msgid "votes"
 msgstr "שואלים"
 
-#: qa/templates/qa/_question.html:12
+#: qa/templates/qa/_question.html:17
 #: user/templates/user/candidate_list.html:18
 msgid "answers"
 msgstr "תשובות"
@@ -169,7 +177,7 @@ msgid "What is your question, sire?"
 msgstr "הנכם מוזמנים להפנות שאלה למועמדים:"
 
 #: qa/templates/qa/post_question.html:10
-#: qa/templates/qa/question_detail.html:66
+#: qa/templates/qa/question_detail.html:70
 msgid "Publish"
 msgstr "פרסם"
 
@@ -181,23 +189,28 @@ msgstr "תמכו בשאלה"
 msgid "Answer the Question"
 msgstr "תרום תשובה לעניין"
 
-#: qa/templates/qa/question_detail.html:32
-#: user/templates/user/candidate_detail.html:16
+#: qa/templates/qa/question_detail.html:36
+#: user/templates/user/candidate_detail.html:18
 msgid "Answers"
 msgstr "תשובות"
 
-#: qa/templates/qa/question_detail.html:33
-#: qa/templates/qa/question_detail.html:43
+#: qa/templates/qa/question_detail.html:37
+#: qa/templates/qa/question_detail.html:47
 #: qa/templates/qa/question_list.html:11
 #: user/templates/user/candidate_detail.html:10
 msgid "Subscribe"
-msgstr ""
+msgstr "הרשם"
 
-#: qa/templates/qa/question_detail.html:42
+#: qa/templates/qa/question_detail.html:46
 msgid "No Answers Yet"
 msgstr "עדיין לא ניתנו תשובות"
 
+#: qa/templates/qa/question_detail.html:100
+msgid "Thank you for falgging the question. One of our editors will look at it shortly. "
+msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את השאלה בקרוב."
+
 #: qa/templates/qa/question_list.html:9
+#: user/templates/user/candidate_detail.html:50
 msgid "Questions"
 msgstr "שאלות"
 
@@ -236,7 +249,7 @@ msgid "Candidates"
 msgstr "מועמדים"
 
 #: templates/base.html:27
-#: user/templates/user/candidate_detail.html:46
+#: user/templates/user/candidate_detail.html:70
 msgid "About"
 msgstr "אודות"
 
