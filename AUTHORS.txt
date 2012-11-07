@@ -3,8 +3,9 @@ Yuval Feinstein
 Moshe Kamensky
 Benny Daon
 Shai Berger
-Mirit
-Shimon
-Yanin
+Paul Welsh
+Mirit Malka
+Shimon Tolts
+Yanin Elbi
 Pavel
-Dror
+Dror Bren
