@@ -92,6 +92,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'crispy_forms',
     'storages',
+    'gunicorn',
     'okqa.qa',
     'okqa.user',
     'okqa.party',
