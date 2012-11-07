@@ -17,3 +17,6 @@ EMAIL_HOST= 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
 EMAIL_USE_TLS = True
+INSTALLED_APPS += (
+    'gunicorn',
+)
