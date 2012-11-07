@@ -18,9 +18,8 @@ it on your local machine::
     $ mkvirtualenv --no-site-packages djangobench
     $ git clone https://github.com/hasadna/ok-qa.git
     $ cd ok-qa
-    $ cp okqa/local_settings_template.py okqa/local_settings.py
     $ pip install -r requirements.txt
     $ python manage.py syncdb --migrate --noinput
-    $ python manage.py runserver
+    $ fab runserver
 
 .. _live site: http://okqa.herokuapp.com
