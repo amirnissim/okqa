@@ -141,6 +141,7 @@ INSTALLED_APPS = (
     'south',
     'debug_toolbar',
     'crispy_forms',
+    'storages',
     'okqa.qa',
     'okqa.user',
     'okqa.party',
@@ -204,6 +205,12 @@ HAYSTACK_CONNECTIONS = {
 
 INTERNAL_IPS = ('127.0.0.1',)
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY = "AKIAJJO36KXOHFJ5UUIQ"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = 'ok-qa-media'
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 try:
     from local_settings import *
