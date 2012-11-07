@@ -7,8 +7,9 @@ from .base import *
 from .s3 import *
 
 ENV = 'HEROKU'
-SITE_ID = os.environ['SITE_ID']
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+DEBUG = os.environ.get('DEBUG', False)
+TEMPLATE_DEBUG = DEBUG
 
 DATABASES = { 'default': dj_database_url.config() }
 

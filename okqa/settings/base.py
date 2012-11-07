@@ -153,3 +153,4 @@ HAYSTACK_CONNECTIONS = {
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
+SITE_ID = os.environ.get('SITE_ID', 1)
