@@ -35,7 +35,7 @@
           <h5>
             {% trans 'Answers' %}
             <a href="{% url atom_question_answers question.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
-              <img src="/static/img/social-icons/colour/rss.png" width="25" />
+              <img src="{{STATIC_URL}}img/rss.png" width="25" />
              </a>
           </h5>
         {% endif %}

@@ -6,22 +6,25 @@
   <div class="container">
     <div class="row">
         <div class="span9">
-          <h1>{% trans "Questions" %} <small>{% trans "for candidate of" %}{{ party.site.name }}
-           {% if not current_tags %}
-             <a href="{% url atom_all_questions %}" title="{% trans 'Subscribe' %}" rel="tooltip"><img src="/static/img/social-icons/colour/rss.png" width="25" /></a></small>
-           {% endif %}
-        </h1>
-        <ul class="nav nav-pills">
-          {% for tag in current_tags %}
-          <li><a class="btn" href="{% url show_tags tags=tag|urlencode %}">{{tag}}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% if user.is_authenticated %}
-        <div class="span2 offset1 new-question">
-        <a class="btn btn-success btn-large" href="{% url post_question %}">{% trans "Ask Question" %}</a>
+          <h1>{% trans "Questions" %} 
+               <small>{% trans "for candidate of" %}{{ party.site.name }}</small>
+               {% if not current_tags %}
+               <a href="{% url atom_all_questions %}" title="{% trans 'Subscribe' %}" rel="tooltip">
+                 <img src="{{STATIC_URL}}img/rss.png" width="25" />
+               </a>
+               {% endif %}
+          </h1>
+          <ul class="nav nav-pills">
+            {% for tag in current_tags %}
+            <li><a class="btn" href="{% url show_tags tags=tag|urlencode %}">{{tag}}</a></li>
+            {% endfor %}
+          </ul>
         </div>
-      {% endif %}
+        {% if user.is_authenticated %}
+        <div class="span2 offset1 new-question">
+          <a class="btn btn-success btn-large" href="{% url post_question %}">{% trans "Ask Question" %}</a>
+        </div>
+        {% endif %}
     </div>
   </div>
 </div>

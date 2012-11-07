@@ -10,9 +10,7 @@ ENV = 'HEROKU'
 SITE_ID = os.environ['SITE_ID']
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 DATABASES = { 'default': dj_database_url.config() }
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
 EMAIL_HOST= 'smtp.sendgrid.net'
