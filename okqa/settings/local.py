@@ -27,8 +27,6 @@ EMAIL_USE_TLS = False
 
 LOGGING['handlers']['console']['level'] = 'DEBUG'
 
-# from .ok_aws_settings import *
-from .s3 import *
 if not STATIC_S3:
     STATIC_URL = '/static/'
     STATIC_PATH = '/static/'
