@@ -31,3 +31,11 @@ if not STATIC_S3:
     STATIC_URL = '/static/'
     STATIC_PATH = '/static/'
     STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://esearch.aws-ext.com:9200/',
+        'INDEX_NAME': 'haystack',
+    },
+}
