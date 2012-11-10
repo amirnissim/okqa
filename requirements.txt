@@ -20,3 +20,4 @@ PIL
 django-storages==1.1.5
 boto==2.6.0
 Unipath==0.2.1
+gunicorn==0.15.0

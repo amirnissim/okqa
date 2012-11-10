@@ -92,6 +92,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'crispy_forms',
     'storages',
+    'gunicorn',
     'okqa.qa',
     'okqa.user',
     'okqa.party',
@@ -144,3 +145,4 @@ AUTH_PROFILE_MODULE = 'user.UserProfile'
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
+SITE_ID = os.environ.get('SITE_ID', 1)
