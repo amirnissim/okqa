@@ -3,7 +3,7 @@
 <!-- Let's add the upvote and follow on hover -->
 <div class="question-summary narrow" id="question-summary-{{ question.id }}">
     <div class="avatar-container" style="padding-top:15px;">
-        <a href="{% url 'question_detail' question.unislug %}" rel="tooltip" class="" title="{{question.author.get_full_name}}">
+      <a href="{{ question.author.get_absolute_url }}" rel="tooltip" class="" title="{{question.author.get_full_name}}">
         <img src="{{ question.author.get_profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle"></a>
         </a>
     </div>
@@ -29,7 +29,7 @@
         </div>
         <div class="started">
             <span title="{{ question.created_at }}" class="relativetime">{% trans "before" %} {{ question.created_at|timesince }}</span>
-            <a href="{% url 'question_detail' question.unislug %}" rel="tooltip" class="answer-user owner" title="{{question.author.get_full_name}}">{{question.author.username}}</a>
+            <a href="{{ question.author.get_absolute_url }}" rel="tooltip" class="answer-user owner" title="{{question.author.get_full_name}}">{{question.author.username}}</a>
         </div>
     </div>
 </div>
