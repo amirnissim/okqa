@@ -22,7 +22,7 @@ EMAIL_USE_TLS = True
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': os.environ['BONSAI_URL'],
-        'INDEX_NAME': 'haystack',
+        'URL': os.environ['SEARCHBOX_URL'],
+        'INDEX_NAME': 'documents',
     },
 }
