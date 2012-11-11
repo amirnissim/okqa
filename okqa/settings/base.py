@@ -143,14 +143,6 @@ DEFAULT_FROM_EMAIL = 'okqa@hasadna.org.il'
 
 AUTH_PROFILE_MODULE = 'user.UserProfile'
 
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': 'http://esearch.aws-ext.com:9200/',
-        'INDEX_NAME': 'haystack',
-    },
-}
-
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 SITE_ID = os.environ.get('SITE_ID', 1)
