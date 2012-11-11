@@ -35,7 +35,7 @@ if not STATIC_S3:
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
-        'URL': 'http://esearch.aws-ext.com:9200/',
-        'INDEX_NAME': 'haystack',
+        'URL': 'http://localhost:9200',
+        'INDEX_NAME': 'qa',
     },
 }
