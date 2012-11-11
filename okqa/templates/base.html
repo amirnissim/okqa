@@ -129,6 +129,9 @@
           })
 
           // truncate
+          /* There's an issue with trunk8 that needs fixing before we can
+             uncomment the next lines:
+             https://github.com/rviscomi/trunk8/issues/5
           $('.too-long').trunk8();
 
           $('.too-long-toggle').trunk8({
@@ -145,6 +148,7 @@
             $(this).parent().trunk8();
             return false;
           });
+          */
 
           // tooltips
           $('[rel="tooltip"]').tooltip();
