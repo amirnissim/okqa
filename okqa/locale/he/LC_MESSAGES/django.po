@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-11 11:58+0200\n"
-"PO-Revision-Date: 2012-11-11 11:59+0200\n"
+"POT-Creation-Date: 2012-11-11 13:14+0200\n"
+"PO-Revision-Date: 2012-11-11 13:16+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -180,7 +180,7 @@ msgid "votes"
 msgstr "שואלים"
 
 #: qa/templates/qa/_question.html:17
-#: user/templates/user/candidate_list.html:18
+#: user/templates/user/candidate_list.html:20
 msgid "answers"
 msgstr "תשובות"
 
@@ -331,6 +331,7 @@ msgid "Content is licensed CC-BY. Source code is freely available "
 msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.  קוד המקור חופשי לשימוש"
 
 #: templates/base.html:107
+#: user/templates/user/candidate_list.html:44
 msgid "here"
 msgstr "כאן"
 
@@ -543,9 +544,15 @@ msgstr "תודה, אתה כבר מחובר למערכת"
 msgid "You need to use POST to login"
 msgstr ""
 
-#: user/templates/user/candidate_list.html:31
-msgid "Candidate bio here..."
-msgstr "כאן תופיע ביוגרפיה קצרה של המועמד..."
+#: user/templates/user/candidate_list.html:40
+msgid ""
+"\n"
+"      The Candidates biographies were given by the candidates themselvs and\n"
+"      we can not guarntee their accuracy. The avatars are pulled from \n"
+"    "
+msgstr ""
+"\n"
+"האתר אינו אחראי לדיוק הביוגרפיות של המועמדים.  תמונות הדיוקן מוצגות מ"
 
 #: user/templates/user/edit_profile.html:6
 msgid "Edit your profile"
@@ -554,6 +561,9 @@ msgstr "ערוך את הפרופיל שלך"
 #: user/templates/user/edit_profile.html:15
 msgid "Update"
 msgstr "עדכן"
+
+#~ msgid "Candidate bio here..."
+#~ msgstr "כאן תופיע ביוגרפיה קצרה של המועמד..."
 
 #~ msgid " The Demo Party"
 #~ msgstr "מפלגת הדמו"

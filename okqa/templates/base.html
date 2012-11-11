@@ -133,15 +133,15 @@
 
           $('.too-long-toggle').trunk8({
             lines: 3,
-            fill: '&hellip; <a id="read-more" href="#">{% trans "read more" %}</a>'
+            fill: '&nbsp;<a class="read-more" href="#">&hellip;{% trans "read more" %}</a>'
           });
 
-          $('#read-more').live('click', function (event) {
-            $(this).parent().trunk8('revert').append(' <a id="read-less" href="#">{% trans "read less" %}</a>');
+          $('.read-more').live('click', function (event) {
+            $(this).parent().trunk8('revert').append('&nbsp;&nbsp; <a class="read-less" href="#">{% trans "read less" %}</a>');
             return false;
           });
 
-          $('#read-less').live('click', function (event) {
+          $('.read-less').live('click', function (event) {
             $(this).parent().trunk8();
             return false;
           });
