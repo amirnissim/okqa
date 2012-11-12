@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% block extrahead %}
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/autoSuggest.css"/>
+{% endblock %}
 
 {% block mainContainer %}
 <div class="page-header">
@@ -9,6 +12,8 @@
 
 <form class="form-horizontal" method="POST">
   <div class="row post-question">
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.autoSuggest.js"></script>
     {% csrf_token %}
     {{ form|crispy }}
   </div>

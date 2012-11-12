@@ -99,6 +99,7 @@ INSTALLED_APPS = (
     'okqa.qa',
     'okqa.user',
     'okqa.party',
+    'okqa.taggit_autosuggest',
 )
 
 AUTHENTICATION_BACKENDS = (
