@@ -27,7 +27,7 @@
         <div class="summary">
             <h3>
                 <a href="{{ candidate.get_absolute_url }}" class="candidate-hyperlink"
-                title="{{ candidate.username }}">{{ candidate.username }}</a>
+                title="{{ candidate.username }}">{{ candidate.get_full_name|default:candidate.username}}</a>
             </h3>
             <div class="preview">
               <span class="too-long-toggle"> {{ candidate.get_profile.bio }}</span>
