@@ -36,6 +36,9 @@
       <ul class="dropdown-menu">
         <li><a href="{{ user.get_absolute_url }}">{% trans 'my page' %}</a></li>
         <li><a href="{% url edit_profile %}">{% trans 'edit profile' %}</a></li>
+        {% if user.is_staff %}
+            <li><a href="/admin/">{% trans 'admin' %}</a></li>
+        {% endif %}
         <form class="form-inline" method="post" action="{% url auth_logout %}">
           {% csrf_token %}
           <li><a href="javascript:;" class="submit-link">{% trans 'logout' %}</a></li>
