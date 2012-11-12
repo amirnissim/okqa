@@ -1,2 +1,2 @@
 {% load i18n %}
-{% trans "Please activate your account at" %} www.oknesset.org  {% trans "You have " %} {{ expiration_days }} {% trans " days left!" %}
+{% trans "Please activate your account" %}

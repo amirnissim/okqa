@@ -1,8 +1,16 @@
 {% load i18n %}
 {% load humanize %}
-{% blocktrans with activation_key as key and %}
-Someone, hopefully you, signed up for a new account at djangoproject.com using this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar:
-http://127.0.0.1:8000/activate/{{ key }}/
+{% blocktrans with site.name as name %}
+Someone, hopefully you, signed up for a new account at {{ name}} using this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar:
+{% endblocktrans %}
+http://{{ site.domain }}{% url registration_activate activation_key %}
 
+{% blocktrans with site.name as name %}
 If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in {{ expiration_days }} days.
+
+If you are a candidate, you are welcome to post your answers. Just
+send us an email at qa@hasadna.org.il and we will verify your account.
+
+Thanks,
+the team at {{ name }}
 {% endblocktrans %}

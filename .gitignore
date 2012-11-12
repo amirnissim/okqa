@@ -1,5 +1,8 @@
 .*
 *.pyc
 *.db
-local_settings.py
+*.sublime-project
+*.sublime-workspace
+static_root
+build/
 ~
