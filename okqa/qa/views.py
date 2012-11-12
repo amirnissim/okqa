@@ -135,6 +135,7 @@ def post_question(request):
         # return HttpResponseRedirect("/#question_modal")
     elif request.method == "GET":
         form = QuestionForm()
+     
     return render_to_response("qa/post_question.html", {"form": form }, context_instance=RequestContext(request))
 
 @login_required
