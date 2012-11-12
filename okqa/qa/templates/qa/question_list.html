@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load pagination_tags %}
 {% block homeNav %}class="active"{% endblock %}
 {% block mainContainer %}
 <div class="page-header">
@@ -41,9 +42,11 @@
     </ul>
     {% endif %}
 
+    {% autopaginate questions 20 %}
     {% for question in questions %}
         {% include "qa/_question.html" %}
     {% endfor %}
+    {% paginate %}
   </div>
   <div class="span3 sidebar">
     <div class="module" id="questions-count">
