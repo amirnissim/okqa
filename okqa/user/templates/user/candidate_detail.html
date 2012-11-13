@@ -31,13 +31,15 @@
                 </div>
                 <br />
                 <div class="well">
-                  <a name="{{answer.id}}">
+                    <a name="{{answer.id}}"></a>
                     <strong style="font-size: 13px;">
                         <span class="too-long-toggle">{{ answer.content|linebreaksbr }}</span>
                     </strong>
                     <span title="{{ question.created_at }}" class="relativetime">
                         <br />
-                        {% trans "before" %} {{ answer.updated_at|timesince }}
+                        <a href="#{{answer.id}}">&#9875;
+                          {% trans "before" %} {{ answer.updated_at|timesince }}
+                        </a>
                     </span>
                   </a>
                 </div>

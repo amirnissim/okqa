@@ -6,9 +6,9 @@ from django.contrib.sites.models import Site
 from django.contrib.sites.managers import CurrentSiteManager
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
-from taggit.managers import TaggableManager
 from taggit.models import TaggedItemBase
 from slugify import slugify as unislugify
+from taggit_autosuggest.managers import TaggableManager
 
 
 MAX_LENGTH_Q_SUBJECT = 80
@@ -52,6 +52,7 @@ class Question(BaseModel):
     rating = models.IntegerField(_("rating"), default=1)
     flags_count = models.IntegerField(_("flags counter"), default=0)
     tags = TaggableManager(through=TaggedQuestion, blank=True)
+    # tags = TaggableManager(through=TaggedQuestion, blank=True)
     sites = models.ManyToManyField(Site)
     # for easy access to current site questions
     objects = models.Manager()

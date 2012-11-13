@@ -6,32 +6,42 @@
         {% trans "Candidates" %}
     </h1>
 </div>
-{% for candidate in candidates %}
-<div class="candidate-summary narrow" id="candidate-summary-{{ candidate.id }}">
-    <div onclick="window.location.href='{{ candidate.get_absolute_url }}'
-    class="cp">
-        <div class="answers" title="">
-            <div class="mini-counts">
-                {{ candidate.answers.count }}
+<div class="row">
+  <div class="span9">
+  {% for candidate in candidates %}
+    <div class="candidate-summary narrow" id="candidate-summary-{{ candidate.id }}">
+        <div onclick="window.location.href='{{ candidate.get_absolute_url }}'"
+        class="cp">
+            <div class="answers" title="">
+                <div class="mini-counts">
+                    {{ candidate.answers.count }}
+                </div>
+                <div>
+                    {% trans "answers" %}
+                </div>
             </div>
-            <div>
-                {% trans "answers" %}
+        </div>
+        <div class="avatar-container">
+          <a href="{{ candidate.get_absolute_url }}" title="{{ candidate.get_full_name }}"><img src="{{ candidate.get_profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle"></a>
+        </div>
+        <div class="summary">
+            <h3>
+                <a href="{{ candidate.get_absolute_url }}" class="candidate-hyperlink"
+                title="{{ candidate.username }}">{{ candidate.get_full_name|default:candidate.username}}</a>
+            </h3>
+            <div class="preview">
+              <span class="too-long-toggle"> {{ candidate.get_profile.bio }}</span>
             </div>
         </div>
     </div>
-    <div class="avatar-container">
-      <a href="{{ candidate.get_absolute_url }}" title="{{ candidate.get_full_name }}"><img src="{{ candidate.get_profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle"></a>
-    </div>
-    <div class="summary">
-        <h3>
-            <a href="{{ candidate.get_absolute_url }}" class="candidate-hyperlink"
-            title="{{ candidate.username }}">{{ candidate.username }}</a>
-        </h3>
-        <div class="preview">
-            {% trans 'Candidate bio here...' %}
-        </div>
-    </div>
-
+  {% endfor %}
+  </div>
+  <div class="span3">
+    {% blocktrans %}
+      The Candidates biographies were given by the candidates themselvs and
+      we can not guarntee their accuracy. The avatars are pulled from 
+    {% endblocktrans %}
+    <a href="http://gravatar.com">{% trans "here" %}</a>
+  </div>
 </div>
-{% endfor %}
 {% endblock %}

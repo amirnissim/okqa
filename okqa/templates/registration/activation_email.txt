@@ -8,6 +8,9 @@ http://{{ site.domain }}{% url registration_activate activation_key %}
 {% blocktrans with site.name as name %}
 If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in {{ expiration_days }} days.
 
+If you are a candidate, you are welcome to post your answers. Just
+send us an email at qa@hasadna.org.il and we will verify your account.
+
 Thanks,
 the team at {{ name }}
 {% endblocktrans %}

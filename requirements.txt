@@ -7,6 +7,7 @@ django-registration==0.8
 django-taggit==0.9.3
 wsgiref==0.1.2
 git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
+git+https://github.com/tgdn/django-bootstrap-pagination.git#egg=django-bootstrap-pagination
 requests
 pyelasticsearch
 PyYAML==3.10
@@ -21,3 +22,4 @@ django-storages==1.1.5
 boto==2.6.0
 Unipath==0.2.1
 gunicorn==0.15.0
+psycopg2==2.4.5

@@ -52,6 +52,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'bootstrap_pagination.middleware.PaginationMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
@@ -68,6 +69,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.static",
     "django.core.context_processors.tz",
+    "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
     'okqa.party.context_processors.forms',
     )
@@ -93,9 +95,11 @@ INSTALLED_APPS = (
     'crispy_forms',
     'storages',
     'gunicorn',
+    'bootstrap_pagination',
     'okqa.qa',
     'okqa.user',
     'okqa.party',
+    'okqa.taggit_autosuggest',
 )
 
 AUTHENTICATION_BACKENDS = (
