@@ -26,3 +26,4 @@ HAYSTACK_CONNECTIONS = {
         'INDEX_NAME': 'qa',
     },
 }
+ANALYTICS_ID = os.environ.get('ANALYTICS_ID')
