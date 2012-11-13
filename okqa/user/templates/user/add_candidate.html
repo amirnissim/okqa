@@ -1,0 +1,15 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+{% block content %}
+<div class="page-header">
+  <h1>{% trans "Invite a candidate" %}</h1>
+</div>
+<form  method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">{% trans 'Send' %}</button>
+</form>
+{% endblock %}
+
+
+
