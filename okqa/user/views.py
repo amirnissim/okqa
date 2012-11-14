@@ -15,7 +15,8 @@ from .models import *
 
 # TODO: move to settings
 CANDIDATES_GROUP_NAME = "candidates"
-candidate_group = Group.objects.get_or_create(name=CANDIDATES_GROUP_NAME)
+candidate_group, created = Group.objects.get_or_create(name=CANDIDATES_GROUP_NAME)
+
 def login (request):
     if request.user.is_authenticated():
         return HttpResponseForbidden(_('You are already logged in'))
