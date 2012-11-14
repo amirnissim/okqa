@@ -1,10 +1,12 @@
 {% load i18n %}
+{% load url from future %}
 <!DOCTYPE HTML>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/auth-buttons.css"/>
     <title>
       {% block pageTitle %} {% endblock %} {{ party.site.name }}
     </title>
@@ -15,13 +17,13 @@
   <div class="navbar-inner">
     <div class="container">
       <div id="party-logo" class="brand">
-        <a href="{% url home %}">
+        <a href="{% url 'home' %}">
           <img src="{{ STATIC_URL }}{{ party.logo }}" title="{{party.site.name}}">
         </a>
       </div>
       <ul class="nav">
         <li><a href="/" {% block homeNav %}{% endblock %}>{% trans "Home" %}</a></li>
-        <li><a href="{% url candidate_list %}">{% trans "Candidates" %}</a></li>
+        <li><a href="{% url 'candidate_list' %}">{% trans "Candidates" %}</a></li>
         <li><a href="/about/">{% trans "About" %}</a></li>
       </ul>
       <form class="navbar-search pull-left" action="/search/">
@@ -35,28 +37,28 @@
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Welcome' %}, {{ user.username }} <b class="caret"></b></a>
       <ul class="dropdown-menu">
         <li><a href="{{ user.get_absolute_url }}">{% trans 'my page' %}</a></li>
-        <li><a href="{% url edit_profile %}">{% trans 'edit profile' %}</a></li>
+        <li><a href="{% url 'edit_profile' %}">{% trans 'edit profile' %}</a></li>
         {% if user.is_staff %}
             <li><a href="/admin/">{% trans 'admin' %}</a></li>
         {% endif %}
-        <form class="form-inline" method="post" action="{% url auth_logout %}">
+        <form class="form-inline" method="post" action="{% url 'auth_logout' %}">
           {% csrf_token %}
           <li><a href="javascript:;" class="submit-link">{% trans 'logout' %}</a></li>
         </form>
       </ul>
 
       {% else %}
-        <li><a href="{% url registration.views.register %}">{% trans "Register" %}</a></li>
+        <li><a href="{% url 'registration.views.register' %}">{% trans "Register" %}</a></li>
         <li class="divider-vertical"></li>
         <li><a href="#login_modal" data-toggle="modal">{% trans "Login" %}</a></li>
+      </ul>
       {% endif %}
       </div>
     </div>
   </div>
-</div>
 {% if login_form %}
 <div class="modal fade" id="login_modal">
- <form id="login-form" class="form-horizontal" method="post" action="{% url login %}">
+ <form id="login-form" class="form-horizontal" method="post" action="{% url 'login' %}">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
     <h3>{% trans "Connect" %}</h3>
@@ -80,11 +82,23 @@
     </div>
   </div>
   <div class="modal-footer">
-    <a href="{% url auth_password_reset %}">{% trans 'Reset password' %}</a>
+    <a href="{% url 'auth_password_reset' %}">{% trans 'Reset password' %}</a>
     <input  type="submit" class="btn btn-primary" value="{% trans "Login" %}" />
   </div>
  </form>
  <!--/.nav-collapse -->
+
+{# Social Login Buttons --- START #}
+<div id="social-auth">
+    <a class="btn-auth btn-facebook" href="{% url 'socialauth_begin' 'facebook' %}">
+        {% trans "Login using Facebook" %}</a>
+    <a class="btn-auth btn-twitter" href="{% url "socialauth_begin" "twitter" %}">
+        {% trans "Login using Twitter" %}</a>
+    <a class="btn-auth btn-gmail" href="{% url "socialauth_begin" "gmail" %}">
+        {% trans "Login using Gmail" %}</a>
+</div>
+{# Social Login Buttons --- END #}
+
 </div>
 {% endif %}
 
@@ -177,6 +191,19 @@
           return false;
         })
       });
+
+      {% if ANALYTICS_ID %}
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '{{ANALYTICS_ID}}']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+      {% endif %}
+
     </script>
     {% block extrascript %} {% endblock %}
 </body>
