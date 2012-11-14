@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-13 17:01+0200\n"
-"PO-Revision-Date: 2012-11-13 17:04+0200\n"
+"POT-Creation-Date: 2012-11-14 04:52+0200\n"
+"PO-Revision-Date: 2012-11-14 04:53+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -587,15 +587,15 @@ msgstr "זכר"
 msgid "Female"
 msgstr "נקבה"
 
-#: user/views.py:21
+#: user/views.py:22
 msgid "You are already logged in"
 msgstr "תודה, אתה כבר מחובר למערכת"
 
-#: user/views.py:33
+#: user/views.py:34
 msgid "You need to use POST to login"
 msgstr ""
 
-#: user/views.py:90
+#: user/views.py:91
 msgid "Sorry, this link has already been used"
 msgstr "מצטערים, הקישור אינו פעיל. אנא נסה להרשם שנית"
 
@@ -616,6 +616,14 @@ msgid "Thank you for clicking. Please complete the form below to get started."
 msgstr "תודה על ההקלקה. אנא השלם/י את הטופס הקשר והתחל/י לענות על שאלות החברים"
 
 #: user/templates/user/candidate_activate.html:15
+msgid "We get your avatar from "
+msgstr "תמונות הפרופיל מגיעות אלינו ישירות מ"
+
+#: user/templates/user/candidate_activate.html:15
+msgid "Gravatar"
+msgstr "גרווטאר"
+
+#: user/templates/user/candidate_activate.html:20
 #: user/templates/user/edit_profile.html:15
 msgid "Update"
 msgstr "עדכן"
