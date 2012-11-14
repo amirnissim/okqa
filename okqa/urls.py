@@ -15,6 +15,7 @@ urlpatterns = patterns('',
 
     url(r'', include('okqa.qa.urls')),
     url(r'', include('okqa.user.urls')),
+    url(r'', include('social_auth.urls')),
     url(r'accounts/', include('registration.backends.default.urls')),
     (r'^search/', include('okqa.search.urls')),
     (r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),

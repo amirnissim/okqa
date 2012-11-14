@@ -72,6 +72,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
     'okqa.party.context_processors.forms',
+    'social_auth.context_processors.social_auth_by_name_backends',
     )
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -89,6 +90,7 @@ INSTALLED_APPS = (
     'django_nose',
     'taggit',
     'registration',
+    'social_auth',
     'haystack',
     'south',
     'debug_toolbar',
@@ -103,6 +105,9 @@ INSTALLED_APPS = (
 )
 
 AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleOAuth2Backend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
