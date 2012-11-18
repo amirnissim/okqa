@@ -1,7 +1,9 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.views.generic import TemplateView
-
 from django.contrib import admin
+
+from registration.views import register
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -16,7 +18,6 @@ urlpatterns = patterns('',
     url(r'', include('okqa.qa.urls')),
     url(r'', include('okqa.user.urls')),
     url(r'', include('social_auth.urls')),
-    url(r'accounts/', include('registration.backends.default.urls')),
     (r'^search/', include('okqa.search.urls')),
     (r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),
     # flat pages to help with static pages

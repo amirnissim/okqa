@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-14 04:52+0200\n"
-"PO-Revision-Date: 2012-11-14 04:53+0200\n"
+"POT-Creation-Date: 2012-11-18 15:37+0200\n"
+"PO-Revision-Date: 2012-11-18 15:39+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -270,104 +270,119 @@ msgstr "אין תוצאות"
 msgid "No More Selections Are Allowed"
 msgstr "מספר תגיות מקסימלי"
 
-#: templates/base.html:23
+#: templates/base.html:25
 msgid "Home"
 msgstr "בית"
 
-#: templates/base.html:24
+#: templates/base.html:26
 #: user/templates/user/candidate_list.html:6
 msgid "Candidates"
 msgstr "מועמדים"
 
-#: templates/base.html:25
+#: templates/base.html:27
 #: user/templates/user/candidate_detail.html:74
 msgid "About"
 msgstr "אודות"
 
-#: templates/base.html:28
+#: templates/base.html:30
 #: templates/search/search.html:11
 #: templates/search/search.html.py:15
 msgid "Search"
 msgstr "חפש"
 
-#: templates/base.html:35
+#: templates/base.html:37
 msgid "Welcome"
 msgstr "שלום"
 
-#: templates/base.html:37
+#: templates/base.html:39
 msgid "my page"
 msgstr "העמוד שלי"
 
-#: templates/base.html:38
+#: templates/base.html:40
 msgid "edit profile"
 msgstr "ערוך פרופיל"
 
-#: templates/base.html:40
+#: templates/base.html:42
 msgid "admin"
 msgstr "ממשק ניהול"
 
-#: templates/base.html:44
+#: templates/base.html:46
 msgid "logout"
 msgstr "התנתקות"
 
-#: templates/base.html:49
+#: templates/base.html:51
 #: templates/registration/login.html:13
 #: templates/registration/registration_form.html:8
 #: templates/registration/registration_form.html:21
 msgid "Register"
 msgstr "הירשמו"
 
-#: templates/base.html:51
-#: templates/base.html.py:84
+#: templates/base.html:53
+#: templates/base.html.py:86
 #: templates/registration/activation_complete.html:7
 #: templates/registration/password_reset_complete.html:7
 msgid "Login"
 msgstr "היכנסו"
 
-#: templates/base.html:62
+#: templates/base.html:64
 msgid "Connect"
 msgstr "התחברו"
 
-#: templates/base.html:66
+#: templates/base.html:68
 msgid "bad username/pasword"
 msgstr "שם משתמש או סיסמא לא נכונים"
 
-#: templates/base.html:70
-#: templates/base.html.py:72
+#: templates/base.html:72
+#: templates/base.html.py:74
+#: user/admin.py:16
+#: user/admin.py:27
+#: user/forms.py:107
 msgid "Username"
 msgstr "שם משתמש"
 
-#: templates/base.html:76
-#: templates/base.html.py:78
+#: templates/base.html:78
+#: templates/base.html.py:80
 msgid "Password"
 msgstr "סיסמא"
 
-#: templates/base.html:83
+#: templates/base.html:85
 msgid "Reset password"
 msgstr "אפס ססמה"
 
-#: templates/base.html:108
+#: templates/base.html:94
+msgid "Login using Facebook"
+msgstr ""
+
+#: templates/base.html:96
+msgid "Login using Twitter"
+msgstr ""
+
+#: templates/base.html:98
+msgid "Login using Gmail"
+msgstr ""
+
+#: templates/base.html:122
 msgid "Back to top"
 msgstr "בחזרה לראש העמוד"
 
-#: templates/base.html:109
+#: templates/base.html:123
 msgid "Content is licensed CC-BY. Source code is freely available "
 msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.  קוד המקור חופשי לשימוש"
 
-#: templates/base.html:110
+#: templates/base.html:124
 #: user/templates/user/candidate_list.html:44
 msgid "here"
 msgstr "כאן"
 
-#: templates/base.html:112
+#: templates/base.html:126
 msgid "The Demo Party"
 msgstr "מפלגת הדמו"
 
-#: templates/base.html:142
+#: templates/base.html:156
 msgid "read more"
 msgstr "קרא עוד"
 
-#: templates/base.html:146
+#: templates/base.html:160
 msgid "read less"
 msgstr "קרא פחות"
 
@@ -486,6 +501,18 @@ msgstr "&raquo; הקודם"
 msgid "Next &raquo;"
 msgstr "הבא &lqauo;"
 
+#: user/admin.py:18
+#: user/admin.py:29
+#: user/forms.py:109
+msgid "Required. 30 characters or fewer. Alphanumeric characters only (letters, digits and underscores)."
+msgstr "30 תווים או פחות. ניתן להשתמש באותיות עבריות ולועזיות, ספרות וקו תחתון בלבד."
+
+#: user/admin.py:20
+#: user/admin.py:31
+#: user/forms.py:111
+msgid "This value must contain only letters, numbers and underscores."
+msgstr "ניתן להשתמש באותיות, ספרות וקו תחתון בלבד."
+
 #: user/feeds.py:15
 msgid "Answers by"
 msgstr "תשובות של"
@@ -494,76 +521,62 @@ msgstr "תשובות של"
 msgid "Get all answers by"
 msgstr "קבלו את כל התשובות של"
 
-#: user/forms.py:11
-#: user/forms.py:29
-msgid "First Name"
-msgstr "שם פרטי"
-
 #: user/forms.py:12
-#: user/forms.py:30
-msgid "Last Name"
-msgstr "שם משפחה"
-
-#: user/forms.py:13
-msgid "Email"
-msgstr "דואל"
-
-#: user/forms.py:36
-#: user/forms.py:98
+#: user/forms.py:74
 msgid "username"
 msgstr "שם משתמש"
 
-#: user/forms.py:37
-#: user/forms.py:99
+#: user/forms.py:13
+#: user/forms.py:75
 msgid "Please use 4 letters or more"
 msgstr "נא להשתמש בארבע אותיות או יותר (גם מספרים ו @/./+/-/_ הם תווים חוקיים)"
 
-#: user/forms.py:38
-#: user/forms.py:100
+#: user/forms.py:14
+#: user/forms.py:76
 msgid "first name"
 msgstr "שם פרטי"
 
-#: user/forms.py:39
-#: user/forms.py:101
+#: user/forms.py:15
+#: user/forms.py:77
 msgid "last name"
 msgstr "שם משפחה"
 
-#: user/forms.py:40
-#: user/forms.py:106
+#: user/forms.py:16
+#: user/forms.py:82
 msgid "email address"
 msgstr "כתובת דואל"
 
-#: user/forms.py:41
-#: user/forms.py:117
+#: user/forms.py:17
+#: user/forms.py:93
 msgid "home page"
 msgstr "עמוד הבית"
 
-#: user/forms.py:42
-#: user/forms.py:118
+#: user/forms.py:18
+#: user/forms.py:94
 msgid "bio"
 msgstr "ביוגרפיה"
 
-#: user/forms.py:45
+#: user/forms.py:21
 msgid "E-Mail Notifications"
 msgstr "התראות דואל"
 
-#: user/forms.py:46
+#: user/forms.py:22
 msgid "Should we send you e-mail notification about updates to things you follow on the site?"
 msgstr "האם לשלוח התראות דואל לגבי שאלות ותגיות שאתה עוקב אחריהם?"
 
-#: user/forms.py:92
+#: user/forms.py:68
 msgid "the voters are waiting for your answers"
 msgstr "המצביעים ממתינים לתשובתך"
 
-#: user/forms.py:93
+#: user/forms.py:69
 msgid "The Q&A site is happy to invite you to answer voters' questions. please click {{activation_url}} to activate your account"
 msgstr ""
 
-#: user/forms.py:102
+#: user/forms.py:78
 msgid "email subject"
 msgstr "נושא הדואל"
 
-#: user/forms.py:104
+#: user/forms.py:80
 msgid "email body"
 msgstr "תוכן הדואל"
 
@@ -641,6 +654,15 @@ msgstr ""
 #: user/templates/user/edit_profile.html:6
 msgid "Edit your profile"
 msgstr "ערוך את הפרופיל שלך"
+
+#~ msgid "First Name"
+#~ msgstr "שם פרטי"
+
+#~ msgid "Last Name"
+#~ msgstr "שם משפחה"
+
+#~ msgid "Email"
+#~ msgstr "דואל"
 
 #~ msgid "Candidate bio here..."
 #~ msgstr "כאן תופיע ביוגרפיה קצרה של המועמד..."
