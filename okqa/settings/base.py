@@ -155,3 +155,11 @@ AUTH_PROFILE_MODULE = 'user.UserProfile'
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 SITE_ID = os.environ.get('SITE_ID', 1)
+
+TWITTER_CONSUMER_KEY         = os.environ.get('TWITTER_CONSUMER_KEY')
+TWITTER_CONSUMER_SECRET      = os.environ.get('TWITTER_CONSUMER_SECRET')
+FACEBOOK_APP_ID              = os.environ.get('FACEBOOK_APP_ID')
+FACEBOOK_API_SECRET          = os.environ.get('FACEBOOK_API_SECRET')
+GOOGLE_OAUTH2_CLIENT_ID      = os.environ.get('GOOGLE_OAUTH2_CLIENT_ID')
+GOOGLE_OAUTH2_CLIENT_SECRET  = os.environ.get('GOOGLE_OAUTH2_CLIENT_SECRET')
+
