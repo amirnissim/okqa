@@ -315,3 +315,4 @@ h1, h2, h3, h4, h5, h6 {
 .navbar .nav > li > a {padding-top: 14px;}
 .navbar-search { margin-top: 10px; }
 .post-question input[name="subject"] { width: 500px;}
+#social-auth {padding-bottom: 0.5em;}

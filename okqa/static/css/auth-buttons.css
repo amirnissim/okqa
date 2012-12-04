@@ -15,7 +15,7 @@
     padding: 0 1em;
     border: 1px solid #999;
     border-radius: 2px;
-    margin: 0;
+    margin: 5px 0;
     text-align: center;
     text-decoration: none;
     font-size: 14px;
@@ -47,7 +47,7 @@
     float: left;
     width: 22px;
     height: 22px;
-    background: url(auth-icons.png) no-repeat 99px 99px;
+    background: url(../img/auth-icons.png) no-repeat 99px 99px;
 }
 
 /*

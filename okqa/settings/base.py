@@ -162,4 +162,5 @@ FACEBOOK_APP_ID              = os.environ.get('FACEBOOK_APP_ID')
 FACEBOOK_API_SECRET          = os.environ.get('FACEBOOK_API_SECRET')
 GOOGLE_OAUTH2_CLIENT_ID      = os.environ.get('GOOGLE_OAUTH2_CLIENT_ID')
 GOOGLE_OAUTH2_CLIENT_SECRET  = os.environ.get('GOOGLE_OAUTH2_CLIENT_SECRET')
+GOOGLE_OAUTH_EXTRA_SCOPE     = ['https://www.googleapis.com/auth/userinfo.profile']
 

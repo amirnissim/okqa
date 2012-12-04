@@ -80,6 +80,19 @@
       <input type="password" id="inputPassword" name="password" placeholder="{% trans 'Password' %}">
       </div>
     </div>
+    {# Social Login Buttons --- START #}
+    <h2>{% trans "Or" %}</h2>
+    <center>
+    <ul class="unstyled">
+      <li><a class="btn-auth btn-facebook" href="{% url 'socialauth_begin' 'facebook' %}">
+        {% trans "Connect to Facebook" %}</a></li>
+      <li><a class="btn-auth btn-twitter" href="{% url "socialauth_begin" "twitter" %}">
+        {% trans "Connect to Twitter" %}</a></li>
+      <li><a class="btn-auth btn-google" href="{% url "socialauth_begin" "google" %}">
+        {% trans "Connect to Google" %}</a></li>
+    </ul>
+    </center>
+    {# Social Login Buttons --- END #}
   </div>
   <div class="modal-footer">
     <a href="{% url 'auth_password_reset' %}">{% trans 'Reset password' %}</a>
@@ -87,18 +100,6 @@
   </div>
  </form>
  <!--/.nav-collapse -->
-
-{# Social Login Buttons --- START #}
-<div id="social-auth">
-    <a class="btn-auth btn-facebook" href="{% url 'socialauth_begin' 'facebook' %}">
-        {% trans "Login using Facebook" %}</a>
-    <a class="btn-auth btn-twitter" href="{% url "socialauth_begin" "twitter" %}">
-        {% trans "Login using Twitter" %}</a>
-    <a class="btn-auth btn-gmail" href="{% url "socialauth_begin" "gmail" %}">
-        {% trans "Login using Gmail" %}</a>
-</div>
-{# Social Login Buttons --- END #}
-
 </div>
 {% endif %}
 
