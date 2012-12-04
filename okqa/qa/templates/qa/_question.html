@@ -12,10 +12,14 @@
           <div class="mini-counts" id="votes-count-{{question.id}}">{{ question.rating }}</div>
             <div>{% trans "votes" %}</div>
         </div>
-        <div class="answers" title="">
-            <div class="mini-counts">{{ question.answers.count }}</div>
+        {% with count=question.answers.count %}
+          {% if count %}
+          <div class="answers" title="">
+              <div class="mini-counts">{{ count }}</div>
             <div>{% trans "answers" %}</div>
-        </div>
+          </div>
+          {% endif %}
+        {% endwith %}
     </div>
     <div class="summary">
         <h3><a href="{% url 'question_detail' question.unislug %}" class="question-hyperlink" title="{{ question.subject }}">{{ question.subject }}</a></h3>
@@ -29,7 +33,7 @@
         </div>
         <div class="started">
             <span title="{{ question.created_at }}" class="relativetime">{% trans "before" %} {{ question.created_at|timesince }}</span>
-            <a href="{{ question.author.get_absolute_url }}" rel="tooltip" class="answer-user owner" title="{{question.author.get_full_name}}">{{question.author.username}}</a>
+            <a href="{{ question.author.get_absolute_url }}" rel="tooltip" class="answer-user owner" title="{{question.author.get_full_name}}">{{question.author.get_full_name|default:question.author.username}}</a>
         </div>
     </div>
 </div>

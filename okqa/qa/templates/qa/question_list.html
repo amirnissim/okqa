@@ -7,6 +7,7 @@
   <div class="container">
     <div class="row">
         <div class="span9">
+          {% if party %}
           <h1>{% trans "Questions" %} 
                <small>{% trans "for candidate of" %}{{ party.name }}</small>
                {% if not current_tags %}
@@ -15,6 +16,9 @@
                </a>
                {% endif %}
           </h1>
+          {% else %}
+          <h2>{% trans "Yes/No questions that will help you decide who to vote for:" %}</h2>
+          {% endif %}
           <ul class="nav nav-pills">
             {% for tag in current_tags %}
             <li><a class="btn" href="{% url show_tags tags=tag|urlencode %}">{{tag}}</a></li>

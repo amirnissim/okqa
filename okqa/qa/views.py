@@ -45,7 +45,7 @@ def questions(request, tags = None):
         context['current_tags'] = tags_list
     else:
         questions = Question.on_site.order_by(order)
-        context['tags'] = TaggedQuestion.on_site.values('tag__name').annotate(count=Count("tag"))
+        # context['tags'] = TaggedQuestion.on_site.values('tag__name').annotate(count=Count("tag"))
 
     context['questions'] = questions
     context['by_date'] = order_opt=='date'

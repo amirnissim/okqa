@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-12-04 11:55+0200\n"
-"PO-Revision-Date: 2012-12-04 11:56+0200\n"
+"PO-Revision-Date: 2012-12-04 16:45+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -186,7 +186,7 @@ msgstr "תשובות"
 
 #: qa/templates/qa/post_question.html:10
 msgid "What is your question, sire?"
-msgstr "הנכם מוזמנים להפנות שאלה למועמדים"
+msgstr "הנכם מוזמנים להפנות שאלות כן/לא למפלגות"
 
 #: qa/templates/qa/post_question.html:22
 #: qa/templates/qa/question_detail.html:70

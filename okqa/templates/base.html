@@ -18,12 +18,16 @@
     <div class="container">
       <div id="party-logo" class="brand">
         <a href="{% url 'home' %}">
-          <img src="{{ STATIC_URL }}{{ party.logo }}" title="{{party.site.name}}">
+          {% if party %}
+            <img src="{{ STATIC_URL }}{{ party.logo }}" title="{{party.site.name}}">
+          {% else %}
+            <img src="{{ STATIC_URL }}{{ party.logo }}" title="{{ STATIC_URL }}img/logo.png">
+          {% endif %}
+
         </a>
       </div>
       <ul class="nav">
         <li><a href="/" {% block homeNav %}{% endblock %}>{% trans "Home" %}</a></li>
-        <li><a href="{% url 'candidate_list' %}">{% trans "Candidates" %}</a></li>
         <li><a href="/about/">{% trans "About" %}</a></li>
       </ul>
       <form class="navbar-search pull-left" action="/search/">
@@ -34,7 +38,7 @@
       {% if user.is_authenticated %}
       <li class="divider-vertical"></li>
       <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Welcome' %}, {{ user.username }} <b class="caret"></b></a>
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Welcome' %}, {{ user.get_full_name|default:user.username }} <b class="caret"></b></a>
       <ul class="dropdown-menu">
         <li><a href="{{ user.get_absolute_url }}">{% trans 'my page' %}</a></li>
         <li><a href="{% url 'edit_profile' %}">{% trans 'edit profile' %}</a></li>
