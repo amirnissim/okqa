@@ -25,11 +25,9 @@
             {% endfor %}
           </ul>
         </div>
-        {% if user.is_authenticated %}
-        <div class="span2 offset1 new-question">
-          <a class="btn btn-success btn-large" href="{% url post_question %}">{% trans "Ask Question" %}</a>
+          <div class="span2 offset1 new-question">
+            <a id="post-question" class="btn btn-success btn-large" href="{% url post_question %}">{% trans "Ask Question" %}</a>
         </div>
-        {% endif %}
     </div>
   </div>
 </div>
@@ -65,4 +63,17 @@
   </div>
 </div>
 {% endblock %}
-
+{% if not user.is_authenticated %}
+  {% block extrascript %} 
+    <script>
+        // warn non registered users
+        $("#post-question").click( function (){
+          $("#messages").html('<div class="alert" class="info">' +
+            '<button type="button" class="close" data-dismiss="alert">×</button>' +
+            "{% trans 'Sorry but only connected users can post questions' %}" +
+             '</div>');
+          return false; 
+        });
+    </script>
+  {% endblock %}
+{% endif %}

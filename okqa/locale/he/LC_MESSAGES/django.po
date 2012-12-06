@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-04 11:55+0200\n"
-"PO-Revision-Date: 2012-12-04 16:45+0200\n"
+"POT-Creation-Date: 2012-12-06 12:15+0200\n"
+"PO-Revision-Date: 2012-12-06 12:26+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -166,7 +166,7 @@ msgid "Voters"
 msgstr "מצביעים"
 
 #: qa/templates/qa/_answer.html:32
-#: qa/templates/qa/_question.html:31
+#: qa/templates/qa/_question.html:35
 #: user/templates/user/candidate_detail.html:41
 msgid "before"
 msgstr "לפני"
@@ -179,7 +179,7 @@ msgstr "עריכה"
 msgid "votes"
 msgstr "שואלים"
 
-#: qa/templates/qa/_question.html:17
+#: qa/templates/qa/_question.html:19
 #: user/templates/user/candidate_list.html:20
 msgid "answers"
 msgstr "תשובות"
@@ -189,66 +189,78 @@ msgid "What is your question, sire?"
 msgstr "הנכם מוזמנים להפנות שאלות כן/לא למפלגות"
 
 #: qa/templates/qa/post_question.html:22
-#: qa/templates/qa/question_detail.html:70
+#: qa/templates/qa/question_detail.html:69
 msgid "Publish"
 msgstr "פרסם"
 
-#: qa/templates/qa/question_detail.html:19
+#: qa/templates/qa/question_detail.html:18
 msgid "I Want an Answer"
 msgstr "תמכו בשאלה"
 
-#: qa/templates/qa/question_detail.html:22
+#: qa/templates/qa/question_detail.html:21
 msgid "Answer the Question"
 msgstr "תרום תשובה לעניין"
 
-#: qa/templates/qa/question_detail.html:36
+#: qa/templates/qa/question_detail.html:35
 #: user/templates/user/candidate_detail.html:20
 msgid "Answers"
 msgstr "תשובות"
 
-#: qa/templates/qa/question_detail.html:37
-#: qa/templates/qa/question_detail.html:47
-#: qa/templates/qa/question_list.html:13
+#: qa/templates/qa/question_detail.html:36
+#: qa/templates/qa/question_detail.html:46
+#: qa/templates/qa/question_list.html:14
 #: user/templates/user/candidate_detail.html:10
 msgid "Subscribe"
 msgstr "הרשם"
 
-#: qa/templates/qa/question_detail.html:46
+#: qa/templates/qa/question_detail.html:45
 msgid "No Answers Yet"
 msgstr "עדיין לא ניתנו תשובות"
 
-#: qa/templates/qa/question_detail.html:100
+#: qa/templates/qa/question_detail.html:89
+msgid "Sorry but only connected users can upvote questions"
+msgstr "מצטערת, יש להתחבר כדי לתמוך בשאלה"
+
+#: qa/templates/qa/question_detail.html:107
 msgid "Thank you for falgging the question. One of our editors will look at it shortly. "
 msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את השאלה בקרוב."
 
-#: qa/templates/qa/question_list.html:10
+#: qa/templates/qa/question_list.html:11
 #: user/templates/user/candidate_detail.html:54
 msgid "Questions"
 msgstr "שאלות"
 
-#: qa/templates/qa/question_list.html:11
+#: qa/templates/qa/question_list.html:12
 msgid "for candidate of"
 msgstr "למועמדים ב"
 
-#: qa/templates/qa/question_list.html:26
+#: qa/templates/qa/question_list.html:20
+msgid "Yes/No questions that will help you decide who to vote for:"
+msgstr "שאלות כן/לא שיעזרו למתלבט לבחור:"
+
+#: qa/templates/qa/question_list.html:29
 msgid "Ask Question"
 msgstr "העלו שאלה"
 
-#: qa/templates/qa/question_list.html:37
+#: qa/templates/qa/question_list.html:39
 msgid "Top Questions"
 msgstr "שאלות מובילות"
 
-#: qa/templates/qa/question_list.html:40
+#: qa/templates/qa/question_list.html:42
 msgid "Most Recent"
 msgstr "שאלות אחרונות"
 
-#: qa/templates/qa/question_list.html:54
+#: qa/templates/qa/question_list.html:56
 msgid "Questions asked"
 msgstr "שאלות נשאלו"
 
-#: qa/templates/qa/question_list.html:58
+#: qa/templates/qa/question_list.html:60
 msgid "questions"
 msgstr "שאלות"
+
+#: qa/templates/qa/question_list.html:73
+msgid "Sorry but only connected users can post questions"
+msgstr "מצטערת, יש להתחבר כדי לשאול שאלות"
 
 #: taggit_autosuggest/managers.py:11
 msgid "Tags"
@@ -270,123 +282,71 @@ msgstr "אין תוצאות"
 msgid "No More Selections Are Allowed"
 msgstr "מספר תגיות מקסימלי"
 
-#: templates/base.html:25
+#: templates/base.html:30
 msgid "Home"
 msgstr "בית"
 
-#: templates/base.html:26
-#: user/templates/user/candidate_list.html:6
-msgid "Candidates"
-msgstr "מועמדים"
-
-#: templates/base.html:27
+#: templates/base.html:31
 #: user/templates/user/candidate_detail.html:74
 msgid "About"
 msgstr "אודות"
 
-#: templates/base.html:30
+#: templates/base.html:34
 #: templates/search/search.html:11
 #: templates/search/search.html.py:15
 msgid "Search"
 msgstr "חפש"
 
-#: templates/base.html:37
+#: templates/base.html:41
 msgid "Welcome"
 msgstr "שלום"
 
-#: templates/base.html:39
+#: templates/base.html:43
 msgid "my page"
 msgstr "העמוד שלי"
 
-#: templates/base.html:40
+#: templates/base.html:44
 msgid "edit profile"
 msgstr "ערוך פרופיל"
 
-#: templates/base.html:42
+#: templates/base.html:46
 msgid "admin"
 msgstr "ממשק ניהול"
 
-#: templates/base.html:46
+#: templates/base.html:50
 msgid "logout"
 msgstr "התנתקות"
 
-#: templates/base.html:51
-#: templates/registration/login.html:13
-#: templates/registration/registration_form.html:8
-#: templates/registration/registration_form.html:21
-msgid "Register"
-msgstr "הירשמו"
-
-#: templates/base.html:53
-#: templates/base.html.py:99
-#: templates/registration/activation_complete.html:7
-#: templates/registration/password_reset_complete.html:7
-msgid "Login"
-msgstr "היכנסו"
-
-#: templates/base.html:64
-msgid "Connect"
-msgstr "התחברו"
-
-#: templates/base.html:68
-msgid "bad username/pasword"
-msgstr "שם משתמש או סיסמא לא נכונים"
-
-#: templates/base.html:72
-#: templates/base.html.py:74
-#: user/admin.py:16
-#: user/admin.py:27
-#: user/forms.py:107
-msgid "Username"
-msgstr "שם משתמש"
-
-#: templates/base.html:78
-#: templates/base.html.py:80
-msgid "Password"
-msgstr "סיסמא"
-
-#: templates/base.html:84
-msgid "Or"
-msgstr "או"
-
-#: templates/base.html:88
+#: templates/base.html:58
 msgid "Connect to Facebook"
 msgstr "התחבר לפייסבוק"
 
-#: templates/base.html:90
+#: templates/base.html:60
 msgid "Connect to Twitter"
 msgstr "התחבר לטוויטר"
 
-#: templates/base.html:92
-msgid "Connect to Google"
-msgstr "התחבר לגוגל"
-
-#: templates/base.html:98
-msgid "Reset password"
-msgstr "אפס ססמה"
-
-#: templates/base.html:123
+#: templates/base.html:83
 msgid "Back to top"
 msgstr "בחזרה לראש העמוד"
 
-#: templates/base.html:124
+#: templates/base.html:84
 msgid "Content is licensed CC-BY. Source code is freely available "
 msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.  קוד המקור חופשי לשימוש"
 
-#: templates/base.html:125
+#: templates/base.html:85
 #: user/templates/user/candidate_list.html:44
 msgid "here"
 msgstr "כאן"
 
-#: templates/base.html:127
+#: templates/base.html:87
 msgid "The Demo Party"
 msgstr "מפלגת הדמו"
 
-#: templates/base.html:157
+#: templates/base.html:111
 msgid "read more"
 msgstr "קרא עוד"
 
-#: templates/base.html:161
+#: templates/base.html:115
 msgid "read less"
 msgstr "קרא פחות"
 
@@ -410,6 +370,11 @@ msgstr "לא הצלחנו להפעיל את החשבון"
 #: templates/registration/activation_complete.html:6
 msgid "Ye be now registered. Welcome t' okqa, and dinna spare the whip!"
 msgstr "ההרשמה הסתיימה בהצלחה, תודה."
+
+#: templates/registration/activation_complete.html:7
+#: templates/registration/password_reset_complete.html:7
+msgid "Login"
+msgstr "היכנסו"
 
 #: templates/registration/activation_email.txt:3
 #, python-format
@@ -453,6 +418,12 @@ msgstr "אפס"
 #: templates/registration/login.html:13
 msgid "Not member"
 msgstr ""
+
+#: templates/registration/login.html:13
+#: templates/registration/registration_form.html:8
+#: templates/registration/registration_form.html:21
+msgid "Register"
+msgstr "הירשמו"
 
 #: templates/registration/logout.html:5
 msgid "Thanks for using the System. You are now logged out."
@@ -504,6 +475,12 @@ msgstr "&raquo; הקודם"
 #: templates/search/search.html:36
 msgid "Next &raquo;"
 msgstr "הבא &lqauo;"
+
+#: user/admin.py:16
+#: user/admin.py:27
+#: user/forms.py:107
+msgid "Username"
+msgstr "שם משתמש"
 
 #: user/admin.py:18
 #: user/admin.py:29
@@ -645,6 +622,10 @@ msgstr "גרווטאר"
 msgid "Update"
 msgstr "עדכן"
 
+#: user/templates/user/candidate_list.html:6
+msgid "Candidates"
+msgstr "מועמדים"
+
 #: user/templates/user/candidate_list.html:40
 msgid ""
 "\n"
@@ -658,6 +639,24 @@ msgstr ""
 #: user/templates/user/edit_profile.html:6
 msgid "Edit your profile"
 msgstr "ערוך את הפרופיל שלך"
+
+#~ msgid "Connect"
+#~ msgstr "התחברו"
+
+#~ msgid "bad username/pasword"
+#~ msgstr "שם משתמש או סיסמא לא נכונים"
+
+#~ msgid "Password"
+#~ msgstr "סיסמא"
+
+#~ msgid "Or"
+#~ msgstr "או"
+
+#~ msgid "Connect to Google"
+#~ msgstr "התחבר לגוגל"
+
+#~ msgid "Reset password"
+#~ msgstr "אפס ססמה"
 
 #~ msgid "First Name"
 #~ msgstr "שם פרטי"
