@@ -17,17 +17,18 @@ GENDER_CHOICES = (
 )
 
 class UserProfile(models.Model):
-
     user = models.ForeignKey(User, unique=True, related_name='profiles')
     public_profile = models.BooleanField(default=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
     bio = models.TextField(null=True,blank=True)
     email_notification = models.CharField(max_length=1, choices=NOTIFICATION_PERIOD_CHOICES, blank=True, null=True)
+    avatar_uri = models.URLField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
 
     def avatar_url(self, size=40):
+        if self.avatar_uri:
+            return self.avatar_uri
         ''' getting the avatar image url from Gravatar '''
-
         default = "http://okqa.herokuapp.com/static/img/defaultavatar.png"
         email = self.user.email
         if not email:
