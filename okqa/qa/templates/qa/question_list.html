@@ -63,8 +63,8 @@
   </div>
 </div>
 {% endblock %}
-{% if not user.is_authenticated %}
   {% block extrascript %} 
+{% if not user.is_authenticated %}
     <script>
         // warn non registered users
         $("#post-question").click( function (){
@@ -75,5 +75,5 @@
           return false; 
         });
     </script>
-  {% endblock %}
 {% endif %}
+  {% endblock %}
