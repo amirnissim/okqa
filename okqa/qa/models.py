@@ -11,7 +11,7 @@ from slugify import slugify as unislugify
 from taggit_autosuggest.managers import TaggableManager
 
 
-MAX_LENGTH_Q_SUBJECT = 80
+MAX_LENGTH_Q_SUBJECT = 140
 MAX_LENGTH_Q_CONTENT = 255
 
 MAX_LENGTH_A_SUBJECT = 80

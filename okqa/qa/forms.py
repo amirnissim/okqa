@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput
+from django.forms import ModelForm, TextInput, Textarea
 from models import Answer, Question
 
 class AnswerForm(ModelForm):
@@ -11,3 +11,5 @@ class QuestionForm(ModelForm):
         model = Question
         # fields = ("subject", "content", "tags", )
         fields = ("subject", )
+        widgets = { 'subject': Textarea(attrs={'cols': 70, 'rows': 2}), }
+
