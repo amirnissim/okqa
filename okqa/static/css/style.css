@@ -238,7 +238,8 @@ line-height: 18px!important;
 	margin: 0;
 	padding: 0;
 }
-
+.nav li:first-child {font-weight: bold; }
+.nav li { width:8em; }
 /* Login */
 form { margin :0; }
 
@@ -311,7 +312,7 @@ text-decoration: none;
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 200;
 }
-#party-logo { height: 48px; width:100px; padding:0px; }
+#party-logo { height: 48px; width:80px; padding:0px; }
 .navbar .nav > li > a {padding-top: 14px;}
 .navbar-search { margin-top: 10px; }
 .post-question input[name="subject"] { width: 500px;}

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-20 00:27+0200\n"
-"PO-Revision-Date: 2013-01-20 00:28+0200\n"
+"PO-Revision-Date: 2013-01-20 15:56+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -236,7 +236,7 @@ msgstr "למועמדים ב"
 
 #: qa/templates/qa/question_list.html:20
 msgid "Yes/No questions that will help you decide who to vote for:"
-msgstr "שאלות של מתלבטים בין חדש לטֹב:"
+msgstr "שאלות הצפים"
 
 #: qa/templates/qa/question_list.html:29
 msgid "Ask Question"
@@ -284,7 +284,7 @@ msgstr "מספר תגיות מקסימלי"
 
 #: templates/base.html:30
 msgid "Home"
-msgstr "בית"
+msgstr "פלפולי בחירות בכנסת פתוחה"
 
 #: templates/base.html:31
 #: user/templates/user/candidate_detail.html:74
