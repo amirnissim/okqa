@@ -10,7 +10,8 @@ def forms(request):
     context = {"search_form": SearchForm()}
     if not request.user.is_authenticated():
         context["login_form"] = AuthenticationForm()
-    # context["party"], created = Party.objects.get_or_create(site=get_current_site(request))
+    # TODO: optimize
+    context["party"], created = Party.objects.get_or_create(site=get_current_site(request))
     context["ANALYTICS_ID"] = getattr(settings, 'ANALYTICS_ID', False)
     return context
 

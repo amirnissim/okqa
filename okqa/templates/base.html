@@ -27,7 +27,13 @@
         </a>
       </div>
       <ul class="nav">
-        <li><a href="/" {% block homeNav %}{% endblock %}>{% trans "Home" %}</a></li>
+        <li><a href="/" {% block homeNav %}{% endblock %}>
+        {% if party %}
+          {{party.site.name}}
+        {% else %}
+          {% trans "Home" %}
+        {% endif %}
+        </a></li>
         <li><a href="/about/">{% trans "About" %}</a></li>
       </ul>
       <form class="navbar-search pull-left" action="/search/">

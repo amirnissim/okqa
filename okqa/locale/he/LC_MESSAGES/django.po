@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-01-20 00:27+0200\n"
-"PO-Revision-Date: 2013-01-20 15:56+0200\n"
+"PO-Revision-Date: 2013-04-03 23:41+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -284,7 +284,7 @@ msgstr "מספר תגיות מקסימלי"
 
 #: templates/base.html:30
 msgid "Home"
-msgstr "פלפולי בחירות בכנסת פתוחה"
+msgstr "הביתה"
 
 #: templates/base.html:31
 #: user/templates/user/candidate_detail.html:74
