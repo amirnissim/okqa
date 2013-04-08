@@ -7,7 +7,7 @@ django-debug-toolbar==0.9.4
 django-extensions==0.9
 django-haystack==2.0.0-beta
 django-nose==1.1
-django-registration==0.9b1
+-e hg+https://bitbucket.org/ubernostrum/django-registration#egg=django-registration
 django-social-auth==0.7.9
 django-storages==1.1.5
 django-taggit-autosuggest==0.2
