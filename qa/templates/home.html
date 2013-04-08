@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block mainContainer %}
+    <div class="hero-unit">
+        <h1>Hello, world!</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called the
+            hero unit and three supporting pieces of content. Use it as a starting point to create something more
+            unique.</p>
+    </div>
+    <h2>Post a question</h2>
+    {% if user.is_authenticated %}
+        <form action="{% url qa.views.add_question %}" method="POST">
+            {% csrf_token %}
+            <p><label>{% trans "Subject" %}
+                <input type="text" name="subject">
+            </label></p>
+
+            <p><label for="">{% trans "Content" %}</label><textarea name="content" id="" cols="30" rows="10"></textarea></p>
+            <p>Comma seperated tags: <input type="text" name="tags"></p>
+            <button type="submit">{% trans "Ask!" %}</button>
+        </form>
+    {% else %}
+        <p>{% trans "Please log in to post questions" %}</p>
+    {% endif %}
+{% endblock %}
