@@ -3,7 +3,7 @@ import os
 from unipath import FSPath as Path
 import dj_database_url
 
-PROJECT_DIR = Path(__file__).absolute().ancestor(2)
+PROJECT_DIR = Path(__file__).absolute().ancestor(3)
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -71,7 +71,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
-    'okqa.party.context_processors.forms',
+    'party.context_processors.forms',
     'social_auth.context_processors.social_auth_by_name_backends',
     )
 INSTALLED_APPS = (
@@ -98,10 +98,11 @@ INSTALLED_APPS = (
     'storages',
     'gunicorn',
     'bootstrap_pagination',
-    'okqa.qa',
-    'okqa.user',
-    'okqa.party',
-    'okqa.taggit_autosuggest',
+    # local apps
+    'qa',
+    'user',
+    'party',
+    'taggit_autosuggest',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -171,5 +172,5 @@ SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.user.create_user',
     'social_auth.backends.pipeline.social.associate_user',
     'social_auth.backends.pipeline.user.update_user_details',
-    'okqa.user.utils.get_user_avatar',
+    'user.utils.get_user_avatar',
 )

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block mainContainer %}
+<div class="page-header row">
+    <h1 class="clearfix">
+      {{ candidate.get_full_name|default:candidate.username}}
+        <div class="avatar" style="float: right; margin: 0 0 10px 10px;">
+          <img src="{{ candidate.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle">
+        </div>
+        <a href="{% url 'user_feed' candidate.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
+          <img src="{{STATIC_URL}}img/rss.png" width="25" />
+        </a>
+    </h1>
+</div>
+<div class="row">
+    <div class="span9">
+        <div class="row">
+            <div class="span12">
+        <h3 style="margin-top: -10px; margin-bottom: -10px;">
+            {% trans "Answers" %}
+        </h3>
+        {% for answer in answers %}
+        <div class="question-summary narrow" id="question-summary-{{ question.id }}">
+            <div class="summary">
+                <h3>
+                    <a href="{% url 'qa.views.view_question' answer.question.id %}" class="question-hyperlink"
+                    title="{{ question.subject }}">{{ answer.question.subject }}</a>
+                </h3>
+                <div class="preview">
+                    <span class="too-long-toggle">{{ answer.question.content }}</span>
+                </div>
+                <br />
+                <div class="well">
+                    <a name="{{answer.id}}"></a>
+                    <strong style="font-size: 13px;">
+                        <span class="too-long-toggle">{{ answer.content|linebreaksbr }}</span>
+                    </strong>
+                    <span title="{{ question.created_at }}" class="relativetime">
+                        <br />
+                        <a href="#{{answer.id}}">&#9875;
+                          {% trans "before" %} {{ answer.updated_at|timesince }}
+                        </a>
+                    </span>
+                  </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+</div></div><br>
+<div class="row">
+    <div class="span12">
+    <h3 style="margin-top: -10px; margin-bottom: -10px;">
+            {% trans "Questions" %}
+        </h3>
+        {% for question in questions %}
+        <div class="question-summary narrow" id="question-summary-{{ question.id }}">
+            <div class="summary">
+                <h3>
+                    <a href="{% url 'qa.views.view_question' question.id %}" class="question-hyperlink"
+                    title="{{ question.subject }}">{{ question.subject }}</a>
+                </h3>
+                <div class="preview">
+                    <span class="too-long-toggle">{{ question.content }}</span>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div></div>
+
+    <div class="span3">
+        <h3 style="margin-top: -10px;">
+            {% trans 'About' %}
+        </h3>
+        {% if candidate.bio %}
+          <span style="font-size: 12px;">{{ candidate.bio }}</span>
+        {% endif %}
+        {% if candidate.url %}
+          <a href="{{candidate.url}}">{{candidate.url}}</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+{% block extrascript %}
+{% endblock %}
