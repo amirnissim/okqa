@@ -4,8 +4,6 @@ from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
 from django.contrib.flatpages.models import FlatPage
 from django.utils.translation import ugettext_lazy as _
 
-from registration.forms import RegistrationForm
-
 from models import *
 
 class ProfileForm(forms.Form):
@@ -102,13 +100,3 @@ class ActivateCandidateForm(SetPasswordForm):
         if commit:
             profile.save()
         return self.user
-
-class UserRegistrationForm(RegistrationForm):
-    username = forms.RegexField(label=_("Username"), max_length=30,
-        regex=r'^(?u)[\w.@+-]{4,}$',
-        help_text = _("Required. 30 characters or fewer. Alphanumeric \
-characters only (letters, digits and underscores)."),
-        error_message = _("This value must contain only letters, \
-numbers and underscores.")) 
-
-

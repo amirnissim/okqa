@@ -6,7 +6,6 @@ django-extensions==0.9
 git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
 git+https://github.com/tgdn/django-bootstrap-pagination.git#egg=django-bootstrap-pagination
 django-nose==1.1
-hg+https://bitbucket.org/trapeze/django-registration#egg=django-registration
 django-social-auth==0.7.9
 django-storages==1.1.5
 django-taggit-autosuggest==0.2

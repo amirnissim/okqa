@@ -89,7 +89,6 @@ INSTALLED_APPS = (
     'django_extensions',
     'django_nose',
     'taggit',
-    'registration',
     'social_auth',
     'haystack',
     'south',

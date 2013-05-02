@@ -8,10 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
 from django.contrib import messages
 
-from registration.models import RegistrationProfile
 from .forms import *
 from .models import *
-from user.candidate_registration_backend import CandidateBackend
 
 # TODO: move to settings
 CANDIDATES_GROUP_NAME = "candidates"
@@ -68,27 +66,3 @@ def edit_profile(request):
     elif request.method == "GET":
         form = ProfileForm(request.user)
     return render(request, "user/edit_profile.html", {"form": form})
-
-def candidate_activate(request, activation_key):
-    if request.method == "POST":
-        user = CandidateBackend.activate (request, activation_key)
-        if user:
-            form = ActivateCandidateForm(user, data=request.POST)
-            if form.is_valid():
-                # save the user
-                form.save()
-                user.groups.add(candidate_group)
-                # and log him in
-                user = authenticate(username=user.username, password=form.cleaned_data['new_password1'])
-                auth_login(request, user)
-
-                return HttpResponseRedirect(user.get_absolute_url())
-    elif request.method == "GET":
-        try:
-            profile = RegistrationProfile.objects.get(activation_key=activation_key)
-        except RegistrationProfile.DoesNotExist:
-            return HttpResponseForbidden(_('Sorry, this link has already been used'))
-        form = ActivateCandidateForm(profile.user)
-
-    return render(request, "user/candidate_activate.html", {"form": form})
-
