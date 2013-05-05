@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User, AnonymousUser, Permission
 from django.contrib.sites.models import Site
+from social_auth.tests.client import SocialClient
 from django.test.client import Client
 from django.core.urlresolvers import reverse
 
@@ -8,6 +9,30 @@ from django.test import TestCase
 from .models import *
 
 class QuestionTest(TestCase):
+    client = SocialClient
+    user = {
+        'first_name': 'Django',
+        'last_name': 'Reinhardt',
+        'verified': True,
+        'name': 'Django Reinhardt',
+        'locale': 'en_US',
+        'hometown': {
+            'id': '12345678',
+            'name': 'Any Town, Any State'
+        },
+        'expires': '4812',
+        'updated_time': '2012-01-29T19:27:32+0000',
+        'access_token': 'dummyToken',
+        'link': 'http://www.facebook.com/profile.php?id=1234',
+        'location': {
+            'id': '108659242498155',
+            'name': 'Chicago, Illinois'
+        },
+        'gender': 'male',
+        'timezone': -6,
+        'id': '1234',
+        'email': 'user@domain.com'
+    }
     def setUp(self):
         self.common_user = User.objects.create_user("commoner", 
                                 "commmon@example.com", "pass")
@@ -33,12 +58,10 @@ class QuestionTest(TestCase):
     def test_flag(self):
         self.q.flagged()
         self.assertEquals(self.q.flags_count, 1)
-        c = Client()
+        c = self.client
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 302)
-        response = c.post(reverse('auth_login'), dict(username='commoner',
-                                                 password='pass'))
-        self.assertEquals(response.status_code, 302)
+        c.login(self.user, backend='facebook')
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.content, "2")
@@ -48,32 +71,15 @@ class QuestionTest(TestCase):
         self.assertEquals(response.status_code, 403)
 
     def test_upvote(self):
-        c = Client()
+        c = SocialClient()
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 302)
-        response = c.post(reverse('auth_login'), dict(username='candidate',
-                                                 password='pass'))
-        self.assertEquals(response.status_code, 302)
+        c.login(self.user, backend='facebook')
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.content, "2")
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 403)
-
-
-        response = c.post(reverse('logout'))
-        response = c.post(reverse('auth_login'), dict(username='commoner',
-                                                 password='pass'))
-        self.assertEquals(response.status_code, 302)
-        response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
-        self.assertEquals(response.status_code, 403)
-
-        '''
-        upvote = QuestionUpvote.objects.create(question=self.q, user=user)
-        #TODO: use signals so the next line won't be necesary
-        increase_rating(self.q)
-        self.assertEquals(self.q.rating, 1)
-        '''
 
     def test_repr(self):
         self.assertEqual("why?", unicode(self.q))
