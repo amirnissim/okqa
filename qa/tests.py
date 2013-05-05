@@ -61,7 +61,7 @@ class QuestionTest(TestCase):
         self.assertEquals(response.status_code, 403)
 
 
-        response = c.post(reverse('auth_logout'))
+        response = c.post(reverse('logout'))
         response = c.post(reverse('auth_login'), dict(username='commoner',
                                                  password='pass'))
         self.assertEquals(response.status_code, 302)

@@ -10,4 +10,6 @@ urlpatterns = patterns('',
         AtomUserAnswerFeed(),
         name='user_feed'
     ),
+    url(r'^logout/$', 'django.contrib.auth.views.logout',
+                                  {'next_page': '/'}, name="logout"),
 )

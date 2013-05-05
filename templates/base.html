@@ -50,7 +50,7 @@
         {% if user.is_staff %}
             <li><a href="/admin/">{% trans 'admin' %}</a></li>
         {% endif %}
-        <form class="form-inline" method="post" action="{% url 'auth_logout' %}">
+        <form class="form-inline" method="post" action="{% url 'logout' %}">
           {% csrf_token %}
           <li><a href="javascript:;" class="submit-link">{% trans 'logout' %}</a></li>
         </form>
