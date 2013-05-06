@@ -87,7 +87,6 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.flatpages',
     'django_extensions',
-    'django_nose',
     'taggit',
     'social_auth',
     'haystack',
@@ -97,6 +96,7 @@ INSTALLED_APPS = (
     'storages',
     'gunicorn',
     'bootstrap_pagination',
+    'django_nose',
     # local apps
     'qa',
     'user',

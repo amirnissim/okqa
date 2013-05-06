@@ -58,7 +58,7 @@ class QuestionTest(TestCase):
     def test_flag(self):
         self.q.flagged()
         self.assertEquals(self.q.flags_count, 1)
-        c = self.client
+        c = SocialClient()
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 302)
         c.login(self.user, backend='facebook')

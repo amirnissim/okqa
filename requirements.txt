@@ -24,3 +24,5 @@ unicode-slugify==0.1
 Unipath==0.2.1
 wsgiref==0.1.2
 yolk==0.4.3
+selenium
+mock
