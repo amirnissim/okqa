@@ -58,11 +58,8 @@
       </ul>
 
       {% else %}
-      <ul class="unstyled pull-right social-auth">
-      <li><a class="btn-auth btn-facebook" href="{% url 'socialauth_begin' 'facebook' %}">
-        {% trans "Connect to Facebook" %}</a></li>
-      <li><a class="btn-auth btn-twitter" href="{% url "socialauth_begin" "twitter" %}">
-        {% trans "Connect to Twitter" %}</a></li>
+      <ul class="nav pull-right">
+        <li><a href="{% url 'login' %}">{% trans "Login" %}</a></li>
       </ul>
       {% endif %}
       </div>

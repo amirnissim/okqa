@@ -16,8 +16,9 @@ GENDER_CHOICES = (
     (u'F', _('Female')),
 )
 
-class UserProfile(models.Model):
-    user = models.ForeignKey(User, unique=True, related_name='profiles')
+class Profile(models.Model):
+    # TODO: chnage OneToOne
+    user = models.OneToOneField(User, related_name='profile')
     public_profile = models.BooleanField(default=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
     bio = models.TextField(null=True,blank=True)
@@ -40,5 +41,5 @@ class UserProfile(models.Model):
 
 def handle_user_save(sender, created, instance, **kwargs):
     if created and instance._state.db=='default':
-        UserProfile.objects.create(user=instance)
+        Profile.objects.create(user=instance)
 post_save.connect(handle_user_save, sender=User)

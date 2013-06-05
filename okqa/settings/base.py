@@ -150,8 +150,6 @@ LOGIN_REDIRECT_URL = '/'
 
 DEFAULT_FROM_EMAIL = 'okqa@hasadna.org.il'
 
-AUTH_PROFILE_MODULE = 'user.UserProfile'
-
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 SITE_ID = os.environ.get('SITE_ID', 1)

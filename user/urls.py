@@ -11,5 +11,8 @@ urlpatterns = patterns('',
         name='user_feed'
     ),
     url(r'^logout/$', 'django.contrib.auth.views.logout',
-                                  {'next_page': '/'}, name="logout"),
+                                  {'next_page': '/'}, 
+                                  name="logout"),
+    url(r'^login/$', 'django.contrib.auth.views.login',
+                                  name='login'),
 )

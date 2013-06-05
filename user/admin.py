@@ -4,11 +4,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext as _
-from user.models import UserProfile
+from user.models import Profile
 
-class UserProfileAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(UserProfile, UserProfileAdmin)
+class ProfileAdmin(admin.StackedInline):
+    model = Profile
 
 # Overrides django.contrib.auth.forms.UserCreationForm and changes 
 # username to accept a wider range of character in the username. 
@@ -34,7 +33,7 @@ numbers and underscores."))
 class UnicodeUserAdmin(UserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
+    inlines = (ProfileAdmin, )
 
 admin.site.unregister(User)
 admin.site.register(User, UnicodeUserAdmin)
-

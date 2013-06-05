@@ -43,7 +43,7 @@ def user_detail(request, slug):
     user = get_object_or_404(User, username=slug)
     questions = user.questions.all()
     answers = user.answers.all()
-    profile = user.get_profile()
+    profile = user.profile
     user.avatar_url = profile.avatar_url()
     user.bio = profile.bio
     user.url = profile.url
@@ -54,7 +54,7 @@ def user_detail(request, slug):
 
 @login_required
 def edit_profile(request):
-    profile = request.user.get_profile()
+    profile = request.user.profile
     if request.method == "POST":
         form = ProfileForm(request.user, data=request.POST)
         if form.is_valid():
