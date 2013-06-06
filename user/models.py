@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
 
 from taggit.managers import TaggableManager
+from django.contrib.auth.models import Group
 
 NOTIFICATION_PERIOD_CHOICES = (
     (u'N', _('No Email')),
@@ -16,6 +17,13 @@ GENDER_CHOICES = (
     (u'F', _('Female')),
 )
 
+class ProfileManager(models.Manager):
+
+    def candidates(self):
+        candidate_group, candidate_group_created = Group.objects.get_or_create(name="candidates")
+        return candidate_group.user_set.all().\
+                annotate(num_answers=models.Count('answers')).order_by("-num_answers")
+
 class Profile(models.Model):
     # TODO: chnage OneToOne
     user = models.OneToOneField(User, related_name='profile')
@@ -26,18 +34,22 @@ class Profile(models.Model):
     avatar_uri = models.URLField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
 
+    objects = ProfileManager()
     def avatar_url(self, size=40):
         if self.avatar_uri:
             return self.avatar_uri
         ''' getting the avatar image url from Gravatar '''
         default = "http://okqa.herokuapp.com/static/img/defaultavatar.png"
         email = self.user.email
-        if not email:
-            return default
+        if self.avatar_uri:
+            return self.avatar_uri
 
-        gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(email.lower()).hexdigest() + "?"
-        gravatar_url += urllib.urlencode({'d':default, 's':str(size)})
-        return gravatar_url
+        if email:
+            gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(email.lower()).hexdigest() + "?"
+            gravatar_url += urllib.urlencode({'d':default, 's':str(size)})
+            return gravatar_url
+        else:
+            return default
 
 def handle_user_save(sender, created, instance, **kwargs):
     if created and instance._state.db=='default':

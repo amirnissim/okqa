@@ -8,7 +8,7 @@ urlpatterns = patterns('qa.views',
     url(r'^a/post/(?P<q_id>\d+)/$', 'post_answer', name='post_answer'),
     url(r'^q/post/$', 'post_question', name='post_question'),
 
-    url(r'^q/(?P<q_id>\d+)/$', 'view_question', name='question-details'),
+    url(r'^q/(?P<q_id>\d+)/$', 'view_question', name='question-detail'),
 	url(r'^q/(?P<q_id>\d+)/flag/$', 'flag_question', name='flag_question'),
 
     url(r'^q/(?P<slug>[-\w]+)/$',
