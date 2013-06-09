@@ -13,6 +13,7 @@ class ProfileForm(forms.Form):
     last_name = forms.CharField(label=_('last name'), max_length = 20)
     email = forms.EmailField(required=False ,label=_(u'email address'))
     url = forms.URLField(required=False ,label=_(u'home page'))
+    avatar_uri = forms.URLField(required=False ,label=_(u'avatar'))
     bio = forms.CharField(label=_('bio'),
                           widget=forms.Textarea(attrs={'rows':5}))
     email_notification = forms.ChoiceField(choices = NOTIFICATION_PERIOD_CHOICES,
@@ -31,6 +32,7 @@ class ProfileForm(forms.Form):
                             'bio': self.profile.bio,
                             'email_notification': self.profile.email_notification,
                             'url': self.profile.url,
+                            'avatar_uri': self.profile.avatar_url(),
                            }
 
     def clean_username(self):
@@ -56,6 +58,7 @@ class ProfileForm(forms.Form):
         self.profile.bio = self.cleaned_data['bio']
         self.profile.email_notification = self.cleaned_data['email_notification']
         self.profile.url = self.cleaned_data['url']
+        self.profile.avatar_uri = self.cleaned_data['avatar_uri']
 
         if commit:
             user.save()
