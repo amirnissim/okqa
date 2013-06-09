@@ -20,7 +20,7 @@
         {% if can_answer %}
           <a class="btn btn-success btn-large" style="margin-top: 10px;" href="#add_answer_modal" data-toggle="modal">{% trans "Answer the Question" %}</a>
         {% endif %}
-        {% if user.is_authenticated %}
+        {% if perms.qa.can_add_answer %}
         <a class="btn btn-danger {% if not can_upvote %}disabled{% endif %}"
           id="flag-question" href="#" >&#9872;
         </a>
