@@ -28,6 +28,7 @@ USE_L10N = True
 MEDIA_ROOT = PROJECT_DIR.child('media')
 STATIC_ROOT = PROJECT_DIR.child('static_root')
 STATICFILES_ROOT = PROJECT_DIR.child('static')
+LOCALE_PATHS = (unicode(PROJECT_DIR.child('locale')), )
 
 STATICFILES_DIRS = [
     (subdir, str(STATICFILES_ROOT.child(subdir))) for subdir in

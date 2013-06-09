@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-07 11:26+0300\n"
+"POT-Creation-Date: 2013-06-09 11:35+0300\n"
 "PO-Revision-Date: 2013-04-03 23:41+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,26 +18,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Language: en_US\n"
 "X-Source-Language: C\n"
-
-#: okqa/taggit_autosuggest/managers.py:11
-msgid "Tags"
-msgstr "תגיות"
-
-#: okqa/taggit_autosuggest/managers.py:12
-msgid "A comma-separated list of tags."
-msgstr " "
-
-#: okqa/taggit_autosuggest/widgets.py:67
-msgid "Enter Tag Here"
-msgstr "הכנס/י תגית"
-
-#: okqa/taggit_autosuggest/widgets.py:68
-msgid "No Results"
-msgstr "אין תוצאות"
-
-#: okqa/taggit_autosuggest/widgets.py:69
-msgid "No More Selections Are Allowed"
-msgstr "מספר תגיות מקסימלי"
 
 #: party/models.py:12
 msgid "party name"
@@ -142,7 +122,7 @@ msgstr "תשובות לשאלה"
 msgid "A feed of all answers for the question"
 msgstr "פיד של תשובות לשאלה"
 
-#: qa/views.py:264
+#: qa/views.py:263
 msgid "You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
@@ -280,6 +260,26 @@ msgstr "שאלות"
 msgid "Sorry but only connected users can post questions"
 msgstr "מצטערת, יש להתחבר כדי לשאול שאלות"
 
+#: taggit_autosuggest/managers.py:11
+msgid "Tags"
+msgstr "תגיות"
+
+#: taggit_autosuggest/managers.py:12
+msgid "A comma-separated list of tags."
+msgstr " "
+
+#: taggit_autosuggest/widgets.py:67
+msgid "Enter Tag Here"
+msgstr "הכנס/י תגית"
+
+#: taggit_autosuggest/widgets.py:68
+msgid "No Results"
+msgstr "אין תוצאות"
+
+#: taggit_autosuggest/widgets.py:69
+msgid "No More Selections Are Allowed"
+msgstr "מספר תגיות מקסימלי"
+
 #: templates/base.html:33
 msgid "Home"
 msgstr "הביתה"
@@ -313,47 +313,42 @@ msgstr "ממשק ניהול"
 msgid "logout"
 msgstr "התנתקות"
 
-#: templates/base.html:63
-msgid "Connect to Facebook"
-msgstr "התחבר לפייסבוק"
+#: templates/base.html:62 templates/registration/activation_complete.html:7
+#: templates/registration/login.html:6
+#: templates/registration/password_reset_complete.html:7
+msgid "Login"
+msgstr "היכנסו"
 
-#: templates/base.html:65
-msgid "Connect to Twitter"
-msgstr "התחבר לטוויטר"
-
-#: templates/base.html:88
+#: templates/base.html:85
 msgid "Back to top"
 msgstr "בחזרה לראש העמוד"
 
-#: templates/base.html:89
+#: templates/base.html:86
 msgid "Content is licensed CC-BY. Source code is freely available "
 msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.  קוד המקור חופשי לשימוש"
 
-#: templates/base.html:90 user/templates/user/candidate_list.html:44
+#: templates/base.html:87 user/templates/user/candidate_list.html:44
 msgid "here"
 msgstr "כאן"
 
-#: templates/base.html:92
+#: templates/base.html:89
 msgid "The Public Knowledge Workshop"
 msgstr "הסדנא לידע ציבורי"
 
-#: templates/base.html:116
+#: templates/base.html:113
 msgid "read more"
 msgstr "קרא עוד"
 
-#: templates/base.html:120
+#: templates/base.html:117
 msgid "read less"
 msgstr "קרא פחות"
-
-#: templates/admin/auth/app_index.html:6
-msgid "Add Candidate"
-msgstr "הוספת מועמד"
 
 #: templates/registration/activate.html:8
 msgid "Account successfully activated"
 msgstr "החשבון הופעל בהצלחה"
 
-#: templates/registration/activate.html:10 templates/registration/login.html:8
+#: templates/registration/activate.html:10
+#: templates/registration/login.html:13
 msgid "Log in"
 msgstr "התחבר"
 
@@ -364,11 +359,6 @@ msgstr "לא הצלחנו להפעיל את החשבון"
 #: templates/registration/activation_complete.html:6
 msgid "Ye be now registered. Welcome t' okqa, and dinna spare the whip!"
 msgstr "ההרשמה הסתיימה בהצלחה, תודה."
-
-#: templates/registration/activation_complete.html:7
-#: templates/registration/password_reset_complete.html:7
-msgid "Login"
-msgstr "היכנסו"
 
 #: templates/registration/activation_email.txt:3
 #, python-format
@@ -409,23 +399,13 @@ msgstr ""
 msgid "Please activate your account"
 msgstr "אנא הפעילו את חשבונכם"
 
-#: templates/registration/login.html:12
-msgid "Forgot password"
-msgstr "שכחתי ססמה"
+#: templates/registration/login.html:25
+msgid "Connect to Facebook"
+msgstr "התחבר לפייסבוק"
 
-#: templates/registration/login.html:12
-msgid "Reset it"
-msgstr "אפס"
-
-#: templates/registration/login.html:13
-msgid "Not member"
-msgstr ""
-
-#: templates/registration/login.html:13
-#: templates/registration/registration_form.html:8
-#: templates/registration/registration_form.html:21
-msgid "Register"
-msgstr "הירשמו"
+#: templates/registration/login.html:27
+msgid "Connect to Twitter"
+msgstr "התחבר לטוויטר"
 
 #: templates/registration/logout.html:5
 msgid "Thanks for using the System. You are now logged out."
@@ -462,6 +442,11 @@ msgstr "איפוס ססמה באתר %(site_name)s"
 msgid "Ye be now registered. Activation email sent, arrrr."
 msgstr "נרשמת בהצלחה ודואל עם הוראות להפעלת החשבון נשלח."
 
+#: templates/registration/registration_form.html:8
+#: templates/registration/registration_form.html:21
+msgid "Register"
+msgstr "הירשמו"
+
 #: templates/search/search.html:21
 msgid "Results"
 msgstr "תוצאות החיפוש"
@@ -478,18 +463,18 @@ msgstr "&raquo; הקודם"
 msgid "Next &raquo;"
 msgstr "הבא &lqauo;"
 
-#: user/admin.py:16 user/admin.py:27 user/forms.py:107
+#: user/admin.py:15 user/admin.py:26
 msgid "Username"
 msgstr "שם משתמש"
 
-#: user/admin.py:18 user/admin.py:29 user/forms.py:109
+#: user/admin.py:17 user/admin.py:28
 msgid ""
 "Required. 30 characters or fewer. Alphanumeric characters only (letters, "
 "digits and underscores)."
 msgstr ""
 "30 תווים או פחות. ניתן להשתמש באותיות עבריות ולועזיות, ספרות וקו תחתון בלבד."
 
-#: user/admin.py:20 user/admin.py:31 user/forms.py:111
+#: user/admin.py:19 user/admin.py:30
 msgid "This value must contain only letters, numbers and underscores."
 msgstr "ניתן להשתמש באותיות, ספרות וקו תחתון בלבד."
 
@@ -501,97 +486,81 @@ msgstr "תשובות של"
 msgid "Get all answers by"
 msgstr "קבלו את כל התשובות של"
 
-#: user/forms.py:12 user/forms.py:74
+#: user/forms.py:10 user/forms.py:72
 msgid "username"
 msgstr "שם משתמש"
 
-#: user/forms.py:13 user/forms.py:75
+#: user/forms.py:11 user/forms.py:73
 msgid "Please use 4 letters or more"
 msgstr "נא להשתמש בארבע אותיות או יותר (גם מספרים ו @/./+/-/_ הם תווים חוקיים)"
 
-#: user/forms.py:14 user/forms.py:76
+#: user/forms.py:12 user/forms.py:74
 msgid "first name"
 msgstr "שם פרטי"
 
-#: user/forms.py:15 user/forms.py:77
+#: user/forms.py:13 user/forms.py:75
 msgid "last name"
 msgstr "שם משפחה"
 
-#: user/forms.py:16 user/forms.py:82
+#: user/forms.py:14 user/forms.py:80
 msgid "email address"
 msgstr "כתובת דואל"
 
-#: user/forms.py:17 user/forms.py:93
+#: user/forms.py:15 user/forms.py:91
 msgid "home page"
 msgstr "עמוד הבית"
 
-#: user/forms.py:18 user/forms.py:94
+#: user/forms.py:16 user/forms.py:92
 msgid "bio"
 msgstr "ביוגרפיה"
 
-#: user/forms.py:21
+#: user/forms.py:19
 msgid "E-Mail Notifications"
 msgstr "התראות דואל"
 
-#: user/forms.py:22
+#: user/forms.py:20
 msgid ""
 "Should we send you e-mail notification about updates to things you follow on "
 "the site?"
 msgstr "האם לשלוח התראות דואל לגבי שאלות ותגיות שאתה עוקב אחריהם?"
 
-#: user/forms.py:68
+#: user/forms.py:66
 msgid "the voters are waiting for your answers"
 msgstr "המצביעים ממתינים לתשובתך"
 
-#: user/forms.py:69
+#: user/forms.py:67
 msgid ""
 "The Q&A site is happy to invite you to answer voters' questions. please "
 "click {{activation_url}} to activate your account"
 msgstr ""
 
-#: user/forms.py:78
+#: user/forms.py:76
 msgid "email subject"
 msgstr "נושא הדואל"
 
-#: user/forms.py:80
+#: user/forms.py:78
 msgid "email body"
 msgstr "תוכן הדואל"
 
-#: user/models.py:10
+#: user/models.py:11
 msgid "No Email"
 msgstr "אין דואל"
 
-#: user/models.py:11
+#: user/models.py:12
 msgid "Daily"
 msgstr "יומי"
 
-#: user/models.py:12
+#: user/models.py:13
 msgid "Weekly"
 msgstr "שבועי"
 
-#: user/models.py:15
+#: user/models.py:16
 msgid "Male"
 msgstr "זכר"
 
-#: user/models.py:16
+#: user/models.py:17
 msgid "Female"
 msgstr "נקבה"
-
-#: user/views.py:22
-msgid "You are already logged in"
-msgstr "תודה, אתה כבר מחובר למערכת"
-
-#: user/views.py:34
-msgid "You need to use POST to login"
-msgstr ""
-
-#: user/views.py:90
-msgid "Sorry, this link has already been used"
-msgstr "מצטערים, הקישור אינו פעיל. אנא נסה להרשם שנית"
-
-#: user/candidate_registration_backend/__init__.py:100
-msgid "An activation message was sent to the user."
-msgstr "דואל הפעלה נשלח למועמד"
 
 #: user/templates/user/add_candidate.html:5
 msgid "Invite a candidate"
@@ -635,6 +604,24 @@ msgstr ""
 #: user/templates/user/edit_profile.html:6
 msgid "Edit your profile"
 msgstr "ערוך את הפרופיל שלך"
+
+#~ msgid "Add Candidate"
+#~ msgstr "הוספת מועמד"
+
+#~ msgid "Forgot password"
+#~ msgstr "שכחתי ססמה"
+
+#~ msgid "Reset it"
+#~ msgstr "אפס"
+
+#~ msgid "You are already logged in"
+#~ msgstr "תודה, אתה כבר מחובר למערכת"
+
+#~ msgid "Sorry, this link has already been used"
+#~ msgstr "מצטערים, הקישור אינו פעיל. אנא נסה להרשם שנית"
+
+#~ msgid "An activation message was sent to the user."
+#~ msgstr "דואל הפעלה נשלח למועמד"
 
 #~ msgid "The Demo Party"
 #~ msgstr "מפלגת הדמו"
