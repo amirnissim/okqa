@@ -25,6 +25,7 @@ SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
 
+MEDIA_URL = '/media/'
 MEDIA_ROOT = PROJECT_DIR.child('media')
 STATIC_ROOT = PROJECT_DIR.child('static_root')
 STATICFILES_ROOT = PROJECT_DIR.child('static')
