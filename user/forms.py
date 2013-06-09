@@ -22,7 +22,7 @@ class ProfileForm(forms.Form):
     def __init__(self, user = None, *args, **kw):
         super(ProfileForm, self).__init__(*args, **kw)
         self.user = user
-        self.profile = user.get_profile()
+        self.profile = user.profile
         if self.user:
             self.initial = {'username': self.user.username,
                             'email': self.user.email,
@@ -94,7 +94,7 @@ class ActivateCandidateForm(SetPasswordForm):
 
     def save(self, commit=True):
         super(ActivateCandidateForm, self).save(commit)
-        profile = self.user.get_profile()
+        profile = self.user.profile
         profile.url = self.cleaned_data['url']
         profile.bio = self.cleaned_data['bio']
         if commit:

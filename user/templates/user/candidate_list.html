@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="avatar-container">
-          <a href="{{ candidate.get_absolute_url }}" title="{{ candidate.get_full_name }}"><img src="{{ candidate.get_profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle"></a>
+          <a href="{{ candidate.get_absolute_url }}" title="{{ candidate.get_full_name }}"><img src="{{ candidate.profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle"></a>
         </div>
         <div class="summary">
             <h3>
@@ -30,7 +30,7 @@
                 title="{{ candidate.username }}">{{ candidate.get_full_name|default:candidate.username}}</a>
             </h3>
             <div class="preview">
-              <span class="too-long-toggle"> {{ candidate.get_profile.bio }}</span>
+              <span class="too-long-toggle"> {{ candidate.profile.bio }}</span>
             </div>
         </div>
     </div>

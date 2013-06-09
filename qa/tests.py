@@ -55,13 +55,20 @@ class QuestionTest(TestCase):
         self.assertEqual(Answer.on_site.count(), 1)
         #TODO: self.assertEqual(TaggedQuestion.on_site.count(), 1)
 
+    def test_question_detail(self):
+        c = Client()
+        response = c.post(reverse('question-detail', kwargs={'q_id':self.q.id}))
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, "qa/question_detail.html")
+
     def test_flag(self):
         self.q.flagged()
         self.assertEquals(self.q.flags_count, 1)
-        c = SocialClient()
+        c = Client()
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
-        self.assertEquals(response.status_code, 302)
-        c.login(self.user, backend='facebook')
+        self.assertEquals(response.status_code, 403)
+        respone = c.post(reverse('login'),
+                {'username':"commoner", 'password':"pass"})
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.content, "2")

@@ -254,13 +254,12 @@ class AtomQuestionAnswerFeed(RssQuestionAnswerFeed):
     feed_type = Atom1Feed
     subtitle = RssQuestionAnswerFeed.description
 
-@login_required
 @require_POST
 def flag_question(request, q_id):
     q = get_object_or_404(Question, id=q_id)
     user = request.user
 
-    if user.flags.filter(question=q):
+    if user.is_anonymous() or user.flags.filter(question=q):
         return HttpResponseForbidden(_("You already reported this question"))
     else:
         flag = QuestionFlag.objects.create(question=q, reporter=user)

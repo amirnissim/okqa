@@ -20,7 +20,7 @@
         {% if can_answer %}
           <a class="btn btn-success btn-large" style="margin-top: 10px;" href="#add_answer_modal" data-toggle="modal">{% trans "Answer the Question" %}</a>
         {% endif %}
-        {% if user.is_authenticated %}
+        {% if perms.qa.can_add_answer %}
         <a class="btn btn-danger {% if not can_upvote %}disabled{% endif %}"
           id="flag-question" href="#" >&#9872;
         </a>
@@ -33,7 +33,7 @@
         {% if answers %}
           <h5>
             {% trans 'Answers' %}
-            <a href="{% url atom_question_answers question.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
+            <a href="{% url "atom_question_answers" question.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
               <img src="{{STATIC_URL}}img/rss.png" width="25" />
              </a>
           </h5>
@@ -43,7 +43,7 @@
           {% include "qa/_answer.html" %}
         {% empty %}
           <h5>{% trans "No Answers Yet" %}
-            <a href="{% url atom_question_answers question.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
+            <a href="{% url "atom_question_answers" question.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
               <!-- <img src="/static/img/social-icons/colour/rss.png" width="25" /> -->
              </a>
           </h5>
@@ -56,7 +56,7 @@
   </div>
 {% if my_answer_form %}
 <div class="modal fade" id="add_answer_modal">
- <form class="form" method="post" action="{% url post_answer question.id %}">
+ <form class="form" method="post" action="{% url "post_answer" question.id %}">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
     <h3>{{question.subject}}</h3>
@@ -89,7 +89,7 @@
           "{% trans 'Sorry but only connected users can upvote questions' %}" +
            '</div>');
       {% else %}
-        $.post("{% url upvote_question question.id %}",
+        $.post("{% url "upvote_question" question.id %}",
             {csrfmiddlewaretoken: "{{ csrf_token }}"},
             function (data, status, jqXHR) {
               $("#votes-count-{{question.id}}").html(jqXHR.responseText);
@@ -99,7 +99,7 @@
     })
 
     $("#flag-question").click (function() {
-      $.post("{% url flag_question question.id %}",
+      $.post("{% url "flag_question" question.id %}",
           {csrfmiddlewaretoken: "{{ csrf_token }}"},
           function (data, status, jqXHR) {
               $("#messages").html('<div class="alert" class="info">' +
