@@ -27,9 +27,6 @@ from django.forms.models import model_to_dict
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating'}
 
 
-def home(request):
-    return render(request, "home.html")
-
 def questions(request, tags = None):
     """
     list questions ordered by number of upvotes
