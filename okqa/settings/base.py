@@ -99,6 +99,7 @@ INSTALLED_APPS = (
     'gunicorn',
     'bootstrap_pagination',
     'django_nose',
+    'registration',
     # local apps
     'qa',
     'user',
@@ -173,3 +174,5 @@ SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.user.update_user_details',
     'user.utils.get_user_avatar',
 )
+
+ACCOUNT_ACTIVATION_DAYS = 4

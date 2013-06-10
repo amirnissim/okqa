@@ -26,3 +26,4 @@ wsgiref==0.1.2
 yolk==0.4.3
 selenium
 mock
+-e hg+https://bitbucket.org/ubernostrum/django-registration#egg=django-registration
