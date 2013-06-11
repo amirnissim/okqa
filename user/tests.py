@@ -57,7 +57,7 @@ class UserTest(TestCase):
 
     def user_detail(self):
         c = Client()
-        response = c.get(reverse('user_detail', {'slug': "user"}))
+        response = c.get(reverse('user_detail', kwargs={'slug': "user"}))
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, "user/candidate_detail.html")
 
@@ -68,6 +68,16 @@ class UserTest(TestCase):
                             last_name = "Doe",
                             site = Site.objects.get(pk=settings.SITE_ID)
                             )
+        user = User.objects.get(username = "john")
+        self.assertEquals(user.email, "john@example.com")
+        self.assertEquals(user.get_full_name(), "John Doe")
+        reg_profile = user.registrationprofile_set.all()
+        self.assertEquals(reg_profile.count(), 1)
+        reg_profile = reg_profile[0]
+        c = Client()
+        response = c.get(reverse('accept-invitation', kwargs={'invitation_key': reg_profile.activation_key}))
+        self.assertEquals(response.status_code, 200)
+
 
 
     def tearDown(self):

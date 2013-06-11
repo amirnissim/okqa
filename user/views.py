@@ -48,7 +48,7 @@ def edit_profile(request):
     return render(request, "user/edit_profile.html", {"form": form})
 
 class InvitationView(View, FormMixin, TemplateResponseMixin):
-    template_name = 'user/invitation.html'
+    template_name = 'user/accept_invitation.html'
     form_class = InvitationForm
     success_url = '/'
 
@@ -56,7 +56,7 @@ class InvitationView(View, FormMixin, TemplateResponseMixin):
         user = RegistrationProfile.objects.activate_user(invitation_key)
         context = self.get_context_data(
                 user=user,
-                form=self.get_form(form_class),
+                form=self.form_class(user),
                 )
         return self.render_to_response(context)
 
