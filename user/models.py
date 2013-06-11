@@ -18,26 +18,31 @@ GENDER_CHOICES = (
     (u'F', _('Female')),
 )
 
-class ProfileManager(models.Manager):
+def invite_user(site, username, email, first_name="", last_name=""):
+    ''' invite a new user to the system '''
+    user, created = User.objects.get_or_create(username=username,
+            defaults = {'email': email,
+                        'first_name': first_name,
+                        'last_name': last_name,
+                       })
+    if created:
+        user.is_active = False
+        user.save()
+    elif user.is_active:
+        return user
+    else:
+        user.registrationprofile_set.all().delete()
 
+
+    registration_profile = RegistrationProfile.objects.create_profile(user)
+
+    return user
+
+class ProfileManager(models.Manager):
     def candidates(self):
         candidate_group, candidate_group_created = Group.objects.get_or_create(name="candidates")
         return candidate_group.user_set.all().\
                 annotate(num_answers=models.Count('answers')).order_by("-num_answers")
-
-    def invite(self, site, username, email, first_name="", last_name=""):
-        ''' invite a new user to the system '''
-        user = RegistrationProfile.objects.create_inactive_user(username=email[:email.find('@')],
-                email=email,
-                password="pass",
-                site=site,
-                send_email=False,
-                )
-
-        user.first_name = first_name
-        user.last_name = last_name
-        user.save()
-        return user
 
 class Profile(models.Model):
     # TODO: chnage OneToOne

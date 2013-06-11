@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
@@ -40,11 +41,21 @@ def edit_profile(request):
         if form.is_valid():
             user = form.save()
             return HttpResponseRedirect(user.get_absolute_url())
-
-        #TODO: make this better - show the form
-        # return HttpResponseRedirect("/#question_modal")
     elif request.method == "GET":
+        user = request.user
         form = ProfileForm(request.user)
+        ''' initial = {
+                    'username': user.username,
+                    'email': user.email,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name,
+                    'bio': user.profile.bio,
+                    'email_notification': user.profile.email_notification,
+                    'url': user.profile.url,
+                    'avatar_uri': user.profile.avatar_url(),
+                    })
+        '''
+
     return render(request, "user/edit_profile.html", {"form": form})
 
 class InvitationView(View, FormMixin, TemplateResponseMixin):
@@ -52,15 +63,37 @@ class InvitationView(View, FormMixin, TemplateResponseMixin):
     form_class = InvitationForm
     success_url = '/'
 
+    @classmethod
+    def get_user(self, invitation_key):
+        return RegistrationProfile.objects.get(activation_key=invitation_key).user
+
     def get(self, request, invitation_key, **kwargs):
-        user = RegistrationProfile.objects.activate_user(invitation_key)
-        context = self.get_context_data(
-                user=user,
-                form=self.form_class(user),
-                )
-        return self.render_to_response(context)
+        user = self.get_user(invitation_key)
+        if user:
+            context = self.get_context_data(
+                    user=user,
+                    form=self.form_class(user),
+                    )
+            return self.render_to_response(context)
+        else:
+            # TODO: add a nice message about an expired key
+            return HttpResponseForbidden()
+
+    def post(self, request, invitation_key, **kwargs):
+        """
+        Handles POST requests, instantiating a form instance with the passed
+        POST variables and then checked for validity.
+        """
+        user = self.get_user(invitation_key)
+        form_class = self.get_form_class()
+        form = form_class(user, data=request.POST)
+        if form.is_valid():
+            user = RegistrationProfile.objects.activate_user(invitation_key)
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
     def form_valid(self, form):
         form.save()
-        return HttpResponseRedirect(self.get_success_url())
+        return HttpResponseRedirect(reverse('login'))
 

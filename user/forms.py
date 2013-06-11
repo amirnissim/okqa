@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
 from django.contrib.flatpages.models import FlatPage
@@ -10,17 +11,17 @@ class ProfileForm(forms.Form):
     username = forms.RegexField(label=_("username"), max_length=30, regex=r'^(?u)[\w.@+-]{4,}$',
                                 help_text= _('Please use 4 letters or more'))
     first_name = forms.CharField(label=_('first name'), max_length = 15)
-    last_name = forms.CharField(label=_('last name'), max_length = 20)
+    last_name = forms.CharField(label=_('last name'), required=False, max_length = 20)
     email = forms.EmailField(required=False ,label=_(u'email address'))
     url = forms.URLField(required=False ,label=_(u'home page'))
     avatar_uri = forms.URLField(required=False ,label=_(u'avatar'))
-    bio = forms.CharField(label=_('bio'),
+    bio = forms.CharField(label=_('bio'), required=False,
                           widget=forms.Textarea(attrs={'rows':5}))
     email_notification = forms.ChoiceField(choices = NOTIFICATION_PERIOD_CHOICES,
                                            label = _('E-Mail Notifications'),
                                            help_text = _('Should we send you e-mail notification about updates to things you follow on the site?'))
 
-    def __init__(self, user = None, *args, **kw):
+    def __init__(self, user, *args, **kw):
         super(ProfileForm, self).__init__(*args, **kw)
         self.user = user
         self.profile = user.profile
@@ -41,7 +42,7 @@ class ProfileForm(forms.Form):
             return data
         try:
             User.objects.get(username = data)
-            raise forms.ValidationError("This username is already taken.")
+            raise forms.ValidationError(_("This username is already taken."))
         except User.DoesNotExist:
             return data
 
@@ -52,6 +53,7 @@ class ProfileForm(forms.Form):
                 #TODO: send validation email
                 pass
             user.email = self.cleaned_data['email']
+        user.is_active = True
         user.username = self.cleaned_data['username']
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
@@ -76,7 +78,7 @@ class InvitationForm(ProfileForm):
         allowing the user to set the password
     '''
     password1 = forms.CharField(label=_("Password"),
-        widget=forms.PasswordInput)
+        widget=forms.PasswordInput, required=True)
     password2 = forms.CharField(label=_("Password confirmation"),
         widget=forms.PasswordInput,
         help_text=_("Enter the same password as above, for verification."))
@@ -89,13 +91,32 @@ class InvitationForm(ProfileForm):
                 self.error_messages['password_mismatch'])
         return password2
 
+    '''
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password1')
+
+        if username and password:
+            self.user = authenticate(username=username,
+                                           password=password)
+            if self.user is None:
+                raise forms.ValidationError(
+                    self.error_messages['invalid_login'] % {
+                        'username': self.username_field.verbose_name
+                    })
+            elif not self.user_cache.is_active:
+                raise forms.ValidationError(self.error_messages['inactive'])
+        return self.cleaned_data
+    '''
+
     def save(self, commit = True):
-        user = super(ProfileForm, self).save(False)
+        user = super(InvitationForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         if commit:
             user.save()
             user.profile.save()
         return user
+
 class AddCandidateForm(forms.Form):
     username = forms.RegexField(label=_("username"), max_length=30, regex=r'^(?u)[\w.@+-]{4,}$',
                                 help_text= _('Please use 4 letters or more'))

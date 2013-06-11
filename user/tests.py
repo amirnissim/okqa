@@ -62,7 +62,7 @@ class UserTest(TestCase):
         self.assertTemplateUsed(response, "user/candidate_detail.html")
 
     def test_invitation(self):
-        user = Profile.objects.invite(username = "john",
+        user = invite_user(username = "john",
                             email = "john@example.com",
                             first_name = "John",
                             last_name = "Doe",
@@ -77,6 +77,11 @@ class UserTest(TestCase):
         c = Client()
         response = c.get(reverse('accept-invitation', kwargs={'invitation_key': reg_profile.activation_key}))
         self.assertEquals(response.status_code, 200)
+        response = c.post(reverse('accept-invitation',
+            kwargs={'invitation_key': reg_profile.activation_key}), 
+            )
+        self.assertFormError(response, "form", None, None)
+        self.assertFormError(response, "form", "password1", None)
 
 
 
