@@ -71,6 +71,31 @@ invitation_default_text, create = FlatPage.objects.get_or_create(url='/_invite_c
  voters' questions. please click {{activation_url}} to activate your account"),
                  })
 
+class InvitationForm(ProfileForm):
+    ''' The invitation form is an extensions of ProfileFor,
+        allowing the user to set the password
+    '''
+    password1 = forms.CharField(label=_("Password"),
+        widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_("Password confirmation"),
+        widget=forms.PasswordInput,
+        help_text=_("Enter the same password as above, for verification."))
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError(
+                self.error_messages['password_mismatch'])
+        return password2
+
+    def save(self, commit = True):
+        user = super(ProfileForm, self).save(False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+            user.profile.save()
+        return user
 class AddCandidateForm(forms.Form):
     username = forms.RegexField(label=_("username"), max_length=30, regex=r'^(?u)[\w.@+-]{4,}$',
                                 help_text= _('Please use 4 letters or more'))

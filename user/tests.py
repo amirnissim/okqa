@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import User, AnonymousUser, Permission
 from django.contrib.sites.models import Site
 from social_auth.tests.client import SocialClient
@@ -8,7 +9,7 @@ from django.test import TestCase
 
 from .models import *
 
-class QuestionTest(TestCase):
+class UserTest(TestCase):
     user = {
         'first_name': 'Django',
         'last_name': 'Reinhardt',
@@ -59,6 +60,15 @@ class QuestionTest(TestCase):
         response = c.get(reverse('user_detail', {'slug': "user"}))
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, "user/candidate_detail.html")
+
+    def test_invitation(self):
+        user = Profile.objects.invite(username = "john",
+                            email = "john@example.com",
+                            first_name = "John",
+                            last_name = "Doe",
+                            site = Site.objects.get(pk=settings.SITE_ID)
+                            )
+
 
     def tearDown(self):
         User.objects.all().delete()

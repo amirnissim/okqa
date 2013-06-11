@@ -3,9 +3,10 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext as _
+from django.contrib.auth.models import Group
 
 from taggit.managers import TaggableManager
-from django.contrib.auth.models import Group
+from registration.models import RegistrationProfile
 
 NOTIFICATION_PERIOD_CHOICES = (
     (u'N', _('No Email')),
@@ -23,6 +24,20 @@ class ProfileManager(models.Manager):
         candidate_group, candidate_group_created = Group.objects.get_or_create(name="candidates")
         return candidate_group.user_set.all().\
                 annotate(num_answers=models.Count('answers')).order_by("-num_answers")
+
+    def invite(self, site, username, email, first_name="", last_name=""):
+        ''' invite a new user to the system '''
+        user = RegistrationProfile.objects.create_inactive_user(username=email[:email.find('@')],
+                email=email,
+                password="pass",
+                site=site,
+                send_email=False,
+                )
+
+        user.first_name = first_name
+        user.last_name = last_name
+        user.save()
+        return user
 
 class Profile(models.Model):
     # TODO: chnage OneToOne
