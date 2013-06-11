@@ -25,6 +25,7 @@ SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
 
+MEDIA_URL = '/media/'
 MEDIA_ROOT = PROJECT_DIR.child('media')
 STATIC_ROOT = PROJECT_DIR.child('static_root')
 STATICFILES_ROOT = PROJECT_DIR.child('static')
@@ -98,6 +99,7 @@ INSTALLED_APPS = (
     'gunicorn',
     'bootstrap_pagination',
     'django_nose',
+    'registration',
     # local apps
     'qa',
     'user',
@@ -172,3 +174,5 @@ SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.user.update_user_details',
     'user.utils.get_user_avatar',
 )
+
+ACCOUNT_ACTIVATION_DAYS = 4

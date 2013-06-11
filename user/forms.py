@@ -13,6 +13,7 @@ class ProfileForm(forms.Form):
     last_name = forms.CharField(label=_('last name'), max_length = 20)
     email = forms.EmailField(required=False ,label=_(u'email address'))
     url = forms.URLField(required=False ,label=_(u'home page'))
+    avatar_uri = forms.URLField(required=False ,label=_(u'avatar'))
     bio = forms.CharField(label=_('bio'),
                           widget=forms.Textarea(attrs={'rows':5}))
     email_notification = forms.ChoiceField(choices = NOTIFICATION_PERIOD_CHOICES,
@@ -31,6 +32,7 @@ class ProfileForm(forms.Form):
                             'bio': self.profile.bio,
                             'email_notification': self.profile.email_notification,
                             'url': self.profile.url,
+                            'avatar_uri': self.profile.avatar_url(),
                            }
 
     def clean_username(self):
@@ -56,6 +58,7 @@ class ProfileForm(forms.Form):
         self.profile.bio = self.cleaned_data['bio']
         self.profile.email_notification = self.cleaned_data['email_notification']
         self.profile.url = self.cleaned_data['url']
+        self.profile.avatar_uri = self.cleaned_data['avatar_uri']
 
         if commit:
             user.save()
@@ -68,6 +71,31 @@ invitation_default_text, create = FlatPage.objects.get_or_create(url='/_invite_c
  voters' questions. please click {{activation_url}} to activate your account"),
                  })
 
+class InvitationForm(ProfileForm):
+    ''' The invitation form is an extensions of ProfileFor,
+        allowing the user to set the password
+    '''
+    password1 = forms.CharField(label=_("Password"),
+        widget=forms.PasswordInput)
+    password2 = forms.CharField(label=_("Password confirmation"),
+        widget=forms.PasswordInput,
+        help_text=_("Enter the same password as above, for verification."))
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError(
+                self.error_messages['password_mismatch'])
+        return password2
+
+    def save(self, commit = True):
+        user = super(ProfileForm, self).save(False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+            user.profile.save()
+        return user
 class AddCandidateForm(forms.Form):
     username = forms.RegexField(label=_("username"), max_length=30, regex=r'^(?u)[\w.@+-]{4,}$',
                                 help_text= _('Please use 4 letters or more'))

@@ -6,7 +6,7 @@ django-extensions==0.9
 git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
 git+https://github.com/tgdn/django-bootstrap-pagination.git#egg=django-bootstrap-pagination
 django-nose==1.1
-git+https://github.com/omab/django-social-auth.git#egg=django-social-auth
+git+https://github.com/daonb/django-social-auth.git#egg=django-social-auth
 django-storages==1.1.5
 django-taggit-autosuggest==0.2
 dj-database-url==0.2.1
@@ -24,3 +24,6 @@ unicode-slugify==0.1
 Unipath==0.2.1
 wsgiref==0.1.2
 yolk==0.4.3
+selenium
+mock
+-e hg+https://bitbucket.org/ubernostrum/django-registration#egg=django-registration

@@ -6,6 +6,8 @@ from django.contrib.auth import login as auth_login, logout as auth_logout, auth
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
 from django.contrib import messages
+from django.views.generic.edit import FormMixin, TemplateResponseMixin
+from django.views.generic import View
 
 from .forms import *
 from .models import *
@@ -44,3 +46,21 @@ def edit_profile(request):
     elif request.method == "GET":
         form = ProfileForm(request.user)
     return render(request, "user/edit_profile.html", {"form": form})
+
+class InvitationView(View, FormMixin, TemplateResponseMixin):
+    template_name = 'user/invitation.html'
+    form_class = InvitationForm
+    success_url = '/'
+
+    def get(self, request, invitation_key, **kwargs):
+        user = RegistrationProfile.objects.activate_user(invitation_key)
+        context = self.get_context_data(
+                user=user,
+                form=self.get_form(form_class),
+                )
+        return self.render_to_response(context)
+
+    def form_valid(self, form):
+        form.save()
+        return HttpResponseRedirect(self.get_success_url())
+
