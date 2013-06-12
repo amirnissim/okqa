@@ -20,6 +20,8 @@ class ProfileForm(forms.Form):
     email_notification = forms.ChoiceField(choices = NOTIFICATION_PERIOD_CHOICES,
                                            label = _('E-Mail Notifications'),
                                            help_text = _('Should we send you e-mail notification about updates to things you follow on the site?'))
+    can_answer = forms.BooleanField(label=_('candidate?'), required=False,
+                help_text=_('Please check this only if you are running for office'))
 
     def __init__(self, user, *args, **kw):
         super(ProfileForm, self).__init__(*args, **kw)
@@ -65,6 +67,7 @@ class ProfileForm(forms.Form):
         if commit:
             user.save()
             self.profile.save()
+        self.profile.set_can_answer(self.cleaned_data['can_answer'])
         return user
 
 invitation_default_text, create = FlatPage.objects.get_or_create(url='/_invite_candidate/',

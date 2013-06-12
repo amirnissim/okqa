@@ -89,6 +89,7 @@ class InvitationView(View, FormMixin, TemplateResponseMixin):
         form = form_class(user, data=request.POST)
         if form.is_valid():
             user = RegistrationProfile.objects.activate_user(invitation_key)
+            messages.success(request, _('Your profile has been updated, please login.'))
             return self.form_valid(form)
         else:
             return self.form_invalid(form)

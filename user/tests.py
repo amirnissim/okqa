@@ -50,10 +50,12 @@ class UserTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, "user/candidate_list.html")
         self.assertFalse(response.context['candidates'])
-        candidate_group = Group.objects.get(name='candidates')
-        candidate_group.user_set.add(self.user)
+        self.user.profile.set_can_answer(True)
         response = c.get(reverse('candidate_list'))
         self.assertEquals(len(response.context['candidates']), 1)
+        self.user.profile.set_can_answer(False)
+        response = c.get(reverse('candidate_list'))
+        self.assertEquals(len(response.context['candidates']), 0)
 
     def user_detail(self):
         c = Client()

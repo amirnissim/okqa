@@ -71,6 +71,13 @@ class Profile(models.Model):
         else:
             return default
 
+    def set_can_answer(self, can_answer):
+        candidate_group, created = Group.objects.get_or_create(name="candidates")
+        if can_answer:
+            self.user.groups.add(candidate_group)
+        else:
+            self.user.groups.remove(candidate_group)
+
 def handle_user_save(sender, created, instance, **kwargs):
     if created and instance._state.db=='default':
         Profile.objects.create(user=instance)
