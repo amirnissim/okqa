@@ -7,6 +7,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 
+from django.core.urlresolvers import reverse
 from user.models import invite_user
 
 import ucsv as csv
@@ -43,7 +44,10 @@ class Command(BaseCommand):
                 # Email subject *must not* contain newlines
                 html_content = render_to_string('user/invitation_email.html',
                                            ctx_dict)
-                text_content = strip_tags(html_content) # this strips the html, so people will have the text as well.
+                text_content = '\n'.join((strip_tags(html_content),
+                    "http://%s%s" % (site.domain,
+                                     reverse("accept-invitation", 
+                                             args=(ctx_dict['invitation_key'], )))))
 
                 # create the email, and attach the HTML version as well.
                 msg = EmailMultiAlternatives(subject, text_content,
