@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-12 09:43+0300\n"
-"PO-Revision-Date: 2013-06-12 14:12+0200\n"
+"PO-Revision-Date: 2013-06-14 18:18+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -64,7 +64,7 @@ msgstr "שאלה"
 #: qa/models.py:48
 #, python-format
 msgid "Please enter a subject in no more than %s letters"
-msgstr "נא להקליד שאלת כן/לא בלא יותר מ %s אותיות"
+msgstr "נא להקליד שאלה בלא יותר מ %s אותיות"
 
 #: qa/models.py:49
 msgid "details"
@@ -150,7 +150,7 @@ msgstr "תשובות"
 
 #: qa/templates/qa/post_question.html:10
 msgid "What is your question, sire?"
-msgstr "הנכם מוזמנים להפנות שאלות כן/לא למפלגות"
+msgstr "הנכם מוזמנים להפנות שאלות למועמדים"
 
 #: qa/templates/qa/post_question.html:22
 #: qa/templates/qa/question_detail.html:69
