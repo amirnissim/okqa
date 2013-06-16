@@ -182,35 +182,6 @@ padding: 0 0 7px 0;
 text-align: center;
 color: #777;
 }
-.narrow .answers {
-padding: 6px 5px;
-}
-.narrow .answers {
-float: left;
-margin: 0 3px 0 0;
-width: 48px;
-height: 38px;
-}
-
-.mini-counts {
-padding: 0 0 2px 0;
-line-height: 24px;
-font-size: 18px;
-font-family: Arial,Helvetica,sans-serif;
-}
-.narrow .summary {
-width: 500px;
-}
-.summary {
-float: right;
-width: 630px;
-}
-.summary h3 {
-margin-bottom: 7px;
-font-size: 15px;
-line-height: 16px;
-}
-
 .narrow .started {
 width: auto;
 line-height: inherit;
