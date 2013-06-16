@@ -96,7 +96,6 @@ class Answer(BaseModel):
         return "%s: %s" % (self.author, self.content[:30])
 
     def get_absolute_url(self):
-        import pdb; pdb.set_trace()
         return '%s#answer-%s' % (self.question.get_absolute_url(), self.id)
 
 class QuestionUpvote(BaseModel):
