@@ -9,7 +9,7 @@ body {
 /* Main Container */
 div[role="main"] {
     padding-bottom: 70px;
-    padding-top: 58px;
+    padding-top: 110px;
 }
 /* Footer */
 .footer {
@@ -206,6 +206,7 @@ line-height: 18px!important;
 }
 
 /* Navbar */
+.nav-other { margin-top:55px}
 .nav form {
 	margin: 0;
 	padding: 0;
@@ -214,7 +215,9 @@ line-height: 18px!important;
 .nav li { width:8em; }
 /* Login */
 form { margin :0; }
-
+.navbar .nav > li > a {padding-top: 14px;}
+.navbar-search {padding-top:4px; }
+.nav-self {float:left!important; margin-top:10x;}
 
 .form-actions {
 	border-radius: 5px;
@@ -284,8 +287,6 @@ text-decoration: none;
 h1, h2, h3, h4, h5, h6 {
 	font-weight: 200;
 }
-#party-logo { height: 48px; width:80px; padding:0px; }
-.navbar .nav > li > a {padding-top: 14px;}
-.navbar-search { margin-top: 10px; }
+#party-logo { height: 100px; width:100px; padding:0px; }
 .post-question input[name="subject"] { width: 500px;}
 .social-auth > li { display:inline;}

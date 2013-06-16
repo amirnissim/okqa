@@ -20,17 +20,8 @@
             <img src="http://wiki.hasadna.org.il/images/SadnaLogo150x.png" title="{{party.site.name}}">
         </a>
       </div>
-      <ul class="nav">
-        <li><a href="/">{% trans "Questions" %}</a></li>
-        <li><a href={% url "candidate_list" %}>{% trans "Candidates" %}</a></li>
-        <li><a href="/p/about/">{% trans "About" %}</a></li>
-      </ul>
-      <form class="navbar-search pull-left" action="/search/">
-        <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search' %}" />
-      </form>
-
       {% if user.is_authenticated %}
-      <ul class="nav pull-right">
+      <ul class="nav nav-self">
       <li class="divider-vertical"></li>
       <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Welcome' %}, {{ user.get_full_name|default:user.username }} <b class="caret"></b></a>
@@ -52,6 +43,17 @@
         <li><a href="{% url 'login' %}">{% trans "Login" %}</a></li>
       </ul>
       {% endif %}
+      <div class="nav-other">
+        <ul class="nav">
+          <li><a href="/">{% trans "Questions" %}</a></li>
+          <li><a href={% url "candidate_list" %}>{% trans "Candidates" %}</a></li>
+          <li><a href="/p/about/">{% trans "About" %}</a></li>
+        </ul>
+        <form class="navbar-search pull-left" action="/search/">
+          <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search' %}" />
+        </form>
+      </div>
+
       </div>
     </div>
   </div>
