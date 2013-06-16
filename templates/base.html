@@ -21,13 +21,7 @@
         </a>
       </div>
       <ul class="nav">
-        <li><a href="/" {% block homeNav %}{% endblock %}>
-        {% if party %}
-          {{party.site.name}}
-        {% else %}
-          {% trans "Home" %}
-        {% endif %}
-        </a></li>
+        <li><a href="/">{% trans "Questions" %}</a></li>
         <li><a href={% url "candidate_list" %}>{% trans "Candidates" %}</a></li>
         <li><a href="/p/about/">{% trans "About" %}</a></li>
       </ul>
