@@ -50,10 +50,10 @@ class UserTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, "user/candidate_list.html")
         self.assertFalse(response.context['candidates'])
-        self.user.profile.set_can_answer(True)
+        self.user.profile.set_candidate(True)
         response = c.get(reverse('candidate_list'))
         self.assertEquals(len(response.context['candidates']), 1)
-        self.user.profile.set_can_answer(False)
+        self.user.profile.set_candidate(False)
         response = c.get(reverse('candidate_list'))
         self.assertEquals(len(response.context['candidates']), 0)
 

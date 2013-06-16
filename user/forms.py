@@ -67,7 +67,7 @@ class ProfileForm(forms.Form):
         if commit:
             user.save()
             self.profile.save()
-        self.profile.set_can_answer(self.cleaned_data['can_answer'])
+        self.profile.set_candidate(self.cleaned_data['can_answer'])
         return user
 
 invitation_default_text, create = FlatPage.objects.get_or_create(url='/_invite_candidate/',

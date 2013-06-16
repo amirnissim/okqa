@@ -64,6 +64,7 @@ def view_question(request, q_id):
     context = RequestContext(request, {"question": question,
         "answers": question.answers.all(),
         })
+    context["can_answer"] = can_answer
     if can_answer:
         try:
             user_answer = question.answers.get(author=request.user)
@@ -71,7 +72,6 @@ def view_question(request, q_id):
             context["my_answer_id"] = user_answer.id
         except question.answers.model.DoesNotExist:
             context["my_answer_form"] = AnswerForm()
-            context["can_answer"] = True
 
     if request.user.is_authenticated() and \
        not request.user.upvotes.filter(question=question).exists():

@@ -1,9 +1,8 @@
 import urllib, hashlib
 from django.db import models
 from django.db.models.signals import post_save
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group, Permission
 from django.utils.translation import ugettext as _
-from django.contrib.auth.models import Group
 
 from taggit.managers import TaggableManager
 from registration.models import RegistrationProfile
@@ -38,9 +37,17 @@ def invite_user(site, username, email, first_name="", last_name=""):
 
     return user
 
+def get_candidate_group():
+    ''' return the groups of the candidates '''
+    candidate_group, created = Group.objects.get_or_create(name="candidates")
+    if created:
+        add_answer = Permission.objects.get(codename="add_answer")
+        candidate_group.permissions.add(add_answer)
+    return candidate_group
+
 class ProfileManager(models.Manager):
     def candidates(self):
-        candidate_group, candidate_group_created = Group.objects.get_or_create(name="candidates")
+        candidate_group = get_candidate_group()
         return candidate_group.user_set.all().\
                 annotate(num_answers=models.Count('answers')).order_by("-num_answers")
 
@@ -71,14 +78,14 @@ class Profile(models.Model):
         else:
             return default
 
-    def set_can_answer(self, can_answer):
-        candidate_group, created = Group.objects.get_or_create(name="candidates")
-        if can_answer:
+    def set_candidate(self, candidate):
+        candidate_group = get_candidate_group()
+        if candidate:
             self.user.groups.add(candidate_group)
         else:
             self.user.groups.remove(candidate_group)
 
 def handle_user_save(sender, created, instance, **kwargs):
-    if created and instance._state.db=='default':
+    if created: # and instance._state.db=='default':
         Profile.objects.create(user=instance)
 post_save.connect(handle_user_save, sender=User)
