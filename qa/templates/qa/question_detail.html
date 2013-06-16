@@ -33,9 +33,11 @@
         {% if answers %}
           <h5>
             {% trans 'Answers' %}
-            <a href="{% url "atom_question_answers" question.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
-              <img src="{{STATIC_URL}}img/rss.png" width="25" />
-             </a>
+            <div class="pull-right">
+              <a href="{% url "atom_question_answers" question.id %}" title="{% trans 'feed' %}" rel="tooltip">
+                <img src="{{STATIC_URL}}img/rss.png" width="25" />
+               </a>
+            </div>
           </h5>
         {% endif %}
 
