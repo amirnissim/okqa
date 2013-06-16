@@ -1,7 +1,10 @@
-import urllib, hashlib
+import urllib, hashlib, datetime
+
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User, Group, Permission
+from django.contrib.sites.models import Site
+from django.contrib.sites.managers import CurrentSiteManager
 from django.utils.translation import ugettext as _
 
 from taggit.managers import TaggableManager
@@ -60,6 +63,9 @@ class Profile(models.Model):
     email_notification = models.CharField(max_length=1, choices=NOTIFICATION_PERIOD_CHOICES, blank=True, null=True, default='D')
     avatar_uri = models.URLField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
+    last_email_update = models.DateTimeField(default=datetime.date(1970,8,6))
+    sites = models.ManyToManyField(Site)
+    on_site = CurrentSiteManager()
 
     objects = ProfileManager()
     def avatar_url(self, size=40):
