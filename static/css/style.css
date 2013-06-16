@@ -212,7 +212,6 @@ line-height: 18px!important;
 	padding: 0;
 }
 .nav li:first-child {font-weight: bold; }
-.nav li { width:8em; }
 /* Login */
 form { margin :0; }
 .navbar .nav > li > a {padding-top: 14px;}
@@ -290,3 +289,4 @@ h1, h2, h3, h4, h5, h6 {
 #party-logo { height: 100px; width:100px; padding:0px; }
 .post-question input[name="subject"] { width: 500px;}
 .social-auth > li { display:inline;}
+.page-header { border:none; }
