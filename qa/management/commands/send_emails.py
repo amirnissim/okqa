@@ -29,53 +29,48 @@ class Command(BaseCommand):
     def handle (self, *args, **options):
         translation.activate(settings.LANGUAGE_CODE)
         now = datetime.now()
+        self.stdout.write("> sending updates at %s" % now)
         if len(args):
             qs = Profile.on_site.filter(user__email=args)
         else:
             qs = Profile.on_site.all()
         site = Site.objects.get(pk=settings.SITE_ID)
+        root_url = 'http://' + site.domain
         # TODO: get only new questions and questions with new answers
         context = {'questions': Question.on_site.all().order_by('-updated_at'),
                    'header': "Hello there!",
-                   'ROOT_URL': 'http://' + site.domain
+                   'ROOT_URL': root_url
                    }
         for profile in qs:
             user = profile.user
-            last_sent = user.profile.last_email_update
+            last_sent = profile.last_email_update
             try:
                 freq = self.diffs[user.profile.email_notification]
             except KeyError:
                 freq = sys.maxint
 
-            if user.is_active and now-last_sent > freq:
-                header = "email.update_header"
-                template = "qa/email_update.html"
-            elif not user.is_active:
+            if not user.is_active:
                 ''' send an invitation email '''
                 reg_profile = user.registrationprofile_set.all()[0]
                 if reg_profile.activation_key_expired() and last_sent==NEVER_SENT:
-                    # create a new registration key and send an update
-                    header = "email.inactive_header"
-                    context['key'] = reg_profile.activation_key
-                    context['email'] = user.username
-                    subject = _("update from %(name)s") % site
+                    key = reg_profile.activation_key
+                    context['key'] = key
+                    context['activation_url'] = root_url + reverse('accept-invitation', args=(key,))
                     # reset the key duration, giving the user more time
                     user.date_joined = now
                     user.save()
-
-                ctx_dict = {'invitation_key': reg_profile.activation_key,
-                            'expiration_days': settings.ACCOUNT_ACTIVATION_DAYS,
-                            'site': site}
-                subject = render_to_string('user/invitation_email_subject.txt',
-                        ctx_dict).rstrip()
-                 # Email subject *must not* contain newlines
-            else:
+                else:
+                    continue
+            elif now-last_sent < freq:
+                # don't exceed the frequency!
                 continue
+
+            context['is_active'] = user.is_active
             context['last_sent'] = last_sent
-            context['header'] = header
+            context['header'] = "email.update_header"
             context['footer'] = 'email.footer'
             subject = '%s | %s' % (site.name,
-                    FlatBlock.objects.get(slug=header).header.rstrip())
+                    FlatBlock.objects.get(slug="email.update_header").header.rstrip())
             html_content = render_to_string("qa/email_update.html", context)
             # TODO: create a link for the update and send it to shaib
             text_content = 'Sorry, we only support html based email'
@@ -84,3 +79,6 @@ class Command(BaseCommand):
                     settings.DEFAULT_FROM_EMAIL, [user.email])
             msg.attach_alternative(html_content, "text/html")
             msg.send()
+            self.stdout.write(">>> sent update to %(username)s at %(email)s is_active=%(is_active)s" % user.__dict__)
+            profile.last_email_update = now
+            profile.save()

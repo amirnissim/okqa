@@ -4,6 +4,15 @@
 
 {% block content %}
   <p>{% flatblock header 3600 %}</p>
+  {% if not is_active %}
+<p>
+המשתמש שלכם עדיין לא פעיל. אנא לחצו
+<a href="{{activation_url}}">
+כאן
+</a>
+כדי להפעיל את חשבונכם. לא תשלחנה תזכורות נסופות.
+</p>
+  {% endif %}
   <table cellpadding="10" cellspacing="0" border="0" align="center">
     {% for question in questions %}
     <tr>

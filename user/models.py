@@ -20,7 +20,7 @@ GENDER_CHOICES = (
     (u'F', _('Female')),
 )
 
-NEVER_SENT = datetime.date(1970,8,6)
+NEVER_SENT = datetime.datetime(1970,8,6)
 
 def invite_user(site, username, email, first_name="", last_name=""):
     ''' invite a new user to the system '''
