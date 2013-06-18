@@ -100,6 +100,7 @@ INSTALLED_APPS = (
     'bootstrap_pagination',
     'django_nose',
     'registration',
+    'flatblocks',
     # local apps
     'qa',
     'user',

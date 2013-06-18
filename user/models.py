@@ -20,6 +20,8 @@ GENDER_CHOICES = (
     (u'F', _('Female')),
 )
 
+NEVER_SENT = datetime.date(1970,8,6)
+
 def invite_user(site, username, email, first_name="", last_name=""):
     ''' invite a new user to the system '''
     user, created = User.objects.get_or_create(username=username,
@@ -63,7 +65,7 @@ class Profile(models.Model):
     email_notification = models.CharField(max_length=1, choices=NOTIFICATION_PERIOD_CHOICES, blank=True, null=True, default='D')
     avatar_uri = models.URLField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
-    last_email_update = models.DateTimeField(default=datetime.date(1970,8,6))
+    last_email_update = models.DateTimeField(default=NEVER_SENT)
     sites = models.ManyToManyField(Site)
     on_site = CurrentSiteManager()
 

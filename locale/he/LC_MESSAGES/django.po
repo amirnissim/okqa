@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-12 09:43+0300\n"
-"PO-Revision-Date: 2013-06-14 18:18+0200\n"
+"POT-Creation-Date: 2013-06-18 22:24+0300\n"
+"PO-Revision-Date: 2013-06-18 23:12+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -129,13 +129,18 @@ msgstr "פיד של תשובות לשאלה"
 msgid "You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
-#: qa/templates/qa/_answer.html:32
+#: qa/management/commands/send_emails.py:60
+#, python-format
+msgid "update from %(name)s"
+msgstr "עדכון מ%(name)s"
+
+#: qa/templates/qa/_answer.html:23
 #: qa/templates/qa/_question.html:35
 #: user/templates/user/candidate_detail.html:41
 msgid "before"
 msgstr "לפני"
 
-#: qa/templates/qa/_answer.html:34
+#: qa/templates/qa/_answer.html:28
 msgid "Edit"
 msgstr "עריכה"
 
@@ -148,12 +153,20 @@ msgstr "שואלים"
 msgid "answers"
 msgstr "תשובות"
 
+#: qa/templates/qa/email_update.html:24
+msgid "join"
+msgstr "הצטרפו"
+
+#: qa/templates/qa/email_update.html:51
+msgid "click me to update your email settings"
+msgstr "לחצו עלי לעדכון הגדרות הדואל"
+
 #: qa/templates/qa/post_question.html:10
 msgid "What is your question, sire?"
 msgstr "הנכם מוזמנים להפנות שאלות למועמדים"
 
 #: qa/templates/qa/post_question.html:22
-#: qa/templates/qa/question_detail.html:69
+#: qa/templates/qa/question_detail.html:71
 msgid "Publish"
 msgstr "פרסם"
 
@@ -170,26 +183,30 @@ msgstr "תרום תשובה לעניין"
 msgid "Answers"
 msgstr "תשובות"
 
-#: qa/templates/qa/question_detail.html:36
-#: qa/templates/qa/question_detail.html:46
+#: qa/templates/qa/question_detail.html:37
+msgid "feed"
+msgstr "רסס"
+
+#: qa/templates/qa/question_detail.html:47
+msgid "No Answers Yet"
+msgstr "עדיין לא ניתנו תשובות"
+
+#: qa/templates/qa/question_detail.html:48
 #: qa/templates/qa/question_list.html:14
 #: user/templates/user/candidate_detail.html:10
 msgid "Subscribe"
 msgstr "הרשם"
 
-#: qa/templates/qa/question_detail.html:45
-msgid "No Answers Yet"
-msgstr "עדיין לא ניתנו תשובות"
-
-#: qa/templates/qa/question_detail.html:89
+#: qa/templates/qa/question_detail.html:91
 msgid "Sorry but only connected users can upvote questions"
 msgstr "מצטערת, יש להתחבר כדי לתמוך בשאלה"
 
-#: qa/templates/qa/question_detail.html:107
+#: qa/templates/qa/question_detail.html:109
 msgid "Thank you for falgging the question. One of our editors will look at it shortly. "
 msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את השאלה בקרוב."
 
 #: qa/templates/qa/question_list.html:11
+#: templates/base.html:48
 #: user/templates/user/candidate_detail.html:55
 msgid "Questions"
 msgstr "שאלות"
@@ -246,75 +263,71 @@ msgstr "אין תוצאות"
 msgid "No More Selections Are Allowed"
 msgstr "מספר תגיות מקסימלי"
 
-#: templates/base.html:33
-msgid "Home"
-msgstr "הביתה"
-
-#: templates/base.html:36
-#: user/templates/user/candidate_list.html:6
-msgid "Candidates"
-msgstr "מועמדים"
-
-#: templates/base.html:37
-#: user/templates/user/candidate_detail.html:75
-msgid "About"
-msgstr "אודות"
-
-#: templates/base.html:40
-#: templates/search/search.html:11
-#: templates/search/search.html.py:15
-msgid "Search"
-msgstr "חפש"
-
-#: templates/base.html:47
+#: templates/base.html:27
 msgid "Welcome"
 msgstr "שלום"
 
-#: templates/base.html:49
+#: templates/base.html:29
 msgid "my page"
 msgstr "העמוד שלי"
 
-#: templates/base.html:50
+#: templates/base.html:30
 msgid "edit profile"
 msgstr "ערוך פרופיל"
 
-#: templates/base.html:52
+#: templates/base.html:32
 msgid "admin"
 msgstr "ממשק ניהול"
 
-#: templates/base.html:56
+#: templates/base.html:36
 msgid "logout"
 msgstr "התנתקות"
 
-#: templates/base.html:63
+#: templates/base.html:43
 #: templates/registration/activation_complete.html:7
 #: templates/registration/login.html:6
 #: templates/registration/password_reset_complete.html:7
 msgid "Login"
 msgstr "היכנסו"
 
-#: templates/base.html:86
+#: templates/base.html:49
+#: user/templates/user/candidate_list.html:6
+msgid "Candidates"
+msgstr "מועמדים"
+
+#: templates/base.html:50
+#: user/templates/user/candidate_detail.html:75
+msgid "About"
+msgstr "אודות"
+
+#: templates/base.html:53
+#: templates/search/search.html:11
+#: templates/search/search.html.py:15
+msgid "Search"
+msgstr "חפש"
+
+#: templates/base.html:77
 msgid "Back to top"
 msgstr "בחזרה לראש העמוד"
 
-#: templates/base.html:87
+#: templates/base.html:78
 msgid "Content is licensed CC-BY. Source code is freely available "
 msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.  קוד המקור חופשי לשימוש"
 
-#: templates/base.html:88
+#: templates/base.html:79
 #: user/templates/user/candidate_list.html:44
 msgid "here"
 msgstr "כאן"
 
-#: templates/base.html:90
+#: templates/base.html:81
 msgid "The Public Knowledge Workshop"
 msgstr "הסדנא לידע ציבורי"
 
-#: templates/base.html:114
+#: templates/base.html:105
 msgid "read more"
 msgstr "קרא עוד"
 
-#: templates/base.html:118
+#: templates/base.html:109
 msgid "read less"
 msgstr "קרא פחות"
 
@@ -537,23 +550,23 @@ msgstr "נושא הדואל"
 msgid "email body"
 msgstr "תוכן הדואל"
 
-#: user/models.py:12
+#: user/models.py:14
 msgid "No Email"
 msgstr "אין דואל"
 
-#: user/models.py:13
+#: user/models.py:15
 msgid "Daily"
 msgstr "יומי"
 
-#: user/models.py:14
+#: user/models.py:16
 msgid "Weekly"
 msgstr "שבועי"
 
-#: user/models.py:17
+#: user/models.py:19
 msgid "Male"
 msgstr "זכר"
 
-#: user/models.py:18
+#: user/models.py:20
 msgid "Female"
 msgstr "נקבה"
 
@@ -604,6 +617,9 @@ msgstr ""
 #: user/templates/user/edit_profile.html:6
 msgid "Edit your profile"
 msgstr "ערוך את הפרופיל שלך"
+
+#~ msgid "Home"
+#~ msgstr "הביתה"
 
 #~ msgid "Create new user"
 #~ msgstr "צור משתמש חדש"

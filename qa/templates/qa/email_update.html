@@ -1,25 +1,27 @@
 {% extends "email_base.html" %}
 {% load i18n %}
+{% load flatblock_tags %}
+
 {% block content %}
-  {{header}}
-  <table cellpadding="0" cellspacing="0" border="0" align="center">
+  <p>{% flatblock header 3600 %}</p>
+  <table cellpadding="10" cellspacing="0" border="0" align="center">
     {% for question in questions %}
     <tr>
       <td width="20">
         {% if question.created_at > last_sent %}
-         N
+         +
         {% elif question.updated_at > last_sent %}
          U
         {% endif %}
       </td>
       <td colspan="2" width="100">
-        {{question.author}}
+        {{question.author.get_full_name}}
       </td>
       <td width="400">
         {{question.subject}}
       </td>
       <td width="20">
-        <a href="{{question.get_absolute_url}}">{% trans "link" %}</a>
+        <a href="{{ROOT_URL}}{{question.get_absolute_url}}">{% trans "join" %}</a>
       </td>
     </tr>
     {% for answer in question.answers.all %}
@@ -28,28 +30,27 @@
           {% if answer.created_at > last_sent %}
            +
           {% elif answer.updated_at > last_sent %}
-           +
+           U
           {% endif %}
         </td>
         <td width="10"></td>
         <td>
-          {{answer.author}}
+          {{answer.author.get_full_name}}
         </td>
-        <td width="400">
-          {{answer.subject}}
-        </td>
-        <td width="20">
-          <a href="{{answer.get_absolute_url}}">{% trans "link" %}</a>
+        <td colspan="2" width="420">
+          {{answer.content}}
         </td>
       </tr>
     {% endfor %}
     {% endfor %}
   </table>
-  <a href="{% url 'edit-profile' %}">
-    {% trans "If you have too many emails, click me to updated your profile" %}
-  </a>
-
-  <!-- Yahoo Link color fix updated: Simply bring your link styling inline. -->
-  <a href="http://htmlemailboilerplate.com" target ="_blank" title="Styling Links" style="text-decoration: none;">Coloring Links appropriately</a>
+  <p> {% flatblock footer 3600 %}</p>
+  <center>
+    **
+    <a href="{{ROOT_URL}}{% url 'edit-profile' %}">
+      {% trans "click me to update your email settings" %}
+    </a>
+    **
+  </center>
 
 {% endblock %}
