@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import sys
 import urlparse
 from datetime import datetime,timedelta
 
@@ -47,7 +46,7 @@ class Command(BaseCommand):
             try:
                 freq = self.diffs[user.profile.email_notification]
             except KeyError:
-                freq = sys.maxint
+                continue
 
             if not user.is_active:
                 ''' send an invitation email '''
