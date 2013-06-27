@@ -1,14 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) 2013 The Public Knowledge Workshop
+# This file is distributed under the same license as the OKQA package.
 # FIRST AUTHOR bennydoan@gmail.com, 2012.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: OK-QA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-18 22:24+0300\n"
-"PO-Revision-Date: 2013-06-18 23:12+0200\n"
+"POT-Creation-Date: 2013-06-27 14:49+0300\n"
+"PO-Revision-Date: 2013-06-27 14:49+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -16,8 +15,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Language: en_US\n"
-"X-Source-Language: C\n"
 
 #: party/models.py:12
 msgid "party name"
@@ -129,11 +126,6 @@ msgstr "פיד של תשובות לשאלה"
 msgid "You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
-#: qa/management/commands/send_emails.py:60
-#, python-format
-msgid "update from %(name)s"
-msgstr "עדכון מ%(name)s"
-
 #: qa/templates/qa/_answer.html:23
 #: qa/templates/qa/_question.html:35
 #: user/templates/user/candidate_detail.html:41
@@ -153,11 +145,11 @@ msgstr "שואלים"
 msgid "answers"
 msgstr "תשובות"
 
-#: qa/templates/qa/email_update.html:24
+#: qa/templates/qa/email_update.html:33
 msgid "join"
 msgstr "הצטרפו"
 
-#: qa/templates/qa/email_update.html:51
+#: qa/templates/qa/email_update.html:60
 msgid "click me to update your email settings"
 msgstr "לחצו עלי לעדכון הגדרות הדואל"
 
@@ -379,6 +371,14 @@ msgstr ""
 msgid "Please activate your account"
 msgstr "אנא הפעילו את חשבונכם"
 
+#: templates/registration/login.html:18
+msgid "Forgot password"
+msgstr "שכחת ססמה"
+
+#: templates/registration/login.html:18
+msgid "Reset it"
+msgstr "אפס"
+
 #: templates/registration/login.html:25
 msgid "Connect to Facebook"
 msgstr "התחבר לפייסבוק"
@@ -396,8 +396,7 @@ msgid "Password changed"
 msgstr "ססימה שונתה"
 
 #: templates/registration/password_change_form.html:9
-#: templates/registration/password_reset_confirm.html:12
-#: templates/registration/password_reset_form.html:9
+#: templates/registration/password_reset_form.html:11
 msgid "Submit"
 msgstr "שלח"
 
@@ -405,7 +404,15 @@ msgstr "שלח"
 msgid "Password reset successfully"
 msgstr "ססימה אופסה בהצלחה"
 
-#: templates/registration/password_reset_confirm.html:17
+#: templates/registration/password_reset_confirm.html:9
+msgid "Change Password"
+msgstr "שינוי ססמה"
+
+#: templates/registration/password_reset_confirm.html:14
+msgid "Reset"
+msgstr "אפס"
+
+#: templates/registration/password_reset_confirm.html:20
 msgid "Password reset failed"
 msgstr "איפוס הססמה נכשל"
 
@@ -417,6 +424,10 @@ msgstr "דואל עם ההוראות לאיפוס הססמה נשלח."
 #, python-format
 msgid "Reset password at %(site_name)s"
 msgstr "איפוס ססמה באתר %(site_name)s"
+
+#: templates/registration/password_reset_form.html:6
+msgid "Password Reset"
+msgstr "איפוס ססמה"
 
 #: templates/registration/registration_complete.html:6
 msgid "Ye be now registered. Activation email sent, arrrr."
@@ -618,6 +629,9 @@ msgstr ""
 msgid "Edit your profile"
 msgstr "ערוך את הפרופיל שלך"
 
+#~ msgid "update from %(name)s"
+#~ msgstr "עדכון מ%(name)s"
+
 #~ msgid "Home"
 #~ msgstr "הביתה"
 
@@ -650,12 +664,6 @@ msgstr "ערוך את הפרופיל שלך"
 
 #~ msgid "Add Candidate"
 #~ msgstr "הוספת מועמד"
-
-#~ msgid "Forgot password"
-#~ msgstr "שכחתי ססמה"
-
-#~ msgid "Reset it"
-#~ msgstr "אפס"
 
 #~ msgid "You are already logged in"
 #~ msgstr "תודה, אתה כבר מחובר למערכת"
