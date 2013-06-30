@@ -48,7 +48,7 @@ class UserTest(TestCase):
         c = Client()
         response = c.get(reverse('candidate_list'))
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, "user/candidate_list.html")
+        self.assertTemplateUsed(response, "candidate/candidate_list.html")
         self.assertFalse(response.context['candidates'])
         self.user.profile.set_candidate(True)
         response = c.get(reverse('candidate_list'))
@@ -61,7 +61,7 @@ class UserTest(TestCase):
         c = Client()
         response = c.get(reverse('user_detail', kwargs={'slug': "user"}))
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, "user/candidate_detail.html")
+        self.assertTemplateUsed(response, "user/user_detail.html")
 
     def test_invitation(self):
         user = invite_user(username = "john",

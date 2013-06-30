@@ -45,9 +45,9 @@
       {% endif %}
       <div class="nav-other">
         <ul class="nav">
-          <li><a href="/">{% trans "Questions" %}</a></li>
-          <li><a href={% url "candidate_list" %}>{% trans "Candidates" %}</a></li>
-          <li><a href="/p/about/">{% trans "About" %}</a></li>
+          <li {% block nav-questions %} {% endblock %}><a href="/">{% trans "Questions" %}</a></li>
+          <li {% block nav-candidates %} {% endblock %}><a href={% url "candidate_list" %}>{% trans "Candidates" %}</a></li>
+          <li {% block nav-about %} {% endblock %}><a href="/p/about/">{% trans "About" %}</a></li>
         </ul>
         <form class="navbar-search pull-left" action="/search/">
           <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search' %}" />

@@ -18,7 +18,7 @@ def candidate_list(request):
     list candidates ordered by number of answers
     """
     candidates = Profile.objects.candidates()
-    return render(request, "user/candidate_list.html", {"candidates": candidates})
+    return render(request, "candidate/candidate_list.html", {"candidates": candidates})
 
 def user_detail(request, slug):
     user = get_object_or_404(User, username=slug)
@@ -30,7 +30,7 @@ def user_detail(request, slug):
     user.url = profile.url
 
     # todo: support members as well as candidates
-    return render(request, "user/candidate_detail.html", 
+    return render(request, "user/user_detail.html", 
             {"candidate": user, "answers": answers, "questions": questions})
 
 @login_required
