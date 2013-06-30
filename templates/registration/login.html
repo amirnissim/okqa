@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block mainContainer %}
+<div class="row pageHeaer">
+  <h1 class="offset2">{% trans "Login" %}</h1>
+</div>
+<div class="row">
+  <div class="offset2 span5">
+    <form method="post" action=".">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="{% trans 'Log in' %}" />
+      <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+
+    {# TODO: add password reset  #}
+    <p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
+    {# TODO: add a way to register #}
+    {# <p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p> #}
+  </div>
+  <div class="span4">
+      <ul class="unstyled ">
+      <li><a class="btn-auth btn-facebook" href="{% url 'socialauth_begin' 'facebook' %}">
+        {% trans "Connect to Facebook" %}</a></li>
+      <li><a class="btn-auth btn-twitter" href="{% url "socialauth_begin" "twitter" %}">
+        {% trans "Connect to Twitter" %}</a></li>
+      </ul>
+  </div>
+</div>
+{% endblock %}

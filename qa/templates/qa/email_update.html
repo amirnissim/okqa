@@ -1,0 +1,65 @@
+{% extends "email_base.html" %}
+{% load i18n %}
+{% load flatblock_tags %}
+
+{% block content %}
+  <p>{% flatblock header 3600 %}</p>
+  {% if not is_active %}
+<p>
+המשתמש שלכם עדיין לא פעיל. אנא לחצו
+<a href="{{activation_url}}">
+כאן
+</a>
+כדי להפעיל את חשבונכם. לא תשלחנה תזכורות נסופות.
+</p>
+  {% endif %}
+  <table cellpadding="10" cellspacing="0" border="0" align="center">
+    {% for question in questions %}
+    <tr>
+      <td width="20">
+        {% if question.created_at > last_sent %}
+         +
+        {% elif question.updated_at > last_sent %}
+         U
+        {% endif %}
+      </td>
+      <td colspan="2" width="100">
+        {{question.author.get_full_name}}
+      </td>
+      <td width="400">
+        {{question.subject}}
+      </td>
+      <td width="20">
+        <a href="{{ROOT_URL}}{{question.get_absolute_url}}">{% trans "join" %}</a>
+      </td>
+    </tr>
+    {% for answer in question.answers.all %}
+      <tr>
+        <td width="20">
+          {% if answer.created_at > last_sent %}
+           +
+          {% elif answer.updated_at > last_sent %}
+           U
+          {% endif %}
+        </td>
+        <td width="10"></td>
+        <td>
+          {{answer.author.get_full_name}}
+        </td>
+        <td colspan="2" width="420">
+          {{answer.content}}
+        </td>
+      </tr>
+    {% endfor %}
+    {% endfor %}
+  </table>
+  <p> {% flatblock footer 3600 %}</p>
+  <center>
+    **
+    <a href="{{ROOT_URL}}{% url 'edit-profile' %}">
+      {% trans "click me to update your email settings" %}
+    </a>
+    **
+  </center>
+
+{% endblock %}

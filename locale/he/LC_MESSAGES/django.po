@@ -1,0 +1,726 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2013 The Public Knowledge Workshop
+# This file is distributed under the same license as the OKQA package.
+# FIRST AUTHOR bennydoan@gmail.com, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: OK-QA\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-27 14:49+0300\n"
+"PO-Revision-Date: 2013-06-27 14:49+0200\n"
+"Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: party/models.py:12
+msgid "party name"
+msgstr "שם מפלגה"
+
+#: party/models.py:13
+msgid "In the format: 'The <partyname> Party'"
+msgstr "נא להכניס בצורת: 'מפלגת <שם>'"
+
+#: party/models.py:15
+msgid "Home page"
+msgstr "עמוד הבית"
+
+#: party/models.py:16
+msgid "Primaries Date"
+msgstr "מועד הבחירות המקדימות"
+
+#: party/models.py:17
+msgid "Qualifying date"
+msgstr "תאריך אכשרה"
+
+#: party/models.py:18
+msgid "Number of party members"
+msgstr "מספר חברי המפלגה"
+
+#: party/models.py:22
+msgid "anonymous"
+msgstr "ללא שם"
+
+#: qa/models.py:40
+msgid "unicode slug"
+msgstr "שם ביוניקוד"
+
+#: qa/models.py:46
+#: qa/models.py:85
+msgid "author"
+msgstr "מחבר"
+
+#: qa/models.py:47
+#: qa/models.py:89
+msgid "question"
+msgstr "שאלה"
+
+#: qa/models.py:48
+#, python-format
+msgid "Please enter a subject in no more than %s letters"
+msgstr "נא להקליד שאלה בלא יותר מ %s אותיות"
+
+#: qa/models.py:49
+msgid "details"
+msgstr "פירוט"
+
+#: qa/models.py:50
+#, python-format
+msgid "Please enter your content in no more than %s letters"
+msgstr "נא להכניס תוכן בלא יותר מ %s אותיות"
+
+#: qa/models.py:52
+#: qa/models.py:88
+msgid "rating"
+msgstr "ניקוד"
+
+#: qa/models.py:53
+msgid "flags counter"
+msgstr "מונה דיווחים"
+
+#: qa/models.py:86
+msgid "content"
+msgstr "תוכן"
+
+#: qa/models.py:87
+#, python-format
+msgid "Please enter an answer in no more than %s letters"
+msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
+
+#: qa/views.py:131
+msgid "You cannot post questions"
+msgstr "אינך יכול לפרסם שאלות"
+
+#: qa/views.py:152
+msgid "You must be logged in as a candidate to post answers"
+msgstr "עליך להתחבר כמועמד כדי לפרסם תשובות"
+
+#: qa/views.py:192
+msgid "You already upvoted this question"
+msgstr "תודה, אתה כבר מופיע ברשימת התומכים"
+
+#: qa/views.py:199
+msgid "Use POST to upvote a question"
+msgstr "השתמש ב POST כדי להצביע לשאלה"
+
+#: qa/views.py:212
+msgid "OK QA Question Feed"
+msgstr "שאלות נשאלו"
+
+#: qa/views.py:214
+msgid "Questions from OKQA"
+msgstr "שאלות"
+
+#: qa/views.py:238
+msgid "Answers for the question"
+msgstr "תשובות לשאלה"
+
+#: qa/views.py:244
+msgid "A feed of all answers for the question"
+msgstr "פיד של תשובות לשאלה"
+
+#: qa/views.py:260
+msgid "You already reported this question"
+msgstr "תודה, כבר דיווחת על השאלה הזאת"
+
+#: qa/templates/qa/_answer.html:23
+#: qa/templates/qa/_question.html:35
+#: user/templates/user/candidate_detail.html:41
+msgid "before"
+msgstr "לפני"
+
+#: qa/templates/qa/_answer.html:28
+msgid "Edit"
+msgstr "עריכה"
+
+#: qa/templates/qa/_question.html:13
+msgid "votes"
+msgstr "שואלים"
+
+#: qa/templates/qa/_question.html:19
+#: user/templates/user/candidate_list.html:20
+msgid "answers"
+msgstr "תשובות"
+
+#: qa/templates/qa/email_update.html:33
+msgid "join"
+msgstr "הצטרפו"
+
+#: qa/templates/qa/email_update.html:60
+msgid "click me to update your email settings"
+msgstr "לחצו עלי לעדכון הגדרות הדואל"
+
+#: qa/templates/qa/post_question.html:10
+msgid "What is your question, sire?"
+msgstr "הנכם מוזמנים להפנות שאלות למועמדים"
+
+#: qa/templates/qa/post_question.html:22
+#: qa/templates/qa/question_detail.html:71
+msgid "Publish"
+msgstr "פרסם"
+
+#: qa/templates/qa/question_detail.html:18
+msgid "I Want an Answer"
+msgstr "תמכו בשאלה"
+
+#: qa/templates/qa/question_detail.html:21
+msgid "Answer the Question"
+msgstr "תרום תשובה לעניין"
+
+#: qa/templates/qa/question_detail.html:35
+#: user/templates/user/candidate_detail.html:20
+msgid "Answers"
+msgstr "תשובות"
+
+#: qa/templates/qa/question_detail.html:37
+msgid "feed"
+msgstr "רסס"
+
+#: qa/templates/qa/question_detail.html:47
+msgid "No Answers Yet"
+msgstr "עדיין לא ניתנו תשובות"
+
+#: qa/templates/qa/question_detail.html:48
+#: qa/templates/qa/question_list.html:14
+#: user/templates/user/candidate_detail.html:10
+msgid "Subscribe"
+msgstr "הרשם"
+
+#: qa/templates/qa/question_detail.html:91
+msgid "Sorry but only connected users can upvote questions"
+msgstr "מצטערת, יש להתחבר כדי לתמוך בשאלה"
+
+#: qa/templates/qa/question_detail.html:109
+msgid "Thank you for falgging the question. One of our editors will look at it shortly. "
+msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את השאלה בקרוב."
+
+#: qa/templates/qa/question_list.html:11
+#: templates/base.html:48
+#: user/templates/user/candidate_detail.html:55
+msgid "Questions"
+msgstr "שאלות"
+
+#: qa/templates/qa/question_list.html:12
+msgid "for candidate of hasadna board"
+msgstr "למועמדים לועד של הסדנא לידע ציבורי"
+
+#: qa/templates/qa/question_list.html:20
+msgid "Yes/No questions that will help you decide who to vote for:"
+msgstr "שאלות הצפים"
+
+#: qa/templates/qa/question_list.html:29
+msgid "Ask Question"
+msgstr "העלו שאלה"
+
+#: qa/templates/qa/question_list.html:39
+msgid "Top Questions"
+msgstr "שאלות מובילות"
+
+#: qa/templates/qa/question_list.html:42
+msgid "Most Recent"
+msgstr "שאלות אחרונות"
+
+#: qa/templates/qa/question_list.html:56
+msgid "Questions asked"
+msgstr "שאלות נשאלו"
+
+#: qa/templates/qa/question_list.html:60
+msgid "questions"
+msgstr "שאלות"
+
+#: qa/templates/qa/question_list.html:73
+msgid "Sorry but only connected users can post questions"
+msgstr "מצטערת, יש להתחבר כדי לשאול שאלות"
+
+#: taggit_autosuggest/managers.py:11
+msgid "Tags"
+msgstr "תגיות"
+
+#: taggit_autosuggest/managers.py:12
+msgid "A comma-separated list of tags."
+msgstr " "
+
+#: taggit_autosuggest/widgets.py:67
+msgid "Enter Tag Here"
+msgstr "הכנס/י תגית"
+
+#: taggit_autosuggest/widgets.py:68
+msgid "No Results"
+msgstr "אין תוצאות"
+
+#: taggit_autosuggest/widgets.py:69
+msgid "No More Selections Are Allowed"
+msgstr "מספר תגיות מקסימלי"
+
+#: templates/base.html:27
+msgid "Welcome"
+msgstr "שלום"
+
+#: templates/base.html:29
+msgid "my page"
+msgstr "העמוד שלי"
+
+#: templates/base.html:30
+msgid "edit profile"
+msgstr "ערוך פרופיל"
+
+#: templates/base.html:32
+msgid "admin"
+msgstr "ממשק ניהול"
+
+#: templates/base.html:36
+msgid "logout"
+msgstr "התנתקות"
+
+#: templates/base.html:43
+#: templates/registration/activation_complete.html:7
+#: templates/registration/login.html:6
+#: templates/registration/password_reset_complete.html:7
+msgid "Login"
+msgstr "היכנסו"
+
+#: templates/base.html:49
+#: user/templates/user/candidate_list.html:6
+msgid "Candidates"
+msgstr "מועמדים"
+
+#: templates/base.html:50
+#: user/templates/user/candidate_detail.html:75
+msgid "About"
+msgstr "אודות"
+
+#: templates/base.html:53
+#: templates/search/search.html:11
+#: templates/search/search.html.py:15
+msgid "Search"
+msgstr "חפש"
+
+#: templates/base.html:77
+msgid "Back to top"
+msgstr "בחזרה לראש העמוד"
+
+#: templates/base.html:78
+msgid "Content is licensed CC-BY. Source code is freely available "
+msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.  קוד המקור חופשי לשימוש"
+
+#: templates/base.html:79
+#: user/templates/user/candidate_list.html:44
+msgid "here"
+msgstr "כאן"
+
+#: templates/base.html:81
+msgid "The Public Knowledge Workshop"
+msgstr "הסדנא לידע ציבורי"
+
+#: templates/base.html:105
+msgid "read more"
+msgstr "קרא עוד"
+
+#: templates/base.html:109
+msgid "read less"
+msgstr "קרא פחות"
+
+#: templates/registration/activate.html:8
+msgid "Account successfully activated"
+msgstr "החשבון הופעל בהצלחה"
+
+#: templates/registration/activate.html:10
+#: templates/registration/login.html:13
+msgid "Log in"
+msgstr "התחבר"
+
+#: templates/registration/activate.html:14
+msgid "Account activation failed"
+msgstr "לא הצלחנו להפעיל את החשבון"
+
+#: templates/registration/activation_complete.html:6
+msgid "Ye be now registered. Welcome t' okqa, and dinna spare the whip!"
+msgstr "ההרשמה הסתיימה בהצלחה, תודה."
+
+#: templates/registration/activation_email.txt:3
+#, python-format
+msgid ""
+"\n"
+"Someone, hopefully you, signed up for a new account at %(name)s using this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar:\n"
+msgstr ""
+"\n"
+"תודה שנרשמת לאתר %(name)s. על מנת להשלים את ההרשמה, אנא לחץ/י על הקישור הבא:\n"
+
+#: templates/registration/activation_email.txt:8
+#, python-format
+msgid ""
+"\n"
+"If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in %(expiration_days)s days.\n"
+"\n"
+"If you are a candidate, you are welcome to post your answers. Just\n"
+"send us an email at qa@hasadna.org.il and we will verify your account.\n"
+"\n"
+"Thanks,\n"
+"the team at %(name)s\n"
+msgstr ""
+"\n"
+"במידה וההרשמה בוצעה בטעות, או לא על ידיך, אינך צריך/ה לעשות כלום -הרשמתך תתבטל אוטומטית תוך %(expiration_days)s שבעה ימים מקבלת המייל.\n"
+"\n"
+"אם את/ה מועמד לבחירות המוקדמות אתה מוזמן לפרסם תשובות.  רק שלח לנו דואל ל qa@hasadna.org.il ונאשר את חשבונך.יום טוב,\n"
+"צוות %(name)s\n"
+
+#: templates/registration/activation_email_subject.txt:2
+msgid "Please activate your account"
+msgstr "אנא הפעילו את חשבונכם"
+
+#: templates/registration/login.html:18
+msgid "Forgot password"
+msgstr "שכחת ססמה"
+
+#: templates/registration/login.html:18
+msgid "Reset it"
+msgstr "אפס"
+
+#: templates/registration/login.html:25
+msgid "Connect to Facebook"
+msgstr "התחבר לפייסבוק"
+
+#: templates/registration/login.html:27
+msgid "Connect to Twitter"
+msgstr "התחבר לטוויטר"
+
+#: templates/registration/logout.html:5
+msgid "Thanks for using the System. You are now logged out."
+msgstr "תודה שביליתם זמן איכות עם המערכת.  אתם עכשיו מנותקים."
+
+#: templates/registration/password_change_done.html:5
+msgid "Password changed"
+msgstr "ססימה שונתה"
+
+#: templates/registration/password_change_form.html:9
+#: templates/registration/password_reset_form.html:11
+msgid "Submit"
+msgstr "שלח"
+
+#: templates/registration/password_reset_complete.html:6
+msgid "Password reset successfully"
+msgstr "ססימה אופסה בהצלחה"
+
+#: templates/registration/password_reset_confirm.html:9
+msgid "Change Password"
+msgstr "שינוי ססמה"
+
+#: templates/registration/password_reset_confirm.html:14
+msgid "Reset"
+msgstr "אפס"
+
+#: templates/registration/password_reset_confirm.html:20
+msgid "Password reset failed"
+msgstr "איפוס הססמה נכשל"
+
+#: templates/registration/password_reset_done.html:6
+msgid "Email with password reset instructions has been sent."
+msgstr "דואל עם ההוראות לאיפוס הססמה נשלח."
+
+#: templates/registration/password_reset_email.html:2
+#, python-format
+msgid "Reset password at %(site_name)s"
+msgstr "איפוס ססמה באתר %(site_name)s"
+
+#: templates/registration/password_reset_form.html:6
+msgid "Password Reset"
+msgstr "איפוס ססמה"
+
+#: templates/registration/registration_complete.html:6
+msgid "Ye be now registered. Activation email sent, arrrr."
+msgstr "נרשמת בהצלחה ודואל עם הוראות להפעלת החשבון נשלח."
+
+#: templates/registration/registration_form.html:8
+#: templates/registration/registration_form.html:21
+msgid "Register"
+msgstr "הירשמו"
+
+#: templates/search/search.html:21
+msgid "Results"
+msgstr "תוצאות החיפוש"
+
+#: templates/search/search.html:28
+msgid "No results found."
+msgstr "לא נמצאו תוצאות."
+
+#: templates/search/search.html:34
+msgid "&laquo; Previous"
+msgstr "&raquo; הקודם"
+
+#: templates/search/search.html:36
+msgid "Next &raquo;"
+msgstr "הבא &lqauo;"
+
+#: user/admin.py:10
+msgid "Username"
+msgstr "שם משתמש"
+
+#: user/admin.py:12
+msgid "Required. 30 characters or fewer. Alphanumeric characters only (letters, digits and underscores)."
+msgstr "30 תווים או פחות. ניתן להשתמש באותיות עבריות ולועזיות, ספרות וקו תחתון בלבד."
+
+#: user/admin.py:14
+msgid "This value must contain only letters, numbers and underscores."
+msgstr "ניתן להשתמש באותיות, ספרות וקו תחתון בלבד."
+
+#: user/feeds.py:15
+msgid "Answers by"
+msgstr "תשובות של"
+
+#: user/feeds.py:21
+msgid "Get all answers by"
+msgstr "קבלו את כל התשובות של"
+
+#: user/forms.py:11
+#: user/forms.py:124
+msgid "username"
+msgstr "שם משתמש"
+
+#: user/forms.py:12
+#: user/forms.py:125
+msgid "Please use 4 letters or more"
+msgstr "נא להשתמש בארבע אותיות או יותר (גם מספרים ו @/./+/-/_ הם תווים חוקיים)"
+
+#: user/forms.py:13
+#: user/forms.py:126
+msgid "first name"
+msgstr "שם פרטי"
+
+#: user/forms.py:14
+#: user/forms.py:127
+msgid "last name"
+msgstr "שם משפחה"
+
+#: user/forms.py:15
+#: user/forms.py:132
+msgid "email address"
+msgstr "כתובת דואל"
+
+#: user/forms.py:16
+#: user/forms.py:143
+msgid "home page"
+msgstr "עמוד הבית"
+
+#: user/forms.py:17
+msgid "avatar"
+msgstr "אווטר"
+
+#: user/forms.py:18
+#: user/forms.py:144
+msgid "bio"
+msgstr "עלי"
+
+#: user/forms.py:21
+msgid "E-Mail Notifications"
+msgstr "התראות דואל"
+
+#: user/forms.py:22
+msgid "Should we send you e-mail notification about updates to things you follow on the site?"
+msgstr "האם לשלוח התראות דואל לגבי שאלות ותגיות שאתה עוקב אחריהם?"
+
+#: user/forms.py:23
+msgid "candidate?"
+msgstr "מועמד?"
+
+#: user/forms.py:24
+msgid "Please check this only if you are running for office"
+msgstr "אנא, סמני רק אם את מועמדת"
+
+#: user/forms.py:47
+msgid "This username is already taken."
+msgstr "שם המשתמש בשימוש"
+
+#: user/forms.py:74
+msgid "the voters are waiting for your answers"
+msgstr "המצביעים ממתינים לתשובתך"
+
+#: user/forms.py:75
+msgid "The Q&A site is happy to invite you to answer voters' questions. please click {{activation_url}} to activate your account"
+msgstr ""
+
+#: user/forms.py:83
+msgid "Password"
+msgstr "סיסמא"
+
+#: user/forms.py:85
+msgid "Password confirmation"
+msgstr "אשר סיסמה"
+
+#: user/forms.py:87
+msgid "Enter the same password as above, for verification."
+msgstr "כדי לוודא, הכניסו אותה ססמה כמו למעלה"
+
+#: user/forms.py:128
+msgid "email subject"
+msgstr "נושא הדואל"
+
+#: user/forms.py:130
+msgid "email body"
+msgstr "תוכן הדואל"
+
+#: user/models.py:14
+msgid "No Email"
+msgstr "אין דואל"
+
+#: user/models.py:15
+msgid "Daily"
+msgstr "יומי"
+
+#: user/models.py:16
+msgid "Weekly"
+msgstr "שבועי"
+
+#: user/models.py:19
+msgid "Male"
+msgstr "זכר"
+
+#: user/models.py:20
+msgid "Female"
+msgstr "נקבה"
+
+#: user/views.py:92
+msgid "Your profile has been updated, please login."
+msgstr "הפרופיל שלכם עודכן, אתם מוזמנים להכנס"
+
+#: user/templates/user/accept_invitation.html:6
+msgid "Welcome to our site"
+msgstr "ברוכים הבאים לאתרנו"
+
+#: user/templates/user/accept_invitation.html:15
+#: user/templates/user/candidate_activate.html:20
+#: user/templates/user/edit_profile.html:15
+msgid "Update"
+msgstr "עדכן"
+
+#: user/templates/user/add_candidate.html:5
+msgid "Invite a candidate"
+msgstr "הזמן מועמד"
+
+#: user/templates/user/add_candidate.html:10
+msgid "Send"
+msgstr "שלח"
+
+#: user/templates/user/candidate_activate.html:6
+msgid "Thank you for clicking. Please complete the form below to get started."
+msgstr "תודה על ההקלקה. אנא השלם/י את הטופס הקשר והתחל/י לענות על שאלות החברים"
+
+#: user/templates/user/candidate_activate.html:15
+msgid "We get your avatar from "
+msgstr "תמונות הפרופיל מגיעות אלינו ישירות מ"
+
+#: user/templates/user/candidate_activate.html:15
+msgid "Gravatar"
+msgstr "גרווטאר"
+
+#: user/templates/user/candidate_list.html:40
+msgid ""
+"\n"
+"      The Candidates biographies were given by the candidates themselvs and\n"
+"      we can not guarntee their accuracy. The avatars are pulled from \n"
+"    "
+msgstr ""
+"\n"
+"האתר אינו אחראי לדיוק הביוגרפיות של המועמדים.  תמונות הדיוקן מוצגות מ"
+
+#: user/templates/user/edit_profile.html:6
+msgid "Edit your profile"
+msgstr "ערוך את הפרופיל שלך"
+
+#~ msgid "update from %(name)s"
+#~ msgstr "עדכון מ%(name)s"
+
+#~ msgid "Home"
+#~ msgstr "הביתה"
+
+#~ msgid "Create new user"
+#~ msgstr "צור משתמש חדש"
+
+#~ msgid "register"
+#~ msgstr "הרשמו"
+
+#~ msgid "Subject"
+#~ msgstr "נושא"
+
+#~ msgid "Content"
+#~ msgstr "תוכן"
+
+#~ msgid "Ask!"
+#~ msgstr "שאל שאלה!"
+
+#~ msgid "Please log in to post questions"
+#~ msgstr "אנא התחבר כדי לשאול שאלה"
+
+#~ msgid "User Profile"
+#~ msgstr "פרופיל משתמש"
+
+#~ msgid "View Voter"
+#~ msgstr "הצג מצביע"
+
+#~ msgid "Voters"
+#~ msgstr "מצביעים"
+
+#~ msgid "Add Candidate"
+#~ msgstr "הוספת מועמד"
+
+#~ msgid "You are already logged in"
+#~ msgstr "תודה, אתה כבר מחובר למערכת"
+
+#~ msgid "Sorry, this link has already been used"
+#~ msgstr "מצטערים, הקישור אינו פעיל. אנא נסה להרשם שנית"
+
+#~ msgid "An activation message was sent to the user."
+#~ msgstr "דואל הפעלה נשלח למועמד"
+
+#~ msgid "The Demo Party"
+#~ msgstr "מפלגת הדמו"
+
+#~ msgid "Connect"
+#~ msgstr "התחברו"
+
+#~ msgid "bad username/pasword"
+#~ msgstr "שם משתמש או סיסמא לא נכונים"
+
+#~ msgid "Or"
+#~ msgstr "או"
+
+#~ msgid "Connect to Google"
+#~ msgstr "התחבר לגוגל"
+
+#~ msgid "Reset password"
+#~ msgstr "אפס ססמה"
+
+#~ msgid "First Name"
+#~ msgstr "שם פרטי"
+
+#~ msgid "Last Name"
+#~ msgstr "שם משפחה"
+
+#~ msgid "Email"
+#~ msgstr "דואל"
+
+#~ msgid "Candidate bio here..."
+#~ msgstr "כאן תופיע ביוגרפיה קצרה של המועמד..."
+
+#~ msgid " The Demo Party"
+#~ msgstr "מפלגת הדמו"
+
+#~ msgid "Follow"
+#~ msgstr "עקוב"
+
+#~ msgid "Links"
+#~ msgstr "קישורים"
+
+#~ msgid "Facebook Page"
+#~ msgstr "עמוד הפייסבוק של המועמד"
+
+#~ msgid "Members"
+#~ msgstr "חברים"
+
+#~ msgid "E-mail"
+#~ msgstr "דוא\"ל"
+
+#~ msgid "Password (again)"
+#~ msgstr "סיסמא (שוב)"

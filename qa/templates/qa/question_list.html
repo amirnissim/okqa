@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load pagination_tags %}
+{% block homeNav %}class="active"{% endblock %}
+{% block mainContainer %}
+<div class="page-header">
+  <div class="container">
+    <div class="row">
+        <div class="span9">
+          {% if party %}
+          <h1>{% trans "Questions" %} 
+            <small>{% trans "for candidate of hasadna board" %}</small>
+               {% if not current_tags %}
+               <a href="{% url "atom_all_questions" %}" title="{% trans 'Subscribe' %}" rel="tooltip">
+                 <img src="{{STATIC_URL}}img/rss.png" width="25" />
+               </a>
+               {% endif %}
+          </h1>
+          {% else %}
+          <h2>{% trans "Yes/No questions that will help you decide who to vote for:" %}</h2>
+          {% endif %}
+          <ul class="nav nav-pills">
+            {% for tag in current_tags %}
+            <li><a class="btn" href="{% url "show_tags" tags=tag|urlencode %}">{{tag}}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+          <div class="span2 offset1 new-question">
+            <a id="post-question" class="btn btn-success btn-large" href="{% url "post_question" %}">{% trans "Ask Question" %}</a>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="row questions-wrapper">
+  <div class="span9 questions">
+    {% if questions.count > 3 %}
+    <ul class="nav nav-tabs">
+      <li {% if by_rating %}class="active"{% endif %}>
+        <a href=".?order=rating">{% trans "Top Questions" %}</a>
+      </li>
+      <li {% if by_date %}class="active"{% endif %}>
+        <a href=".?order=date">{% trans "Most Recent" %}</a>
+      </li>
+    </ul>
+    {% endif %}
+
+    {% autopaginate questions 20 %}
+    {% for question in questions %}
+        {% include "qa/_question.html" %}
+    {% endfor %}
+    {% paginate %}
+  </div>
+  <div class="span3 sidebar">
+    <div class="module" id="questions-count">
+        <div class="summarycount al">{{questions.count}}</div>
+        <p>{% trans "Questions asked" %}</p>
+    </div>
+    <ul class="unstyled">
+      {% for tag in tags %}
+        <li><a class="btn" href="{% url "show_tags" tag.tag__name|urlencode %}">{{tag.tag__name}}</a> - {{tag.count}} {% trans "questions" %}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+  {% block extrascript %} 
+{% if not user.is_authenticated %}
+    <script>
+        // warn non registered users
+        $("#post-question").click( function (){
+          $("#messages").html('<div class="alert" class="info">' +
+            '<button type="button" class="close" data-dismiss="alert">×</button>' +
+            "{% trans 'Sorry but only connected users can post questions' %}" +
+             '</div>');
+          return false; 
+        });
+    </script>
+{% endif %}
+  {% endblock %}

@@ -1,8 +1,0 @@
-{% extends "base.html" %}
-{% load i18n %}
-{% block mainContainer %}
-    <h1>{% trans "Voters" %}</h1>
-    {% for voter in voters %}
-        <div>{{ voter.username }} <a href="{% url qa.views.view_voter voter.id %}">view</a></div>
-    {% endfor %}
-{% endblock %}

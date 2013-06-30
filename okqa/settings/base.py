@@ -3,7 +3,7 @@ import os
 from unipath import FSPath as Path
 import dj_database_url
 
-PROJECT_DIR = Path(__file__).absolute().ancestor(2)
+PROJECT_DIR = Path(__file__).absolute().ancestor(3)
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -25,9 +25,11 @@ SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
 
+MEDIA_URL = '/media/'
 MEDIA_ROOT = PROJECT_DIR.child('media')
 STATIC_ROOT = PROJECT_DIR.child('static_root')
 STATICFILES_ROOT = PROJECT_DIR.child('static')
+LOCALE_PATHS = (unicode(PROJECT_DIR.child('locale')), )
 
 STATICFILES_DIRS = [
     (subdir, str(STATICFILES_ROOT.child(subdir))) for subdir in
@@ -71,7 +73,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
-    'okqa.party.context_processors.forms',
+    'party.context_processors.forms',
     'social_auth.context_processors.social_auth_by_name_backends',
     )
 INSTALLED_APPS = (
@@ -87,9 +89,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.flatpages',
     'django_extensions',
-    'django_nose',
     'taggit',
-    'registration',
     'social_auth',
     'haystack',
     'south',
@@ -98,10 +98,14 @@ INSTALLED_APPS = (
     'storages',
     'gunicorn',
     'bootstrap_pagination',
-    'okqa.qa',
-    'okqa.user',
-    'okqa.party',
-    'okqa.taggit_autosuggest',
+    'django_nose',
+    'registration',
+    'flatblocks',
+    # local apps
+    'qa',
+    'user',
+    'party',
+    'taggit_autosuggest',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -150,8 +154,6 @@ LOGIN_REDIRECT_URL = '/'
 
 DEFAULT_FROM_EMAIL = 'okqa@hasadna.org.il'
 
-AUTH_PROFILE_MODULE = 'user.UserProfile'
-
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 SITE_ID = os.environ.get('SITE_ID', 1)
@@ -163,6 +165,8 @@ FACEBOOK_API_SECRET          = os.environ.get('FACEBOOK_API_SECRET')
 GOOGLE_OAUTH2_CLIENT_ID      = os.environ.get('GOOGLE_OAUTH2_CLIENT_ID')
 GOOGLE_OAUTH2_CLIENT_SECRET  = os.environ.get('GOOGLE_OAUTH2_CLIENT_SECRET')
 GOOGLE_OAUTH_EXTRA_SCOPE     = ['https://www.googleapis.com/auth/userinfo.profile']
+ADMIN_NAME = os.environ.get('ADMIN_NAME')
+ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL')
 
 SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.social.social_auth_user',
@@ -171,5 +175,10 @@ SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.user.create_user',
     'social_auth.backends.pipeline.social.associate_user',
     'social_auth.backends.pipeline.user.update_user_details',
-    'okqa.user.utils.get_user_avatar',
+    'user.utils.get_user_avatar',
 )
+
+ACCOUNT_ACTIVATION_DAYS = 4
+
+ADMINS = ((ADMIN_NAME, ADMIN_EMAIL), )
+MANAGERS = ADMINS

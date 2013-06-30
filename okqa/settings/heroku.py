@@ -6,6 +6,7 @@ from os import environ
 from .base import *
 from .s3 import *
 
+ALLOWED_HOSTS = (".herokuapp.com", )
 ENV = 'HEROKU'
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', False)
