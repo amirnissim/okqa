@@ -15,11 +15,12 @@ Quick Start
 You can access the `live site`_ or if you're a Django developer, install
 it on your local machine::
 
-    $ mkvirtualenv --no-site-packages djangobench
+    $ sudo pip install virtualenvwrapper
+    $ mkvirtualenv ok-qa
     $ git clone https://github.com/hasadna/ok-qa.git
     $ cd ok-qa
     $ pip install -r requirements.txt
     $ python manage.py syncdb --migrate --noinput
-    $ fab runserver
+    $ python manage.py runserver
 
 .. _live site: http://okqa.herokuapp.com
