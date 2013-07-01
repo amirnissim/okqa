@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block nav-about %}class="active"{% endblock %}
+{% load i18n %}
+
+{% block mainContainer %}
+  <div class="page-header clearfix">
+    <h1>{{ flatpage.title }} </h1>
+  </div>
+
+  <div class="row">
+    <div class="offset1 span10":>
+      {{ flatpage.content }}
+    </div>
+  </div>
+{% endblock %}
+
