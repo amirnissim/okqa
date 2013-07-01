@@ -18,9 +18,9 @@
     <tr>
       <td width="20">
         {% if question.created_at > last_sent %}
-         +
+        <span class="new-content">+</span>
         {% elif question.updated_at > last_sent %}
-         U
+        <span class="updated-content">U</span>
         {% endif %}
       </td>
       <td colspan="2" width="100">
@@ -37,8 +37,9 @@
       <tr>
         <td width="20">
           {% if answer.created_at > last_sent %}
-           +
+          <span class="new-content">+</span>
           {% elif answer.updated_at > last_sent %}
+          <span class="updated-content">U</span>
            U
           {% endif %}
         </td>

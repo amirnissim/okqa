@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import urlparse
 from datetime import datetime,timedelta
+import re
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
@@ -24,6 +25,8 @@ class Command(BaseCommand):
 
     diffs = dict(D=timedelta(0, 23*3600),
                  W=timedelta(0, (23+6*24)*3600))
+
+    fresh_content_re = re.compile("(new-content)|(updated-content)")
 
     def handle (self, *args, **options):
         translation.activate(settings.LANGUAGE_CODE)
@@ -68,9 +71,15 @@ class Command(BaseCommand):
             context['last_sent'] = last_sent
             context['header'] = "email.update_header"
             context['footer'] = 'email.footer'
+            html_content = render_to_string("qa/email_update.html", context)
+            ''' send the email only when there's fresh content '''
+            fresh_content = self.fresh_content_re.search(html_content)
+            if not fresh_content:
+                self.stdout.write("--- nothing fresh for %(username)s at %(email)s is_active=%(is_active)s" % user.__dict__)
+                continue
+
             subject = '%s | %s' % (site.name,
                     FlatBlock.objects.get(slug="email.update_header").header.rstrip())
-            html_content = render_to_string("qa/email_update.html", context)
             # TODO: create a link for the update and send it to shaib
             text_content = 'Sorry, we only support html based email'
             # create the email, and attach the HTML version as well.
