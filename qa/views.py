@@ -27,12 +27,12 @@ from django.forms.models import model_to_dict
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating'}
 
 
-def questions(request, tags = None):
+def questions(request, entity, tags = None):
     """
     list questions ordered by number of upvotes
     """
 
-    context = {}
+    context = RequestContext(request, dict(entity=entity))
     order_opt = request.GET.get('order', 'rating')
     order = ORDER_OPTIONS[order_opt]
 
@@ -58,6 +58,7 @@ def tagged_questions(request, tags):
     return render(request, "qa/question_list.html", dict(questions=questions,
                                         current_tags=tags_list))
 
+'''
 def view_question(request, q_id):
     question = get_object_or_404(Question, id=q_id)
     can_answer = question.can_answer(request.user)
@@ -80,6 +81,7 @@ def view_question(request, q_id):
         context["can_upvote"] = False
 
     return render(request, "qa/question_detail.html", context)
+'''
 
 
 class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseDetailView):
@@ -93,6 +95,7 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
         can_answer = self.object.can_answer(self.request.user)
 
         context['answers'] = self.object.answers.all()
+        context['entity'] = self.object.entity.slug
         if can_answer:
             try:
                 user_answer = self.object.answers.get(author=self.request.user)

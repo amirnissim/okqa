@@ -42,17 +42,18 @@ def invite_user(site, username, email, first_name="", last_name=""):
 
     return user
 
-def get_candidate_group():
+def get_candidate_group(entity_name):
     ''' return the groups of the candidates '''
-    candidate_group, created = Group.objects.get_or_create(name="candidates")
+    candidate_group, created = Group.objects.get_or_create(name=entity_name+"_candidates")
     if created:
         add_answer = Permission.objects.get(codename="add_answer")
         candidate_group.permissions.add(add_answer)
     return candidate_group
 
 class ProfileManager(models.Manager):
-    def candidates(self):
-        candidate_group = get_candidate_group()
+    def candidates(self, entity_name):
+        ''' get all the candidates in an entity '''
+        candidate_group = get_candidate_group(entity_name)
         return candidate_group.user_set.all().\
                 annotate(num_answers=models.Count('answers')).order_by("-num_answers")
 

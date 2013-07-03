@@ -9,16 +9,19 @@ from django.utils.translation import ugettext as _
 from django.contrib import messages
 from django.views.generic.edit import FormMixin, TemplateResponseMixin
 from django.views.generic import View
+from django.template.context import RequestContext
 
 from .forms import *
 from .models import *
 
-def candidate_list(request):
+def candidate_list(request, entity):
     """
     list candidates ordered by number of answers
     """
-    candidates = Profile.objects.candidates()
-    return render(request, "candidate/candidate_list.html", {"candidates": candidates})
+    candidates = Profile.objects.candidates(entity)
+    context = RequestContext(request,
+                             dict(entity=entity, candidates=candidates))
+    return render(request, "candidate/candidate_list.html", context)
 
 def user_detail(request, slug):
     user = get_object_or_404(User, username=slug)

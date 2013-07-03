@@ -23,7 +23,7 @@
             <div class="question-summary narrow" id="question-summary-{{ question.id }}">
               <div class="summary">
                 <h3>
-                    <a href="{% url 'qa.views.view_question' answer.question.id %}" class="question-hyperlink"
+                    <a href="{{ answer.question.get_absolute_url }}" class="question-hyperlink"
                     title="{{ question.subject }}">{{ answer.question.subject }}</a>
                 </h3>
                 <div class="preview">
@@ -58,7 +58,7 @@
               <div class="question-summary narrow" id="question-summary-{{ question.id }}">
                   <div class="summary">
                       <h3>
-                          <a href="{% url 'qa.views.view_question' question.id %}" class="question-hyperlink"
+                        <a href="{{ question.get_absolute_url }}" class="question-hyperlink"
                           title="{{ question.subject }}">{{ question.subject }}</a>
                       </h3>
                       <div class="preview">

@@ -16,7 +16,7 @@
   <div class="navbar-inner">
     <div class="container">
       <div id="party-logo" class="brand">
-        <a href="{% url 'home' %}">
+        <a href="{% url 'qna' entity %}">
             <img src="http://wiki.hasadna.org.il/images/SadnaLogo150x.png" title="{{party.site.name}}">
         </a>
       </div>
@@ -45,8 +45,8 @@
       {% endif %}
       <div class="nav-other">
         <ul class="nav">
-          <li {% block nav-questions %} {% endblock %}><a href="/">{% trans "Questions" %}</a></li>
-          <li {% block nav-candidates %} {% endblock %}><a href={% url "candidate_list" %}>{% trans "Candidates" %}</a></li>
+          <li {% block nav-questions %} {% endblock %}><a href="{% url 'qna' entity %}">{% trans "Questions" %}</a></li>
+          <li {% block nav-candidates %} {% endblock %}><a href="{% url 'candidate_list' entity %}">{% trans "Candidates" %}</a></li>
           <li {% block nav-about %} {% endblock %}><a href="/p/about/">{% trans "About" %}</a></li>
         </ul>
         <form class="navbar-search pull-left" action="/search/">

@@ -15,11 +15,11 @@ urlpatterns = patterns('',
         TemplateView.as_view(template_name='robots.txt')
     ),
 
-    url(r'accounts/', include('registration.backends.default.urls')),
+    url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'', include('qa.urls')),
     url(r'', include('user.urls')),
     url(r'', include('social_auth.urls')),
-    (r'^search/', include('search.urls')),
+    (r'^(?P<entity>)/search/', include('search.urls')),
     (r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),
     # flat pages to help with static pages
     (r'^p/(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage'),

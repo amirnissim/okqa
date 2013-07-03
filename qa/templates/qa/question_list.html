@@ -11,7 +11,7 @@
           <h1>{% trans "Questions" %} 
             <small>{% trans "for candidate of hasadna board" %}</small>
                {% if not current_tags %}
-               <a href="{% url "atom_all_questions" %}" title="{% trans 'Subscribe' %}" rel="tooltip">
+               <a href="{% url "atom_entity_questions" entity %}" title="{% trans 'Subscribe' %}" rel="tooltip">
                  <img src="{{STATIC_URL}}img/rss.png" width="25" />
                </a>
                {% endif %}
@@ -21,12 +21,12 @@
           {% endif %}
           <ul class="nav nav-pills">
             {% for tag in current_tags %}
-            <li><a class="btn" href="{% url "show_tags" tags=tag|urlencode %}">{{tag}}</a></li>
+            <li><a class="btn" href="{% url "show_tags" entity=entity tags=tag|urlencode %}">{{tag}}</a></li>
             {% endfor %}
           </ul>
         </div>
           <div class="span2 offset1 new-question">
-            <a id="post-question" class="btn btn-success btn-large" href="{% url "post_question" %}">{% trans "Ask Question" %}</a>
+            <a id="post-question" class="btn btn-success btn-large" href="{% url "post_question" entity %}">{% trans "Ask Question" %}</a>
         </div>
     </div>
   </div>
@@ -57,7 +57,7 @@
     </div>
     <ul class="unstyled">
       {% for tag in tags %}
-        <li><a class="btn" href="{% url "show_tags" tag.tag__name|urlencode %}">{{tag.tag__name}}</a> - {{tag.count}} {% trans "questions" %}</li>
+        <li><a class="btn" href="{% url "show_tags" entity=entity tag.tag__name|urlencode %}">{{tag.tag__name}}</a> - {{tag.count}} {% trans "questions" %}</li>
       {% endfor %}
     </ul>
   </div>

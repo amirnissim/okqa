@@ -101,6 +101,7 @@ INSTALLED_APPS = (
     'django_nose',
     'registration',
     'flatblocks',
+    'entities',
     # local apps
     'qa',
     'user',

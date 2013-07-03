@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 from taggit.models import TaggedItemBase
 from slugify import slugify as unislugify
 from taggit_autosuggest.managers import TaggableManager
+from entities.models import Entity
 
 
 MAX_LENGTH_Q_SUBJECT = 140
@@ -57,6 +58,7 @@ class Question(BaseModel):
     # for easy access to current site questions
     objects = models.Manager()
     on_site = CurrentSiteManager()
+    entity = models.ForeignKey(Entity, null=True, related_name="questions")
 
     def __unicode__(self):
         return self.subject
@@ -65,9 +67,9 @@ class Question(BaseModel):
         ''' Can a given user answer self? '''
         return user.has_perm('qa.add_answer')
 
-    @models.permalink
     def get_absolute_url(self):
-        return ('question_detail', [self.unislug])
+        return reverse('question_detail', kwargs=dict(entity=self.entity.slug,
+                                                       slug=self.unislug))
 
     def save(self, **kwargs):
         # make a unicode slug from the subject

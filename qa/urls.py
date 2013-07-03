@@ -2,20 +2,19 @@ from django.conf.urls.defaults import patterns, url
 from .views import *
 from qa.sitemaps import sitemaps
 urlpatterns = patterns('qa.views',
-    url(r'^/?$', 'questions', name='home'),
-    url(r'^tags/(?P<tags>.+)/$', 'questions', name="show_tags"),
-
-    url(r'^a/post/(?P<q_id>\d+)/$', 'post_answer', name='post_answer'),
-    url(r'^q/post/$', 'post_question', name='post_question'),
-
-    url(r'^q/(?P<q_id>\d+)/$', 'view_question', name='question-detail'),
-	url(r'^q/(?P<q_id>\d+)/flag/$', 'flag_question', name='flag_question'),
-
-    url(r'^q/(?P<slug>[-\w]+)/$',
+    url(r'^(?P<entity>.*)/qna/(?P<slug>[-\w]+)/$',
         QuestionDetail.as_view(),
         name='question_detail'
     ),
-    url(r'^upvote_question/(?P<q_id>\d+)/$', 'upvote_question', name='upvote_question'),
+    url(r'^(?P<entity>.*)/qna/$', 'questions', name='qna'),
+    url(r'^(?P<entity>.*)/qna/tags/(?P<tags>.+)/$', 'questions', name='show_tags'),
+
+    url(r'^qna/post_a/(?P<q_id>\d+)/$', 'post_answer', name='post_answer'),
+    url(r'^(?P<entity>.*)/qna/post_q/$', 'post_question', name='post_question'),
+
+	url(r'^qna/flag_question/(?P<q_id>\d+)/flag/$', 'flag_question', name='flag_question'),
+
+    url(r'upvote_question/(?P<q_id>\d+)/$', 'upvote_question', name='upvote_question'),
 )
 
 urlpatterns += patterns('',
@@ -29,9 +28,14 @@ urlpatterns += patterns('',
         {'sitemaps': sitemaps}
     ),
 
-    url(r'^rss/$',
+    url(r'^qna/rss/$',
         RssQuestionFeed(),
         name='rss_all_questions'
+    ),
+
+    url(r'^(?P<entity>.*)/qna/atom/$',
+        AtomQuestionFeed(),
+        name='atom_entity_questions'
     ),
 
     url(r'^atom/$',
