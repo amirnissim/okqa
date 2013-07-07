@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 
 from django.test import TestCase
 
+from entities.models import Domain, Division, Entity
 from .models import *
 
 class QuestionTest(TestCase):
@@ -34,13 +35,18 @@ class QuestionTest(TestCase):
         'email': 'user@domain.com'
     }
     def setUp(self):
+        domain = Domain.objects.create(name="test")
+        division = Division.objects.create(name="localities", domain=domain)
+        entity = Entity.objects.create(name="the moon", division=division)
         self.common_user = User.objects.create_user("commoner", 
                                 "commmon@example.com", "pass")
         self.candidate_user = User.objects.create_user("candidate", 
                                 "candidate@example.com", "pass")
+        self.candidate_user.profile.locality = entity
+        self.candidate_user.profile.save()
         self.candidate_user.profile.set_candidate(True)
         self.q = Question.objects.create(author = self.common_user,
-                        subject="why?")
+                        subject="why?", entity=entity)
         self.a = self.q.answers.create(author = self.candidate_user,
                         content="because the world is round")
         self.site1 = Site.objects.create(domain='abc.com')
@@ -60,12 +66,15 @@ class QuestionTest(TestCase):
 
     def test_question_detail(self):
         c = Client()
-        response = c.get(reverse('question-detail', kwargs={'q_id':self.q.id}))
+        q_url = reverse('question-detail', 
+                         kwargs={'entity': self.q.entity.slug, 'slug':self.q.unislug})
+
+        response = c.get(q_url)
         self.assertEquals(response.status_code, 200)
         self.assertFalse(response.context['can_answer'])
         self.assertTemplateUsed(response, "qa/question_detail.html")
         self.assertTrue(c.login(username="candidate", password="pass"))
-        response = c.get(reverse('question-detail', kwargs={'q_id':self.q.id}))
+        response = c.get(q_url)
         self.assertEquals(response.status_code, 200)
         self.assertTrue(response.context['can_answer'])
 

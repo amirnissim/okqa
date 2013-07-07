@@ -9,6 +9,7 @@ from django.utils.translation import ugettext as _
 
 from taggit.managers import TaggableManager
 from registration.models import RegistrationProfile
+from entities.models import Entity
 
 NOTIFICATION_PERIOD_CHOICES = (
     (u'N', _('No Email')),
@@ -67,6 +68,7 @@ class Profile(models.Model):
     avatar_uri = models.URLField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
     last_email_update = models.DateTimeField(default=NEVER_SENT)
+    locality = models.ForeignKey(Entity, null=True)
     sites = models.ManyToManyField(Site)
     on_site = CurrentSiteManager()
 
@@ -88,7 +90,7 @@ class Profile(models.Model):
             return default
 
     def set_candidate(self, candidate):
-        candidate_group = get_candidate_group()
+        candidate_group = get_candidate_group(self.locality.slug)
         if candidate:
             self.user.groups.add(candidate_group)
         else:

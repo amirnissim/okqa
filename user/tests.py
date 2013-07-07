@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 
 from django.test import TestCase
 
+from entities.models import Domain, Division, Entity
 from .models import *
 
 class UserTest(TestCase):
@@ -34,8 +35,14 @@ class UserTest(TestCase):
         'email': 'user@domain.com'
     }
     def setUp(self):
+        domain = Domain.objects.create(name="test")
+        division = Division.objects.create(name="localities", domain=domain)
+        self.entity = Entity.objects.create(name="the moon", division=division)
         self.user = User.objects.create_user("user", 
                                 "user@example.com", "pass")
+        self.user.profile.locality = self.entity
+        self.user.profile.save()
+
     def test_avatar(self):
         avatar_url = self.user.profile.avatar_url()
         self.assertTrue(avatar_url.startswith('http://www.gravatar.com/avatar/'))
@@ -46,15 +53,16 @@ class UserTest(TestCase):
 
     def test_candidate_list(self):
         c = Client()
-        response = c.get(reverse('candidate_list'))
+        clist_url = reverse('candidate_list', kwargs={'entity':self.entity.slug})
+        response = c.get(clist_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, "candidate/candidate_list.html")
         self.assertFalse(response.context['candidates'])
         self.user.profile.set_candidate(True)
-        response = c.get(reverse('candidate_list'))
+        response = c.get(clist_url)
         self.assertEquals(len(response.context['candidates']), 1)
         self.user.profile.set_candidate(False)
-        response = c.get(reverse('candidate_list'))
+        response = c.get(clist_url)
         self.assertEquals(len(response.context['candidates']), 0)
 
     def user_detail(self):

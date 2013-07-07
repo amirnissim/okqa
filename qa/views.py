@@ -92,10 +92,10 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
 
     def get_context_data(self, **kwargs):
         context = super(QuestionDetail, self).get_context_data(**kwargs)
-        can_answer = self.object.can_answer(self.request.user)
-
         context['answers'] = self.object.answers.all()
         context['entity'] = self.object.entity.slug
+        can_answer = self.object.can_answer(self.request.user)
+        context['can_answer'] = can_answer
         if can_answer:
             try:
                 user_answer = self.object.answers.get(author=self.request.user)
@@ -103,7 +103,6 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
                 context['my_answer_id'] = user_answer.id
             except self.object.answers.model.DoesNotExist:
                 context['my_answer_form'] = AnswerForm()
-                context['can_answer'] = True
 
         if self.request.user.is_authenticated() and \
            not self.request.user.upvotes.filter(question=self.object).exists():

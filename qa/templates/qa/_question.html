@@ -7,7 +7,7 @@
         <img src="{{ question.author.profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle"></a>
         </a>
     </div>
-    <div onclick="window.location.href='{% url 'question_detail' entity question.unislug %}'" class="cp">
+    <div onclick="window.location.href='{% url 'question-detail' entity question.unislug %}'" class="cp">
         <div class="votes">
           <div class="mini-counts" id="votes-count-{{question.id}}">{{ question.rating }}</div>
             <div>{% trans "votes" %}</div>
@@ -22,7 +22,7 @@
         {% endwith %}
     </div>
     <div class="summary">
-        <h3><a href="{% url 'question_detail' entity question.unislug %}" class="question-hyperlink" title="{{ question.subject }}">{{ question.subject }}</a></h3>
+        <h3><a href="{% url 'question-detail' entity question.unislug %}" class="question-hyperlink" title="{{ question.subject }}">{{ question.subject }}</a></h3>
         <div class="preview">
             {{ question.content }}
         </div>

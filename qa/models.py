@@ -37,6 +37,7 @@ class TaggedQuestion(TaggedItemBase):
 
 class Question(BaseModel):
 
+    # TODO: rename to just `slug`
     unislug = models.CharField(
         _('unicode slug'),
         max_length=MAX_LENGTH_Q_SUBJECT,

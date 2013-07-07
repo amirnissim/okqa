@@ -4,7 +4,7 @@ from qa.sitemaps import sitemaps
 urlpatterns = patterns('qa.views',
     url(r'^(?P<entity>.*)/qna/(?P<slug>[-\w]+)/$',
         QuestionDetail.as_view(),
-        name='question_detail'
+        name='question-detail'
     ),
     url(r'^(?P<entity>.*)/qna/$', 'questions', name='qna'),
     url(r'^(?P<entity>.*)/qna/tags/(?P<tags>.+)/$', 'questions', name='show_tags'),
