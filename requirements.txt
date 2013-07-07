@@ -28,3 +28,6 @@ django-flatblocks==0.7.0
 selenium
 mock
 -e hg+https://bitbucket.org/alper/django-registration@1cddccb187ed865fd28599f0de2cc063cfa8c55a#egg=django-registration
+-e git+https://github.com/daonb/django-entities#egg=django-entities
+django-uuidfield
+django-autoslug

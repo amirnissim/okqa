@@ -101,6 +101,8 @@ INSTALLED_APPS = (
     'django_nose',
     'registration',
     'flatblocks',
+    'uuidfield',
+    'autoslug',
     'entities',
     # local apps
     'qa',
