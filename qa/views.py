@@ -179,9 +179,10 @@ def post_question(request):
         #TODO: make this better - show the form
         # return HttpResponseRedirect("/#question_modal")
     elif request.method == "GET":
+	max_length_q_subject = MAX_LENGTH_Q_SUBJECT
         form = QuestionForm()
      
-    return render(request, "qa/post_question.html", {"form": form})
+    return render(request, "qa/post_question.html", {"form": form, "max_length_q_subject": max_length_q_subject})
 
 
 @login_required
