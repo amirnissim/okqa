@@ -14,13 +14,15 @@ from django.template.context import RequestContext
 from .forms import *
 from .models import *
 
-def candidate_list(request, entity):
+def candidate_list(request, entity_slug):
     """
     list candidates ordered by number of answers
     """
-    candidates = Profile.objects.candidates(entity)
+    entity = Entity.objects.get(slug=entity_slug)
+    candidates = Profile.objects.candidates(entity_slug)
     context = RequestContext(request,
-                             dict(entity=entity, candidates=candidates))
+                             dict(entity=entity,
+                                  candidates=candidates))
     return render(request, "candidate/candidate_list.html", context)
 
 def user_detail(request, slug):
@@ -31,10 +33,14 @@ def user_detail(request, slug):
     user.avatar_url = profile.avatar_url()
     user.bio = profile.bio
     user.url = profile.url
+    context = RequestContext(request, {"candidate": user,
+                "answers": answers,
+                "questions": questions,
+                "entity": profile.locality,
+              })
 
     # todo: support members as well as candidates
-    return render(request, "user/user_detail.html", 
-            {"candidate": user, "answers": answers, "questions": questions})
+    return render(request, "user/user_detail.html", context)
 
 @login_required
 def edit_profile(request):
@@ -59,7 +65,8 @@ def edit_profile(request):
                     })
         '''
 
-    return render(request, "user/edit_profile.html", {"form": form})
+    context = RequestContext(request, {"form": form, "entity": profile.locality})
+    return render(request, "user/edit_profile.html", context)
 
 class InvitationView(View, FormMixin, TemplateResponseMixin):
     template_name = 'user/accept_invitation.html'

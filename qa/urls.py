@@ -2,15 +2,15 @@ from django.conf.urls.defaults import patterns, url
 from .views import *
 from qa.sitemaps import sitemaps
 urlpatterns = patterns('qa.views',
-    url(r'^(?P<entity>.*)/qna/(?P<slug>[-\w]+)/$',
+    url(r'^(?P<entity_slug>.*)/qna/post_q/$', 'post_question', name='post_question'),
+    url(r'^(?P<entity_slug>[-\w]+)/qna/(?P<slug>[-\w]+)/$',
         QuestionDetail.as_view(),
-        name='question-detail'
+        name='question_detail'
     ),
-    url(r'^(?P<entity>.*)/qna/$', 'questions', name='qna'),
-    url(r'^(?P<entity>.*)/qna/tags/(?P<tags>.+)/$', 'questions', name='show_tags'),
+    url(r'^(?P<entity_slug>[-\w]+)/qna/$', 'questions', name='qna'),
+    url(r'^(?P<entity_slug>[-\w]+)/qna/tags/(?P<tags>.+)/$', 'questions', name='show_tags'),
 
     url(r'^qna/post_a/(?P<q_id>\d+)/$', 'post_answer', name='post_answer'),
-    url(r'^(?P<entity>.*)/qna/post_q/$', 'post_question', name='post_question'),
 
 	url(r'^qna/flag_question/(?P<q_id>\d+)/flag/$', 'flag_question', name='flag_question'),
 

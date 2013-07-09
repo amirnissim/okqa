@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'', include('qa.urls')),
     url(r'', include('user.urls')),
     url(r'', include('social_auth.urls')),
+    url(r'places/', include('entities.urls.ui')),
     (r'^(?P<entity>)/search/', include('search.urls')),
     (r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),
     # flat pages to help with static pages

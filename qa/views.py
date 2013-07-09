@@ -27,10 +27,13 @@ from django.forms.models import model_to_dict
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating'}
 
 
-def questions(request, entity, tags = None):
+def questions(request, entity_slug, tags = None):
     """
     list questions ordered by number of upvotes
     """
+
+    # TODO: cache the next line
+    entity = Entity.objects.get(slug=entity_slug)
 
     context = RequestContext(request, dict(entity=entity))
     order_opt = request.GET.get('order', 'rating')
@@ -49,41 +52,6 @@ def questions(request, entity, tags = None):
     context['by_rating'] = order_opt=='rating'
     return render(request, "qa/question_list.html", context)
 
-def tagged_questions(request, tags):
-
-    return questions(request, tags_list)
-
-    questions.order_by(ORDER_OPTIONS[request.GET.get('order', 'date')])
-
-    return render(request, "qa/question_list.html", dict(questions=questions,
-                                        current_tags=tags_list))
-
-'''
-def view_question(request, q_id):
-    question = get_object_or_404(Question, id=q_id)
-    can_answer = question.can_answer(request.user)
-    context = RequestContext(request, {"question": question,
-        "answers": question.answers.all(),
-        })
-    context["can_answer"] = can_answer
-    if can_answer:
-        try:
-            user_answer = question.answers.get(author=request.user)
-            context["my_answer_form"] = AnswerForm(instance=user_answer)
-            context["my_answer_id"] = user_answer.id
-        except question.answers.model.DoesNotExist:
-            context["my_answer_form"] = AnswerForm()
-
-    if request.user.is_authenticated() and \
-       not request.user.upvotes.filter(question=question).exists():
-        context["can_upvote"] = True
-    else:
-        context["can_upvote"] = False
-
-    return render(request, "qa/question_detail.html", context)
-'''
-
-
 class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseDetailView):
     model = Question
     template_name = 'qa/question_detail.html'
@@ -93,7 +61,7 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
     def get_context_data(self, **kwargs):
         context = super(QuestionDetail, self).get_context_data(**kwargs)
         context['answers'] = self.object.answers.all()
-        context['entity'] = self.object.entity.slug
+        context['entity'] = self.object.entity
         can_answer = self.object.can_answer(self.request.user)
         context['can_answer'] = can_answer
         if can_answer:
@@ -166,12 +134,14 @@ def post_answer(request, q_id):
 
 
 @login_required
-def post_question(request):
+def post_question(request, entity_slug):
+    entity = Entity.objects.get(slug=entity_slug)
     if request.method == "POST":
         form = QuestionForm(request.POST)
         if form.is_valid():
             question = form.save(commit=False)
             question.author = request.user
+            question.entity = entity
             question.save()
             form.save_m2m()
             return HttpResponseRedirect(question.get_absolute_url())
@@ -180,8 +150,9 @@ def post_question(request):
         # return HttpResponseRedirect("/#question_modal")
     elif request.method == "GET":
         form = QuestionForm()
-     
-    return render(request, "qa/post_question.html", {"form": form})
+
+    context = RequestContext(request, {"form": form, "entity": entity})
+    return render(request, "qa/post_question.html", context)
 
 
 @login_required

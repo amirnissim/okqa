@@ -20,33 +20,40 @@
             <img src="http://wiki.hasadna.org.il/images/SadnaLogo150x.png" title="{{party.site.name}}">
         </a>
       </div>
-      {% if user.is_authenticated %}
       <ul class="nav nav-self">
-      <li class="divider-vertical"></li>
-      <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Welcome' %}, {{ user.get_full_name|default:user.username }} <b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li><a href="{{ user.get_absolute_url }}">{% trans 'my page' %}</a></li>
-        <li><a href="{% url 'edit-profile' %}">{% trans 'edit profile' %}</a></li>
-        {% if user.is_staff %}
-            <li><a href="/admin/">{% trans 'admin' %}</a></li>
+        {% if entity %}
+        <li>
+          {% trans 'Place' %}: {{ entity }}
+        </li>
+        <li>
+          <a href="{% url 'entity_list' %}">({% trans 'All Places' %})</a></li>
+        </li>
         {% endif %}
-        <form class="form-inline" method="post" action="{% url 'logout' %}">
-          {% csrf_token %}
-          <li><a href="javascript:;" class="submit-link">{% trans 'logout' %}</a></li>
-        </form>
-      </ul>
-      </ul>
-
-      {% else %}
-      <ul class="nav pull-right">
+        {% if user.is_authenticated %}
+        <li class="divider-vertical"></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Welcome' %}, {{ user.get_full_name|default:user.username }} <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ user.get_absolute_url }}">{% trans 'my page' %}</a></li>
+            <li><a href="{% url 'edit-profile' %}">{% trans 'edit profile' %}</a></li>
+            {% if user.is_staff %}
+                <li><a href="/admin/">{% trans 'admin' %}</a></li>
+            {% endif %}
+            <form class="form-inline" method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <li><a href="javascript:;" class="submit-link">{% trans 'logout' %}</a></li>
+            </form>
+          </ul>
+        </li>
+        {% else %}
+        <li class="divider-vertical"></li>
         <li><a href="{% url 'login' %}">{% trans "Login" %}</a></li>
+        {% endif %}
       </ul>
-      {% endif %}
       <div class="nav-other">
         <ul class="nav">
-          <li {% block nav-questions %} {% endblock %}><a href="{% url 'qna' entity %}">{% trans "Questions" %}</a></li>
-          <li {% block nav-candidates %} {% endblock %}><a href="{% url 'candidate_list' entity %}">{% trans "Candidates" %}</a></li>
+          <li {% block nav-questions %} {% endblock %}><a href="{% url 'qna' entity.slug %}">{% trans "Questions" %}</a></li>
+          <li {% block nav-candidates %} {% endblock %}><a href="{% url 'candidate_list' entity.slug %}">{% trans "Candidates" %}</a></li>
           <li {% block nav-about %} {% endblock %}><a href="/p/about/">{% trans "About" %}</a></li>
         </ul>
         <form class="navbar-search pull-left" action="/search/">

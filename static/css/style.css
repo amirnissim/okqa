@@ -215,7 +215,8 @@ line-height: 18px!important;
 
 /* Login */
 form { margin :0; }
-.navbar .nav > li > a {padding-top: 14px;}
+.navbar .nav > li {padding-top: 14px;}
+.navbar .nav > li > a {padding-top: 0px;}
 .navbar-search {padding-top:4px; }
 .nav-self {float:left!important; margin-top:10x;}
 

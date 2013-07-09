@@ -69,8 +69,11 @@ class Question(BaseModel):
         return user.has_perm('qa.add_answer')
 
     def get_absolute_url(self):
-        return reverse('question_detail', kwargs=dict(entity=self.entity.slug,
-                                                       slug=self.unislug))
+        return reverse('question_detail', kwargs=dict(
+                            entity_slug=self.entity.slug,
+                            slug=self.unislug,
+                            )
+                      )
 
     def save(self, **kwargs):
         # make a unicode slug from the subject
