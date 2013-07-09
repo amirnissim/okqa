@@ -5,6 +5,9 @@ from django.contrib.auth.forms import UserCreationForm, SetPasswordForm
 from django.contrib.flatpages.models import FlatPage
 from django.utils.translation import ugettext_lazy as _
 
+from entities.models import Entity
+from chosen import forms as chosenforms
+
 from models import *
 
 class ProfileForm(forms.Form):
@@ -22,6 +25,7 @@ class ProfileForm(forms.Form):
                                            help_text = _('Should we send you e-mail notification about updates to things you follow on the site?'))
     can_answer = forms.BooleanField(label=_('candidate?'), required=False,
                 help_text=_('Please check this only if you are running for office'))
+    locality = chosenforms.ChosenModelChoiceField(queryset=Entity.objects.all(), label=_('Locality'))
 
     def __init__(self, user, *args, **kw):
         super(ProfileForm, self).__init__(*args, **kw)
@@ -35,6 +39,7 @@ class ProfileForm(forms.Form):
                             'bio': self.profile.bio,
                             'email_notification': self.profile.email_notification,
                             'url': self.profile.url,
+                            'locality': self.profile.locality,
                             'avatar_uri': self.profile.avatar_url(),
                            }
 
@@ -63,6 +68,7 @@ class ProfileForm(forms.Form):
         self.profile.email_notification = self.cleaned_data['email_notification']
         self.profile.url = self.cleaned_data['url']
         self.profile.avatar_uri = self.cleaned_data['avatar_uri']
+        self.profile.locality = self.cleaned_data['locality']
 
         if commit:
             user.save()

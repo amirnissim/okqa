@@ -104,6 +104,7 @@ INSTALLED_APPS = (
     'uuidfield',
     'autoslug',
     'entities',
+    'chosen',
     # local apps
     'qa',
     'user',

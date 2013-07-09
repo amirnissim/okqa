@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% block extrahead %}
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css"/>
+{% endblock %}
 {% block mainContainer %}
 <div class="page-header">
   <h1>{% trans "Edit your profile" %}</h1>
@@ -18,4 +21,7 @@
 </form>
 {% endblock %}
 
-
+{% block extrascript %} 
+  <script src="{{ STATIC_URL }}js/chosen.jquery_ready.js"></script>
+  <script src="{{ STATIC_URL }}js/chosen.jquery.min.js"></script>
+{% endblock %}

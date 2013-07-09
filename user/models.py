@@ -68,7 +68,7 @@ class Profile(models.Model):
     avatar_uri = models.URLField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
     last_email_update = models.DateTimeField(default=NEVER_SENT)
-    locality = models.ForeignKey(Entity, null=True)
+    locality = models.ForeignKey(Entity, null=True, verbose_name=_('Locality'))
     sites = models.ManyToManyField(Site)
     on_site = CurrentSiteManager()
 

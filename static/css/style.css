@@ -1,5 +1,6 @@
 body {
 	background: whitesmoke;
+  overflow-x: hidden;
 }
 .wrapper {
     background: #fff;
