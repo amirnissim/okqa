@@ -34,18 +34,19 @@ def questions(request, entity_slug, tags = None):
 
     # TODO: cache the next line
     entity = Entity.objects.get(slug=entity_slug)
+    questions = Question.on_site.filter(entity=entity)
 
     context = RequestContext(request, dict(entity=entity))
     order_opt = request.GET.get('order', 'rating')
     order = ORDER_OPTIONS[order_opt]
-
     if tags:
         tags_list = tags.split(',')
-        questions = Question.on_site.filter(tags__name__in=tags_list)
+        questions = questions.filter(tags__name__in=tags_list)
         context['current_tags'] = tags_list
-    else:
-        questions = Question.on_site.order_by(order)
-        # context['tags'] = TaggedQuestion.on_site.values('tag__name').annotate(count=Count("tag"))
+
+    questions = questions.order_by(order)
+    # TODO: revive the tags!
+    # context['tags'] = TaggedQuestion.on_site.values('tag__name').annotate(count=Count("tag"))
 
     context['questions'] = questions
     context['by_date'] = order_opt=='date'
