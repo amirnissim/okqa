@@ -16,19 +16,12 @@
   <div class="navbar-inner">
     <div class="container">
       <div id="party-logo" class="brand">
-        <a href="{% url 'qna' entity.slug %}">
+        <a href="/">
             <img src="http://wiki.hasadna.org.il/images/SadnaLogo150x.png" title="{{party.site.name}}">
         </a>
       </div>
       <ul class="nav nav-self">
-        {% if entity %}
-        <li>
-          {% trans 'Place' %}: {{ entity }}
-        </li>
-        <li>
-          <a href="{% url 'entity_list' %}">({% trans 'All Places' %})</a></li>
-        </li>
-        {% endif %}
+        {% block topnav %} {% endblock %}
         {% if user.is_authenticated %}
         <li class="divider-vertical"></li>
         <li class="dropdown">
@@ -46,15 +39,15 @@
           </ul>
         </li>
         {% else %}
-        <li class="divider-vertical"></li>
-        <li><a href="{% url 'login' %}">{% trans "Login" %}</a></li>
+          <li class="divider-vertical"></li>
+          <li><a href="{% url 'login' %}">{% trans "Login" %}</a></li>
         {% endif %}
       </ul>
       <div class="nav-other">
         <ul class="nav">
-          <li {% block nav-questions %} {% endblock %}><a href="{% url 'qna' entity.slug %}">{% trans "Questions" %}</a></li>
-          <li {% block nav-candidates %} {% endblock %}><a href="{% url 'candidate_list' entity.slug %}">{% trans "Candidates" %}</a></li>
-          <li {% block nav-about %} {% endblock %}><a href="/p/about/">{% trans "About" %}</a></li>
+          {% block mainnav %} 
+            <li {% block nav-about %} {% endblock %}><a href="/p/about/">{% trans "About" %}</a></li>
+          {% endblock %}
         </ul>
         <form class="navbar-search pull-left" action="/search/">
           <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search' %}" />

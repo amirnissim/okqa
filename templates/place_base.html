@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block topnav %}
+  {% if entity %}
+  <li>
+    {% trans 'Place' %}: {{ entity }}
+  </li>
+  <li>
+    <a href="{% url 'entity_list' %}">({% trans 'All Places' %})</a></li>
+  </li>
+  {% endif %}
+{% endblock %}
+{% block mainnav %} 
+  <li {% block nav-questions %} {% endblock %}><a href="{% url 'qna' entity.slug %}">{% trans "Questions" %}</a></li>
+  <li {% block nav-candidates %} {% endblock %}><a href="{% url 'candidate_list' entity.slug %}">{% trans "Candidates" %}</a></li>
+{% endblock %}
+
