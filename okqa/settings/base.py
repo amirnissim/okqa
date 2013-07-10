@@ -169,8 +169,8 @@ FACEBOOK_API_SECRET          = os.environ.get('FACEBOOK_API_SECRET')
 GOOGLE_OAUTH2_CLIENT_ID      = os.environ.get('GOOGLE_OAUTH2_CLIENT_ID')
 GOOGLE_OAUTH2_CLIENT_SECRET  = os.environ.get('GOOGLE_OAUTH2_CLIENT_SECRET')
 GOOGLE_OAUTH_EXTRA_SCOPE     = ['https://www.googleapis.com/auth/userinfo.profile']
-ADMIN_NAME = os.environ.get('ADMIN_NAME')
-ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL')
+ADMIN_NAME = os.environ.get('ADMIN_NAME', 'open-qna')
+ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'open-qna@hasadna.org.il')
 
 SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.social.social_auth_user',

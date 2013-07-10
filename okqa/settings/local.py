@@ -27,6 +27,7 @@ EMAIL_USE_TLS = False
 
 LOGGING['handlers']['console']['level'] = 'DEBUG'
 
+
 if not STATIC_S3:
     STATIC_URL = '/static/'
     STATIC_PATH = '/static/'
