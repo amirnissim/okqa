@@ -146,15 +146,14 @@ def post_question(request, entity_slug):
             question.save()
             form.save_m2m()
             return HttpResponseRedirect(question.get_absolute_url())
-
-        #TODO: make this better - show the form
-        # return HttpResponseRedirect("/#question_modal")
-    elif request.method == "GET":
+    else:
         form = QuestionForm()
 
-    context = RequestContext(request, {"form": form, "entity": entity})
+    context = RequestContext(request, {"form": form,
+                    "entity": entity,
+                    "max_length_q_subject": MAX_LENGTH_Q_SUBJECT,
+                    })
     return render(request, "qa/post_question.html", context)
-
 
 @login_required
 def upvote_question(request, q_id):

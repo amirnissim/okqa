@@ -46,8 +46,7 @@ class Question(BaseModel):
         editable=False
     )
     author = models.ForeignKey(User, related_name="questions", verbose_name=_("author"))
-    subject = models.CharField(_("question"), max_length=MAX_LENGTH_Q_SUBJECT,
-        help_text=_("Please enter a subject in no more than %s letters") % MAX_LENGTH_Q_SUBJECT)
+    subject = models.CharField(_("question"), max_length=MAX_LENGTH_Q_SUBJECT)
     content = models.TextField(_("details"), max_length=MAX_LENGTH_Q_CONTENT,
        help_text=_("Please enter your content in no more than %s letters") % MAX_LENGTH_Q_CONTENT,
        blank = True, default = '')

@@ -289,6 +289,8 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 200;
 }
 #party-logo { height: 100px; width:100px; padding:0px; }
+.post-question { position:relative; }
 .post-question input[name="subject"] { width: 500px;}
+.post-question #charsCounter { position:absolute; left: 10px; bottom: 0; }
 .social-auth > li { display:inline;}
 .page-header { border:none; }
