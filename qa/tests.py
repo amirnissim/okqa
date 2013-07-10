@@ -66,8 +66,8 @@ class QuestionTest(TestCase):
 
     def test_question_detail(self):
         c = Client()
-        q_url = reverse('question-detail', 
-                         kwargs={'entity': self.q.entity.slug, 'slug':self.q.unislug})
+        q_url = reverse('question_detail',
+                         kwargs={'entity_slug': self.q.entity.slug, 'slug':self.q.unislug})
 
         response = c.get(q_url)
         self.assertEquals(response.status_code, 200)

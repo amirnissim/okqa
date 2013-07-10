@@ -53,7 +53,7 @@ class UserTest(TestCase):
 
     def test_candidate_list(self):
         c = Client()
-        clist_url = reverse('candidate_list', kwargs={'entity':self.entity.slug})
+        clist_url = reverse('candidate_list', kwargs={'entity_slug':self.entity.slug})
         response = c.get(clist_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, "candidate/candidate_list.html")
@@ -71,6 +71,8 @@ class UserTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, "user/user_detail.html")
 
+    # TODO: remove the invitation
+    '''
     def test_invitation(self):
         user = invite_user(username = "john",
                             email = "john@example.com",
@@ -92,8 +94,7 @@ class UserTest(TestCase):
             )
         self.assertFormError(response, "form", None, None)
         self.assertFormError(response, "form", "password1", None)
-
-
+    '''
 
     def tearDown(self):
         User.objects.all().delete()
