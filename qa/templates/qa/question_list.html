@@ -8,8 +8,8 @@
     <div class="row">
         <div class="span9">
           {% if party %}
-          <h1>{% trans "Questions" %} 
-            <small>{% trans "for candidate of hasadna board" %}</small>
+          <h1>
+            {% blocktrans with entity.name as place %}Questions for candidate of {{place}} {% endblocktrans %}
                {% if not current_tags %}
                <a href="{% url "atom_entity_questions" entity %}" title="{% trans 'Subscribe' %}" rel="tooltip">
                  <img src="{{STATIC_URL}}img/rss.png" width="25" />
