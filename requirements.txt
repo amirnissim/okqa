@@ -32,3 +32,4 @@ mock
 django-uuidfield
 django-autoslug
 -e git+https://github.com/daonb/django-chosen.git#egg=django-chosen
+django-modeltranslation
