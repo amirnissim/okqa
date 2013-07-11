@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load url from future %}
+
+{% block pageTitle %}
+  {% trans 'All Places' %}
+{% endblock pageTitle %}
+
+{% block mainContainer %}
+
+<h1>{% trans 'All Places' %}</h1>
+{% for entity in object_list %}
+<div class="entity-preview">
+    <h3>
+      <a class="button blue" href="{% url 'qna' entity.slug %}" title="{{ entity.name }}">
+        {{ entity.name_he }}
+      </a>
+    </h3>
+</div>
+
+{% endfor %}
+
+{% endblock mainContainer %}
