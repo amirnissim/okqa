@@ -28,7 +28,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Welcome' %}, {{ user.get_full_name|default:user.username }} <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="{{ user.get_absolute_url }}">{% trans 'my page' %}</a></li>
-            <li><a href="{% url 'edit-profile' %}">{% trans 'edit profile' %}</a></li>
+            <li><a href="{% url 'edit_profile' %}">{% trans 'edit profile' %}</a></li>
             {% if user.is_staff %}
                 <li><a href="/admin/">{% trans 'admin' %}</a></li>
             {% endif %}

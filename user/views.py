@@ -19,7 +19,7 @@ def candidate_list(request, entity_slug):
     list candidates ordered by number of answers
     """
     entity = Entity.objects.get(slug=entity_slug)
-    candidates = Profile.objects.candidates(entity_slug)
+    candidates = Profile.objects.candidates_for_entity(entity_slug)
     context = RequestContext(request,
                              dict(entity=entity,
                                   candidates=candidates))
@@ -41,6 +41,11 @@ def user_detail(request, slug):
 
     # todo: support members as well as candidates
     return render(request, "user/user_detail.html", context)
+def get_base_template(profile):
+    if profile.locality:
+        return "place_base.html"
+    else:
+        return "base.html"
 
 @login_required
 def edit_profile(request):
@@ -53,19 +58,10 @@ def edit_profile(request):
     elif request.method == "GET":
         user = request.user
         form = ProfileForm(request.user)
-        ''' initial = {
-                    'username': user.username,
-                    'email': user.email,
-                    'first_name': user.first_name,
-                    'last_name': user.last_name,
-                    'bio': user.profile.bio,
-                    'email_notification': user.profile.email_notification,
-                    'url': user.profile.url,
-                    'avatar_uri': user.profile.avatar_url(),
-                    })
-        '''
 
-    context = RequestContext(request, {"form": form, "entity": profile.locality})
+    context = RequestContext(request, {"form": form, 
+                                       "entity": profile.locality,
+                                       "base_template": get_base_template(profile)})
     return render(request, "user/edit_profile.html", context)
 
 class InvitationView(View, FormMixin, TemplateResponseMixin):
