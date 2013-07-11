@@ -25,7 +25,9 @@ class ProfileForm(forms.Form):
                                            help_text = _('Should we send you e-mail notification about updates to things you follow on the site?'))
     is_candidate = forms.BooleanField(label=_('candidate?'), required=False,
                 help_text=_('Please check this only if you are running for office'))
-    locality = chosenforms.ChosenModelChoiceField(queryset=Entity.objects.all(), label=_('Locality'))
+    locality = chosenforms.ChosenModelChoiceField(
+                queryset=Entity.objects.filter(division__index=3),
+                label=_('Locality'))
 
     def __init__(self, user, *args, **kw):
         super(ProfileForm, self).__init__(*args, **kw)
