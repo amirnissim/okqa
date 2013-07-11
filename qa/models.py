@@ -65,7 +65,11 @@ class Question(BaseModel):
 
     def can_answer(self, user):
         ''' Can a given user answer self? '''
-        return user.has_perm('qa.add_answer')
+        if user.is_authenticated():
+            profile = user.profile
+            return profile.is_candidate and profile.locality==self.entity
+        else:
+            return False
 
     def get_absolute_url(self):
         return reverse('question_detail', kwargs=dict(

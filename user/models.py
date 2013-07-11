@@ -42,21 +42,10 @@ def invite_user(site, username, email, first_name="", last_name=""):
     registration_profile = RegistrationProfile.objects.create_profile(user)
 
     return user
-
-def get_candidate_group(entity_name):
-    ''' return the groups of the candidates '''
-    candidate_group, created = Group.objects.get_or_create(name=entity_name+"_candidates")
-    if created:
-        add_answer = Permission.objects.get(codename="add_answer")
-        candidate_group.permissions.add(add_answer)
-    return candidate_group
-
 class ProfileManager(models.Manager):
     def candidates(self, entity_name):
         ''' get all the candidates in an entity '''
-        candidate_group = get_candidate_group(entity_name)
-        return candidate_group.user_set.all().\
-                annotate(num_answers=models.Count('answers')).order_by("-num_answers")
+        return User.objects.filter(profile__is_candidate=True)
 
 class Profile(models.Model):
     # TODO: chnage OneToOne
@@ -70,6 +59,7 @@ class Profile(models.Model):
     last_email_update = models.DateTimeField(default=NEVER_SENT)
     locality = models.ForeignKey(Entity, null=True, verbose_name=_('Locality'))
     sites = models.ManyToManyField(Site)
+    is_candidate = models.BooleanField(default=False)
     on_site = CurrentSiteManager()
 
     objects = ProfileManager()
@@ -88,13 +78,6 @@ class Profile(models.Model):
             return gravatar_url
         else:
             return default
-
-    def set_candidate(self, candidate):
-        candidate_group = get_candidate_group(self.locality.slug)
-        if candidate:
-            self.user.groups.add(candidate_group)
-        else:
-            self.user.groups.remove(candidate_group)
 
 def handle_user_save(sender, created, instance, **kwargs):
     if created: # and instance._state.db=='default':

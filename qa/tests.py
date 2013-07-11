@@ -44,7 +44,8 @@ class QuestionTest(TestCase):
                                 "candidate@example.com", "pass")
         self.candidate_user.profile.locality = entity
         self.candidate_user.profile.save()
-        self.candidate_user.profile.set_candidate(True)
+        self.candidate_user.profile.is_candidate = True
+        self.candidate_user.profile.save()
         self.q = Question.objects.create(author = self.common_user,
                         subject="why?", entity=entity)
         self.a = self.q.answers.create(author = self.candidate_user,

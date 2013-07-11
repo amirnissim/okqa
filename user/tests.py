@@ -58,10 +58,12 @@ class UserTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, "candidate/candidate_list.html")
         self.assertFalse(response.context['candidates'])
-        self.user.profile.set_candidate(True)
+        self.user.profile.is_candidate = True
+        self.user.profile.save()
         response = c.get(clist_url)
         self.assertEquals(len(response.context['candidates']), 1)
-        self.user.profile.set_candidate(False)
+        self.user.profile.is_candidate = False
+        self.user.profile.save()
         response = c.get(clist_url)
         self.assertEquals(len(response.context['candidates']), 0)
 

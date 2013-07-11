@@ -23,7 +23,7 @@ class ProfileForm(forms.Form):
     email_notification = forms.ChoiceField(choices = NOTIFICATION_PERIOD_CHOICES,
                                            label = _('E-Mail Notifications'),
                                            help_text = _('Should we send you e-mail notification about updates to things you follow on the site?'))
-    can_answer = forms.BooleanField(label=_('candidate?'), required=False,
+    is_candidate = forms.BooleanField(label=_('candidate?'), required=False,
                 help_text=_('Please check this only if you are running for office'))
     locality = chosenforms.ChosenModelChoiceField(queryset=Entity.objects.all(), label=_('Locality'))
 
@@ -69,11 +69,11 @@ class ProfileForm(forms.Form):
         self.profile.url = self.cleaned_data['url']
         self.profile.avatar_uri = self.cleaned_data['avatar_uri']
         self.profile.locality = self.cleaned_data['locality']
+        self.profile.is_candidate = self.cleaned_data['is_candidate']
 
         if commit:
             user.save()
             self.profile.save()
-        self.profile.set_candidate(self.cleaned_data['can_answer'])
         return user
 
 invitation_default_text, create = FlatPage.objects.get_or_create(url='/_invite_candidate/',
