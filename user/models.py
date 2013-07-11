@@ -61,6 +61,7 @@ class Profile(models.Model):
     locality = models.ForeignKey(Entity, null=True, verbose_name=_('Locality'))
     sites = models.ManyToManyField(Site)
     is_candidate = models.BooleanField(default=False)
+    is_editor = models.BooleanField(default=False)
     on_site = CurrentSiteManager()
 
     objects = ProfileManager()

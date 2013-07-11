@@ -33,6 +33,11 @@
               <span class="too-long-toggle"> {{ candidate.profile.bio }}</span>
             </div>
         </div>
+        {% if user.profile.is_editor %}
+        <div class="editor-options">
+          <a class="remove-candidate" id="remove-candidate-{{candidate.id}}">{% trans "not a candidate" %}</a>
+        </div>
+        {% endif %}
     </div>
   {% endfor %}
   </div>
