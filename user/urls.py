@@ -18,4 +18,8 @@ urlpatterns = patterns('',
     url(r'^invitation/(?P<invitation_key>\w+)/$',
         InvitationView.as_view(),
         name='accept-invitation'),
+    url(r'^candidate/(?P<candidate_id>\d+)/remove/$',
+        remove_candidate,
+        name='remove_candidate'
+    ),
 )

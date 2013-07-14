@@ -35,8 +35,25 @@
         </div>
         {% if user.profile.is_editor %}
         <div class="editor-options">
-          <a class="remove-candidate" id="remove-candidate-{{candidate.id}}">{% trans "not a candidate" %}</a>
+          <a href="#remove-candidate-{{candidate.id}}" role="button" class="btn" data-toggle="modal">{% trans "Remove Candidate" %}</a>
         </div>
+<div id="remove-candidate-{{candidate.id}}" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>{% trans "Confirm Candidate Removal" %}</h3>
+  </div>
+  <div class="modal-body">
+    <p>{% blocktrans with candidate=candidate.get_full_name %}
+      Are you sure you want to remove {{ candidate }} from the candidate list?
+    {% endblocktrans %}</p>
+  </div>
+  <div class="modal-footer">
+      <form method="post" action="{% url "remove_candidate" candidate.id %}">
+        {% csrf_token %}
+        <button name="remove" type="submit" value="1">{% trans "Remove" %}</button>
+      </form>
+  </div>
+</div>
         {% endif %}
     </div>
   {% endfor %}

@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.views.generic.edit import FormMixin, TemplateResponseMixin
 from django.views.generic import View
 from django.template.context import RequestContext
+from django.views.decorators.http import require_POST
 
 from .forms import *
 from .models import *
@@ -46,6 +47,21 @@ def get_base_template(profile):
         return "place_base.html"
     else:
         return "base.html"
+
+@login_required
+@require_POST
+def remove_candidate(request, candidate_id):
+    profile = request.user.profile
+    candidate_profile = get_object_or_404(User, pk=candidate_id).profile
+    if profile.is_editor and profile.locality==candidate_profile.locality:
+        candidate_profile.is_candidate = False
+        candidate_profile.save()
+    else:
+        messages.error(request,
+            _('Sorry, you are not authorized to remove %s from the candidate list')\
+                    % profile.user.get_full_name())
+
+    return HttpResponseRedirect(request.POST.get("next", reverse("candidate_list", args=(profile.locality.slug,))))
 
 @login_required
 def edit_profile(request):

@@ -294,3 +294,4 @@ h1, h2, h3, h4, h5, h6 {
 .post-question #charsCounter { position:absolute; left: 10px; bottom: 0; }
 .social-auth > li { display:inline;}
 .page-header { border:none; }
+.editor-options { float:left;}

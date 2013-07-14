@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OK-QA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-10 13:14+0300\n"
-"PO-Revision-Date: 2013-07-10 13:15+0200\n"
+"POT-Creation-Date: 2013-07-14 15:45+0300\n"
+"PO-Revision-Date: 2013-07-14 15:48+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -15,6 +15,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: okqa/settings/base.py:24
+msgid "Hebrew"
+msgstr ""
+
+#: okqa/settings/base.py:25
+msgid "English"
+msgstr ""
+
+#: okqa/settings/base.py:26
+msgid "Arabic"
+msgstr ""
+
+#: okqa/settings/base.py:27
+msgid "Russian"
+msgstr ""
 
 #: party/models.py:12
 msgid "party name"
@@ -49,12 +65,12 @@ msgid "unicode slug"
 msgstr "שם ביוניקוד"
 
 #: qa/models.py:48
-#: qa/models.py:90
+#: qa/models.py:94
 msgid "author"
 msgstr "מחבר"
 
 #: qa/models.py:49
-#: qa/models.py:94
+#: qa/models.py:98
 msgid "question"
 msgstr "שאלה"
 
@@ -68,7 +84,7 @@ msgid "Please enter your content in no more than %s letters"
 msgstr "נא להכניס תוכן בלא יותר מ %s אותיות"
 
 #: qa/models.py:53
-#: qa/models.py:93
+#: qa/models.py:97
 msgid "rating"
 msgstr "ניקוד"
 
@@ -76,11 +92,11 @@ msgstr "ניקוד"
 msgid "flags counter"
 msgstr "מונה דיווחים"
 
-#: qa/models.py:91
+#: qa/models.py:95
 msgid "content"
 msgstr "תוכן"
 
-#: qa/models.py:92
+#: qa/models.py:96
 #, python-format
 msgid "Please enter an answer in no more than %s letters"
 msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
@@ -229,6 +245,76 @@ msgstr "שאלות"
 msgid "Sorry but only connected users can post questions"
 msgstr "מצטערת, יש להתחבר כדי לשאול שאלות"
 
+#: src/django-registration/registration/admin.py:23
+msgid "Activate users"
+msgstr ""
+
+#: src/django-registration/registration/admin.py:43
+msgid "Re-send activation emails"
+msgstr "שלח מחדש דואל להפעלת החשבון"
+
+#: src/django-registration/registration/forms.py:34
+#: user/admin.py:10
+msgid "Username"
+msgstr "שם משתמש"
+
+#: src/django-registration/registration/forms.py:35
+msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
+msgstr "ניתן להשתמש באותיות, ספרות ו @.+-_"
+
+#: src/django-registration/registration/forms.py:36
+msgid "E-mail"
+msgstr "דוא\"ל"
+
+#: src/django-registration/registration/forms.py:38
+#: user/forms.py:91
+msgid "Password"
+msgstr "סיסמא"
+
+#: src/django-registration/registration/forms.py:40
+msgid "Password (again)"
+msgstr "סיסמא (שוב)"
+
+#: src/django-registration/registration/forms.py:50
+msgid "A user with that username already exists."
+msgstr "משתמש בשם זה כבר קיים"
+
+#: src/django-registration/registration/forms.py:64
+msgid "The two password fields didn't match."
+msgstr ""
+
+#: src/django-registration/registration/forms.py:75
+msgid "I have read and agree to the Terms of Service"
+msgstr ""
+
+#: src/django-registration/registration/forms.py:76
+msgid "You must agree to the terms to register"
+msgstr ""
+
+#: src/django-registration/registration/forms.py:92
+msgid "This email address is already in use. Please supply a different email address."
+msgstr ""
+
+#: src/django-registration/registration/forms.py:119
+msgid "Registration using free email addresses is prohibited. Please supply a different email address."
+msgstr ""
+
+#: src/django-registration/registration/models.py:176
+msgid "user"
+msgstr "שם משתמש"
+
+#: src/django-registration/registration/models.py:177
+msgid "activation key"
+msgstr "מפתח הפעלה"
+
+#: src/django-registration/registration/models.py:182
+msgid "registration profile"
+msgstr "פרופיל הרשמה"
+
+#: src/django-registration/registration/models.py:183
+msgid "registration profiles"
+msgstr "פרופילי הרשמה"
+
 #: taggit_autosuggest/managers.py:11
 msgid "Tags"
 msgstr "תגיות"
@@ -296,7 +382,7 @@ msgid "Content is licensed CC-BY. Source code is freely available "
 msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.  קוד המקור חופשי לשימוש"
 
 #: templates/base.html:79
-#: user/templates/candidate/candidate_list.html:44
+#: user/templates/candidate/candidate_list.html:66
 msgid "here"
 msgstr "כאן"
 
@@ -331,38 +417,6 @@ msgstr "שאלות"
 #: user/templates/candidate/candidate_list.html:6
 msgid "Candidates"
 msgstr "מועמדים"
-
-#: templates/entities/entity_detail.html:15
-msgid "Back to all entities"
-msgstr ""
-
-#: templates/entities/entity_detail.html:27
-msgid "Budgets and Actuals"
-msgstr ""
-
-#: templates/entities/entity_detail.html:32
-msgid "is a"
-msgstr ""
-
-#: templates/entities/entity_detail.html:32
-msgid "of"
-msgstr ""
-
-#: templates/entities/entity_detail.html:32
-msgid "and therefore does not declare budgets. It serves a purely administrative function."
-msgstr ""
-
-#: templates/entities/entity_detail.html:38
-msgid "There are no Budgets for this entity"
-msgstr ""
-
-#: templates/entities/entity_detail.html:43
-msgid "Budgets available"
-msgstr ""
-
-#: templates/entities/entity_detail.html:47
-msgid "There are no Budgets this entity"
-msgstr ""
 
 #: templates/registration/activate.html:8
 msgid "Account successfully activated"
@@ -495,10 +549,6 @@ msgstr "&raquo; הקודם"
 msgid "Next &raquo;"
 msgstr "הבא &lqauo;"
 
-#: user/admin.py:10
-msgid "Username"
-msgstr "שם משתמש"
-
 #: user/admin.py:12
 msgid "Required. 30 characters or fewer. Alphanumeric characters only (letters, digits and underscores)."
 msgstr "30 תווים או פחות. ניתן להשתמש באותיות עבריות ולועזיות, ספרות וקו תחתון בלבד."
@@ -516,32 +566,32 @@ msgid "Get all answers by"
 msgstr "קבלו את כל התשובות של"
 
 #: user/forms.py:14
-#: user/forms.py:130
+#: user/forms.py:132
 msgid "username"
 msgstr "שם משתמש"
 
 #: user/forms.py:15
-#: user/forms.py:131
+#: user/forms.py:133
 msgid "Please use 4 letters or more"
 msgstr "נא להשתמש בארבע אותיות או יותר (גם מספרים ו @/./+/-/_ הם תווים חוקיים)"
 
 #: user/forms.py:16
-#: user/forms.py:132
+#: user/forms.py:134
 msgid "first name"
 msgstr "שם פרטי"
 
 #: user/forms.py:17
-#: user/forms.py:133
+#: user/forms.py:135
 msgid "last name"
 msgstr "שם משפחה"
 
 #: user/forms.py:18
-#: user/forms.py:138
+#: user/forms.py:140
 msgid "email address"
 msgstr "כתובת דואל"
 
 #: user/forms.py:19
-#: user/forms.py:149
+#: user/forms.py:151
 msgid "home page"
 msgstr "עמוד הבית"
 
@@ -550,7 +600,7 @@ msgid "avatar"
 msgstr "אווטר"
 
 #: user/forms.py:21
-#: user/forms.py:150
+#: user/forms.py:152
 msgid "bio"
 msgstr "עלי"
 
@@ -570,40 +620,36 @@ msgstr "מועמד?"
 msgid "Please check this only if you are running for office"
 msgstr "אנא, סמני רק אם את מועמדת"
 
-#: user/forms.py:28
-#: user/models.py:71
+#: user/forms.py:30
+#: user/models.py:61
 msgid "Locality"
 msgstr "מקום מגורים"
 
-#: user/forms.py:52
+#: user/forms.py:54
 msgid "This username is already taken."
 msgstr "שם המשתמש בשימוש"
 
-#: user/forms.py:80
+#: user/forms.py:82
 msgid "the voters are waiting for your answers"
 msgstr "המצביעים ממתינים לתשובתך"
 
-#: user/forms.py:81
+#: user/forms.py:83
 msgid "The Q&A site is happy to invite you to answer voters' questions. please click {{activation_url}} to activate your account"
 msgstr ""
 
-#: user/forms.py:89
-msgid "Password"
-msgstr "סיסמא"
-
-#: user/forms.py:91
+#: user/forms.py:93
 msgid "Password confirmation"
 msgstr "אשר סיסמה"
 
-#: user/forms.py:93
+#: user/forms.py:95
 msgid "Enter the same password as above, for verification."
 msgstr "כדי לוודא, הכניסו אותה ססמה כמו למעלה"
 
-#: user/forms.py:134
+#: user/forms.py:136
 msgid "email subject"
 msgstr "נושא הדואל"
 
-#: user/forms.py:136
+#: user/forms.py:138
 msgid "email body"
 msgstr "תוכן הדואל"
 
@@ -627,11 +673,38 @@ msgstr "זכר"
 msgid "Female"
 msgstr "נקבה"
 
-#: user/views.py:102
+#: user/views.py:61
+#, python-format
+msgid "Sorry, you are not authorized to remove %s from the candidate list"
+msgstr "מצטערת, אינך מורשה להסיר את %s מרשימת המועמדים"
+
+#: user/views.py:114
 msgid "Your profile has been updated, please login."
 msgstr "הפרופיל שלכם עודכן, אתם מוזמנים להכנס"
 
-#: user/templates/candidate/candidate_list.html:40
+#: user/templates/candidate/candidate_list.html:38
+msgid "Remove Candidate"
+msgstr "הסר מועמד"
+
+#: user/templates/candidate/candidate_list.html:43
+msgid "Confirm Candidate Removal"
+msgstr "אשרו הסרת מועמד"
+
+#: user/templates/candidate/candidate_list.html:46
+#, python-format
+msgid ""
+"\n"
+"      Are you sure you want to remove %(candidate)s from the candidate list?\n"
+"    "
+msgstr ""
+"\n"
+"האם אתם בטוחים שברצונכם להסיר את %(candidate)s מרשימת המועמדים?"
+
+#: user/templates/candidate/candidate_list.html:53
+msgid "Remove"
+msgstr "הסר"
+
+#: user/templates/candidate/candidate_list.html:62
 msgid ""
 "\n"
 "      The Candidates biographies were given by the candidates themselvs and\n"
@@ -667,34 +740,6 @@ msgstr "ערוך את הפרופיל שלך"
 
 #~ msgid "for candidate of hasadna board"
 #~ msgstr "למועמדים לועד של הסדנא לידע ציבורי"
-
-#~ msgid "Re-send activation emails"
-#~ msgstr "שלח מחדש דואל להפעלת החשבון"
-
-#~ msgid ""
-#~ "This value may contain only letters, numbers and @/./+/-/_ characters."
-#~ msgstr "ניתן להשתמש באותיות, ספרות ו @.+-_"
-
-#~ msgid "E-mail"
-#~ msgstr "דוא\"ל"
-
-#~ msgid "Password (again)"
-#~ msgstr "סיסמא (שוב)"
-
-#~ msgid "A user with that username already exists."
-#~ msgstr "משתמש בשם זה כבר קיים"
-
-#~ msgid "user"
-#~ msgstr "שם משתמש"
-
-#~ msgid "activation key"
-#~ msgstr "מפתח הפעלה"
-
-#~ msgid "registration profile"
-#~ msgstr "פרופיל הרשמה"
-
-#~ msgid "registration profiles"
-#~ msgstr "פרופילי הרשמה"
 
 #~ msgid ""
 #~ "Thank you for clicking. Please complete the form below to get started."

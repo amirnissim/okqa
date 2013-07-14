@@ -42,6 +42,30 @@ class UserTest(TestCase):
                                 "user@example.com", "pass")
         self.user.profile.locality = self.entity
         self.user.profile.save()
+        self.candidate = User.objects.create_user("candidate",
+                                "candidate@example.com", "pass")
+        self.candidate.profile.locality = self.entity
+        self.candidate.profile.is_candidate = True
+        self.candidate.profile.save()
+
+    def test_remove_candidate(self):
+        c = Client()
+        rc_url = reverse('remove_candidate', args=(self.candidate.id, ))
+        response  = c.post(rc_url)
+        self.assertRedirects(response, "%s?next=%s"  % (reverse("login"), rc_url))
+        self.assertTrue(self.candidate.profile.is_candidate)
+        self.assertTrue(c.login(username="user", password="pass"))
+        response  = c.post(rc_url)
+        self.assertRedirects(response, reverse("candidate_list", args=(self.entity.slug,)))
+        self.assertIn('messages', response.cookies.keys())
+        self.user.profile.is_editor = True
+        self.user.profile.save()
+        response  = c.post(rc_url)
+        self.assertRedirects(response, reverse("candidate_list", args=(self.entity.slug,)))
+        profile = User.objects.get(pk=self.candidate.id).profile
+        self.assertFalse(profile.is_candidate)
+        profile.is_candidate = True
+        profile.save()
 
     def test_edit_profile(self):
         c = Client()
@@ -74,15 +98,15 @@ class UserTest(TestCase):
         response = c.get(clist_url)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, "candidate/candidate_list.html")
-        self.assertFalse(response.context['candidates'])
+        self.assertEquals(len(response.context['candidates']), 1)
         self.user.profile.is_candidate = True
         self.user.profile.save()
         response = c.get(clist_url)
-        self.assertEquals(len(response.context['candidates']), 1)
+        self.assertEquals(len(response.context['candidates']), 2)
         self.user.profile.is_candidate = False
         self.user.profile.save()
         response = c.get(clist_url)
-        self.assertEquals(len(response.context['candidates']), 0)
+        self.assertEquals(len(response.context['candidates']), 1)
 
     def user_detail(self):
         c = Client()
