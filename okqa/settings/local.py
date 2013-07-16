@@ -40,3 +40,6 @@ HAYSTACK_CONNECTIONS = {
         'INDEX_NAME': 'qa',
     },
 }
+DEBUG_TOOLBAR_CONFIG = {
+        'INTERCEPT_REDIRECTS': False,
+}

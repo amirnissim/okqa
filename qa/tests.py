@@ -1,8 +1,12 @@
+import json
+
 from django.contrib.auth.models import User, AnonymousUser, Permission
 from django.contrib.sites.models import Site
 from social_auth.tests.client import SocialClient
 from django.test.client import Client
 from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext as _
+from django.utils import translation
 
 from django.test import TestCase
 
@@ -43,9 +47,13 @@ class QuestionTest(TestCase):
         self.candidate_user = User.objects.create_user("candidate", 
                                 "candidate@example.com", "pass")
         self.candidate_user.profile.locality = entity
-        self.candidate_user.profile.save()
         self.candidate_user.profile.is_candidate = True
         self.candidate_user.profile.save()
+        self.editor_user = User.objects.create_user("editor", 
+                                "editor@example.com", "pass")
+        self.editor_user.profile.locality = entity
+        self.editor_user.profile.is_editor = True
+        self.editor_user.profile.save()
         self.q = Question.objects.create(author = self.common_user,
                         subject="why?", entity=entity)
         self.a = self.q.answers.create(author = self.candidate_user,
@@ -54,6 +62,7 @@ class QuestionTest(TestCase):
         self.site2 = Site.objects.create(domain='fun.com')
         self.q.tags.create(name="abc")
         self.q.tags.create(name="def")
+        translation.deactivate_all()
 
     def test_sites(self):
         I = Site.objects.get_current()
@@ -84,16 +93,27 @@ class QuestionTest(TestCase):
         self.assertEquals(self.q.flags_count, 1)
         c = Client()
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
-        self.assertEquals(response.status_code, 403)
-        respone = c.post(reverse('login'),
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertIn('redirect', data)
+        respone = c.post(data['redirect'],
                 {'username':"commoner", 'password':"pass"})
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.content, "2")
+        data = json.loads(response.content)
+        self.assertIn('message', data)
+        self.assertEquals(data['message'], 'Thank you for falgging the question. One of our editors will look at it shortly.')
         self.q = Question.objects.get(pk=self.q.id)
         self.assertEquals(self.q.flags_count, 2)
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
-        self.assertEquals(response.status_code, 403)
+        data = json.loads(response.content)
+        self.assertIn('message', data)
+        self.assertEquals(data['message'], 'Thanks.  You already reported this question')
+        c.logout()
+        self.assertTrue(c.login(username="editor", password="pass"))
+        response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
+        data = json.loads(response.content)
+        self.assertIn('redirect', data)
+        self.assertEquals(data['redirect'], reverse('qna', args=(self.q.entity.slug, )))
 
     def test_upvote(self):
         c = SocialClient()

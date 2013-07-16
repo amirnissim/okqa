@@ -11,6 +11,8 @@ from django.contrib.sites.models import Site, get_current_site
 from django.utils.translation import ugettext as _
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Atom1Feed
+from django.contrib import messages
+from django.conf import settings
 
 from taggit.utils import parse_tags
 
@@ -26,6 +28,13 @@ from django.forms.models import model_to_dict
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating'}
 
+class JsonpResponse(HttpResponse):
+    def __init__(self, data, callback, *args, **kwargs):
+        jsonp = "%s(%s)" % (callback, json.dumps(data))
+        super(JsonpResponse, self).__init__(
+            content=jsonp,
+            content_type='application/javascript',
+            *args, **kwargs)
 
 def questions(request, entity_slug, tags = None):
     """
@@ -228,11 +237,19 @@ class AtomQuestionAnswerFeed(RssQuestionAnswerFeed):
 def flag_question(request, q_id):
     q = get_object_or_404(Question, id=q_id)
     user = request.user
-
-    if user.is_anonymous() or user.flags.filter(question=q):
-        return HttpResponseForbidden(_("You already reported this question"))
+    ret = {}
+    if user.is_anonymous():
+        messages.error(request, _('Sorry, you have to login to flag questions'))
+        ret["redirect"] = '%s?next=%s' % (settings.LOGIN_URL, q.get_absolute_url())
+    elif user.profile.is_editor and user.profile.locality == q.entity:
+        q.delete()
+        messages.info(request, _('Question has been removed'))
+        ret["redirect"] = reverse('qna', args=(q.entity.slug,))
+    elif user.flags.filter(question=q):
+        ret["message"] = _('Thanks.  You already reported this question')
     else:
         flag = QuestionFlag.objects.create(question=q, reporter=user)
         #TODO: use signals so the next line won't be necesary
-        new_count = q.flagged()
-        return HttpResponse(new_count)
+        q.flagged()
+        ret["message"] = _('Thank you for falgging the question. One of our editors will look at it shortly.')
+    return HttpResponse(json.dumps(ret), content_type="application/json")

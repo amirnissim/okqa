@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OK-QA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-14 15:45+0300\n"
-"PO-Revision-Date: 2013-07-14 15:48+0200\n"
+"POT-Creation-Date: 2013-07-16 11:56+0300\n"
+"PO-Revision-Date: 2013-07-16 11:56+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -101,41 +101,53 @@ msgstr "תוכן"
 msgid "Please enter an answer in no more than %s letters"
 msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
 
-#: qa/views.py:102
+#: qa/views.py:111
 msgid "You cannot post questions"
 msgstr "אינך יכול לפרסם שאלות"
 
-#: qa/views.py:123
+#: qa/views.py:132
 msgid "You must be logged in as a candidate to post answers"
 msgstr "עליך להתחבר כמועמד כדי לפרסם תשובות"
 
-#: qa/views.py:165
+#: qa/views.py:174
 msgid "You already upvoted this question"
 msgstr "תודה, אתה כבר מופיע ברשימת התומכים"
 
-#: qa/views.py:172
+#: qa/views.py:181
 msgid "Use POST to upvote a question"
 msgstr "השתמש ב POST כדי להצביע לשאלה"
 
-#: qa/views.py:185
+#: qa/views.py:194
 msgid "OK QA Question Feed"
 msgstr "שאלות נשאלו"
 
-#: qa/views.py:187
+#: qa/views.py:196
 msgid "Questions from OKQA"
 msgstr "שאלות"
 
-#: qa/views.py:211
+#: qa/views.py:220
 msgid "Answers for the question"
 msgstr "תשובות לשאלה"
 
-#: qa/views.py:217
+#: qa/views.py:226
 msgid "A feed of all answers for the question"
 msgstr "פיד של תשובות לשאלה"
 
-#: qa/views.py:233
-msgid "You already reported this question"
+#: qa/views.py:242
+msgid "Sorry, you have to login to flag questions"
+msgstr "אנא התחברו כדי לסמן שאלה לא ראויה"
+
+#: qa/views.py:246
+msgid "Question has been removed"
+msgstr "השאלה נמחקה"
+
+#: qa/views.py:249
+msgid "Thanks.  You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
+
+#: qa/views.py:254
+msgid "Thank you for falgging the question. One of our editors will look at it shortly."
+msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את השאלה בקרוב."
 
 #: qa/templates/qa/_answer.html:23
 #: qa/templates/qa/_question.html:35
@@ -173,7 +185,7 @@ msgid "characters left"
 msgstr "תווים נותרו"
 
 #: qa/templates/qa/post_question.html:23
-#: qa/templates/qa/question_detail.html:71
+#: qa/templates/qa/question_detail.html:88
 msgid "Publish"
 msgstr "פרסם"
 
@@ -185,32 +197,40 @@ msgstr "תמכו בשאלה"
 msgid "Answer the Question"
 msgstr "תרום תשובה לעניין"
 
-#: qa/templates/qa/question_detail.html:35
+#: qa/templates/qa/question_detail.html:28
+msgid "Confirm Question Removal"
+msgstr "אשרו מחיקת השאלה"
+
+#: qa/templates/qa/question_detail.html:32
+msgid "Are you sure you want to remove the question?"
+msgstr "האם אתם בטוחים שברצונכם למחוק את השאלה?"
+
+#: qa/templates/qa/question_detail.html:36
+msgid "Delete"
+msgstr ""
+
+#: qa/templates/qa/question_detail.html:52
 #: user/templates/user/user_detail.html:20
 msgid "Answers"
 msgstr "תשובות"
 
-#: qa/templates/qa/question_detail.html:37
+#: qa/templates/qa/question_detail.html:54
 msgid "feed"
 msgstr "רסס"
 
-#: qa/templates/qa/question_detail.html:47
+#: qa/templates/qa/question_detail.html:64
 msgid "No Answers Yet"
 msgstr "עדיין לא ניתנו תשובות"
 
-#: qa/templates/qa/question_detail.html:48
+#: qa/templates/qa/question_detail.html:65
 #: qa/templates/qa/question_list.html:14
 #: user/templates/user/user_detail.html:10
 msgid "Subscribe"
 msgstr "הרשם"
 
-#: qa/templates/qa/question_detail.html:91
+#: qa/templates/qa/question_detail.html:114
 msgid "Sorry but only connected users can upvote questions"
 msgstr "מצטערת, יש להתחבר כדי לתמוך בשאלה"
-
-#: qa/templates/qa/question_detail.html:109
-msgid "Thank you for falgging the question. One of our editors will look at it shortly. "
-msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את השאלה בקרוב."
 
 #: qa/templates/qa/question_list.html:12
 #, python-format
@@ -772,9 +792,6 @@ msgstr "ערוך את הפרופיל שלך"
 
 #~ msgid "Ask!"
 #~ msgstr "שאל שאלה!"
-
-#~ msgid "Please log in to post questions"
-#~ msgstr "אנא התחבר כדי לשאול שאלה"
 
 #~ msgid "User Profile"
 #~ msgstr "פרופיל משתמש"
