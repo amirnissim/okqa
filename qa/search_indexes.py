@@ -19,6 +19,7 @@ class QuestionIndex(indexes.SearchIndex, indexes.Indexable):
     # text = indexes.CharField(model_attr='subject')
     author = indexes.CharField(model_attr='author')
     created_at = indexes.DateTimeField(model_attr='created_at')
+    place = indexes.CharField(model_attr='entity')
 
     def get_model(self):
         return Question
