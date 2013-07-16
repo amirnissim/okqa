@@ -50,7 +50,9 @@
           {% endblock %}
         </ul>
         <form class="navbar-search pull-left" action="/search/">
-          <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search' %}" />
+          {% block searchform %} {% endblock %}
+          <input type="text" name="q" id="id_q"
+               class="search-query" placeholder="{% trans 'Search' %}" />
         </form>
       </div>
 

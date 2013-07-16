@@ -35,8 +35,9 @@ if not STATIC_S3:
 
 HAYSTACK_CONNECTIONS = {
     'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(PROJECT_DIR, 'whoosh_index'),
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://localhost:9200',
+        'INDEX_NAME': 'qa',
     },
 }
 DEBUG_TOOLBAR_CONFIG = {

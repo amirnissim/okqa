@@ -15,4 +15,6 @@
   <li {% block nav-questions %} {% endblock %}><a href="{% url 'qna' entity.slug %}">{% trans "Questions" %}</a></li>
   <li {% block nav-candidates %} {% endblock %}><a href="{% url 'candidate_list' entity.slug %}">{% trans "Candidates" %}</a></li>
 {% endblock %}
-
+  {% block searchform %}
+   <input type="hidden" name="place" value="{{entity.slug}}" />
+  {% endblock %}

@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     url(r'', include('qa.urls')),
     url(r'', include('user.urls')),
     url(r'', include('social_auth.urls')),
-    url(r'^search/', include('haystack.urls')),
+    url(r'^search/$', 'okqa.views.place_search'),
     (r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),
     # flat pages to help with static pages
     (r'^p/(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage'),

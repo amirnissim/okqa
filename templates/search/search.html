@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends base_template %}
 {% load i18n %}
 {% block extrahead %}
   <style>
@@ -11,6 +11,9 @@
       <h1 class="pull-left">{% trans "Search" %}</h1>
       <form method="get" action="." class="form-search pull-right" style="margin-top:15px;">
         <div class="input-append">
+            {% if entity %}
+             <input type="hidden" name="place" value="{{entity.slug}}" />
+             {% endif %}
             <input type="text" name="q" value="{{ form.q.value }}" id="id_q" class="span2 search-query">
             <button type="submit" class="btn">{% trans 'Search' %}</button>
         </div>
