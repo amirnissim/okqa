@@ -34,6 +34,10 @@
         <div class="started">
             <span title="{{ question.created_at }}" class="relativetime">{% trans "before" %} {{ question.created_at|timesince }}</span>
             <a href="{{ question.author.get_absolute_url }}" rel="tooltip" class="answer-user owner" title="{{question.author.get_full_name}}">{{question.author.get_full_name|default:question.author.username}}</a>
+            {% if not entity %}
+              {% trans "from"%}
+              <a href="{% url "qna" question.entity.slug %}">{{ question.entity }}</a>
+            {% endif %}
         </div>
     </div>
 </div>

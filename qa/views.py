@@ -36,16 +36,20 @@ class JsonpResponse(HttpResponse):
             content_type='application/javascript',
             *args, **kwargs)
 
-def questions(request, entity_slug, tags = None):
+def questions(request, entity_slug=None, entity_id=None, tags=None):
     """
     list questions ordered by number of upvotes
     """
 
-    # TODO: cache the next line
-    entity = Entity.objects.get(slug=entity_slug)
+    # TODO: cache the next lines
+    if entity_id:
+        entity = Entity.objects.get(pk=entity_id)
+    else:
+        entity = Entity.objects.get(slug=entity_slug)
+
     questions = Question.on_site.filter(entity=entity)
 
-    context = RequestContext(request, dict(entity=entity))
+    context = {'entity': entity}
     order_opt = request.GET.get('order', 'rating')
     order = ORDER_OPTIONS[order_opt]
     if tags:
@@ -60,7 +64,7 @@ def questions(request, entity_slug, tags = None):
     context['questions'] = questions
     context['by_date'] = order_opt=='date'
     context['by_rating'] = order_opt=='rating'
-    return render(request, "qa/question_list.html", context)
+    return render(request, "qa/question_list.html", RequestContext(request, context))
 
 class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseDetailView):
     model = Question

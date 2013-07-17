@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load pagination_tags %}
+{% load crispy_forms_tags %}
+{% block extrahead %}
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css"/>
+{% endblock %}
+{% block mainContainer %}
+<div class="page-header">
+  <div class="container">
+    <div class="row">
+        <div class="span9">
+          <h1>
+            {% blocktrans with entity.name as place %}Questions for elections candidates {% endblocktrans %}
+               {% if not current_tags %}
+               <a href="{% url "atom_all_questions" %}" title="{% trans 'Subscribe' %}" rel="tooltip">
+                 <img src="{{STATIC_URL}}img/rss.png" width="25" />
+               </a>
+               {% endif %}
+          </h1>
+          <ul class="nav nav-pills">
+            {% for tag in current_tags %}
+            <li><a class="btn" href="{% url "show_tags" entity=entity.slug tags=tag|urlencode %}">{{tag}}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="span3">
+              {{ form|crispy }}
+        </div>
+    </div>
+  </div>
+</div>
+<div class="row questions-wrapper">
+  <div class="span9 questions">
+    {% if questions.count > 5 %}
+    <ul class="nav nav-tabs">
+      <li {% if by_rating %}class="active"{% endif %}>
+        <a href=".?order=rating">{% trans "Top Questions" %}</a>
+      </li>
+      <li {% if by_date %}class="active"{% endif %}>
+        <a href=".?order=date">{% trans "Most Recent" %}</a>
+      </li>
+    </ul>
+    {% endif %}
+
+    {% autopaginate questions 20 %}
+    {% for question in questions %}
+        {% include "qa/_question.html" %}
+    {% endfor %}
+    {% paginate %}
+  </div>
+  <div class="span3 sidebar">
+    <div class="module" id="questions-count">
+        <div class="summarycount al">{{questions.count}}</div>
+        <p>{% trans "Questions asked" %}</p>
+    </div>
+    <ul class="unstyled">
+      {% for tag in tags %}
+        <li><a class="btn" href="{% url "show_tags" entity=entity.slug tag.tag__name|urlencode %}">{{tag.tag__name}}</a> - {{tag.count}} {% trans "questions" %}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+{% block extrascript %}
+<script src="{{ STATIC_URL }}js/chosen.jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/chosen.jquery_ready.js"></script>
+<script>
+  $('[name=entity]').change(function() {
+    window.location.href = ('/' + $('select option:selected').val() + '/qna/');
+  });
+</script>
+
+{% endblock %}

@@ -1,12 +1,14 @@
 from django.conf.urls.defaults import patterns, url
 from .views import *
 from qa.sitemaps import sitemaps
+
 urlpatterns = patterns('qa.views',
     url(r'^(?P<entity_slug>.*)/qna/post_q/$', 'post_question', name='post_question'),
     url(r'^(?P<entity_slug>[-\w]+)/qna/(?P<slug>[-\w]+)/$',
         QuestionDetail.as_view(),
         name='question_detail'
     ),
+    url(r'^(?P<entity_id>[-\d]+)/qna/$', 'questions', name='qna'),
     url(r'^(?P<entity_slug>[-\w]+)/qna/$', 'questions', name='qna'),
     url(r'^(?P<entity_slug>[-\w]+)/qna/tags/(?P<tags>.+)/$', 'questions', name='show_tags'),
 

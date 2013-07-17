@@ -8,7 +8,7 @@ from entities.views.ui import EntityDetail, EntityList
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', EntityList.as_view(), name="home"),
+    url(r'^$', 'okqa.views.home', name="home"),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
