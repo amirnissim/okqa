@@ -204,3 +204,10 @@ ACCOUNT_ACTIVATION_DAYS = 4
 
 ADMINS = ((ADMIN_NAME, ADMIN_EMAIL), )
 MANAGERS = ADMINS
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(PROJECT_DIR, 'whoosh_index'),
+    },
+}

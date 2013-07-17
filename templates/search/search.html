@@ -25,7 +25,16 @@
         <ul class="unstyled" class="search-result-list">
         {% for result in page.object_list %}
             <li class="search-result">
-              <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>
+              {# crate a templatetag for this #}
+              {% if result.object.rating %}
+                {% with question=result.object %}
+                  {% include "qa/_question.html" %}
+                {% endwith %}
+              {% else %}
+                {% with answer=result.object %}
+                  {% include "qa/_answer.html" %}
+                {% endwith %}
+              {% endif %}
             </li>
         {% empty %}
             <li>{% trans 'No results found.' %}</li>

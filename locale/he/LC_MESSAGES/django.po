@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OK-QA\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-17 23:10+0300\n"
-"PO-Revision-Date: 2013-07-17 23:11+0200\n"
+"PO-Revision-Date: 2013-07-18 00:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -22,7 +22,7 @@ msgstr "עבור ל:"
 
 #: okqa/settings/base.py:24
 msgid "Hebrew"
-msgstr ""
+msgstr "עברית"
 
 #: okqa/settings/base.py:25
 msgid "English"
@@ -174,7 +174,7 @@ msgstr "תשובות"
 
 #: qa/templates/qa/_question.html:38
 msgid "from"
-msgstr ""
+msgstr "מ:"
 
 #: qa/templates/qa/email_update.html:33
 msgid "join"
@@ -215,7 +215,7 @@ msgstr "האם אתם בטוחים שברצונכם למחוק את השאלה?"
 
 #: qa/templates/qa/question_detail.html:36
 msgid "Delete"
-msgstr ""
+msgstr "מחק"
 
 #: qa/templates/qa/question_detail.html:52
 #: user/templates/user/user_detail.html:20
