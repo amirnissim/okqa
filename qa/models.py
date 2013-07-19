@@ -14,7 +14,6 @@ from entities.models import Entity
 
 MAX_LENGTH_Q_SUBJECT = 140
 MAX_LENGTH_Q_CONTENT = 255
-
 MAX_LENGTH_A_SUBJECT = 80
 MAX_LENGTH_A_CONTENT = 500
 
@@ -59,6 +58,9 @@ class Question(BaseModel):
     objects = models.Manager()
     on_site = CurrentSiteManager()
     entity = models.ForeignKey(Entity, null=True, related_name="questions")
+
+    class Meta:
+        unique_together = ('unislug','entity')
 
     def __unicode__(self):
         return self.subject
