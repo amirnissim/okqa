@@ -1,32 +1,28 @@
 import json
+
 from django.http import HttpResponse, HttpResponseForbidden
 from django.http import HttpResponseRedirect
-from django.db.models import Count
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.template.context import RequestContext
-from django.contrib.auth.models import Group, User
 from django.contrib.auth.decorators import login_required
-from django.contrib.sites.models import Site, get_current_site
 from django.utils.translation import ugettext as _
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Atom1Feed
 from django.contrib import messages
 from django.conf import settings
-
 from taggit.utils import parse_tags
+from django.views.generic.detail import SingleObjectTemplateResponseMixin, BaseDetailView
 
 from qa.forms import AnswerForm, QuestionForm
 from .models import *
-
-from django.views.generic import DetailView
-from django.views.generic.detail import SingleObjectTemplateResponseMixin, BaseDetailView
 from qa.mixins import JSONResponseMixin
-from django.forms.models import model_to_dict
+
 
 
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating'}
+
 
 class JsonpResponse(HttpResponse):
     def __init__(self, data, callback, *args, **kwargs):
@@ -35,6 +31,7 @@ class JsonpResponse(HttpResponse):
             content=jsonp,
             content_type='application/javascript',
             *args, **kwargs)
+
 
 def questions(request, entity_slug=None, entity_id=None, tags=None):
     """
@@ -62,9 +59,10 @@ def questions(request, entity_slug=None, entity_id=None, tags=None):
     # context['tags'] = TaggedQuestion.on_site.values('tag__name').annotate(count=Count("tag"))
 
     context['questions'] = questions
-    context['by_date'] = order_opt=='date'
-    context['by_rating'] = order_opt=='rating'
+    context['by_date'] = order_opt == 'date'
+    context['by_rating'] = order_opt == 'rating'
     return render(request, "qa/question_list.html", RequestContext(request, context))
+
 
 class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseDetailView):
     model = Question
@@ -88,7 +86,7 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
                 context['my_answer_form'] = AnswerForm()
 
         if self.request.user.is_authenticated() and \
-           not self.request.user.upvotes.filter(question=self.object).exists():
+                not self.request.user.upvotes.filter(question=self.object).exists():
             context['can_upvote'] = True
         else:
             context['can_upvote'] = False
@@ -96,19 +94,19 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
         return context
 
     def render_to_response(self, context):
-            # Look for a 'format=json' GET argument
-            if self.request.GET.get('format', 'html') == 'json' or self.request.is_ajax():
-                data = {
-                    'question': {
-                        'subject': self.object.subject,
-                        'content': self.object.content,
-                        'author': self.object.author.username
-                    }
+        # Look for a 'format=json' GET argument
+        if self.request.GET.get('format', 'html') == 'json' or self.request.is_ajax():
+            data = {
+                'question': {
+                    'subject': self.object.subject,
+                    'content': self.object.content,
+                    'author': self.object.author.username
                 }
+            }
 
-                return JSONResponseMixin.render_to_response(self, data)
-            else:
-                return SingleObjectTemplateResponseMixin.render_to_response(self, context)
+            return JSONResponseMixin.render_to_response(self, data)
+        else:
+            return SingleObjectTemplateResponseMixin.render_to_response(self, context)
 
 
 def add_question(request):
@@ -164,10 +162,11 @@ def post_question(request, entity_slug):
         form = QuestionForm()
 
     context = RequestContext(request, {"form": form,
-                    "entity": entity,
-                    "max_length_q_subject": MAX_LENGTH_Q_SUBJECT,
-                    })
+                                       "entity": entity,
+                                       "max_length_q_subject": MAX_LENGTH_Q_SUBJECT,
+    })
     return render(request, "qa/post_question.html", context)
+
 
 @login_required
 def upvote_question(request, q_id):
@@ -237,6 +236,7 @@ class RssQuestionAnswerFeed(Feed):
 class AtomQuestionAnswerFeed(RssQuestionAnswerFeed):
     feed_type = Atom1Feed
     subtitle = RssQuestionAnswerFeed.description
+
 
 @require_POST
 def flag_question(request, q_id):
