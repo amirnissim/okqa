@@ -11,7 +11,6 @@ from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Atom1Feed
 from django.contrib import messages
 from django.conf import settings
-from taggit.utils import parse_tags
 from django.views.generic.detail import SingleObjectTemplateResponseMixin, BaseDetailView
 
 from qa.forms import AnswerForm, QuestionForm
@@ -109,23 +108,6 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
             return SingleObjectTemplateResponseMixin.render_to_response(self, context)
 
 
-def add_question(request):
-    if not request.user.is_authenticated():
-        return HttpResponseForbidden(_("You cannot post questions"))
-
-    subject = request.POST.get("subject")
-    content = request.POST.get("content")
-
-    q = Question(author=request.user, subject=subject, content=content)
-    q.save()
-
-    tags = parse_tags(request.POST.get("tags", []))
-    for tag in tags:
-        q.tags.add(tag)
-
-    return HttpResponse("OK")
-
-
 @login_required
 def post_answer(request, q_id):
     context = {}
@@ -159,7 +141,7 @@ def post_question(request, entity_slug):
             form.save_m2m()
             return HttpResponseRedirect(question.get_absolute_url())
     else:
-        form = QuestionForm()
+        form = QuestionForm(initial={'entity': entity})
 
     context = RequestContext(request, {"form": form,
                                        "entity": entity,
