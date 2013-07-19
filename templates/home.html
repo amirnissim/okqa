@@ -34,10 +34,10 @@
   <div class="span9 questions">
     {% if questions.count > 5 %}
     <ul class="nav nav-tabs">
-      <li {% if by_rating %}class="active"{% endif %}>
+      <li {% if order == "rating" %}class="active"{% endif %}>
         <a href=".?order=rating">{% trans "Top Questions" %}</a>
       </li>
-      <li {% if by_date %}class="active"{% endif %}>
+      <li {% if order == "date" %}class="active"{% endif %}>
         <a href=".?order=date">{% trans "Most Recent" %}</a>
       </li>
     </ul>
