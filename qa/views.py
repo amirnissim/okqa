@@ -111,23 +111,6 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
                 return SingleObjectTemplateResponseMixin.render_to_response(self, context)
 
 
-# def add_question(request):
-#     if not request.user.is_authenticated():
-#         return HttpResponseForbidden(_("You cannot post questions"))
-
-#     subject = request.POST.get("subject")
-#     content = request.POST.get("content")
-
-#     q = Question(author=request.user, subject=subject, content=content)
-#     q.save()
-
-#     tags = parse_tags(request.POST.get("tags", []))
-#     for tag in tags:
-#         q.tags.add(tag)
-
-#     return HttpResponse("OK")
-
-
 @login_required
 def post_answer(request, q_id):
     context = {}
@@ -161,12 +144,8 @@ def post_question(request, entity_slug):
             form.save_m2m()
             return HttpResponseRedirect(question.get_absolute_url())
     else:
-        form = QuestionForm(initial={'entity':entity})
-# try:
-#         q.full_clean()
-#     except ValidationError as e:
-#         return HttpResonseForbidden(_("Validation Error: ", e))
-    
+        form = QuestionForm(initial={'entity': entity})
+
     context = RequestContext(request, {"form": form,
                     "entity": entity,
                     "max_length_q_subject": MAX_LENGTH_Q_SUBJECT,
