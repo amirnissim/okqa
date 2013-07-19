@@ -6,6 +6,7 @@ from django.contrib.sites.models import Site
 from django.contrib.sites.managers import CurrentSiteManager
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ValidationError
 from taggit.models import TaggedItemBase
 from slugify import slugify as unislugify
 from taggit_autosuggest.managers import TaggableManager
@@ -14,7 +15,6 @@ from entities.models import Entity
 
 MAX_LENGTH_Q_SUBJECT = 140
 MAX_LENGTH_Q_CONTENT = 255
-
 MAX_LENGTH_A_SUBJECT = 80
 MAX_LENGTH_A_CONTENT = 500
 
@@ -59,6 +59,9 @@ class Question(BaseModel):
     objects = models.Manager()
     on_site = CurrentSiteManager()
     entity = models.ForeignKey(Entity, null=True, related_name="questions")
+
+    class Meta:
+        unique_together = ('unislug','entity')
 
     def __unicode__(self):
         return self.subject
