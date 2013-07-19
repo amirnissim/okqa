@@ -6,7 +6,6 @@ from django.contrib.sites.models import Site
 from django.contrib.sites.managers import CurrentSiteManager
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
-from django.core.exceptions import ValidationError
 from taggit.models import TaggedItemBase
 from slugify import slugify as unislugify
 from taggit_autosuggest.managers import TaggableManager
