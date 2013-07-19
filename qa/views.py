@@ -74,6 +74,7 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
 
     def get_context_data(self, **kwargs):
         context = super(QuestionDetail, self).get_context_data(**kwargs)
+        context['max_length_a_content'] = MAX_LENGTH_A_CONTENT
         context['answers'] = self.object.answers.all()
         context['entity'] = self.object.entity
         can_answer = self.object.can_answer(self.request.user)
