@@ -69,7 +69,7 @@ class Profile(models.Model):
         if self.avatar_uri:
             return self.avatar_uri
         ''' getting the avatar image url from Gravatar '''
-        default = "http://okqa.herokuapp.com/static/img/defaultavatar.png"
+        default = "http://oshot.hasadna.org.il/static/img/defaultavatar.png"
         email = self.user.email
         if self.avatar_uri:
             return self.avatar_uri

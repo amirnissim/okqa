@@ -1,4 +1,4 @@
-# Django settings for okqa project.
+# Django settings for open-shot project.
 import os
 from unipath import FSPath as Path
 import dj_database_url
@@ -73,7 +73,7 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
-ROOT_URLCONF = 'okqa.urls'
+ROOT_URLCONF = 'oshot.urls'
 
 TEMPLATE_DIRS = (
     PROJECT_DIR.child('templates'),

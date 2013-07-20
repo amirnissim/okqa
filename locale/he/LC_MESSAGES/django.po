@@ -1,10 +1,10 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2013 The Public Knowledge Workshop
-# This file is distributed under the same license as the OKQA package.
+# This file is distributed under the same license as the open-shot package.
 # FIRST AUTHOR bennydoan@gmail.com, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: OK-QA\n"
+"Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-20 12:55+0300\n"
 "PO-Revision-Date: 2013-07-20 12:58+0200\n"

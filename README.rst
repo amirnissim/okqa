@@ -1,5 +1,5 @@
-ok-qa - Open Knesset Question & Answers
-======================================
+open-shot - Open Knesset Question & Answers
+===========================================
 
 This repository holds the code for `hasadna`_ project to support open Primary
 election. The code contains a django project for a spcific party and allows
@@ -12,15 +12,15 @@ You are invited to fork the code, improve the design and send a pull request
 Quick Start
 -----------
 
-You can access the `live site`_ or if you're a Django developer, install
+You can access the `dev site`_ or if you're a Django developer, install
 it on your local machine::
 
     $ sudo pip install virtualenvwrapper
-    $ mkvirtualenv ok-qa
-    $ git clone https://github.com/hasadna/ok-qa.git
-    $ cd ok-qa
+    $ mkvirtualenv oshot
+    $ git clone https://github.com/hasadna/open-shot.git
+    $ cd oshot
     $ pip install -r requirements.txt
     $ python manage.py syncdb --migrate --noinput
     $ python manage.py runserver
 
-.. _live site: http://okqa.herokuapp.com
+.. _dev site: http://oshot.hasadna.org.il

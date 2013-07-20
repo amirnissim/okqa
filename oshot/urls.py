@@ -8,7 +8,7 @@ from entities.views.ui import EntityDetail, EntityList
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'okqa.views.home', name="home"),
+    url(r'^$', 'oshot.views.home', name="home"),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     url(r'', include('qa.urls')),
     url(r'', include('user.urls')),
     url(r'', include('social_auth.urls')),
-    url(r'^search/$', 'okqa.views.place_search'),
+    url(r'^search/$', 'oshot.views.place_search'),
     (r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),
     # flat pages to help with static pages
     (r'^p/(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage'),
