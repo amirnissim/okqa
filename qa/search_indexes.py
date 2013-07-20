@@ -11,7 +11,7 @@ class AnswerIndex(indexes.SearchIndex, indexes.Indexable):
     def get_model(self):
         return Answer
 
-    def index_queryset(self):
+    def index_queryset(self, **kwargs):
         """Used when the entire index for model is updated."""
         return self.get_model().objects.all()
 
@@ -25,7 +25,7 @@ class QuestionIndex(indexes.SearchIndex, indexes.Indexable):
     def get_model(self):
         return Question
 
-    def index_queryset(self):
+    def index_queryset(self, **kwargs):
         """Used when the entire index for model is updated."""
         return self.get_model().objects.all()
 
