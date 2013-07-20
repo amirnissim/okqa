@@ -29,3 +29,9 @@ class QuestionForm(ModelForm):
             raise ValidationError(_("Question already exists."))
 
         return cleaned_data
+
+    def clean_subject(self):
+        subject = self.cleaned_data['subject']
+        if subject == 'post_q':
+            raise ValidationError(_("Invalid question"))
+        return subject
