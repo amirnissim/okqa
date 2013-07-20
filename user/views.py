@@ -15,6 +15,7 @@ from django.views.decorators.http import require_POST
 from .forms import *
 from .models import *
 
+
 def candidate_list(request, entity_slug):
     """
     list candidates ordered by number of answers
@@ -26,6 +27,7 @@ def candidate_list(request, entity_slug):
                                   candidates=candidates))
     return render(request, "candidate/candidate_list.html", context)
 
+
 def user_detail(request, slug):
     user = get_object_or_404(User, username=slug)
     questions = user.questions.all()
@@ -35,33 +37,37 @@ def user_detail(request, slug):
     user.bio = profile.bio
     user.url = profile.url
     context = RequestContext(request, {"candidate": user,
-                "answers": answers,
-                "questions": questions,
-                "entity": profile.locality,
-              })
+                                       "answers": answers,
+                                       "questions": questions,
+                                       "entity": profile.locality,
+                                       "base_template": get_base_template(profile)})
 
     # todo: support members as well as candidates
     return render(request, "user/user_detail.html", context)
+
+
 def get_base_template(profile):
     if profile.locality:
         return "place_base.html"
     else:
         return "base.html"
 
+
 @login_required
 @require_POST
 def remove_candidate(request, candidate_id):
     profile = request.user.profile
     candidate_profile = get_object_or_404(User, pk=candidate_id).profile
-    if profile.is_editor and profile.locality==candidate_profile.locality:
+    if profile.is_editor and profile.locality == candidate_profile.locality:
         candidate_profile.is_candidate = False
         candidate_profile.save()
     else:
         messages.error(request,
-            _('Sorry, you are not authorized to remove %s from the candidate list')\
-                    % profile.user.get_full_name())
+                       _('Sorry, you are not authorized to remove %s from the candidate list') \
+                       % profile.user.get_full_name())
 
     return HttpResponseRedirect(request.POST.get("next", reverse("candidate_list", args=(profile.locality.slug,))))
+
 
 @login_required
 def edit_profile(request):
@@ -75,10 +81,11 @@ def edit_profile(request):
         user = request.user
         form = ProfileForm(request.user)
 
-    context = RequestContext(request, {"form": form, 
+    context = RequestContext(request, {"form": form,
                                        "entity": profile.locality,
                                        "base_template": get_base_template(profile)})
     return render(request, "user/edit_profile.html", context)
+
 
 class InvitationView(View, FormMixin, TemplateResponseMixin):
     template_name = 'user/accept_invitation.html'
@@ -93,9 +100,9 @@ class InvitationView(View, FormMixin, TemplateResponseMixin):
         user = self.get_user(invitation_key)
         if user:
             context = self.get_context_data(
-                    user=user,
-                    form=self.form_class(user),
-                    )
+                user=user,
+                form=self.form_class(user),
+            )
             return self.render_to_response(context)
         else:
             # TODO: add a nice message about an expired key

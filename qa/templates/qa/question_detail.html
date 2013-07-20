@@ -1,149 +1,173 @@
 {% extends "qa/qa_base.html" %}
 {% load i18n %}
-{% block pageTitle %}{{question}}{% endblock %}
+{% block pageTitle %}{{ question }}{% endblock %}
 {% block extrahead %}
-<style>
-.question-summary { border: 0 none;}
-</style>
+    <style>
+        .question-summary {
+            border: 0 none;
+        }
+    </style>
 {% endblock %}
 {% block mainContainer %}
-  <div class="container">
-    <div class="row">
-      <div class="span9">
-        {% include "qa/_question.html" %}
-      </div>
-      <div class="span3 sidebar">
-        <a class="btn btn-primary"
-          id="upvote-question" href="#">
-          {% trans "I Want an Answer" %}
-        </a>
-        {% if can_answer %}
-          <a class="btn btn-success btn-large" style="margin-top: 10px;" href="#add_answer_modal" data-toggle="modal">{% trans "Answer the Question" %}</a>
-        {% endif %}
-        {% if user.profile.is_editor %}
-        <a class="btn btn-danger" href="#remove-question" data-toggle="modal">&#9872; </a>
-<div id="remove-question" class="modal hide fade">
-<div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h3>{% trans "Confirm Question Removal" %}</h3>
-</div>
-<div class="modal-body">
-  <blockquote>{{question}}</blockquote>
-  <p>{% trans "Are you sure you want to remove the question?"%}</p>
-</div>
-<div class="modal-footer">
-      <a class="flag-question btn btn-primary" data-dismiss="modal" question-id="{{question.id}}" href="#">
-        {% trans "Delete" %}
-      </a>
-</div>
-</div>
-        {% else %}
-        <a class="flag-question btn btn-danger {% if not can_upvote %}disabled{% endif %}"
-          question-id="{{question.id}}" href="#">&#9872;
-        </a>
-        {% endif %}
-      </div>
-
-    </div>
-    <div class="row questions-wrapper">
-      <div class="span9 answers">
-        {% if answers %}
-          <h5>
-            {% trans 'Answers' %}
-            <div class="pull-right">
-              <a href="{% url "atom_question_answers" question.id %}" title="{% trans 'feed' %}" rel="tooltip">
-                <img src="{{STATIC_URL}}img/rss.png" width="25" />
-               </a>
+    <div class="container">
+        <div class="row">
+            <div class="span9">
+                {% include "qa/_question.html" %}
             </div>
-          </h5>
-        {% endif %}
+            <div class="span3 sidebar">
+                <a class="btn btn-primary"
+                   id="upvote-question" href="#">
+                    {% trans "I Want an Answer" %}
+                </a>
+                {% if can_answer %}
+                    <a class="btn btn-success btn-large" style="margin-top: 10px;" href="#add_answer_modal"
+                       data-toggle="modal">{% trans "Answer the Question" %}</a>
+                {% endif %}
+                {% if user.profile.is_editor %}
+                    <a class="btn btn-danger" href="#remove-question" data-toggle="modal">&#9872; </a>
+                    <div id="remove-question" class="modal hide fade">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h3>{% trans "Confirm Question Removal" %}</h3>
+                        </div>
+                        <div class="modal-body">
+                            <blockquote>{{ question }}</blockquote>
+                            <p>{% trans "Are you sure you want to remove the question?" %}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="flag-question btn btn-primary" data-dismiss="modal"
+                               question-id="{{ question.id }}" href="#">
+                                {% trans "Delete" %}
+                            </a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a class="flag-question btn btn-danger {% if not can_upvote %}disabled{% endif %}"
+                       question-id="{{ question.id }}" href="#">&#9872;
+                    </a>
+                {% endif %}
+            </div>
 
-        {% for answer in answers %}
-          {% include "qa/_answer.html" %}
-        {% empty %}
-          <h5>{% trans "No Answers Yet" %}
-            <a href="{% url "atom_question_answers" question.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
-              <!-- <img src="/static/img/social-icons/colour/rss.png" width="25" /> -->
-             </a>
-          </h5>
-        {% endfor %}
-      </div>
-      <div class="span3">
-        
-      </div>
+        </div>
+        <div class="row questions-wrapper">
+            <div class="span9 answers">
+                {% if answers %}
+                    <h5>
+                        {% trans 'Answers' %}
+                        <div class="pull-right">
+                            <a href="{% url "atom_question_answers" question.id %}" title="{% trans 'feed' %}"
+                               rel="tooltip">
+                                <img src="{{ STATIC_URL }}img/rss.png" width="25"/>
+                            </a>
+                        </div>
+                    </h5>
+                {% endif %}
+
+                {% for answer in answers %}
+                    {% include "qa/_answer.html" %}
+                {% empty %}
+                    <h5>{% trans "No Answers Yet" %}
+                        <a href="{% url "atom_question_answers" question.id %}" title="{% trans 'Subscribe' %}"
+                           rel="tooltip">
+                            <!-- <img src="/static/img/social-icons/colour/rss.png" width="25" /> -->
+                        </a>
+                    </h5>
+                {% endfor %}
+            </div>
+            <div class="span3">
+
+            </div>
+        </div>
     </div>
-  </div>
-{% if my_answer_form %}
-<div class="modal fade" id="add_answer_modal">
- <form class="form" method="post" action="{% url "post_answer" question.id %}">
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">&times;</a>
-    <h3>{{question.subject}}</h3>
-  </div>
-  <div class="modal-body">
-    {% csrf_token %}
-    {{ my_answer_form.as_p }}
-  </div>
-  <div class="modal-footer">
-    <input type="submit" class="btn btn-primary" value="{% trans "Publish" %}" />
-  </div>
- </form>
-</div>
-{% endif %}
+    {% if my_answer_form %}
+        <div class="modal fade" id="add_answer_modal">
+            <form class="form" method="post" action="{% url "post_answer" question.id %}">
+                <div class="modal-header">
+                    <a class="close" data-dismiss="modal">&times;</a>
+
+                    <h3>{{ question.subject }}</h3>
+                </div>
+                <div class="modal-body">
+                    {% csrf_token %}
+                    {{ my_answer_form.as_p }}
+                    <div id="charsCounter"><span id="charsLeft"></span> {% trans 'characters left' %}</div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" value="{% trans "Publish" %}"/>
+                </div>
+            </form>
+        </div>
+    {% endif %}
 {% endblock %}
 {% if my_answer_id %}
-{% block extrascript %}
-<script>
-  function display_message(message, level) {
-    $("#messages").html('<div class="alert '+ level + '">' +
-      '<button type="button" class="close" data-dismiss="alert">×</button>' +
-      message +
-       '</div>');
-  }
-  $(document).ready ( function () {
-    $("#upvote-question").ajaxError(function(evt, jqXHR, setting, err) {
-              $("#messages").html('<div class="alert" class="error">' +
-                '<button type="button" class="close" data-dismiss="alert">×</button>' +
-                jqXHR.responseText + '</div>');
-      });
+    {% block extrascript %}
+        <script>
+            function display_message(message, level) {
+                $("#messages").html('<div class="alert ' + level + '">' +
+                        '<button type="button" class="close" data-dismiss="alert">×</button>' +
+                        message +
+                        '</div>');
+            }
+            $(document).ready(function () {
+                $("#upvote-question").ajaxError(function (evt, jqXHR, setting, err) {
+                    $("#messages").html('<div class="alert" class="error">' +
+                            '<button type="button" class="close" data-dismiss="alert">×</button>' +
+                            jqXHR.responseText + '</div>');
+                });
 
-    $("#upvote-question").click(function() {
-      {% if not can_upvote %}
-        $("#messages").html('<div class="alert" class="info">' +
-          '<button type="button" class="close" data-dismiss="alert">×</button>' +
-          "{% trans 'Sorry but only connected users can upvote questions' %}" +
-           '</div>');
-      {% else %}
-        $.post("{% url "upvote_question" question.id %}",
-            {csrfmiddlewaretoken: "{{ csrf_token }}"},
-            function (data, status, jqXHR) {
-              $("#votes-count-{{question.id}}").html(jqXHR.responseText);
-        });
-      {% endif %}
-      return false;
-    })
-    $(".flag-question").click (function(e) {
-      var url = "{% url "flag_question" question.id %}";
-      $.ajax({url: url,
-          type: "POST",
-          dataType: "json",
-          data: {csrfmiddlewaretoken: "{{ csrf_token }}"}}).always(
-            function (data, textStatus, jqXHR) {
-              if ('message' in data)
-                display_message(data.message, "info");
-              else if ('redirect' in data)
-                window.location.replace(data.redirect);
-              else
-                alert ("strange data receieved from flagging a message: "+ data);
-        })
-      })
+                $("#upvote-question").click(function () {
+                    {% if not can_upvote %}
+                        $("#messages").html('<div class="alert" class="info">' +
+                                '<button type="button" class="close" data-dismiss="alert">×</button>' +
+                                "{% trans 'Sorry but only connected users can upvote questions' %}" +
+                                '</div>');
+                    {% else %}
+                        $.post("{% url "upvote_question" question.id %}",
+                                {csrfmiddlewaretoken: "{{ csrf_token }}"},
+                                function (data, status, jqXHR) {
+                                    $("#votes-count-{{question.id}}").html(jqXHR.responseText);
+                                });
+                    {% endif %}
+                    return false;
+                })
+                $(".flag-question").click(function (e) {
+                    var url = "{% url "flag_question" question.id %}";
+                    $.ajax({url: url,
+                        type: "POST",
+                        dataType: "json",
+                        data: {csrfmiddlewaretoken: "{{ csrf_token }}"}}).always(
+                            function (data, textStatus, jqXHR) {
+                                if ('message' in data)
+                                    display_message(data.message, "info");
+                                else if ('redirect' in data)
+                                    window.location.replace(data.redirect);
+                                else
+                                    alert("strange data receieved from flagging a message: " + data);
+                            })
+                })
 
-    $("#answer-{{ my_answer_id}}").hover(function() {
-          $("#edit-answer-{{my_answer_id}}").show();
-        }, function () {
-          $("#edit-answer-{{my_answer_id}}").hide();
-        });
-  });
-</script>
-{% endblock %}
+                $("#answer-{{ my_answer_id}}").hover(function () {
+                    $("#edit-answer-{{my_answer_id}}").show();
+                }, function () {
+                    $("#edit-answer-{{my_answer_id}}").hide();
+                });
+
+                {% if max_length_a_content %}
+                    var $answerContent = $("#id_content"),
+                            $charsCounter = $("#charsCounter"),
+                            $charsLeft = $("#charsLeft");
+
+                    $charsCounter.hide();
+                    $answerContent.on("keyup", function () {
+                        var length = this.value.length;
+
+                        if (length) $charsCounter.show();
+                        else $charsCounter.hide();
+
+                        $charsLeft.text({{ max_length_a_content }} -length);
+                    });
+                {% endif %}
+            });
+        </script>
+    {% endblock %}
 {% endif %}
