@@ -17,6 +17,7 @@ from qa.forms import AnswerForm, QuestionForm
 from .models import *
 from qa.mixins import JSONResponseMixin
 
+from user.views import edit_profile
 
 
 # the order options for the list views
@@ -129,10 +130,25 @@ def post_answer(request, q_id):
 
 
 @login_required
+def post_q_router(request):
+    user = request.user
+    if user.is_anonymous():
+        return HttpResponseRedirect(settings.LOGIN_URL)
+    else:
+        profile = user.profile
+        entity_slug = profile.locality and profile.locality.slug
+        if entity_slug:
+            return HttpResponseRedirect(reverse(post_question, args=(entity_slug, )))
+        else:
+            # user must set locality
+            return HttpResponseRedirect(reverse(edit_profile))
+
+
+@login_required
 def post_question(request, entity_slug, slug=None):
     entity = Entity.objects.get(slug=entity_slug)
     if slug:
-        q = get_object_or_404(Question, unislug=slug, entity=entity) 
+        q = get_object_or_404(Question, unislug=slug, entity=entity)
 
     if request.method == "POST":
         form = QuestionForm(request.POST)
@@ -143,7 +159,7 @@ def post_question(request, entity_slug, slug=None):
                 if q.answers.count():
                     return HttpResponseForbidden(_("Question has been answered, editing disabled."))
                 question = q
-                question.subject = form.cleaned_data.get('subject',"")
+                question.subject = form.cleaned_data.get('subject', "")
                 question.save()
             else:
                 question = form.save(commit=False)
@@ -160,10 +176,10 @@ def post_question(request, entity_slug, slug=None):
         form = QuestionForm(initial={'entity': entity, 'subject': subject})
 
     context = RequestContext(request, {"form": form,
-                    "entity": entity,
-                    "max_length_q_subject": MAX_LENGTH_Q_SUBJECT,
-                    "slug": slug,
-                    })
+                                       "entity": entity,
+                                       "max_length_q_subject": MAX_LENGTH_Q_SUBJECT,
+                                       "slug": slug,
+    })
     return render(request, "qa/post_question.html", context)
 
 

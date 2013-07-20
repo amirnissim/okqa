@@ -55,6 +55,7 @@
     <div class="module" id="questions-count">
         <div class="summarycount al">{{questions.count}}</div>
         <p>{% trans "Questions asked" %}</p>
+        <a id="post-question" class="btn btn-success btn-large" href="{% url "post_q_router"%}">{% trans "Ask Question" %}</a>
     </div>
     <ul class="unstyled">
       {% for tag in tags %}
