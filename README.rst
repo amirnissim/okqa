@@ -1,9 +1,9 @@
 open-shot - Open Knesset Question & Answers
 ===========================================
 
-This repository holds the code for `hasadna`_ project to support open Primary
-election. The code contains a django project for a spcific party and allows
-the party members to ask and upvote questions and for candidates to answer.
+This repository holds the code for `hasadna`_ project to support open municipal
+elections. The code contains a django project for a spcific municipality and 
+allows the citizens to ask and upvote questions and for candidates to answer.
 
 You are invited to fork the code, improve the design and send a pull request
 
