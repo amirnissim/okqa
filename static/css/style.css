@@ -174,15 +174,12 @@ padding: 6px 10px;
 }
 .narrow .avatar-container {
 float: right;
-height: 38px;
-width: 38px;
 margin: 0 0 0 3px;
 }
 .avatar-container {
 padding: 0 0 7px 0;
 text-align: center;
 color: #777;
-width:26px;
 }
 .narrow .started {
 width: auto;
@@ -231,6 +228,12 @@ form { margin :0; }
 	/*border-bottom: 1px solid #f1f1f1;*/
 }
 .answers {
+margin-top: 10px;
+padding-bottom: 10px;
+color: #444;
+font-size: 12px;
+}
+.candidates-answered {
 margin-top: 10px;
 padding-bottom: 10px;
 color: #444;

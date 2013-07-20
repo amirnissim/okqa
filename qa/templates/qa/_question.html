@@ -4,8 +4,8 @@
 <div class="question-summary narrow" id="question-summary-{{ question.id }}">
     <div class="avatar-container" style="padding-top:15px;">
       <a href="{{ question.author.get_absolute_url }}" rel="tooltip" class="" title="{{question.author.get_full_name}}">
-        <img src="{{ question.author.profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle"></a>
-        </a>
+        <img src="{{ question.author.profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle">
+      </a>
     </div>
     <div onclick="window.location.href='{{ question.get_absolute_url }}'" class="cp">
         <div class="votes">
@@ -39,5 +39,20 @@
               <a href="{% url "qna" question.entity.slug %}">{{ question.entity }}</a>
             {% endif %}
         </div>
+        {% if question.answers.count and show_responders %}        
+        <div>
+        <div  style="padding-top:15px;">
+          <span class="candidates-answered">{% trans "candidates that answered" %}</span>
+        </div>
+          {% for answer in question.answers.all %}
+          <div class="avatar-container" style="padding-top:15px;">
+            <a href="{{ answer.author.get_absolute_url }}" rel="tooltip" class="" title="{{answer.author.get_full_name}}">
+              <img src="{{ answer.author.profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle" /><br/>
+              <span>{{answer.author.get_full_name}}</span>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
     </div>
 </div>

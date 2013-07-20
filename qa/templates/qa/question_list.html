@@ -46,7 +46,9 @@
 
     {% autopaginate questions 20 %}
     {% for question in questions %}
+        {% with show_responders=True %}
         {% include "qa/_question.html" %}
+        {% endwith %}
     {% endfor %}
     {% paginate %}
   </div>
