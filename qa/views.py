@@ -132,23 +132,40 @@ def post_answer(request, q_id):
 
 
 @login_required
-def post_question(request, entity_slug):
+def post_question(request, entity_slug, slug=None):
     entity = Entity.objects.get(slug=entity_slug)
+    if slug:
+        q = get_object_or_404(Question, unislug=slug, entity=entity) 
+
     if request.method == "POST":
         form = QuestionForm(request.POST)
         if form.is_valid():
-            question = form.save(commit=False)
-            question.author = request.user
-            question.entity = entity
-            question.save()
-            form.save_m2m()
+            if slug:
+                if q.author != request.user:
+                    return HttpResponseForibdden(_("You can only edit your own questions."))
+                if q.answers.count():
+                    return HttpResponseForbidden(_("Question has been answered, editing disabled."))
+                question = q
+                question.subject = form.cleaned_data.get('subject',"")
+                question.save()
+            else:
+                question = form.save(commit=False)
+                question.author = request.user
+                question.entity = entity
+                question.save()
+                form.save_m2m()
             return HttpResponseRedirect(question.get_absolute_url())
     else:
-        form = QuestionForm(initial={'entity': entity})
+        if slug:
+            subject = q.subject
+        else:
+            subject = ""
+        form = QuestionForm(initial={'entity': entity, 'subject': subject})
 
     context = RequestContext(request, {"form": form,
                     "entity": entity,
                     "max_length_q_subject": MAX_LENGTH_Q_SUBJECT,
+                    "slug": slug,
                     })
     return render(request, "qa/post_question.html", context)
 

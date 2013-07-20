@@ -42,6 +42,12 @@
           question-id="{{question.id}}" href="#">&#9872;
         </a>
         {% endif %}
+
+        {% if user == question.author and not answers %}
+          <a class="edit-question btn btn-action" href="{{ question.get_absolute_url }}edit">
+            {% trans "Edit Question" %}
+          </a>
+        {% endif %}
       </div>
 
     </div>
