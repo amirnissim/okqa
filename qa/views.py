@@ -228,7 +228,7 @@ def flag_question(request, q_id):
     if user.is_anonymous():
         messages.error(request, _('Sorry, you have to login to flag questions'))
         ret["redirect"] = '%s?next=%s' % (settings.LOGIN_URL, q.get_absolute_url())
-    elif user.profile.is_editor and user.profile.locality == q.entity:
+    elif (user.profile.is_editor and user.profile.locality == q.entity) or (user == q.author and not q.answers.all()):
         q.delete()
         messages.info(request, _('Question has been removed'))
         ret["redirect"] = reverse('qna', args=(q.entity.slug,))

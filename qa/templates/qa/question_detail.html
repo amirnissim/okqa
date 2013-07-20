@@ -42,9 +42,16 @@
                         </div>
                     </div>
                 {% else %}
+                    {% if question.author != user or not question.answers.all %}
                     <a class="flag-question btn btn-danger {% if not can_upvote %}disabled{% endif %}"
-                       question-id="{{ question.id }}" href="#">&#9872;
+                       question-id="{{ question.id }}" href="#">
+                      {% if question.author == user %}
+                      {% trans "Delete" %}
+                      {% else  %}
+                      &#9872;
+                      {% endif %}
                     </a>
+                    {% endif %}
                 {% endif %}
             </div>
 
