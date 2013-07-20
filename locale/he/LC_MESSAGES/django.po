@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OK-QA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-19 16:47+0300\n"
+"POT-Creation-Date: 2013-07-19 17:03+0300\n"
 "PO-Revision-Date: 2013-07-18 00:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,89 +64,89 @@ msgstr "מספר חברי המפלגה"
 msgid "anonymous"
 msgstr "ללא שם"
 
-#: qa/models.py:42
+#: qa/forms.py:29
+msgid "Question already exists."
+msgstr "מצטערת, השאלה כבר קיימת"
+
+#: qa/models.py:41
 msgid "unicode slug"
 msgstr "שם ביוניקוד"
 
-#: qa/models.py:48 qa/models.py:94
+#: qa/models.py:47 qa/models.py:96
 msgid "author"
 msgstr "מחבר"
 
-#: qa/models.py:49 qa/models.py:98
+#: qa/models.py:48 qa/models.py:100
 msgid "question"
 msgstr "שאלה"
 
-#: qa/models.py:50
+#: qa/models.py:49
 msgid "details"
 msgstr "פירוט"
 
-#: qa/models.py:51
+#: qa/models.py:50
 #, python-format
 msgid "Please enter your content in no more than %s letters"
 msgstr "נא להכניס תוכן בלא יותר מ %s אותיות"
 
-#: qa/models.py:53 qa/models.py:97
+#: qa/models.py:52 qa/models.py:99
 msgid "rating"
 msgstr "ניקוד"
 
-#: qa/models.py:54
+#: qa/models.py:53
 msgid "flags counter"
 msgstr "מונה דיווחים"
 
-#: qa/models.py:95
+#: qa/models.py:97
 msgid "content"
 msgstr "תוכן"
 
-#: qa/models.py:96
+#: qa/models.py:98
 #, python-format
 msgid "Please enter an answer in no more than %s letters"
 msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
 
-#: qa/views.py:115
-msgid "You cannot post questions"
-msgstr "אינך יכול לפרסם שאלות"
-
-#: qa/views.py:136
+#: qa/views.py:120
 msgid "You must be logged in as a candidate to post answers"
 msgstr "עליך להתחבר כמועמד כדי לפרסם תשובות"
 
-#: qa/views.py:178
+#: qa/views.py:162
 msgid "You already upvoted this question"
 msgstr "תודה, אתה כבר מופיע ברשימת התומכים"
 
-#: qa/views.py:185
+#: qa/views.py:169
 msgid "Use POST to upvote a question"
 msgstr "השתמש ב POST כדי להצביע לשאלה"
 
-#: qa/views.py:198
+#: qa/views.py:182
 msgid "OK QA Question Feed"
 msgstr "שאלות נשאלו"
 
-#: qa/views.py:200
+#: qa/views.py:184
 msgid "Questions from OKQA"
 msgstr "שאלות"
 
-#: qa/views.py:224
+#: qa/views.py:208
 msgid "Answers for the question"
 msgstr "תשובות לשאלה"
 
-#: qa/views.py:230
+#: qa/views.py:214
 msgid "A feed of all answers for the question"
 msgstr "פיד של תשובות לשאלה"
 
-#: qa/views.py:246
+#: qa/views.py:230
 msgid "Sorry, you have to login to flag questions"
 msgstr "אנא התחברו כדי לסמן שאלה לא ראויה"
 
-#: qa/views.py:250
+#: qa/views.py:234
 msgid "Question has been removed"
 msgstr "השאלה נמחקה"
 
-#: qa/views.py:253
+#: qa/views.py:237
 msgid "Thanks.  You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
-#: qa/views.py:258
+#: qa/views.py:242
 msgid ""
 "Thank you for falgging the question. One of our editors will look at it "
 "shortly."
@@ -173,10 +173,6 @@ msgstr "תשובות"
 #: qa/templates/qa/_question.html:38
 msgid "from"
 msgstr "מ:"
-
-#: qa/templates/qa/_question.html:44
-msgid "candidates that answered"
-msgstr "מועמדים שענו:"
 
 #: qa/templates/qa/email_update.html:33
 msgid "join"
@@ -274,6 +270,78 @@ msgstr "שאלות"
 #: qa/templates/qa/question_list.html:73
 msgid "Sorry but only connected users can post questions"
 msgstr "מצטערת, יש להתחבר כדי לשאול שאלות"
+
+#: src/django-registration/registration/admin.py:23
+msgid "Activate users"
+msgstr ""
+
+#: src/django-registration/registration/admin.py:43
+msgid "Re-send activation emails"
+msgstr "שלח מחדש דואל להפעלת החשבון"
+
+#: src/django-registration/registration/forms.py:34 user/admin.py:10
+msgid "Username"
+msgstr "שם משתמש"
+
+#: src/django-registration/registration/forms.py:35
+msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
+msgstr "ניתן להשתמש באותיות, ספרות ו @.+-_"
+
+#: src/django-registration/registration/forms.py:36
+msgid "E-mail"
+msgstr "דוא\"ל"
+
+#: src/django-registration/registration/forms.py:38 user/forms.py:91
+msgid "Password"
+msgstr "סיסמא"
+
+#: src/django-registration/registration/forms.py:40
+msgid "Password (again)"
+msgstr "סיסמא (שוב)"
+
+#: src/django-registration/registration/forms.py:50
+msgid "A user with that username already exists."
+msgstr "משתמש בשם זה כבר קיים"
+
+#: src/django-registration/registration/forms.py:64
+msgid "The two password fields didn't match."
+msgstr ""
+
+#: src/django-registration/registration/forms.py:75
+msgid "I have read and agree to the Terms of Service"
+msgstr ""
+
+#: src/django-registration/registration/forms.py:76
+msgid "You must agree to the terms to register"
+msgstr ""
+
+#: src/django-registration/registration/forms.py:92
+msgid ""
+"This email address is already in use. Please supply a different email "
+"address."
+msgstr ""
+
+#: src/django-registration/registration/forms.py:119
+msgid ""
+"Registration using free email addresses is prohibited. Please supply a "
+"different email address."
+msgstr ""
+
+#: src/django-registration/registration/models.py:176
+msgid "user"
+msgstr "שם משתמש"
+
+#: src/django-registration/registration/models.py:177
+msgid "activation key"
+msgstr "מפתח הפעלה"
+
+#: src/django-registration/registration/models.py:182
+msgid "registration profile"
+msgstr "פרופיל הרשמה"
+
+#: src/django-registration/registration/models.py:183
+msgid "registration profiles"
+msgstr "פרופילי הרשמה"
 
 #: taggit_autosuggest/managers.py:11
 msgid "Tags"
@@ -514,10 +582,6 @@ msgstr "&raquo; הקודם"
 msgid "Next &raquo;"
 msgstr "הבא &lqauo;"
 
-#: user/admin.py:10
-msgid "Username"
-msgstr "שם משתמש"
-
 #: user/admin.py:12
 msgid ""
 "Required. 30 characters or fewer. Alphanumeric characters only (letters, "
@@ -604,10 +668,6 @@ msgid ""
 "The Q&A site is happy to invite you to answer voters' questions. please "
 "click {{activation_url}} to activate your account"
 msgstr ""
-
-#: user/forms.py:91
-msgid "Password"
-msgstr "סיסמא"
 
 #: user/forms.py:93
 msgid "Password confirmation"
@@ -708,33 +768,8 @@ msgstr "שלח"
 msgid "Edit your profile"
 msgstr "ערוך את הפרופיל שלך"
 
-#~ msgid "Re-send activation emails"
-#~ msgstr "שלח מחדש דואל להפעלת החשבון"
-
-#~ msgid ""
-#~ "This value may contain only letters, numbers and @/./+/-/_ characters."
-#~ msgstr "ניתן להשתמש באותיות, ספרות ו @.+-_"
-
-#~ msgid "E-mail"
-#~ msgstr "דוא\"ל"
-
-#~ msgid "Password (again)"
-#~ msgstr "סיסמא (שוב)"
-
-#~ msgid "A user with that username already exists."
-#~ msgstr "משתמש בשם זה כבר קיים"
-
-#~ msgid "user"
-#~ msgstr "שם משתמש"
-
-#~ msgid "activation key"
-#~ msgstr "מפתח הפעלה"
-
-#~ msgid "registration profile"
-#~ msgstr "פרופיל הרשמה"
-
-#~ msgid "registration profiles"
-#~ msgstr "פרופילי הרשמה"
+#~ msgid "You cannot post questions"
+#~ msgstr "אינך יכול לפרסם שאלות"
 
 #~ msgid "Please enter a subject in no more than %s letters"
 #~ msgstr "נא להקליד שאלה בלא יותר מ %s אותיות"
