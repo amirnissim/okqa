@@ -66,7 +66,7 @@ msgstr "ללא שם"
 
 #: qa/forms.py:29
 msgid "Question already exists."
-msgstr "משתמש בשם זה כבר קיים"
+msgstr "שאלה זו כבר קיימת"
 
 #: qa/models.py:41
 msgid "unicode slug"
