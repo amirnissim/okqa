@@ -15,12 +15,19 @@
                 {% include "qa/_question.html" %}
             </div>
             <div class="span3 sidebar">
-                <a class="btn btn-primary"
-                   id="upvote-question" href="#">
-                    {% trans "I Want an Answer" %}
-                </a>
+              {% if user == question.author %}
+                {% if not answers %}
+                    <a class="edit-question btn btn-action" href="{{ question.get_absolute_url }}edit">
+                      {% trans "Edit Question" %}
+                    </a>
+                {% endif %}
+              {% else %}
+                  <a class="btn btn-primary" id="upvote-question" href="#">
+                      {% trans "I Want an Answer" %}
+                  </a>
+              {% endif %}
                 {% if can_answer %}
-                    <a class="btn btn-success btn-large" style="margin-top: 10px;" href="#add_answer_modal"
+                    <a class="btn btn-success btn-large" href="#add_answer_modal"
                        data-toggle="modal">{% trans "Answer the Question" %}</a>
                 {% endif %}
                 {% if user.profile.is_editor %}
@@ -47,7 +54,6 @@
                     </a>
                 {% endif %}
             </div>
-
         </div>
         <div class="row questions-wrapper">
             <div class="span9 answers">
