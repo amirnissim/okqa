@@ -15,19 +15,12 @@
                 {% include "qa/_question.html" %}
             </div>
             <div class="span3 sidebar">
-              {% if user == question.author %}
-                {% if not answers %}
-                    <a class="edit-question btn btn-action" href="{{ question.get_absolute_url }}edit">
-                      {% trans "Edit Question" %}
-                    </a>
-                {% endif %}
-              {% else %}
-                  <a class="btn btn-primary" id="upvote-question" href="#">
-                      {% trans "I Want an Answer" %}
-                  </a>
-              {% endif %}
+                <a class="btn btn-primary"
+                   id="upvote-question" href="#">
+                    {% trans "I Want an Answer" %}
+                </a>
                 {% if can_answer %}
-                    <a class="btn btn-success btn-large" href="#add_answer_modal"
+                    <a class="btn btn-success btn-large" style="margin-top: 10px;" href="#add_answer_modal"
                        data-toggle="modal">{% trans "Answer the Question" %}</a>
                 {% endif %}
                 {% if user.profile.is_editor %}
@@ -49,11 +42,19 @@
                         </div>
                     </div>
                 {% else %}
-                    <a class="flag-question btn btn-danger"
-                       question-id="{{ question.id }}" href="#">&#9872;
+                    {% if user != question.author or not question.answers.all %}
+                    <a class="flag-question btn btn-danger {% if not can_upvote %}disabled{% endif %}"
+                       question-id="{{ question.id }}" href="#">
+                      {% if user == question.author %}
+                      {% trans "Delete" %}
+                      {% else %}
+                      &#9872;
+                      {% endif %}
                     </a>
+                    {% endif %}
                 {% endif %}
             </div>
+
         </div>
         <div class="row questions-wrapper">
             <div class="span9 answers">
